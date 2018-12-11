@@ -48,10 +48,10 @@ public class Solution4 {
     public int lengthOfLongestSubstring(String s) {
         int ans = 0;
         int[] index = new int[128];
-        for (int i = 0, j = 0; j < s.length(); ++j) {
-            i = Math.max(index[s.charAt(j)], i);
-            ans = Math.max(j - i + 1, ans);
-            index[s.charAt(j)] = j + 1;
+        for (int l = 0, r = 0; r < s.length(); ++r) {
+            l = Math.max(index[s.charAt(r)], l);
+            ans = Math.max(r - l + 1, ans);
+            index[s.charAt(r)] = r + 1;
         }
         return ans;
     }

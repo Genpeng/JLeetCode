@@ -1,9 +1,7 @@
 package string.leetcode003;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * This is the solution of No. 003 problem in the LeetCode,
@@ -54,14 +52,31 @@ public class Solution3 {
      * @return int, 无重复字符的最长子串
      */
     public int lengthOfLongestSubstring(String s) {
+//        int ans = 0;
+//        Map<Character, Integer> map = new HashMap<>();
+//        for (int i = 0, j = 0; j < s.length(); ++j) {
+//            if (map.containsKey(s.charAt(j))) {
+//                i = Math.max(map.get(s.charAt(j)), i);
+//            }
+//            ans = Math.max(j - i + 1, ans);
+//            map.put(s.charAt(j), j + 1);
+//        }
+//        return ans;
+
         int ans = 0;
         Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0, j = 0; j < s.length(); ++j) {
-            if (map.containsKey(s.charAt(j))) {
-                i = Math.max(map.get(s.charAt(j)), i);
+        for (int l = 0, r = 0; r < s.length(); ++r) {
+            char c = s.charAt(r);
+            if (map.containsKey(c) && l <= map.get(c)) {
+                // 如果字符已经出现过，同时，子串存在重复（新增字符上一次的位置大于等于左边界）
+                l = map.get(c) + 1;
+            } else {
+                // 其余只有两种情况：
+                // 1. 要么字符还没有出现过，直接计算最长长度
+                // 2. 要么字符出现过了，但是左边界大于新增字符上一次的位置（子串不重复）
+                ans = Math.max(r - l + 1, ans);
             }
-            ans = Math.max(j - i + 1, ans);
-            map.put(s.charAt(j), j + 1);
+            map.put(c, r); // 更新字符的位置
         }
         return ans;
     }
