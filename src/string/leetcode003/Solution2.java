@@ -48,22 +48,22 @@ public class Solution2 {
      * @return int, 无重复字符的最长子串
      */
     public int lengthOfLongestSubstring(String s) {
-        int n = s.length();
-        int ans = 0, l = 0, r = 0;
-        Set<Character> set = new HashSet<>();
-        while (l < n && r < n) {
-            if (!set.contains(s.charAt(r))) {
-                set.add(s.charAt(r++));
-                ans = Math.max(r - l, ans);
+        int left = 0, right = 0, maxLen = 0;
+        Set<Character> window = new HashSet<>();
+        while (right < s.length()) {
+            if (window.contains(s.charAt(right))) {
+                window.remove(s.charAt(left++));
             } else {
-                set.remove(s.charAt(l++));
+                window.add(s.charAt(right++));
+                maxLen = Math.max(right - left, maxLen);
             }
         }
-        return ans;
+        return maxLen;
     }
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
+//        String s = "abcabcbb";
+        String s = "pwwkew";
         System.out.println((new Solution2()).lengthOfLongestSubstring(s));
     }
 }
