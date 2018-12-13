@@ -1,8 +1,5 @@
 package string.leetcode003;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * This is the solution of No. 003 problem in the LeetCode,
  * the website of the problem is as follow:
