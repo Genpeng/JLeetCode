@@ -46,14 +46,15 @@ public class Solution4 {
      * @return int, 无重复字符的最长子串
      */
     public int lengthOfLongestSubstring(String s) {
-        int ans = 0;
+        int maxLen = 0;
         int[] index = new int[128];
-        for (int l = 0, r = 0; r < s.length(); ++r) {
-            l = Math.max(index[s.charAt(r)], l);
-            ans = Math.max(r - l + 1, ans);
-            index[s.charAt(r)] = r + 1;
+        for (int left = 0, right = 0; right < s.length(); ++right) {
+            char c = s.charAt(right);
+            left = Math.max(index[c], left);
+            maxLen = Math.max(right - left + 1, maxLen);
+            index[c] = right + 1;
         }
-        return ans;
+        return maxLen;
     }
 
     public static void main(String[] args) {
