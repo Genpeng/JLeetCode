@@ -63,22 +63,25 @@ public class Solution3 {
 //        }
 //        return ans;
 
-        int ans = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (int l = 0, r = 0; r < s.length(); ++r) {
-            char c = s.charAt(r);
-            if (map.containsKey(c) && l <= map.get(c)) {
-                // 如果字符已经出现过，同时，子串存在重复（新增字符上一次的位置大于等于左边界）
-                l = map.get(c) + 1;
+        int maxLen = 0;
+        Map<Character, Integer> char2Pos = new HashMap<>();
+        for (int left = 0, right = 0; right < s.length(); ++right) {
+            char c = s.charAt(right);
+            if (char2Pos.containsKey(c) && left <= char2Pos.get(c)) {
+                // 如果子串存在重复字符，一定满足两个条件：
+                // 1. 字符在map中已经存在
+                // 2. 左边界小于等于右边界字符上一次的位置（注意！）
+                // 例如：
+                // a b b a
+                //     l r
+                // 右边界字符a虽然已经出现过，但是窗口的子串并不重复
+                left = char2Pos.get(c) + 1;
             } else {
-                // 其余只有两种情况：
-                // 1. 要么字符还没有出现过，直接计算最长长度
-                // 2. 要么字符出现过了，但是左边界大于新增字符上一次的位置（子串不重复）
-                ans = Math.max(r - l + 1, ans);
+                maxLen = Math.max(right - left + 1, maxLen);
             }
-            map.put(c, r); // 更新字符的位置
+            char2Pos.put(c, right);
         }
-        return ans;
+        return maxLen;
     }
 
     public static void main(String[] args) {
