@@ -1,8 +1,5 @@
 package array.leetcode136;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * This is the solution of No. 136 problem in the LeetCode,
  * the website of the problem is as follow:
