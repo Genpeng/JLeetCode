@@ -33,16 +33,13 @@ public class Solution {
             throw new IllegalArgumentException("[ERROR] The input array is illegal!");
         }
 
-        Map<Integer, Integer> num2Index = new HashMap<>(16);
+        Map<Integer, Integer> comps = new HashMap<>(16); // the complements of the numbers have seen
         for (int i = 0; i < nums.length; ++i) {
-            int complement = target - nums[i];
-            if (num2Index.containsKey(complement)) {
-                return new int[] {num2Index.get(complement), i};
+            if (comps.containsKey(nums[i])) {
+                return new int[] {comps.get(nums[i]), i};
             }
-            num2Index.put(nums[i], i);
+            comps.put(target - nums[i], i);
         }
-
-        // 如果最后没有找到这两个数字，返回一个空数组
         return new int[] {};
     }
 
