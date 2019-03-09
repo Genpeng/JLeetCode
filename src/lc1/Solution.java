@@ -1,4 +1,4 @@
-package array.leetcode1;
+package lc1;
 
 import util.PrintUtil;
 
