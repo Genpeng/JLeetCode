@@ -1,4 +1,4 @@
-package array.leetcode66;
+package lc66;
 
 import util.PrintUtil;
 
