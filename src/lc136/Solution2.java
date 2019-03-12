@@ -1,4 +1,4 @@
-package array.leetcode136;
+package lc136;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
-package array.leetcode136;
+package lc136;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This is the solution of No. 136 problem in the LeetCode,
@@ -27,29 +27,33 @@ import java.util.List;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/04
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * 解法一：列表
-     * 时间复杂度：O(n^2)
+     * 解法三：数学运算
+     * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
      * @param nums int[], the input array of integers
      * @return int, the only integer which appears once
      */
     public int singleNumber(int[] nums) {
-        List<Integer> list = new ArrayList<>();
+        int sum = 0;
+        Set<Integer> uniqueNums = new HashSet<>();
         for (int num : nums) {
-            if (list.contains(num)) {
-                list.remove(new Integer(num));
-            } else {
-                list.add(num);
-            }
+            uniqueNums.add(num);
+            sum += num;
         }
-        return list.get(0);
+
+        int doubleSum = 0;
+        for (int num : uniqueNums) {
+            doubleSum += 2 * num;
+        }
+
+        return doubleSum - sum;
     }
 
     public static void main(String[] args) {
         int[] nums = {2, 2, 1};
-        System.out.println((new Solution1()).singleNumber(nums));
+        System.out.println((new Solution3()).singleNumber(nums));
     }
 }

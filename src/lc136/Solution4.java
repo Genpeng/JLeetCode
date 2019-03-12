@@ -1,7 +1,4 @@
-package array.leetcode136;
-
-import java.util.HashSet;
-import java.util.Set;
+package lc136;
 
 /**
  * This is the solution of No. 136 problem in the LeetCode,
@@ -27,33 +24,25 @@ import java.util.Set;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/04
  */
-public class Solution3 {
+public class Solution4 {
     /**
-     * 解法三：数学运算
+     * 解法四：位运算
      * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * 空间复杂度：O(1)
      *
      * @param nums int[], the input array of integers
      * @return int, the only integer which appears once
      */
     public int singleNumber(int[] nums) {
-        int sum = 0;
-        Set<Integer> uniqueNums = new HashSet<>();
-        for (int num : nums) {
-            uniqueNums.add(num);
-            sum += num;
+        int res = nums[0];
+        for (int i = 1; i < nums.length; ++i) {
+            res ^= nums[i];
         }
-
-        int doubleSum = 0;
-        for (int num : uniqueNums) {
-            doubleSum += 2 * num;
-        }
-
-        return doubleSum - sum;
+        return res;
     }
 
     public static void main(String[] args) {
         int[] nums = {2, 2, 1};
-        System.out.println((new Solution3()).singleNumber(nums));
+        System.out.println((new Solution4()).singleNumber(nums));
     }
 }
