@@ -1,4 +1,4 @@
-package array.leetcode349;
+package lc349;
 
 import util.PrintUtil;
 
@@ -31,9 +31,9 @@ import java.util.Set;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/09
  */
-public class Solution2 {
+public class Solution3 {
     /**
-     * 解法2：双指针
+     * 解法3：二分查找
      * 时间复杂度：O(n * log(n))
      * 空间复杂度：O(k)，其中，k表示交集的大小
      *
@@ -46,35 +46,46 @@ public class Solution2 {
             throw new IllegalArgumentException("[ERROR] There exists at least one null array!");
         }
 
-        Arrays.sort(nums1);
+        if (nums1.length == 0 || nums2.length == 0) {
+            return new int[] {};
+        }
+
         Arrays.sort(nums2);
 
-        int i = 0, j = 0;
         Set<Integer> set = new HashSet<>();
-        while (i < nums1.length && j < nums2.length) {
-            if (nums1[i] < nums2[j]) {
-                ++i;
-            } else if (nums1[i] > nums2[j]) {
-                ++j;
-            } else { // nums1[i] == nums2[j]
-                set.add(nums1[i]);
-                ++i;
-                ++j;
+        for (int num : nums1) {
+            if (binarySearch(nums2, num)) {
+                set.add(num);
             }
         }
 
-        int k = 0;
         int[] res = new int[set.size()];
+        int k = 0;
         for (int num : set) {
             res[k++] = num;
         }
         return res;
     }
 
+    private boolean binarySearch(int[] nums, int target) {
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] < target) {
+                low = mid + 1;
+            } else if (nums[mid] > target) {
+                high = mid - 1;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 2, 1};
         int[] nums2 = {2, 2};
-        int[] res = (new Solution2()).intersection(nums1, nums2);
+        int[] res = (new Solution3()).intersection(nums1, nums2);
         PrintUtil.printArray(res);
     }
 }

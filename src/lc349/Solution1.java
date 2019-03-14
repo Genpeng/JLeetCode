@@ -1,8 +1,9 @@
-package array.leetcode349;
+package lc349;
 
 import util.PrintUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,61 +32,71 @@ import java.util.Set;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/09
  */
-public class Solution3 {
+public class Solution1 {
     /**
-     * 解法3：二分查找
-     * 时间复杂度：O(n * log(n))
-     * 空间复杂度：O(k)，其中，k表示交集的大小
+     * 解法1：使用两个集合
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
      *
      * @param nums1 int[], one array
      * @param nums2 int[], the other array
      * @return int[], the intersection of two arrays
      */
-    public int[] intersection(int[] nums1, int[] nums2) {
+    public int[] intersection1(int[] nums1, int[] nums2) {
         if (nums1 == null || nums2 == null) {
             throw new IllegalArgumentException("[ERROR] There exists at least one null array!");
         }
 
-        if (nums1.length == 0 || nums2.length == 0) {
-            return new int[] {};
+        Set<Integer> set1 = new HashSet<>();
+        for (int num : nums1) {
+            set1.add(num);
         }
 
-        Arrays.sort(nums2);
-
-        Set<Integer> set = new HashSet<>();
-        for (int num : nums1) {
-            if (binarySearch(nums2, num)) {
-                set.add(num);
+        Set<Integer> set2 = new HashSet<>();
+        for (int num : nums2) {
+            if (set1.contains(num)) {
+                set2.add(num);
+                set1.remove(num);
             }
         }
 
-        int[] res = new int[set.size()];
-        int k = 0;
-        for (int num : set) {
-            res[k++] = num;
+        int[] res = new int[set2.size()];
+        int i = 0;
+        for (int num : set2) {
+            res[i++] = num;
         }
         return res;
     }
 
-    private boolean binarySearch(int[] nums, int target) {
-        int low = 0, high = nums.length - 1;
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-            if (nums[mid] < target) {
-                low = mid + 1;
-            } else if (nums[mid] > target) {
-                high = mid - 1;
-            } else {
-                return true;
+    public int[] intersection2(int[] nums1, int[] nums2) {
+        if (nums1 == null || nums2 == null) {
+            throw new IllegalArgumentException("[ERROR] There exists at least one null array!");
+        }
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums1) {
+            set.add(num);
+        }
+
+        List<Integer> list = new ArrayList<>();
+        for (int num : nums2) {
+            if (set.contains(num)) {
+                list.add(num);
+                set.remove(num);
             }
         }
-        return false;
+
+        int[] res = new int[list.size()];
+        for (int i = 0; i < list.size(); ++i) {
+            res[i] = list.get(i);
+        }
+        return res;
     }
 
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 2, 1};
         int[] nums2 = {2, 2};
-        int[] res = (new Solution3()).intersection(nums1, nums2);
+        int[] res = (new Solution1()).intersection2(nums1, nums2);
         PrintUtil.printArray(res);
     }
 }

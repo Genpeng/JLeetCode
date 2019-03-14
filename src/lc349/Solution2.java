@@ -1,7 +1,8 @@
-package array.leetcode349;
+package lc349;
 
 import util.PrintUtil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,11 +31,11 @@ import java.util.Set;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/09
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * 解法1：使用两个集合
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * 解法2：双指针
+     * 时间复杂度：O(n * log(n))
+     * 空间复杂度：O(k)，其中，k表示交集的大小
      *
      * @param nums1 int[], one array
      * @param nums2 int[], the other array
@@ -45,22 +46,27 @@ public class Solution1 {
             throw new IllegalArgumentException("[ERROR] There exists at least one null array!");
         }
 
-        Set<Integer> set1 = new HashSet<>();
-        for (int num : nums1) {
-            set1.add(num);
-        }
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
 
-        Set<Integer> set2 = new HashSet<>();
-        for (int num : nums2) {
-            if (set1.contains(num)) {
-                set2.add(num);
+        int i = 0, j = 0;
+        Set<Integer> set = new HashSet<>();
+        while (i < nums1.length && j < nums2.length) {
+            if (nums1[i] < nums2[j]) {
+                ++i;
+            } else if (nums1[i] > nums2[j]) {
+                ++j;
+            } else { // nums1[i] == nums2[j]
+                set.add(nums1[i]);
+                ++i;
+                ++j;
             }
         }
 
-        int[] res = new int[set2.size()];
-        int i = 0;
-        for (int num : set2) {
-            res[i++] = num;
+        int idx = 0;
+        int[] res = new int[set.size()];
+        for (int num : set) {
+            res[idx++] = num;
         }
         return res;
     }
@@ -68,7 +74,7 @@ public class Solution1 {
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 2, 1};
         int[] nums2 = {2, 2};
-        int[] res = (new Solution1()).intersection(nums1, nums2);
+        int[] res = (new Solution2()).intersection(nums1, nums2);
         PrintUtil.printArray(res);
     }
 }
