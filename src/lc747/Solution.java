@@ -1,7 +1,5 @@
 package lc747;
 
-import util.PrintUtil;
-
 /**
  * This is the solution of No. 747 problem in the LeetCode,
  * the website of the problem is as follow:
