@@ -28,22 +28,21 @@ public class Solution1 {
     public void moveZeroes(int[] nums) {
         // 1. 生成一个长度相同、元素都是0的数组
         //    时间复杂度：O(n)
-        int[] temp = new int[nums.length];
+        int[] tmp = new int[nums.length];
 
         // 2. 将数组nums中非零元素按照先后顺序依次存储到新的数组temp中
         //    时间复杂度：O(n)
-        int index = 0;
+        int idx = 0;
         for (int num : nums) {
             if (num != 0) {
-                temp[index] = num;
-                ++index;
+                tmp[idx++] = num;
             }
         }
 
         // 3. 用temp数组覆盖原数组nums
         //    时间复杂度：O(n)
         for (int i = 0; i < nums.length; ++i) {
-            nums[i] = temp[i];
+            nums[i] = tmp[i];
         }
     }
 
