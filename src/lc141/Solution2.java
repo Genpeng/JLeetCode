@@ -2,9 +2,6 @@ package lc141;
 
 import entity.ListNode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * This is the solution of No. 141 problem in the LeetCode,
  * the website of the problem is as follow:
