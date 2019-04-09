@@ -1,4 +1,4 @@
-package lc19;
+package lc019;
 
 import entity.ListNode;
 

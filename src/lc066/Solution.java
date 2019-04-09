@@ -1,4 +1,4 @@
-package lc66;
+package lc066;
 
 import util.PrintUtil;
 

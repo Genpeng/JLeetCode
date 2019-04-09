@@ -1,4 +1,4 @@
-package lc1;
+package lc001;
 
 import util.PrintUtil;
 
