@@ -1,4 +1,4 @@
-package lc844;
+package lc844_r;
 
 import java.util.Stack;
 

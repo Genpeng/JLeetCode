@@ -1,4 +1,4 @@
-package lc844;
+package lc844_r;
 
 /**
  * This is the solution of No. 844 problem in the LeetCode,
