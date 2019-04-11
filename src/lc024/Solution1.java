@@ -32,15 +32,42 @@ public class Solution1 {
     public ListNode swapPairs(ListNode head) {
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
-        ListNode curr = dummyHead;
-        while (curr.next != null && curr.next.next != null) {
-            ListNode first = curr.next, second = curr.next.next;
+        ListNode prev = dummyHead;
+        while (prev.next != null && prev.next.next != null) {
+            ListNode first = prev.next, second = prev.next.next;
             // swap two nodes
             first.next = second.next;
             second.next = first;
-            curr.next = second;
+            prev.next = second;
             // update to next iteration
-            curr = curr.next.next;
+            prev = prev.next.next;
+        }
+        return dummyHead.next;
+    }
+
+    /**
+     * 迭代的另一种解法
+     * 时间复杂度：O(n)，最多需要迭代 int(n/2) 次
+     * 空间复杂度：O(1)，只需要保存 4 个节点的引用
+     *
+     * @param head ListNode, the head of the linked list
+     * @return ListNode, the head of the modified linked list
+     */
+    public ListNode swapPairs2(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+        ListNode prev = dummyHead, curr = head;
+        while (curr != null && curr.next != null) {
+            ListNode nextNode = curr.next;
+            curr.next = nextNode.next;
+            nextNode.next = curr;
+            prev.next = nextNode;
+            // update to next iteration
+            prev = curr;
+            curr = curr.next;
         }
         return dummyHead.next;
     }
