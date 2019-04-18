@@ -44,6 +44,7 @@ public class KthLargest {
         if (nums == null || nums.length == 0) {
             return;
         }
+        // 为什么这里不能直接用self.pq.add(num)？
         for (int num : nums) {
             if (this.pq.size() < k) {
                 this.pq.add(num);
