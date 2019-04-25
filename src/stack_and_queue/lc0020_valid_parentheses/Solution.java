@@ -54,6 +54,7 @@ public class Solution {
      *                  |                     |- two characters is same (pop)
      *                  |- stack is not empty |
      *                                        |- two characters is different (return false)
+     *
      * @param s String, the input string
      * @return boolean, true if the input string is valid
      */
