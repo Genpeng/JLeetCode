@@ -63,6 +63,27 @@ public class Solution {
         return stack.isEmpty();
     }
 
+    public boolean isValid2(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
+        }
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(')');
+            } else if (c == '[') {
+                stack.push(']');
+            } else if (c == '{') {
+                stack.push('}');
+            } else if (!stack.isEmpty() && c == stack.peek()) {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
     public static void main(String[] args) {
         System.out.println((new Solution()).isValid(null));
     }
