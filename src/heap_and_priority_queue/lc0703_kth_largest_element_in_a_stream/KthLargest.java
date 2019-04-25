@@ -34,36 +34,43 @@ import java.util.PriorityQueue;
  * @date    2019/04/18
  */
 public class KthLargest {
-    private PriorityQueue<Integer> pq;
-    private int k;
+    private final PriorityQueue<Integer> pq;
+    private final int k;
 
     public KthLargest(int k, int[] nums) {
-        this.pq = new PriorityQueue<>(k);
+        if (nums == null) {
+            throw new IllegalArgumentException("[ERROR] The input array is null!!!");
+        }
+        if (nums.length < k - 1) {
+            throw new IllegalArgumentException("[ERROR] The size of priority queue is less than k-1!!!");
+        }
+
+        this.pq = new PriorityQueue<>();
         this.k = k;
 
-        if (nums == null || nums.length == 0) {
-            return;
-        }
-        // 为什么这里不能直接用self.pq.add(num)？
         for (int num : nums) {
-            if (this.pq.size() < k) {
-                this.pq.add(num);
-            } else if (num > this.pq.peek()) {
-                this.pq.poll();
-                this.pq.add(num);
-            }
+            add(num);
         }
     }
 
     public int add(int val) {
-        if (this.pq.size() < k - 1) {
-            throw new IllegalArgumentException("[ERROR] The number of elements is less than (k-1) !!!");
-        } else if (this.pq.size() == k - 1) {
-            this.pq.add(val);
-        } else if (val > this.pq.peek()) {
-            this.pq.poll();
-            this.pq.add(val);
+        if (pq.size() < k) {
+            pq.add(val);
+        } else if (val > pq.peek()) { // pq.size() == k
+            pq.poll();
+            pq.add(val);
         }
-        return this.pq.peek();
+        return pq.peek();
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {4, 5, 8, 2};
+        int k = 3;
+        KthLargest kthLargest = new KthLargest(k, nums);
+        System.out.println(kthLargest.add(3));
+        System.out.println(kthLargest.add(5));
+        System.out.println(kthLargest.add(10));
+        System.out.println(kthLargest.add(9));
+        System.out.println(kthLargest.add(4));
     }
 }

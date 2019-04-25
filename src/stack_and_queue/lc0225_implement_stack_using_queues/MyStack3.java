@@ -52,7 +52,7 @@ public class MyStack3<E> {
     public void push(E e) {
         q.add(e);
         for (int i = 0; i < q.size() - 1; ++i) {
-            q.add(q.remove());
+            q.add(q.poll());
         }
     }
 
@@ -61,7 +61,7 @@ public class MyStack3<E> {
         if (empty()) {
             throw new EmptyStackException();
         }
-        return q.remove();
+        return q.poll();
     }
 
     /** Get the top element. */
