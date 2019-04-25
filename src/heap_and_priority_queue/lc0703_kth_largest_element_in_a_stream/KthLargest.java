@@ -38,11 +38,8 @@ public class KthLargest {
     private final int k;
 
     public KthLargest(int k, int[] nums) {
-        if (nums == null) {
-            throw new IllegalArgumentException("[ERROR] The input array is null!!!");
-        }
-        if (nums.length < k - 1) {
-            throw new IllegalArgumentException("[ERROR] The size of priority queue is less than k-1!!!");
+        if (nums == null || nums.length < k - 1) {
+            throw new IllegalArgumentException("[ERROR] The input array is null, or the size of priority queue is less than k-1!!!");
         }
 
         this.pq = new PriorityQueue<>();
