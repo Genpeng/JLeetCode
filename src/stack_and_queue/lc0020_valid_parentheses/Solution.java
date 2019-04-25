@@ -43,27 +43,21 @@ import java.util.Stack;
  * @date    2019/04/09
  */
 public class Solution {
+    /**
+     * All possible scenarios are shown below:
+     *
+     * - left brackets (push)
+     *
+     *                  |- stack is empty (return false)
+     *                  |
+     * - right brackets |
+     *                  |                     |- two characters is same (pop)
+     *                  |- stack is not empty |
+     *                                        |- two characters is different (return false)
+     * @param s String, the input string
+     * @return boolean, true if the input string is valid
+     */
     public boolean isValid(String s) {
-        if (s == null) {
-            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
-        }
-
-        Stack<Character> stack = new Stack<>();
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                stack.push(')');
-            } else if (c == '[') {
-                stack.push(']');
-            } else if (c == '{') {
-                stack.push('}');
-            } else if (stack.isEmpty() || c != stack.pop()) {
-                return false;
-            }
-        }
-        return stack.isEmpty();
-    }
-
-    public boolean isValid2(String s) {
         if (s == null) {
             throw new IllegalArgumentException("[ERROR] The input string is null!!!");
         }
