@@ -52,8 +52,9 @@ public class Solution2 {
      * @return int[], 滑动过程中滑动窗口的所有最大值
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums == null || nums.length == 0) {
-            return new int[] {};
+        boolean isKIllegal = k <= 0 || k > nums.length;
+        if (nums == null || isKIllegal) {
+            throw new IllegalArgumentException("[ERROR] The input array is null, or the value of k is illegal!!!");
         }
 
         int n = nums.length;
@@ -80,7 +81,7 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        int k = 3;
+        int k = 4;
         int[] nums = new int[] {1, 3, -1, -3, 5, 3, 6, 7};
 
         Solution2 solution1 = new Solution2();

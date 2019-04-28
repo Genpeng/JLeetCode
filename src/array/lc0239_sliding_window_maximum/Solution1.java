@@ -50,19 +50,20 @@ public class Solution1 {
      * @return int[], 滑动过程中滑动窗口的所有最大值
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums == null || nums.length == 0) {
-            return new int[] {};
+        boolean isKIllegal = k <= 0 || k > nums.length;
+        if (nums == null || isKIllegal) {
+            throw new IllegalArgumentException("[ERROR] The input array is null, or the value of k is illegal!!!");
         }
 
         int n = nums.length;
-        int ri = 0;
+        int ri = 0; // 结果数组的索引
         int[] res = new int[n - k + 1];
         PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
         for (int i = 0; i < n; ++i) {
             if (i <= k - 1) { // 如果"窗口"（最大堆）中的元素不足k个
                 pq.add(nums[i]);
             } else { // 如果"窗口"（最大堆）中的元素多于k个，则先删除"窗口"的左边界，再加入新的元素
-                pq.remove(nums[i - k]);
+                pq.remove(nums[i - k]); // O(k)的时间复杂度
                 pq.add(nums[i]);
             }
 
