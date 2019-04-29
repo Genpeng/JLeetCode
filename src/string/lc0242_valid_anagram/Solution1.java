@@ -37,7 +37,7 @@ public class Solution1 {
      *
      * @param s String, one of the two input strings
      * @param t String, the other input string
-     * @return boolean, true if two string is anagram
+     * @return boolean, true if t is an anagram of s
      */
     public boolean isAnagram(String s, String t) {
         char[] sc = s.toCharArray();
