@@ -29,18 +29,19 @@ import java.util.Map;
  */
 public class Solution {
     public int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length <= 1) {
-            throw new IllegalArgumentException("[ERROR] The input array is illegal!");
+        if (nums == null || nums.length < 2) {
+            throw new IllegalArgumentException("[ERROR] The input array is null or the size of it is less than 2!!!");
         }
 
         Map<Integer, Integer> comps = new HashMap<>(16); // the complements of the numbers have seen
         for (int i = 0; i < nums.length; ++i) {
-            if (comps.containsKey(nums[i])) {
-                return new int[] {comps.get(nums[i]), i};
+            int num = nums[i];
+            if (comps.containsKey(num)) {
+                return new int[] {comps.get(num), i};
             }
-            comps.put(target - nums[i], i);
+            comps.put(target - num, i);
         }
-        return new int[] {};
+        throw new IllegalArgumentException("[ERROR] There are no two numbers such that their sum is equal to target!!!");
     }
 
     public static void main(String[] args) {
