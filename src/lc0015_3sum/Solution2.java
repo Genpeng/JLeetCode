@@ -57,15 +57,13 @@ public class Solution2 {
                 } else if (s > 0) {
                     --r;
                 } else {
-                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    res.add(Arrays.asList(nums[i], nums[l++], nums[r++]));
                     while (l < r && nums[l] == nums[l+1]) {
                         ++l;
                     }
                     while (l < r && nums[r] == nums[r-1]) {
                         --r;
                     }
-                    ++l;
-                    --r;
                 }
             }
         }
