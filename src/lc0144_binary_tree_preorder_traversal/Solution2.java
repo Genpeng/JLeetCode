@@ -38,8 +38,8 @@ public class Solution2 {
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
-     * @param root TreeNode, the root of BST
-     * @return List<Integer>, the preorder traversal of BST
+     * @param root TreeNode, the root of binary tree
+     * @return List<Integer>, the preorder traversal of binary tree
      */
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new LinkedList<>();
