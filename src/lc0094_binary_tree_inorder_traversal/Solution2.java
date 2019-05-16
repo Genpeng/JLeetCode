@@ -56,4 +56,29 @@ public class Solution2 {
         }
         return res;
     }
+
+    /**
+     * 解法二：迭代（推荐）
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of binary tree
+     * @return List<Integer>, the inorder traversal of binary tree
+     */
+    public List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> res = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode node = stack.pop();
+                res.add(node.val);
+                curr = node.right;
+            }
+        }
+        return res;
+    }
 }
