@@ -2,6 +2,8 @@ package lc0098_validate_bst;
 
 import entity.TreeNode;
 
+import java.util.Stack;
+
 /**
  * This is the solution of No. 98 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -41,9 +43,9 @@ import entity.TreeNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/14
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * 解法一：递归
+     * 解法三：中序遍历
      * 时间复杂度：O(n)，其中n表示节点数目
      * 空间复杂度：O(n)
      *
@@ -51,21 +53,22 @@ public class Solution1 {
      * @return boolean, true if the BST is valid
      */
     public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, null, null);
-    }
-
-    private boolean isValidBST(TreeNode root, Integer lower, Integer upper) {
-        if (root == null) {
-            return true;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        double val = - Double.MAX_VALUE;
+        while (curr != null || !stack.isEmpty()) {
+            if (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            } else {
+                TreeNode node = stack.pop();
+                if (node.val <= val) {
+                    return false;
+                }
+                val = node.val;
+                curr = node.right;
+            }
         }
-
-        int val = root.val;
-        if (lower != null && val <= lower) {
-            return false;
-        }
-        if (upper != null && val >= upper) {
-            return false;
-        }
-        return isValidBST(root.left, lower, val) && isValidBST(root.right, val, upper);
+        return true;
     }
 }

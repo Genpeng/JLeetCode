@@ -59,13 +59,13 @@ public class Solution2 {
     public boolean isValidBST(TreeNode root) {
         Integer lower = null, upper = null, val;
         update(root, lower, upper);
-
+        TreeNode curr;
         while (!stack.isEmpty()) {
-            root = stack.pop();
+            curr = stack.pop();
             lower = lowers.pop();
             upper = uppers.pop();
 
-            if (root == null) {
+            if (curr == null) {
                 continue;
             }
             val = root.val;
@@ -75,8 +75,8 @@ public class Solution2 {
             if (upper != null && val >= upper) {
                 return false;
             }
-            update(root.right, val, upper);
-            update(root.left, lower, val);
+            update(curr.right, val, upper);
+            update(curr.left, lower, val);
         }
         return true;
     }
