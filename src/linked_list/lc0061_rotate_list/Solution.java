@@ -68,9 +68,61 @@ public class Solution {
         return newHead;
     }
 
+    public ListNode rotateRight2(ListNode head, int k) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        // 求出链表的长度
+        ListNode curr = head;
+        int l = 0;
+        while (curr != null) {
+            ++l;
+            curr = curr.next;
+        }
+
+        // 求出实际翻转的长度
+        k = k % l;
+        if (k == 0) {
+            return head;
+        }
+
+        // 翻转链表
+        ListNode p1 = head, p2 = head;
+        for (int i = 0; i < k; ++i) {
+            p2 = p2.next;
+        }
+        while (p2.next != null) {
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        ListNode newHead = p1.next;
+        p1.next = null;
+        p2.next = head;
+        return newHead;
+    }
+
+     private ListNode rotateNthFromEnd(ListNode head, int k) {
+         ListNode p1 = head, p2 = head;
+         // 移动p2指针，使得p1和p2指针之间的距离为k+1
+         for (int i = 0; i < k; ++i) {
+             p2 = p2.next;
+         }
+         // 同时移动p1和p2指针，使得p2指针处于链表的尾部
+         while (p2.next != null) {
+             p1 = p1.next;
+             p2 = p2.next;
+         }
+         // 翻转链表
+         ListNode newHead = p1.next;
+         p1.next = null;
+         p2.next = head;
+         return newHead;
+     }
+
     public static void main(String[] args) {
         ListNode head = new ListNode(new int[] {1, 2, 3, 4, 5});
         System.out.println(head);
-        System.out.println((new Solution()).rotateRight(head, 2));
+        System.out.println((new Solution()).rotateRight2(head, 2));
     }
 }
