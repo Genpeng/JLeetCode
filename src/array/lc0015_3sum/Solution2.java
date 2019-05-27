@@ -1,6 +1,8 @@
-package lc0015_3sum;
+package array.lc0015_3sum;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This is the solution of No. 15 problem in the LeetCode,
@@ -27,11 +29,11 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/06
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * 解法一：哈希表
+     * 解法二：双指针
      * 时间复杂度：O(n^2)
-     * 空间复杂度：O(n)
+     * 空间复杂度：O(1)
      *
      * @param nums int[], input array
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
@@ -41,26 +43,35 @@ public class Solution1 {
             return new LinkedList<>();
         }
         Arrays.sort(nums);
-        Set<List<Integer>> res = new HashSet<>();
+        List<List<Integer>> res = new LinkedList<>();
         int n = nums.length;
-        for (int i = 0; i < n - 2; ++i) {
+        for (int i = 0; i < n-2; ++i) {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
-            Set<Integer> s = new HashSet<>();
-            for (int j = i + 1; j < n; ++j) {
-                if (!s.contains(nums[j])) {
-                    s.add(-nums[i]-nums[j]);
+            int l = i + 1, r = n - 1;
+            while (l < r) {
+                int s = nums[i] + nums[l] + nums[r];
+                if (s < 0) {
+                    ++l;
+                } else if (s > 0) {
+                    --r;
                 } else {
-                    res.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
+                    res.add(Arrays.asList(nums[i], nums[l++], nums[r++]));
+                    while (l < r && nums[l] == nums[l+1]) {
+                        ++l;
+                    }
+                    while (l < r && nums[r] == nums[r-1]) {
+                        --r;
+                    }
                 }
             }
         }
-        return new LinkedList<>(res);
+        return res;
     }
 
     public static void main(String[] args) {
         int[] nums = new int[] {-1, 0, 1, 2, -1, -4};
-        System.out.println((new Solution1()).threeSum(nums));
+        System.out.println((new Solution2()).threeSum(nums));
     }
 }
