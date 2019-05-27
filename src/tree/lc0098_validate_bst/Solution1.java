@@ -1,4 +1,4 @@
-package lc0098_validate_bst;
+package tree.lc0098_validate_bst;
 
 import entity.TreeNode;
 

@@ -1,4 +1,4 @@
-package lc0098_validate_bst;
+package tree.lc0098_validate_bst;
 
 import entity.TreeNode;
 
@@ -43,9 +43,13 @@ import java.util.Stack;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/14
  */
-public class Solution3 {
+public class Solution2 {
+    private Stack<TreeNode> stack = new Stack<>();
+    private Stack<Integer> lowers = new Stack<>();
+    private Stack<Integer> uppers = new Stack<>();
+
     /**
-     * 解法三：中序遍历
+     * 解法二：迭代
      * 时间复杂度：O(n)，其中n表示节点数目
      * 空间复杂度：O(n)
      *
@@ -53,22 +57,33 @@ public class Solution3 {
      * @return boolean, true if the BST is valid
      */
     public boolean isValidBST(TreeNode root) {
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode curr = root;
-        double val = - Double.MAX_VALUE;
-        while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
-                stack.push(curr);
-                curr = curr.left;
-            } else {
-                TreeNode node = stack.pop();
-                if (node.val <= val) {
-                    return false;
-                }
-                val = node.val;
-                curr = node.right;
+        Integer lower = null, upper = null, val;
+        update(root, lower, upper);
+        TreeNode curr;
+        while (!stack.isEmpty()) {
+            curr = stack.pop();
+            lower = lowers.pop();
+            upper = uppers.pop();
+
+            if (curr == null) {
+                continue;
             }
+            val = root.val;
+            if (lower != null && val <= lower) {
+                return false;
+            }
+            if (upper != null && val >= upper) {
+                return false;
+            }
+            update(curr.right, val, upper);
+            update(curr.left, lower, val);
         }
         return true;
+    }
+
+    private void update(TreeNode root, Integer lower, Integer upper) {
+        stack.push(root);
+        lowers.push(lower);
+        uppers.push(upper);
     }
 }
