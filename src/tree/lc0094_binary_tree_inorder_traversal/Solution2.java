@@ -1,4 +1,4 @@
-package lc0094_binary_tree_inorder_traversal;
+package tree.lc0094_binary_tree_inorder_traversal;
 
 import entity.TreeNode;
 
