@@ -27,10 +27,10 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/06
  */
-public class Solution1 {
+public class DeprecatedSoluton {
     /**
-     * 解法一：哈希表
-     * 时间复杂度：O(n^2)
+     * 解法（Deprecated）：Brute Force
+     * 时间复杂度：O(n^3)
      * 空间复杂度：O(n)
      *
      * @param nums int[], input array
@@ -40,29 +40,37 @@ public class Solution1 {
         if (nums == null || nums.length < 3) {
             return new LinkedList<>();
         }
+
+        List<List<Integer>> res = new LinkedList<>();
         Arrays.sort(nums);
-        Set<List<Integer>> res = new HashSet<>();
-        int n = nums.length;
-        for (int i = 0; i < n - 2; ++i) {
-            if (i > 0 && nums[i-1] == nums[i]) {
+        for (int i = 0; i < nums.length - 2; ++i) {
+            int a = nums[i];
+            if (i > 0 && a == nums[i-1]) {
                 continue;
             }
-            Set<Integer> s = new HashSet<>();
-            for (int j = i + 1; j < n; ++j) {
-                if (!s.contains(nums[j])) {
-                    s.add(-nums[i]-nums[j]);
-                } else {
-                    res.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
+            for (int j = i + 1; j < nums.length - 1; ++j) {
+                int b = nums[j];
+                if (j > i + 1 && b == nums[j-1]) {
+                    continue;
+                }
+                for (int k = j + 1; k < nums.length; ++k) {
+                    int c = nums[k];
+                    if (k > j + 1 && c == nums[k-1]) {
+                        continue;
+                    }
+                    if (c == -(a + b)) {
+                        res.add(Arrays.asList(a, b, c));
+                    }
                 }
             }
         }
-        return new LinkedList<>(res);
+        return res;
     }
 
     public static void main(String[] args) {
         int[] nums0 = new int[] {-1, 0, 1, 2, -1, -4};
         int[] nums1 = new int[] {0, 0, 0, 0};
-        System.out.println((new Solution1()).threeSum(nums0));
-        System.out.println((new Solution1()).threeSum(nums1));
+        System.out.println((new DeprecatedSoluton()).threeSum(nums0));
+        System.out.println((new DeprecatedSoluton()).threeSum(nums1));
     }
 }
