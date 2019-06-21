@@ -42,13 +42,12 @@ public class Solution1 {
         }
         Arrays.sort(nums);
         Set<List<Integer>> res = new HashSet<>();
-        int n = nums.length;
-        for (int i = 0; i < n - 2; ++i) {
+        for (int i = 0; i < nums.length - 2; ++i) {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
             Set<Integer> s = new HashSet<>();
-            for (int j = i + 1; j < n; ++j) {
+            for (int j = i + 1; j < nums.length; ++j) {
                 if (!s.contains(nums[j])) {
                     s.add(-nums[i]-nums[j]);
                 } else {

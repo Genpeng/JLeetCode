@@ -42,10 +42,11 @@ public class Solution2 {
         if (nums == null || nums.length < 3) {
             return new LinkedList<>();
         }
+
         Arrays.sort(nums);
         List<List<Integer>> res = new LinkedList<>();
         int n = nums.length;
-        for (int i = 0; i < n-2; ++i) {
+        for (int i = 0; i < n - 2; ++i) {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
