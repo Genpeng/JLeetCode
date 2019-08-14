@@ -28,27 +28,23 @@ import entity.ListNode;
 public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode p1 = head, p2 = head;
-        // 指针p2移动n个节点，此时p1和p2之间的距离为n+1
+        // 指针p2移动n个节点，此时p1和p2之间有n+1个节点
         for (int i = 0; i < n; ++i) {
             p2 = p2.next;
         }
-
         // 如果p2为空，则说明链表的长度刚好等于n，待删除的节点刚好为头结点
         if (p2 == null) {
             return head.next;
         }
-
         // 如果p2不为空，同时移动两个节点，使得p2正好处于尾节点，此时p1正好处于倒数第n+1个节点
         while (p2.next != null) {
             p1 = p1.next;
             p2 = p2.next;
         }
-
         // 删除倒数第n个节点
         ListNode deleteNode = p1.next;
         p1.next = deleteNode.next;
         deleteNode.next = null;
-
         return head;
     }
 
