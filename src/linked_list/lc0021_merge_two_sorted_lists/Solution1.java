@@ -3,7 +3,7 @@ package linked_list.lc0021_merge_two_sorted_lists;
 import entity.ListNode;
 
 /**
- * This is the solution of No. 32 problem in the LeetCode,
+ * This is the solution of No. 21 problem in the LeetCode,
  * the website of the problem is as follow:
  * https://leetcode.com/problems/merge-two-sorted-lists/
  *
@@ -32,19 +32,19 @@ public class Solution1 {
      */
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
+        ListNode tail = dummyHead;
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                prev.next = l1;
+                tail.next = l1;
                 l1 = l1.next;
             } else {
-                prev.next = l2;
+                tail.next = l2;
                 l2 = l2.next;
             }
             // update to next iteration
-            prev = prev.next;
+            tail = tail.next;
         }
-        prev.next = l1 == null ? l2 : l1;
+        tail.next = l1 == null ? l2 : l1;
         return dummyHead.next;
     }
 
