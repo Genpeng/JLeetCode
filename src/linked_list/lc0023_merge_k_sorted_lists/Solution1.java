@@ -41,20 +41,20 @@ public class Solution1 {
         if (lists == null || lists.length == 0) {
             return null;
         }
+        // Step 1: 
         List<Integer> vals = new LinkedList<>();
-        for (int i = 0; i < lists.length; ++i) {
-            ListNode curr = lists[i];
-            while (curr != null) {
-                vals.add(curr.val);
-                curr = curr.next;
+        for (ListNode l : lists) {
+            while (l != null) {
+                vals.add(l.val);
+                l = l.next;
             }
         }
         Collections.sort(vals);
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
-        for (int i = 0; i < vals.size(); ++i) {
-            prev.next = new ListNode(vals.get(i));
-            prev = prev.next;
+        ListNode tail = dummyHead;
+        for (int val : vals) {
+            tail.next = new ListNode(val);
+            tail = tail.next;
         }
         return dummyHead.next;
     }
