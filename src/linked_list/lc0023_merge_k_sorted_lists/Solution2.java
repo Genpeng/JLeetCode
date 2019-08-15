@@ -38,22 +38,22 @@ public class Solution2 {
             return null;
         }
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
+        ListNode tail = dummyHead;
         while (true) {
-            int minIndex = 0;
+            int minIndex = -1;
             ListNode minNode = new ListNode(Integer.MAX_VALUE);
             for (int i = 0; i < lists.length; ++i) {
-                ListNode head = lists[i];
-                if (head != null && head.val < minNode.val) {
+                ListNode node = lists[i];
+                if (node != null && node.val < minNode.val) {
                     minIndex = i;
-                    minNode = head;
+                    minNode = node;
                 }
             }
-            if (minNode.val == Integer.MAX_VALUE) {
+            if (minNode.val == Integer.MAX_VALUE) { // or `minIndex == -1`
                 break;
             }
-            prev.next = minNode;
-            prev = prev.next;
+            tail.next = minNode;
+            tail = tail.next;
             lists[minIndex] = minNode.next;
         }
         return dummyHead.next;
