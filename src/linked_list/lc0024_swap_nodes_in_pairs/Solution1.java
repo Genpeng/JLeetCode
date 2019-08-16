@@ -22,7 +22,7 @@ import entity.ListNode;
  */
 public class Solution1 {
     /**
-     * 解法一：迭代
+     * 解法一：迭代（推荐）
      * 时间复杂度：O(n)，最多需要迭代 int(n/2) 次
      * 空间复杂度：O(1)，只需要保存 4 个节点的引用
      *
@@ -68,30 +68,6 @@ public class Solution1 {
             // update to next iteration
             prev = curr;
             curr = curr.next;
-        }
-        return dummyHead.next;
-    }
-
-    /**
-     * 迭代的另一种写法（推荐）
-     * 时间复杂度：O(n)，最多需要迭代 int(n/2) 次
-     * 空间复杂度：O(1)，只需要保存 4 个节点的引用
-     *
-     * @param head ListNode, the head of the linked list
-     * @return ListNode, the head of the modified linked list
-     */
-    public ListNode swapPairs3(ListNode head) {
-        ListNode dummyHead = new ListNode(-1);
-        dummyHead.next = head;
-        ListNode prev = dummyHead;
-        while (prev.next != null && prev.next.next != null) {
-            ListNode p1 = prev.next, p2 = prev.next.next;
-            // swap nodes
-            p1.next = p2.next;
-            p2.next = p1;
-            prev.next = p2;
-            // update to next iteration
-            prev = p1;
         }
         return dummyHead.next;
     }
