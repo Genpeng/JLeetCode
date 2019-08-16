@@ -34,11 +34,11 @@ public class Solution1 {
         dummyHead.next = head;
         ListNode prev = dummyHead;
         while (prev.next != null && prev.next.next != null) {
-            ListNode first = prev.next, second = prev.next.next;
+            ListNode n1 = prev.next, n2 = prev.next.next;
             // swap two nodes
-            first.next = second.next;
-            second.next = first;
-            prev.next = second;
+            n1.next = n2.next;
+            n2.next = n1;
+            prev.next = n2;
             // update to next iteration
             prev = prev.next.next;
         }
