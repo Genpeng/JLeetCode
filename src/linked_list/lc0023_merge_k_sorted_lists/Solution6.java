@@ -27,11 +27,6 @@ import entity.ListNode;
 public class Solution6 {
     /**
      * 解法六：Divide & Conquer (Bottom up)
-     *
-     * Q&A:
-     * 调用 `range` 方法时，减去一个 `interval` 的作用是什么？
-     * 为了使得 `range` 方法的输出结果都是偶数个数，而非奇数个数。
-     *
      * 时间复杂度：O(N * log(k))
      * 空间复杂度：O(1)
      *

@@ -2,6 +2,7 @@ package linked_list.lc0023_merge_k_sorted_lists;
 
 import entity.ListNode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -43,17 +44,23 @@ public class Solution3 {
             return null;
         }
         PriorityQueue<ListNode> pq = new PriorityQueue<>((n1, n2) -> n1.val - n2.val);
+//        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
+//            @Override
+//            public int compare(ListNode l1, ListNode l2) {
+//                return l1.val - l2.val;
+//            }
+//        });
         for (int i = 0; i < lists.length; ++i) {
             if (lists[i] != null) {
                 pq.offer(lists[i]);
             }
         }
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
+        ListNode tail = dummyHead;
         while (!pq.isEmpty()) {
-            prev.next = pq.poll();
-            prev = prev.next;
-            ListNode next = prev.next;
+            tail.next = pq.poll();
+            tail = tail.next;
+            ListNode next = tail.next;
             if (next != null) {
                 pq.offer(next);
             }
