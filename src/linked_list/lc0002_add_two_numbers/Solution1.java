@@ -26,7 +26,7 @@ import entity.ListNode;
  */
 public class Solution1 {
     /**
-     * 解法：非递归
+     * 解法一：非递归
      * 时间复杂度：O(max(m, n))，其中m和n分别表示两个的长度
      * 空间复杂度：O(max(m, n))，返回链表的长度最多为max(m, n)+1
      *
@@ -62,7 +62,7 @@ public class Solution1 {
     }
 
     /**
-     * 解法：非递归
+     * 解法一：非递归
      * 时间复杂度：O(max(m, n))，其中m和n分别表示两个的长度
      * 空间复杂度：O(max(m, n))，返回链表的长度最多为max(m, n)+1
      *
