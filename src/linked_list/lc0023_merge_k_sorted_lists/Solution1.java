@@ -41,7 +41,6 @@ public class Solution1 {
         if (lists == null || lists.length == 0) {
             return null;
         }
-        // Step 1: 
         List<Integer> vals = new LinkedList<>();
         for (ListNode l : lists) {
             while (l != null) {

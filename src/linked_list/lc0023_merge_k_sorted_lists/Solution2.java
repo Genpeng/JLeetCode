@@ -54,6 +54,7 @@ public class Solution2 {
             }
             tail.next = minNode;
             tail = tail.next;
+            // update to next iteration
             lists[minIndex] = minNode.next;
         }
         return dummyHead.next;
