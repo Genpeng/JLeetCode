@@ -46,8 +46,8 @@ public class Solution3 {
         PriorityQueue<ListNode> pq = new PriorityQueue<>((n1, n2) -> n1.val - n2.val);
 //        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
 //            @Override
-//            public int compare(ListNode l1, ListNode l2) {
-//                return l1.val - l2.val;
+//            public int compare(ListNode n1, ListNode n2) {
+//                return n1.val - n2.val;
 //            }
 //        });
         for (int i = 0; i < lists.length; ++i) {
