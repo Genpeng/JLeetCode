@@ -26,7 +26,7 @@ import entity.ListNode;
  */
 public class Solution2 {
     /**
-     * 解法：递归
+     * 解法二：递归
      * 时间复杂度：O(max(m,n))，其中m和n分别表示两个的长度
      * 空间复杂度：O(max(m,n))，额外空间是由于递归调用占用系统栈的空间，
      *           递归的深度最多为 max(m,n)+1 层
