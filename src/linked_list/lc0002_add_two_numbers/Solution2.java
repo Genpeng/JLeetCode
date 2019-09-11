@@ -44,7 +44,6 @@ public class Solution2 {
         if (l1 == null && l2 == null) {
             return carry > 0 ? new ListNode(carry) : null;
         }
-
         int sum = carry;
         ListNode l1Next = null, l2Next = null;
         if (l1 != null) {
@@ -55,7 +54,6 @@ public class Solution2 {
             sum += l2.val;
             l2Next = l2.next;
         }
-
         ListNode curr = new ListNode(sum % 10);
         curr.next = addTwoNumbers(l1Next, l2Next, sum / 10);
         return curr;
