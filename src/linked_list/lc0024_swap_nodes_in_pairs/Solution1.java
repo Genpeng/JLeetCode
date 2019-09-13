@@ -23,8 +23,8 @@ import entity.ListNode;
 public class Solution1 {
     /**
      * 解法一：迭代（推荐）
-     * 时间复杂度：O(n)，最多需要迭代 int(n/2) 次
-     * 空间复杂度：O(1)，只需要保存 4 个节点的引用
+     * 时间复杂度：O(n)，最多需要迭代n/2次
+     * 空间复杂度：O(1)，只需要保存4个节点的引用
      *
      * @param head ListNode, the head of the linked list
      * @return ListNode, the head of the modified linked list
