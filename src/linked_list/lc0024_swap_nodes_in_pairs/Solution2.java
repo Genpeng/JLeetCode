@@ -30,13 +30,14 @@ public class Solution2 {
      * @return ListNode, the head of the modified linked list
      */
     public ListNode swapPairs(ListNode head) {
+        // Recursion termination condition
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode p = head.next;
-        head.next = swapPairs(head.next.next);
-        p.next = head;
-        return p;
+        ListNode nextNode = head.next;
+        head.next = swapPairs(nextNode.next);
+        nextNode.next = head;
+        return nextNode;
     }
 
     public static void main(String[] args) {
