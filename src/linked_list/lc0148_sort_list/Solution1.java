@@ -3,6 +3,7 @@ package linked_list.lc0148_sort_list;
 import entity.ListNode;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,21 +42,20 @@ public class Solution1 {
             return head;
         }
         // 1. 取出所有的链表元素
-        List<Integer> valList = new LinkedList<>();
+        List<Integer> vals = new LinkedList<>();
         ListNode curr = head;
         while (curr != null) {
-            valList.add(curr.val);
+            vals.add(curr.val);
             curr = curr.next;
         }
         // 2. 排序
-        Integer[] valArray = valList.toArray(new Integer[valList.size()]);
-        Arrays.sort(valArray);
+        Collections.sort(vals);
         // 3. 生成排序后的链表
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
-        for (int i = 0; i < valArray.length; ++i) {
-            prev.next = new ListNode(valArray[i]);
-            prev = prev.next;
+        ListNode tail = dummyHead;
+        for (int val : vals) {
+            tail.next = new ListNode(val);
+            tail = tail.next;
         }
         return dummyHead.next;
     }
