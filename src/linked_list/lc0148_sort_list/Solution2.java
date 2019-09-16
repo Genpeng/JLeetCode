@@ -39,14 +39,14 @@ public class Solution2 {
             return head;
         }
         // Find the middle position and split the linked list into two halves
-        ListNode head2 = splitV0(head);
+        ListNode head2 = splitListV0(head);
         // Recursively call `sortList`
         ListNode l1 = sortList(head);
         ListNode l2 = sortList(head2);
         // Merge two sorted list
-        return merge(l1, l2);
+        return mergeTwoLists(l1, l2);
         // More Concisely
-//        return merge(sortList(head), sortList(head2));
+//        return mergeTwoLists(sortList(head), sortList(head2));
     }
 
     /**
@@ -55,7 +55,7 @@ public class Solution2 {
      * @param head ListNode, the head of the list
      * @return ListNode, the head of the second half
      */
-    private ListNode splitV0(ListNode head) {
+    private ListNode splitListV0(ListNode head) {
 //        if (head == null || head.next == null) {
 //            throw new IllegalArgumentException("[ERROR] The linked list cannot be separated into two halves!!!");
 //        }
@@ -75,7 +75,7 @@ public class Solution2 {
      * @param head ListNode, the head of the list
      * @return ListNode, the head of the second half
      */
-    private ListNode splitV1(ListNode head) {
+    private ListNode splitListV1(ListNode head) {
 //        if (head == null || head.next == null) {
 //            throw new IllegalArgumentException("[ERROR] The linked list cannot be separated into two halves!!!");
 //        }
@@ -96,7 +96,7 @@ public class Solution2 {
      * @param l2 ListNode, the head of the other linked list
      * @return ListNode, the 'long' sorted list
      */
-    private ListNode merge(ListNode l1, ListNode l2) {
+    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
         ListNode prev = dummyHead;
         while (l1 != null && l2 != null) {
@@ -118,7 +118,7 @@ public class Solution2 {
 //        ListNode head = new ListNode(new int[] {-1, 5, 3, 4, 0});
 //        System.out.println(head);
 //        Solution2 solution = new Solution2();
-//        ListNode head2 = solution.splitV1(head);
+//        ListNode head2 = solution.splitListV1(head);
 //        System.out.println(head);
 //        System.out.println(head2);
 
