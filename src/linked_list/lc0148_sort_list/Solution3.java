@@ -34,7 +34,6 @@ public class Solution3 {
      * @return ListNode, the head of the sorted list
      */
     public ListNode sortList(ListNode head) {
-        // Recursion termination condition
         if (head == null || head.next == null) {
             return head;
         }
@@ -50,8 +49,8 @@ public class Solution3 {
         dummyHead.next = head;
         ListNode l, r, tail;
         for (int n = 1; n < len; n <<= 1) {
-            curr = dummyHead.next;
             tail = dummyHead;
+            curr = dummyHead.next;
             while (curr != null) {
                 l = curr;
                 r = split(curr, n);
@@ -117,8 +116,8 @@ public class Solution3 {
 //        ListNode rest = solution.split(head, 2);
 //        System.out.println(head);
 //        System.out.println(rest);
-
-        // test `merge` method
+//
+//         test `merge` method
 //        ListNode l1 = new ListNode(new int[] {1, 2, 3, 4});
 //        ListNode l2 = new ListNode(new int[] {5, 6, 7, 8});
 //        System.out.println(l1);

@@ -124,6 +124,6 @@ public class Solution2 {
 
         // 测试 mergeList 方法
         ListNode head = new ListNode(new int[] {-1, 5, 3, 4, 0});
-//        System.out.println(solution.sortList(head));
+        System.out.println((new Solution2()).sortList(head));
     }
 }
