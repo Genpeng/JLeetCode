@@ -37,16 +37,16 @@ public class Solution2 {
      * 时间复杂度：O(L1 + L2 + L3)，具体分析见：https://blog.csdn.net/x273591655/article/details/83409873
      * 空间复杂度：O(1)
      *
-     * @param headA ListNode, the head of one of the two linked list
-     * @param headB ListNode, the other head of the two linked list
+     * @param head1 ListNode, the head of one of the two linked list
+     * @param head2 ListNode, the other head of the two linked list
      * @return ListNode, the intersection node
      */
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode pA = headA, pB = headB;
-        while (pA != pB) {
-            pA = pA == null ? headB : pA.next;
-            pB = pB == null ? headA : pB.next;
+    public ListNode getIntersectionNode(ListNode head1, ListNode head2) {
+        ListNode p1 = head1, p2 = head2;
+        while (p1 != p2) {
+            p1 = p1 == null ? head2 : p1.next;
+            p2 = p2 == null ? head1 : p2.next;
         }
-        return pA;
+        return p1;
     }
 }

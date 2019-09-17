@@ -40,22 +40,22 @@ public class Solution1 {
      * 时间复杂度：O(m + n)，其中m和n分别表示两个链表的长度
      * 空间复杂度：O(m) or O(n)
      *
-     * @param headA ListNode, the head of one of the two linked list
-     * @param headB ListNode, the other head of the two linked list
+     * @param head1 ListNode, the head of one of the two linked list
+     * @param head2 ListNode, the other head of the two linked list
      * @return ListNode, the intersection node
      */
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+    public ListNode getIntersectionNode(ListNode head1, ListNode head2) {
         Set<ListNode> nodesHasSeen = new HashSet<>();
-        ListNode pA = headA, pB = headB;
-        while (pA != null) {
-            nodesHasSeen.add(pA);
-            pA = pA.next;
+        ListNode p1 = head1, p2 = head2;
+        while (p1 != null) {
+            nodesHasSeen.add(p1);
+            p1 = p1.next;
         }
-        while (pB != null) {
-            if (nodesHasSeen.contains(pB)) {
-                return pB;
+        while (p2 != null) {
+            if (nodesHasSeen.contains(p2)) {
+                return p2;
             }
-            pB = pB.next;
+            p2 = p2.next;
         }
         return null;
     }
