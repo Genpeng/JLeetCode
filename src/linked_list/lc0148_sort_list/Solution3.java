@@ -34,9 +34,10 @@ public class Solution3 {
      * @return ListNode, the head of the sorted list
      */
     public ListNode sortList(ListNode head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
+        /// Do not need it
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
         // Count the length of the linked list, Time Complexity: O(n)
         int len = 0;
         ListNode curr = head;
@@ -90,22 +91,22 @@ public class Solution3 {
      */
     private ListNode[] merge(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
+        ListNode tail = dummyHead;
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                prev.next = new ListNode(l1.val);
+                tail.next = l1;
                 l1 = l1.next;
             } else {
-                prev.next = new ListNode(l2.val);
+                tail.next = l2;
                 l2 = l2.next;
             }
-            prev = prev.next;
+            tail = tail.next;
         }
-        prev.next = l1 == null ? l2 : l1;
-        while (prev.next != null) {
-            prev = prev.next;
+        tail.next = l1 == null ? l2 : l1;
+        while (tail.next != null) {
+            tail = tail.next;
         }
-        return new ListNode[] {dummyHead.next, prev};
+        return new ListNode[] {dummyHead.next, tail};
     }
 
     public static void main(String[] args) {
