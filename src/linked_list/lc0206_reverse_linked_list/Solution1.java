@@ -34,10 +34,12 @@ public class Solution1 {
     public ListNode reverseList(ListNode head) {
         ListNode prev = null, curr = head;
         while (curr != null) {
-            ListNode nextNode = curr.next;
+            ListNode next = curr.next;
+            // reverse a node
             curr.next = prev;
+            // update to next iteration
             prev = curr;
-            curr = nextNode;
+            curr = next;
         }
         return prev;
     }
