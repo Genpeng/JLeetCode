@@ -55,13 +55,13 @@ public class Solution1 {
             List<Integer> levelVals = new LinkedList<>();
             for (int i = 0; i < n; ++i) {
                 TreeNode node = queue.poll();
+                levelVals.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
                 if (node.right != null) {
                     queue.offer(node.right);
                 }
-                levelVals.add(node.val);
             }
             res.add(levelVals);
         }
