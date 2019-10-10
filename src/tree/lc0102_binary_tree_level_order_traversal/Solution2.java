@@ -55,7 +55,7 @@ public class Solution2 {
             return;
         }
         if (depth >= res.size()) {
-            res.add(new ArrayList<>());
+            res.add(new LinkedList<>());
         }
         res.get(depth).add(root.val);
         levelOrderHelper(root.left, depth + 1, res);
