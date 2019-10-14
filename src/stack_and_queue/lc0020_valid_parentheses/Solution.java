@@ -70,9 +70,7 @@ public class Solution {
                 stack.push(']');
             } else if (c == '{') {
                 stack.push('}');
-            } else if (!stack.isEmpty() && c == stack.peek()) {
-                stack.pop();
-            } else {
+            } else if (stack.isEmpty() || c != stack.pop()) {
                 return false;
             }
         }
