@@ -5,7 +5,6 @@ import entity.TreeNode;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * This is the solution of No. 103 problem in the LeetCode,
