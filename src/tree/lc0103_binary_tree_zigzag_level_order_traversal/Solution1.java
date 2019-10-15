@@ -2,7 +2,6 @@ package tree.lc0103_binary_tree_zigzag_level_order_traversal;
 
 import entity.TreeNode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -45,32 +44,32 @@ public class Solution1 {
      * @return List<List<Integer>>, the zigzag level order traversal of its nodes' values
      */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
+        List<List<Integer>> res = new LinkedList<>();
         if (root == null) {
             return res;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        boolean zigzag = false; // the traversal direction is from left to right if `zigzag` equals to `false`
-        while (!queue.isEmpty()) {
-            int n = queue.size();
-            List<Integer> levelVals = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        boolean isRight = true;
+        while (!q.isEmpty()) {
+            int n = q.size();
+            LinkedList<Integer> vals = new LinkedList<>();
             for (int i = 0; i < n; ++i) {
-                TreeNode node = queue.poll();
-                if (zigzag) {
-                    levelVals.add(0, node.val);
+                TreeNode node = q.poll();
+                if (isRight) {
+                    vals.add(node.val);
                 } else {
-                    levelVals.add(node.val);
+                    vals.addFirst(node.val);
                 }
                 if (node.left != null) {
-                    queue.offer(node.left);
+                    q.offer(node.left);
                 }
                 if (node.right != null) {
-                    queue.offer(node.right);
+                    q.offer(node.right);
                 }
             }
-            res.add(levelVals);
-            zigzag = !zigzag;
+            res.add(vals);
+            isRight = !isRight;
         }
         return res;
     }

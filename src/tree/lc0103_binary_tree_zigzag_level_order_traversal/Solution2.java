@@ -57,11 +57,11 @@ public class Solution2 {
         if (depth >= res.size()) {
             res.add(new LinkedList<>());
         }
-        List<Integer> levelVals = res.get(depth);
-        if (depth % 2 == 0) {
-            levelVals.add(root.val);
+        LinkedList<Integer> vals = (LinkedList<Integer>) res.get(depth);
+        if ((depth & 1) == 0) {
+            vals.add(root.val);
         } else {
-            levelVals.add(0, root.val);
+            vals.addFirst(root.val);
         }
         zigzagLevelOrder(root.left, depth + 1, res);
         zigzagLevelOrder(root.right, depth + 1, res);
