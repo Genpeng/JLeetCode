@@ -52,10 +52,10 @@ public class Solution1 {
         queue.offer(root);
         while (!queue.isEmpty()) {
             int n = queue.size();
-            List<Integer> levelVals = new LinkedList<>();
+            List<Integer> vals = new LinkedList<>();
             for (int i = 0; i < n; ++i) {
                 TreeNode node = queue.poll();
-                levelVals.add(node.val);
+                vals.add(node.val);
                 if (node.left != null) {
                     queue.offer(node.left);
                 }
@@ -63,7 +63,7 @@ public class Solution1 {
                     queue.offer(node.right);
                 }
             }
-            res.add(levelVals);
+            res.add(vals);
         }
         return res;
     }
