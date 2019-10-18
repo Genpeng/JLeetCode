@@ -2,6 +2,8 @@ package tree.lc0104_maximum_depth_of_binary_tree;
 
 import entity.TreeNode;
 
+import java.util.Stack;
+
 /**
  * This is the solution of No. 104 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -31,9 +33,9 @@ import entity.TreeNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/20
  */
-public class Solution {
+public class Solution2 {
     /**
-     * 解法：递归
+     * 解法2：迭代（DFS版本）
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
@@ -44,6 +46,25 @@ public class Solution {
         if (root == null) {
             return 0;
         }
-        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+
+        Stack<TreeNode> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+        s1.push(root);
+        s2.push(1);
+        int maxDepth = 0;
+        while (!s1.isEmpty()) {
+            TreeNode node = s1.pop();
+            int depth = s2.pop();
+            maxDepth = Math.max(maxDepth, depth);
+            if (node.right != null) {
+                s1.push(node.right);
+                s2.push(depth + 1);
+            }
+            if (node.left != null) {
+                s1.push(node.left);
+                s2.push(depth + 1);
+            }
+        }
+        return maxDepth;
     }
 }
