@@ -48,19 +48,19 @@ public class Solution1 {
         if (root == null) {
             return res;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int n = queue.size();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            int n = q.size();
             List<Integer> vals = new LinkedList<>();
             for (int i = 0; i < n; ++i) {
-                TreeNode node = queue.poll();
+                TreeNode node = q.poll();
                 vals.add(node.val);
                 if (node.left != null) {
-                    queue.offer(node.left);
+                    q.offer(node.left);
                 }
                 if (node.right != null) {
-                    queue.offer(node.right);
+                    q.offer(node.right);
                 }
             }
             res.add(vals);
