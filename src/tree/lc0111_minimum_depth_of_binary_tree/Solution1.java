@@ -31,7 +31,15 @@ import entity.TreeNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/06/19
  */
-public class Solution {
+public class Solution1 {
+    /**
+     * 解法一：递归
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root, TreeNode, the root of the binary tree
+     * @return int, the minimum depth of the binary tree
+     */
     public int minDepth(TreeNode root) {
         if (root == null) {
             return 0;
