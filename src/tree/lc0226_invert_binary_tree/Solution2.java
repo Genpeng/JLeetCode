@@ -59,11 +59,11 @@ public class Solution2 {
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            // invert the left and right subtree of the current node
+            // swap left and right subtrees
             TreeNode tmp = node.left;
             node.left = node.right;
             node.right = tmp;
-
+            // add the left and right child into stack
             if (node.left != null) {
                 stack.push(node.left);
             }
