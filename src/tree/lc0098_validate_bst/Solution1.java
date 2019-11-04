@@ -68,4 +68,33 @@ public class Solution1 {
         }
         return isValidBST(root.left, lower, val) && isValidBST(root.right, val, upper);
     }
+
+    /**
+     * 解法一：递归（版本2，推荐）
+     * 在二叉搜索树中，除了根节点的取值范围是负无穷到正无穷之外，其余的节点总能根据其父节点的取值范围得到一个区间，
+     * 节点的取值只有在这个区间中才是正确的。
+     *
+     * 时间复杂度：O(n)，其中n表示节点数目
+     * 空间复杂度：O(n)
+     *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Validate Binary Search Tree.
+     * Memory Usage: 38.4 MB, less than 86.05% of Java online submissions for Validate Binary Search Tree.
+     *
+     * @param root TreeNode, the root of BST
+     * @return boolean, true if the BST is valid
+     */
+    public boolean isValidBSTV2(TreeNode root) {
+        return isValidBSTV2(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+    }
+
+    private boolean isValidBSTV2(TreeNode root, double lower, double upper) {
+        if (root == null) {
+            return true;
+        }
+        int val = root.val;
+        if (val <= lower || val >= upper) {
+            return false;
+        }
+        return isValidBSTV2(root.left, lower, val) && isValidBSTV2(root.right, val, upper);
+    }
 }

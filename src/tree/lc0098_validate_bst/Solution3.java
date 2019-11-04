@@ -71,4 +71,34 @@ public class Solution3 {
         }
         return true;
     }
+
+    /**
+     * 解法三：中序遍历（版本2）
+     * 时间复杂度：O(n)，其中n表示节点数目
+     * 空间复杂度：O(n)
+     *
+     * Runtime: 2 ms, faster than 24.27% of Java online submissions for Validate Binary Search Tree.
+     * Memory Usage: 38.5 MB, less than 84.65% of Java online submissions for Validate Binary Search Tree.
+     *
+     * @param root TreeNode, the root of BST
+     * @return boolean, true if the BST is valid
+     */
+    public boolean isValidBSTV2(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        double val = Double.NEGATIVE_INFINITY;
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            TreeNode node = stack.pop();
+            if (node.val <= val) {
+                return false;
+            }
+            val = node.val;
+            curr = node.right;
+        }
+        return true;
+    }
 }

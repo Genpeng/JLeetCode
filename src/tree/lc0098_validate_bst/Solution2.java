@@ -57,9 +57,10 @@ public class Solution2 {
      * @return boolean, true if the BST is valid
      */
     public boolean isValidBST(TreeNode root) {
-        Integer lower = null, upper = null, val;
+        Integer lower = null, upper = null;
         update(root, lower, upper);
         TreeNode curr;
+        Integer val;
         while (!stack.isEmpty()) {
             curr = stack.pop();
             lower = lowers.pop();
@@ -68,7 +69,7 @@ public class Solution2 {
             if (curr == null) {
                 continue;
             }
-            val = root.val;
+            val = curr.val;
             if (lower != null && val <= lower) {
                 return false;
             }
