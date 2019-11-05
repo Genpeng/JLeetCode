@@ -47,8 +47,12 @@ import java.util.Stack;
 public class Solution2 {
     /**
      * 解法二：在解法一的基础上进行改进，同样地，中序遍历二叉搜索树，当遍历到第k个元素的时候就停止遍历
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * 时间复杂度：O(log(N) + k)
+     * 空间复杂度：O(log(N) + k)
+     *
+     * 疑问：
+     * 对下面文章中时间复杂度和空间复杂度分析有疑惑
+     * https://leetcode.com/articles/kth-smallest-element-in-a-bst/
      *
      * @param root TreeNode, the root of bst
      * @param k int, an integer used to specify the element to fetch
