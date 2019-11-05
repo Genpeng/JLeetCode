@@ -69,6 +69,9 @@ public class Solution2 {
                 curr = node.right;
             }
         }
-        throw new IllegalArgumentException("[ERROR] The value of k is illegal!!!");
+        // 异常的两种情况：
+        // 1. BST为空
+        // 2. k < 1 or k > n，其中n表示BST结点数目
+        throw new IllegalArgumentException("[ERROR] The BST is null or the value of k is illegal!!!");
     }
 }

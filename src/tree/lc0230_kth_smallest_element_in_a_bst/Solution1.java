@@ -48,7 +48,8 @@ import java.util.Stack;
  */
 public class Solution1 {
     /**
-     * 解法一：中序遍历BST，将遍历的结果存储起来，则索引为k-1的元素即为第k小的元素
+     * 解法一：利用BST中序遍历的性质（迭代版）
+     * 中序遍历BST，将遍历的结果存储起来，则索引为k-1的元素即为第k小的元素
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
@@ -70,7 +71,41 @@ public class Solution1 {
                 elements.add(node.val);
                 curr = node.right;
             }
+
+            // or can write like this, a little faster
+//            while (curr != null) {
+//                stack.push(curr);
+//                curr = curr.left;
+//            }
+//            TreeNode node = stack.pop();
+//            elements.add(node.val);
+//            curr = node.right;
         }
         return elements.get(k-1);
+    }
+
+    /**
+     * 解法一：利用BST中序遍历的性质（递归版）
+     * 中序遍历BST，将遍历的结果存储起来，则索引为k-1的元素即为第k小的元素
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of bst
+     * @param k int, an integer used to specify the element to fetch
+     * @return int, the kth smallest element in the bst
+     */
+    public int kthSmallestV2(TreeNode root, int k) {
+        List<Integer> elements = new ArrayList<>();
+        inorderTraversal(root, elements);
+        return elements.get(k - 1);
+    }
+
+    private void inorderTraversal(TreeNode root, List<Integer> res) {
+        if (root == null) {
+            return;
+        }
+        inorderTraversal(root.left, res);
+        res.add(root.val);
+        inorderTraversal(root.right, res);
     }
 }
