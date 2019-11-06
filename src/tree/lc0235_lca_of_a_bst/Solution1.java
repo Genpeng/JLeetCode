@@ -47,6 +47,12 @@ import entity.TreeNode;
 public class Solution1 {
     /**
      * 解法一：递归
+     * 思路：如果一个结点A是两个结点的最低公共祖先的话，那么只有两种情况：
+     * 1. 两个结点在结点A的两边
+     * 2. 最低公共祖先就是两个结点中的一个
+     * 可以考虑上面两种情况的反面，如果一个结点B不是两个结点的最低公共祖先的话，
+     * 那么这两个结点一定位于结点B的同一个边，即左子树或者右子树上。
+     *
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
@@ -57,6 +63,7 @@ public class Solution1 {
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         // boundary condition - the root is null
+        // 可以去掉，在题干中已经明确说了，结点p和q一定在BST中
         if (root == null) {
             return null;
         }
@@ -81,6 +88,7 @@ public class Solution1 {
      */
     public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
         // boundary condition - the root is null
+        // 可以去掉，在题干中已经明确说了，结点p和q一定在BST中
         if (root == null) {
             return null;
         }

@@ -59,9 +59,34 @@ public class Solution2 {
         if (root == null) {
             return null;
         }
-        while ((root.val - p.val) * (root.val - q.val) > 0) {
-            root = root.val > p.val ? root.left : root.right;
+        TreeNode curr = root;
+        while ((curr.val - p.val) * (curr.val - q.val) > 0) {
+            curr = curr.val > p.val ? curr.left : curr.right;
         }
-        return root;
+        return curr;
+    }
+
+    /**
+     * 解法二：迭代
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(1)
+     *
+     * @param root TreeNode, the root of a BST
+     * @param p TreeNode, one node in the BST
+     * @param q TreeNode, other node in the BST
+     * @return TreeNode, the lowest common ancestor (LCA) of two given nodes
+     */
+    public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode curr = root;
+        while (curr != null) {
+            if (p.val < curr.val && q.val < curr.val) {
+                curr = curr.left;
+            } else if (p.val > curr.val && q.val > curr.val) {
+                curr = curr.right;
+            } else {
+                return curr;
+            }
+        }
+        return null;
     }
 }
