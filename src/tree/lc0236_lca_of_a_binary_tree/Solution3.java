@@ -1,8 +1,10 @@
-package tree.lc236_lca_of_a_binary_tree;
+package tree.lc0236_lca_of_a_binary_tree;
 
 import entity.TreeNode;
 
-import java.util.*;
+import javafx.util.Pair;
+
+import java.util.Stack;
 
 /**
  * This is the solution of No. 236 problem in the LeetCode,
@@ -44,12 +46,13 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/06/11
  */
-public class Solution2 {
+public class Solution3 {
+    private static final int BOTH_PENDING = 2;
+    private static final int LEFT_DONE = 1;
+    private static final int BOTH_DONE = 0;
+
     /**
-     * 解法二：迭代（保存父亲节点的引用）
-     * - 遍历二叉树，保存叶子节点到父亲节点的映射，直到找到p和q
-     * - 通过保存的映射关系，回溯从p到根节点的路径，并将路径节点保存到一个set中
-     * - 同样地，也回溯从q到根节点的路径，则第一个出现在set中的节点即为LCA
+     * 解法三：迭代（不推荐）
      *
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
@@ -60,29 +63,47 @@ public class Solution2 {
      * @return TreeNode, the lowest common ancestor of two nodes
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        Stack<TreeNode> stack = new Stack<>();
-        Map<TreeNode, TreeNode> nodes = new HashMap<>();
-        stack.push(root);
-        nodes.put(root, null);
-        while (!nodes.containsKey(p) || !nodes.containsKey(q)) {
-            TreeNode node = stack.pop();
-            if (node.right != null) {
-                stack.push(node.right);
-                nodes.put(node.right, node);
+        if (root == null) {
+            return null;
+        }
+        if (p == null || q == null) {
+            // 如果p和q之间有一个为空的话，那么将有多种可能的LCA
+            throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
+        }
+        Stack<Pair<TreeNode, Integer>> stack = new Stack<>();
+        stack.push(new Pair<>(root, BOTH_PENDING));
+        boolean oneNodeFound = false;
+        TreeNode lca = null;
+        TreeNode childNode = null;
+        while (!stack.isEmpty()) {
+            Pair<TreeNode, Integer> top = stack.peek();
+            TreeNode parentNode = top.getKey();
+            int parentState = top.getValue();
+            if (parentState != BOTH_DONE) {
+                if (parentState == BOTH_PENDING) { // parentState == BOTH_PENDING
+                    if (parentNode == p || parentNode == q) {
+                        if (oneNodeFound) {
+                            return lca;
+                        } else {
+                            oneNodeFound = true;
+                            lca = parentNode;
+                        }
+                    }
+                    childNode = parentNode.left;
+                } else { // parentState == LEFT_DONE
+                    childNode = parentNode.right;
+                }
+                stack.pop();
+                stack.push(new Pair<>(parentNode, parentState - 1));
+                if (childNode != null) {
+                    stack.push(new Pair<>(childNode, BOTH_PENDING));
+                }
+            } else { // parentState == BOTH_DONE
+                if (lca == stack.pop().getKey() && oneNodeFound) {
+                    lca = stack.peek().getKey();
+                }
             }
-            if (node.left != null) {
-                stack.push(node.left);
-                nodes.put(node.left, node);
-            }
         }
-        Set<TreeNode> ancestors = new HashSet<>();
-        while (p != null) {
-            ancestors.add(p);
-            p = nodes.get(p);
-        }
-        while (!ancestors.contains(q)) {
-            q = nodes.get(q);
-        }
-        return q;
+        return null;
     }
 }
