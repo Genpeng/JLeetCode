@@ -9,8 +9,7 @@
  * xxx
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    xxx
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
 
