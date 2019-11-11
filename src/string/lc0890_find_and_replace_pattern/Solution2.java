@@ -38,26 +38,26 @@ import java.util.Map;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
      * 题意解读：
      * a word matches pattern <=> 在pattern和word之间存在一对一的映射 <=> pattern和word之间不能有一对多和多对一的情况
      *
-     * 解法一：利用两个map
-     * 利用map存储从pattern到word之间映射关系，可以解决pattern到word之间一对多的情况，
-     * 但是无法解决pattern和word之间多对一的情况。为了解决这个问题，可以再利用一个map，
-     * 存储从word到pattern之间的映射关系，就可以解决word到pattern之间一对多的情况，
-     * 从而解决pattern到word之间多对一的映射关系（对偶问题）。
+     * 解法二：利用一个map
+     * 解法二的思路与解法一是一致的，只是在处理pattern和word之间多对一情况时，采用了另一种方式——查看pattern到word之间映射
+     * 的值（value）是否唯一。
      *
      * 时间复杂度：O(N * K)，其中N是字符串的数目，K表示字符串的长度
      * 空间复杂度：O(K)
+     *
+     * Runtime: 2 ms, faster than 79.05% of Java online submissions for Find and Replace Pattern.
+     * Memory Usage: 36.7 MB, less than 100.00% of Java online submissions for Find and Replace Pattern.
      *
      * @param words String[], a list of words
      * @param pattern String, a string represents a pattern
      * @return String[], a list of the words that match the given pattern
      */
     public List<String> findAndReplacePattern(String[] words, String pattern) {
-        // 下面的边界判断也可以去掉，因为题干已经表明并不存在这样的情况
         if (pattern == null || pattern.length() == 0) {
             throw new IllegalArgumentException("[ERROR] The input pattern must not be null!!!");
         }
@@ -77,20 +77,23 @@ public class Solution1 {
         if (word.length() != pattern.length()) {
             return false;
         }
-        Map<Character, Character> m1 = new HashMap<>();
-        Map<Character, Character> m2 = new HashMap<>();
+        Map<Character, Character> map = new HashMap<>();
         for (int i = 0; i < word.length(); ++i) {
             char w = word.charAt(i);
             char p = pattern.charAt(i);
-            if (!m1.containsKey(w)) {
-                m1.put(w, p);
+            if (!map.containsKey(p)) {
+                map.put(p, w);
             }
-            if (!m2.containsKey(p)) {
-                m2.put(p, w);
-            }
-            if (m1.get(w) != p || m2.get(p) != w) {
+            if (map.get(p) != w) {
                 return false;
             }
+        }
+        boolean[] seen = new boolean[26];
+        for (char c : map.values()) {
+            if (seen[c - 'a']) {
+                return false;
+            }
+            seen[c - 'a'] = true;
         }
         return true;
     }
