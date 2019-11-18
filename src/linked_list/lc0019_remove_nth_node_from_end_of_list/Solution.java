@@ -29,7 +29,7 @@ public class Solution {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode p1 = head, p2 = head;
         // 指针p2移动n个节点，此时p1和p2之间有n+1个节点
-        for (int i = 0; i < n; ++i) {
+        while (n-- > 0) {
             p2 = p2.next;
         }
         // 如果p2为空，则说明链表的长度刚好等于n，待删除的节点刚好为头结点
@@ -51,6 +51,6 @@ public class Solution {
     public static void main(String[] args) {
         ListNode head = new ListNode(new int[] {1, 2, 3, 4, 5});
         System.out.println(head);
-        System.out.println((new Solution()).removeNthFromEnd(head, 5));
+        System.out.println((new Solution()).removeNthFromEnd(head, 2));
     }
 }
