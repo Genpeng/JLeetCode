@@ -35,20 +35,21 @@ public class Solution1 {
      * @return ListNode, result represents the sum of two linked lists
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        if (l1 == null || l2 == null) {
-            return l1 == null ? l2 : l1;
-        }
+        // can be removed
+//        if (l1 == null || l2 == null) {
+//            return l1 == null ? l2 : l1;
+//        }
         ListNode dummyHead = new ListNode(-1);
         ListNode tail = dummyHead;
-        int carry = 0;
+        int sum, carry = 0;
         while (l1 != null || l2 != null) {
-            int s = carry;
-            s += l1 == null ? 0 : l1.val;
-            s += l2 == null ? 0 : l2.val;
-            tail.next = new ListNode(s % 10);
+            sum = carry;
+            sum += l1 == null ? 0 : l1.val;
+            sum += l2 == null ? 0 : l2.val;
+            tail.next = new ListNode(sum % 10);
             tail = tail.next;
             // update to next iteration
-            carry = s / 10;
+            carry = sum / 10;
             l1 = l1 == null ? l1 : l1.next;
             l2 = l2 == null ? l2 : l2.next;
         }
