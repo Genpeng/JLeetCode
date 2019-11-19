@@ -60,9 +60,8 @@ public class Solution3 {
         while (!pq.isEmpty()) {
             tail.next = pq.poll();
             tail = tail.next;
-            ListNode next = tail.next;
-            if (next != null) {
-                pq.offer(next);
+            if (tail.next != null) {
+                pq.offer(tail.next);
             }
         }
         return dummyHead.next;
