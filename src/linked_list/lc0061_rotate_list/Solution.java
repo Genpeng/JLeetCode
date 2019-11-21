@@ -48,9 +48,9 @@ public class Solution {
         if (k == 0) {
             return head;
         }
-        // 找到倒数第k+1个节点
+        // 找到倒数第k+1个节点（k的取值范围为：[1, n-1]）
         ListNode p1 = head, p2 = head;
-        for (int i = 0; i < k; ++i) {
+        while (k-- > 0) {
             p2 = p2.next;
         }
         while (p2.next != null) {
@@ -65,6 +65,9 @@ public class Solution {
     }
 
     public ListNode rotateRightV2(ListNode head, int k) {
+        if (head == null || head.next == null || k == 0) {
+            return head;
+        }
         // 求出链表的长度
         int n = 0;
         ListNode curr = head;
@@ -79,9 +82,6 @@ public class Solution {
     }
 
     private ListNode rotateNthFromEnd(ListNode head, int k) {
-        if (head == null || head.next == null || k == 0) {
-            return head;
-        }
         ListNode p1 = head, p2 = head;
         // 移动p2指针，使得p1和p2指针之间有k+1个节点
         for (int i = 0; i < k; ++i) {
