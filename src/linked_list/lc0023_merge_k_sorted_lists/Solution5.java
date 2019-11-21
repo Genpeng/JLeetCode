@@ -34,11 +34,11 @@ public class Solution5 {
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list
      */
-    public ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeLists(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
             return null;
         }
-        return mergeKLists(lists, 0, lists.length - 1);
+        return mergeLists(lists, 0, lists.length - 1);
     }
 
     /**
@@ -49,13 +49,13 @@ public class Solution5 {
      * @param ei int, the end index
      * @return ListNode, the new sorted list
      */
-    private ListNode mergeKLists(ListNode[] lists, int si, int ei) {
+    private ListNode mergeLists(ListNode[] lists, int si, int ei) {
         if (si == ei) {
             return lists[si];
         }
         int mi = si + (ei - si) / 2;
-        ListNode l1 = mergeKLists(lists, si, mi);
-        ListNode l2 = mergeKLists(lists, mi + 1, ei);
+        ListNode l1 = mergeLists(lists, si, mi);
+        ListNode l2 = mergeLists(lists, mi + 1, ei);
         return mergeTwoLists(l1, l2);
     }
 
@@ -82,6 +82,6 @@ public class Solution5 {
         ListNode head3 = new ListNode(new int[] {2, 6});
         ListNode[] lists = new ListNode[] {head1, head2, head3};
         Solution5 solution = new Solution5();
-        System.out.println(solution.mergeKLists(lists));
+        System.out.println(solution.mergeLists(lists));
     }
 }
