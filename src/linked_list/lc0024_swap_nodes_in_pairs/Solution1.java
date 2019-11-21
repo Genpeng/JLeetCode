@@ -33,14 +33,16 @@ public class Solution1 {
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
         ListNode prev = dummyHead;
+        ListNode n1, n2;
         while (prev.next != null && prev.next.next != null) {
-            ListNode n1 = prev.next, n2 = prev.next.next;
+            n1 = prev.next;
+            n2 = prev.next.next;
             // swap two nodes
             n1.next = n2.next;
             n2.next = n1;
             prev.next = n2;
             // update to next iteration
-            prev = prev.next.next;
+            prev = n1;
         }
         return dummyHead.next;
     }
@@ -53,7 +55,7 @@ public class Solution1 {
      * @param head ListNode, the head of the linked list
      * @return ListNode, the head of the modified linked list
      */
-    public ListNode swapPairs2(ListNode head) {
+    public ListNode swapPairsV2(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
