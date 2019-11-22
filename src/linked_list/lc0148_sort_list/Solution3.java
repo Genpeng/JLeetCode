@@ -72,6 +72,9 @@ public class Solution3 {
      * @return ListNode, the head of the second part
      */
     private ListNode split(ListNode head, int n) {
+        // There are only two situations:
+        // 1. head = null, if the length of list is less than n
+        // 2. head != null, if the length of list is greater than or equal to n
         while (--n > 0 && head != null) {
             head = head.next;
         }
