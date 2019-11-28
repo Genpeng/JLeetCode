@@ -53,6 +53,9 @@ public class Solution2 {
      * 时间复杂度：O(n)，其中n表示节点数目
      * 空间复杂度：O(n)
      *
+     * Runtime: 8 ms, faster than 7.26% of Java online submissions for Validate Binary Search Tree.
+     * Memory Usage: 39.8 MB, less than 73.95% of Java online submissions for Validate Binary Search Tree.
+     *
      * @param root TreeNode, the root of BST
      * @return boolean, true if the BST is valid
      */

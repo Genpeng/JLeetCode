@@ -45,7 +45,7 @@ import java.util.Stack;
  */
 public class Solution3 {
     /**
-     * 解法三：中序遍历
+     * 解法三：中序遍历（利用BST的性质）
      * 时间复杂度：O(n)，其中n表示节点数目
      * 空间复杂度：O(n)
      *
