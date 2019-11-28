@@ -44,17 +44,20 @@ public class Solution1 {
      * @return List<List<Integer>>, the level order traversal of its nodes' values
      */
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res = new LinkedList<>();
+        List<List<Integer>> ans = new LinkedList<>();
         if (root == null) {
-            return res;
+            return ans;
         }
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
+        int n;
+        TreeNode node;
+        List<Integer> vals;
         while (!q.isEmpty()) {
-            int n = q.size();
-            List<Integer> vals = new LinkedList<>();
-            for (int i = 0; i < n; ++i) {
-                TreeNode node = q.poll();
+            n = q.size();
+            vals = new LinkedList<>();
+            while (n-- > 0) {
+                node = q.poll();
                 vals.add(node.val);
                 if (node.left != null) {
                     q.offer(node.left);
@@ -63,8 +66,8 @@ public class Solution1 {
                     q.offer(node.right);
                 }
             }
-            res.add(vals);
+            ans.add(vals);
         }
-        return res;
+        return ans;
     }
 }
