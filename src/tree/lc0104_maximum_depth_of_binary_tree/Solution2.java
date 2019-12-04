@@ -46,23 +46,23 @@ public class Solution2 {
         if (root == null) {
             return 0;
         }
-
-        Stack<TreeNode> s1 = new Stack<>();
-        Stack<Integer> s2 = new Stack<>();
-        s1.push(root);
-        s2.push(1);
-        int maxDepth = 0;
-        while (!s1.isEmpty()) {
-            TreeNode node = s1.pop();
-            int depth = s2.pop();
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<Integer> depths = new Stack<>();
+        stack.push(root);
+        depths.push(1);
+        TreeNode node;
+        int depth, maxDepth = -1;
+        while (!stack.isEmpty()) {
+            node = stack.pop();
+            depth = depths.pop();
             maxDepth = Math.max(maxDepth, depth);
             if (node.right != null) {
-                s1.push(node.right);
-                s2.push(depth + 1);
+                stack.push(node.right);
+                depths.push(depth + 1);
             }
             if (node.left != null) {
-                s1.push(node.left);
-                s2.push(depth + 1);
+                stack.push(node.left);
+                depths.push(depth + 1);
             }
         }
         return maxDepth;

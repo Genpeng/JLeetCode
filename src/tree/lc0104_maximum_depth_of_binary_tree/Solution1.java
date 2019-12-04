@@ -37,6 +37,9 @@ public class Solution1 {
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.
+     * Memory Usage: 39.5 MB, less than 89.25% of Java online submissions for Maximum Depth of Binary Tree.
+     *
      * @param root TreeNode, the root of the binary tree
      * @return int, the maximum depth of the binary tree
      */
