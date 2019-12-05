@@ -45,18 +45,44 @@ public class Solution2 {
      * @return List<Integer>, the postorder traversal of binary tree
      */
     public List<Integer> postorderTraversal(TreeNode root) {
-        LinkedList<Integer> res = new LinkedList<>();
+        LinkedList<Integer> ans = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
             if (curr != null) {
-                res.addFirst(curr.val);
+                ans.addFirst(curr.val);
                 stack.push(curr);
                 curr = curr.right;
             } else {
                 curr = stack.pop().left;
             }
         }
-        return res;
+        return ans;
+    }
+
+    /**
+     * 解法二：迭代
+     * 后序遍历的顺序为：左子树 -> 右子树 -> 结点，迭代的思路是先求出后序遍历的逆，即 结点 -> 右子树 -> 左子树，
+     * 然后再将得到的结果进行逆序。
+     *
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of binary tree
+     * @return List<Integer>, the postorder traversal of binary tree
+     */
+    public List<Integer> postorderTraversalV2(TreeNode root) {
+        LinkedList<Integer> ans = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                ans.add(curr.val);
+                stack.push(curr);
+                curr = curr.right;
+            }
+            curr = stack.pop().left;
+        }
+        return ans;
     }
 }

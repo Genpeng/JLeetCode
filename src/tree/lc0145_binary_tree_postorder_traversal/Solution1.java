@@ -41,17 +41,17 @@ public class Solution1 {
      * @return List<Integer>, the postorder traversal of binary tree
      */
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
-        postorderTraversal(root, res);
-        return res;
+        List<Integer> ans = new LinkedList<>();
+        postorderTraversal(root, ans);
+        return ans;
     }
 
-    private void postorderTraversal(TreeNode root, List<Integer> res) {
+    private void postorderTraversal(TreeNode root, List<Integer> vals) {
         if (root == null) {
             return;
         }
-        postorderTraversal(root.left, res);
-        postorderTraversal(root.right, res);
-        res.add(root.val);
+        postorderTraversal(root.left, vals);
+        postorderTraversal(root.right, vals);
+        vals.add(root.val);
     }
 }
