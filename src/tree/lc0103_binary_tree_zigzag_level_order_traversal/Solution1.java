@@ -44,18 +44,21 @@ public class Solution1 {
      * @return List<List<Integer>>, the zigzag level order traversal of its nodes' values
      */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new LinkedList<>();
+        List<List<Integer>> ans = new LinkedList<>();
         if (root == null) {
-            return res;
+            return ans;
         }
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
+        int n;
+        LinkedList<Integer> vals;
+        TreeNode node;
         boolean isRight = true;
         while (!q.isEmpty()) {
-            int n = q.size();
-            LinkedList<Integer> vals = new LinkedList<>();
-            for (int i = 0; i < n; ++i) {
-                TreeNode node = q.poll();
+            n = q.size();
+            vals = new LinkedList<>();
+            while (n-- > 0) {
+                node = q.poll();
                 if (isRight) {
                     vals.add(node.val);
                 } else {
@@ -68,9 +71,9 @@ public class Solution1 {
                     q.offer(node.right);
                 }
             }
-            res.add(vals);
+            ans.add(vals);
             isRight = !isRight;
         }
-        return res;
+        return ans;
     }
 }

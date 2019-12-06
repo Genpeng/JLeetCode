@@ -40,6 +40,9 @@ public class Solution2 {
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+     * Memory Usage: 36.5 MB, less than 99.04% of Java online submissions for Binary Tree Zigzag Level Order Traversal.
+     *
      * @param root TreeNode, the root of the binary tree
      * @return List<List<Integer>>, the zigzag level order traversal of its nodes' values
      */
