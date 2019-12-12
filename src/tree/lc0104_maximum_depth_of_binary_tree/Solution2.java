@@ -39,6 +39,9 @@ public class Solution2 {
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
+     * Runtime: 3 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
+     * Memory Usage: 39.1 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
+     *
      * @param root TreeNode, the root of the binary tree
      * @return int, the maximum depth of the binary tree
      */
@@ -46,23 +49,23 @@ public class Solution2 {
         if (root == null) {
             return 0;
         }
-        Stack<TreeNode> stack = new Stack<>();
-        Stack<Integer> depths = new Stack<>();
-        stack.push(root);
-        depths.push(1);
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Stack<Integer> depthStack = new Stack<>();
+        nodeStack.push(root);
+        depthStack.push(1);
         TreeNode node;
-        int depth, maxDepth = -1;
-        while (!stack.isEmpty()) {
-            node = stack.pop();
-            depth = depths.pop();
+        int depth, maxDepth = 0;
+        while (!nodeStack.isEmpty()) {
+            node = nodeStack.pop();
+            depth = depthStack.pop();
             maxDepth = Math.max(maxDepth, depth);
             if (node.right != null) {
-                stack.push(node.right);
-                depths.push(depth + 1);
+                nodeStack.push(node.right);
+                depthStack.push(depth + 1);
             }
             if (node.left != null) {
-                stack.push(node.left);
-                depths.push(depth + 1);
+                nodeStack.push(node.left);
+                depthStack.push(depth + 1);
             }
         }
         return maxDepth;
