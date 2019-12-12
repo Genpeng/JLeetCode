@@ -36,9 +36,12 @@ import java.util.Queue;
  */
 public class Solution3 {
     /**
-     * 解法2：迭代（BFS版本）
+     * 解法3：迭代（BFS版本）
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
+     *
+     * Runtime: 1 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
+     * Memory Usage: 38.8 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
      *
      * @param root TreeNode, the root of the binary tree
      * @return int, the maximum depth of the binary tree
@@ -47,16 +50,15 @@ public class Solution3 {
         if (root == null) {
             return 0;
         }
-
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
+        int n;
+        TreeNode node;
         int depth = 0;
         while (!q.isEmpty()) {
-            ++depth;
-            // put all the nodes of the next level into queue
-            int n = q.size();
+            n = q.size();
             while (n-- > 0) {
-                TreeNode node = q.poll();
+                node = q.poll();
                 if (node.left != null) {
                     q.offer(node.left);
                 }
@@ -64,6 +66,7 @@ public class Solution3 {
                     q.offer(node.right);
                 }
             }
+            ++depth;
         }
         return depth;
     }
