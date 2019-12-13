@@ -37,6 +37,9 @@ public class Solution1 {
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Depth of Binary Tree.
+     * Memory Usage: 39 MB, less than 98.44% of Java online submissions for Minimum Depth of Binary Tree.
+     *
      * @param root, TreeNode, the root of the binary tree
      * @return int, the minimum depth of the binary tree
      */
@@ -46,5 +49,24 @@ public class Solution1 {
         }
         int l = minDepth(root.left), r = minDepth(root.right);
         return 1 + (Math.min(l, r) > 0 ? Math.min(l, r) : Math.max(l, r));
+    }
+
+    /**
+     * 解法一：递归（推荐）
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Minimum Depth of Binary Tree.
+     * Memory Usage: 38.4 MB, less than 98.44% of Java online submissions for Minimum Depth of Binary Tree.
+     *
+     * @param root, TreeNode, the root of the binary tree
+     * @return int, the minimum depth of the binary tree
+     */
+    public int minDepthV2(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int l = minDepthV2(root.left), r = minDepthV2(root.right);
+        return (l == 0 || r == 0) ? l + r + 1 : Math.min(l, r) + 1;
     }
 }
