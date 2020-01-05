@@ -53,12 +53,13 @@ public class Solution2 {
         Stack<Integer> depthStack = new Stack<>();
         nodeStack.push(root);
         depthStack.push(1);
-        TreeNode node;
-        int depth, maxDepth = 0;
+        int maxDepth = 1;
         while (!nodeStack.isEmpty()) {
-            node = nodeStack.pop();
-            depth = depthStack.pop();
-            maxDepth = Math.max(maxDepth, depth);
+            TreeNode node = nodeStack.pop();
+            int depth = depthStack.pop();
+            if (depth > maxDepth) {
+                maxDepth = depth;
+            }
             if (node.right != null) {
                 nodeStack.push(node.right);
                 depthStack.push(depth + 1);
