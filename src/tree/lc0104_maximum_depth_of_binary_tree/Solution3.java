@@ -52,13 +52,11 @@ public class Solution3 {
         }
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
-        int n;
-        TreeNode node;
         int depth = 0;
         while (!q.isEmpty()) {
-            n = q.size();
+            int n = q.size();
             while (n-- > 0) {
-                node = q.poll();
+                TreeNode node = q.poll();
                 if (node.left != null) {
                     q.offer(node.left);
                 }
