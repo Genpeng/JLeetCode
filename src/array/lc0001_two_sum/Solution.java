@@ -33,13 +33,14 @@ public class Solution {
             throw new IllegalArgumentException("[ERROR] The input array is null or the size of it is less than 2!!!");
         }
 
-        Map<Integer, Integer> comps = new HashMap<>(16); // the complements of the numbers have seen
-        for (int i = 0; i < nums.length; ++i) {
+        int n = nums.length;
+        Map<Integer, Integer> map = new HashMap<>(n); // the complements of the numbers have seen
+        for (int i = 0; i < n; ++i) {
             int num = nums[i];
-            if (comps.containsKey(num)) {
-                return new int[] {comps.get(num), i};
+            if (map.containsKey(num)) {
+                return new int[] {map.get(num), i};
             }
-            comps.put(target - num, i);
+            map.put(target - num, i);
         }
         throw new IllegalArgumentException("[ERROR] There are no two numbers such that their sum is equal to target!!!");
     }
