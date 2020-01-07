@@ -29,8 +29,8 @@ import java.util.*;
  */
 public class Solution1 {
     /**
-     * 解法一：哈希表
-     * 时间复杂度：O(n^2)
+     * 解法（Deprecated）：Brute Force
+     * 时间复杂度：O(n^3)
      * 空间复杂度：O(n)
      *
      * @param nums int[], input array
@@ -41,21 +41,30 @@ public class Solution1 {
             return new LinkedList<>();
         }
         Arrays.sort(nums);
-        Set<List<Integer>> res = new HashSet<>();
-        for (int i = 0; i < nums.length - 2; ++i) {
-            if (i > 0 && nums[i-1] == nums[i]) {
+        int n = nums.length;
+        List<List<Integer>> ans = new LinkedList<>();
+        for (int i = 0; i < n - 2; ++i) {
+            int a = nums[i];
+            if (i > 0 && a == nums[i-1]) {
                 continue;
             }
-            Set<Integer> s = new HashSet<>();
-            for (int j = i + 1; j < nums.length; ++j) {
-                if (!s.contains(nums[j])) {
-                    s.add(-nums[i]-nums[j]);
-                } else {
-                    res.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
+            for (int j = i + 1; j < n - 1; ++j) {
+                int b = nums[j];
+                if (j > i + 1 && b == nums[j-1]) {
+                    continue;
+                }
+                for (int k = j + 1; k < n; ++k) {
+                    int c = nums[k];
+                    if (k > j + 1 && c == nums[k-1]) {
+                        continue;
+                    }
+                    if (c == -(a + b)) {
+                        ans.add(Arrays.asList(a, b, c));
+                    }
                 }
             }
         }
-        return new LinkedList<>(res);
+        return ans;
     }
 
     public static void main(String[] args) {

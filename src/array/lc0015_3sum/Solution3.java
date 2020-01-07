@@ -1,6 +1,8 @@
 package array.lc0015_3sum;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This is the solution of No. 15 problem in the LeetCode,
@@ -27,40 +29,43 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/06
  */
-public class DeprecatedSoluton {
+public class Solution3 {
     /**
-     * 解法（Deprecated）：Brute Force
-     * 时间复杂度：O(n^3)
-     * 空间复杂度：O(n)
+     * 解法3：双指针
+     * 时间复杂度：O(n^2)
+     * 空间复杂度：O(1)
      *
      * @param nums int[], input array
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
      */
     public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new LinkedList<>();
         if (nums == null || nums.length < 3) {
-            return new LinkedList<>();
+            return res;
         }
 
-        List<List<Integer>> res = new LinkedList<>();
         Arrays.sort(nums);
         for (int i = 0; i < nums.length - 2; ++i) {
-            int a = nums[i];
-            if (i > 0 && a == nums[i-1]) {
+            if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
-            for (int j = i + 1; j < nums.length - 1; ++j) {
-                int b = nums[j];
-                if (j > i + 1 && b == nums[j-1]) {
-                    continue;
-                }
-                for (int k = j + 1; k < nums.length; ++k) {
-                    int c = nums[k];
-                    if (k > j + 1 && c == nums[k-1]) {
-                        continue;
+            int l = i + 1, r = nums.length - 1;
+            while (l < r) {
+                int s = nums[i] + nums[l] + nums[r];
+                if (s < 0) {
+                    ++l;
+                } else if (s > 0) {
+                    --r;
+                } else {
+                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    while (l < r && nums[l] == nums[l+1]) {
+                        ++l;
                     }
-                    if (c == -(a + b)) {
-                        res.add(Arrays.asList(a, b, c));
+                    while (l < r && nums[r] == nums[r-1]) {
+                        --r;
                     }
+                    ++l;
+                    --r;
                 }
             }
         }
@@ -68,9 +73,7 @@ public class DeprecatedSoluton {
     }
 
     public static void main(String[] args) {
-        int[] nums0 = new int[] {-1, 0, 1, 2, -1, -4};
-        int[] nums1 = new int[] {0, 0, 0, 0};
-        System.out.println((new DeprecatedSoluton()).threeSum(nums0));
-        System.out.println((new DeprecatedSoluton()).threeSum(nums1));
+        int[] nums = new int[] {-1, 0, 1, 2, -1, -4};
+        System.out.println((new Solution3()).threeSum(nums));
     }
 }
