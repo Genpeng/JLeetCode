@@ -117,7 +117,7 @@ public class Solution2 {
         // 测试 split 方法
 //        ListNode head = new ListNode(new int[] {-1, 5, 3, 4, 0});
 //        System.out.println(head);
-//        Solution2 solution = new Solution2();
+//        Solution3 solution = new Solution3();
 //        ListNode head2 = solution.splitListV1(head);
 //        System.out.println(head);
 //        System.out.println(head2);
