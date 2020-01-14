@@ -47,25 +47,25 @@ public class Solution2 {
      * @return List<List<Integer>>, the zigzag level order traversal of its nodes' values
      */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> res = new ArrayList<>();
-        zigzagLevelOrder(root, 0, res);
-        return res;
+        List<List<Integer>> ans = new ArrayList<>();
+        zigzagLevelOrder(root, 0, ans);
+        return ans;
     }
 
-    private void zigzagLevelOrder(TreeNode root, int depth, List<List<Integer>> res) {
+    private void zigzagLevelOrder(TreeNode root, int depth, List<List<Integer>> ans) {
         if (root == null) {
             return;
         }
-        if (depth >= res.size()) {
-            res.add(new LinkedList<>());
+        if (depth >= ans.size()) {
+            ans.add(new LinkedList<>());
         }
-        LinkedList<Integer> vals = (LinkedList<Integer>) res.get(depth);
+        LinkedList<Integer> vals = (LinkedList<Integer>) ans.get(depth);
         if ((depth & 1) == 0) {
             vals.add(root.val);
         } else {
             vals.addFirst(root.val);
         }
-        zigzagLevelOrder(root.left, depth + 1, res);
-        zigzagLevelOrder(root.right, depth + 1, res);
+        zigzagLevelOrder(root.left, depth + 1, ans);
+        zigzagLevelOrder(root.right, depth + 1, ans);
     }
 }
