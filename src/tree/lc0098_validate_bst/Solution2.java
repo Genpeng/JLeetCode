@@ -61,17 +61,15 @@ public class Solution2 {
      */
     public boolean isValidBST(TreeNode root) {
         update(root, null, null);
-        TreeNode node;
-        Integer val, lower, upper;
         while (!stack.isEmpty()) {
-            node = stack.pop();
-            lower = lowers.pop();
-            upper = uppers.pop();
+            TreeNode node = stack.pop();
+            Integer lower = lowers.pop();
+            Integer upper = uppers.pop();
 
             if (node == null) {
                 continue;
             }
-            val = node.val;
+            int val = node.val;
             if (lower != null && val <= lower) {
                 return false;
             }
