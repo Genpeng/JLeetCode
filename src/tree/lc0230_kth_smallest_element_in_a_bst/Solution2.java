@@ -62,16 +62,15 @@ public class Solution2 {
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
+            while (curr != null) {
                 stack.push(curr);
                 curr = curr.left;
-            } else {
-                TreeNode node = stack.pop();
-                if (--k == 0) {
-                    return node.val;
-                }
-                curr = node.right;
             }
+            TreeNode node = stack.pop();
+            if (k-- == 1) {
+                return node.val;
+            }
+            curr = node.right;
         }
         // 异常的两种情况：
         // 1. BST为空
