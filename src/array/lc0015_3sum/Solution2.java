@@ -41,21 +41,22 @@ public class Solution2 {
             return new LinkedList<>();
         }
         Arrays.sort(nums);
-        Set<List<Integer>> res = new HashSet<>();
-        for (int i = 0; i < nums.length - 2; ++i) {
+        int n = nums.length;
+        Set<List<Integer>> ans = new HashSet<>();
+        for (int i = 0; i < n - 2; ++i) {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
             Set<Integer> s = new HashSet<>();
-            for (int j = i + 1; j < nums.length; ++j) {
+            for (int j = i + 1; j < n; ++j) {
                 if (!s.contains(nums[j])) {
                     s.add(-nums[i]-nums[j]);
                 } else {
-                    res.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
+                    ans.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
                 }
             }
         }
-        return new LinkedList<>(res);
+        return new LinkedList<>(ans);
     }
 
     public static void main(String[] args) {
