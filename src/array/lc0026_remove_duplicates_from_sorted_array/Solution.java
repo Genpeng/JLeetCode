@@ -1,4 +1,4 @@
-package array.lc0026_remove_duplicates;
+package array.lc0026_remove_duplicates_from_sorted_array;
 
 /**
  * This is the solution of No. 26 problem in the LeetCode,
