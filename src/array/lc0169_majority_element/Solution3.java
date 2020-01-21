@@ -26,7 +26,7 @@ package array.lc0169_majority_element;
  */
 public class Solution3 {
     /**
-     * 解法：多数投票算法（Boyer-Moore majority vote algorithm）
+     * 解法3：多数投票算法（Boyer-Moore majority vote algorithm）
      * 时间复杂度：O(n)
      * 空间复杂度：O(1)
      *

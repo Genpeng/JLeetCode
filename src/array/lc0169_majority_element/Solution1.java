@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class Solution1 {
     /**
-     * 解法：使用Map记录数字出现次数
+     * 解法1：Hash Map
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
@@ -37,31 +37,27 @@ public class Solution1 {
      * @return int, the majority element
      */
     public int majorityElement(int[] nums) {
-        int threshold = nums.length / 2; // the lower bound of n/2
         Map<Integer, Integer> counts = new HashMap<>(16);
         for (int num : nums) {
             counts.put(num, counts.getOrDefault(num, 0) + 1);
-            if (counts.get(num) > threshold) {
+            if (counts.get(num) > nums.length / 2) {
                 return num;
             }
         }
-        throw new IllegalArgumentException("The majority element does not exist!!!");
+        throw new IllegalArgumentException("[INFO] The input array is illegal!!!");
     }
 
     public int majorityElement1(int[] nums) {
-        int threshold = nums.length / 2; // the lower bound of n/2
         Map<Integer, Integer> counts = new HashMap<>(16);
         for (int num : nums) {
             counts.put(num, counts.getOrDefault(num, 0) + 1);
         }
-
         Map.Entry<Integer, Integer> majorityEntry = null;
         for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
             if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
                 majorityEntry = entry;
             }
         }
-
         return majorityEntry.getKey();
     }
 
