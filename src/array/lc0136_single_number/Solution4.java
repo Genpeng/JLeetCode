@@ -34,11 +34,11 @@ public class Solution4 {
      * @return int, the only integer which appears once
      */
     public int singleNumber(int[] nums) {
-        int res = nums[0];
+        int ans = nums[0];
         for (int i = 1; i < nums.length; ++i) {
-            res ^= nums[i];
+            ans ^= nums[i];
         }
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {
