@@ -39,8 +39,7 @@ import java.util.Stack;
  * Output: true
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/09
+ * @author  StrongXGP (xgp1227atgmail.com)
  */
 public class Solution {
     /**
