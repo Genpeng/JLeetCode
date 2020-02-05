@@ -47,8 +47,8 @@ public class Solution3 {
      * 时间复杂度：O(N * K)，其中N是字符串的数目，K表示字符串的长度
      * 空间复杂度：O(K)
      *
-     * Runtime: 2 ms, faster than 79.05% of Java online submissions for Find and Replace Pattern.
-     * Memory Usage: 36.7 MB, less than 100.00% of Java online submissions for Find and Replace Pattern.
+     * Runtime: 2 ms, faster than 58.96% of Java online submissions for Find and Replace Pattern.
+     * Memory Usage: 38.7 MB, less than 7.69% of Java online submissions for Find and Replace Pattern.
      *
      * @param words String[], a list of words
      * @param pattern String, a string represents a pattern
@@ -59,7 +59,7 @@ public class Solution3 {
             throw new IllegalArgumentException("[ERROR] The input pattern must not be null!!!");
         }
         List<String> ans = new LinkedList<>();
-        if (words == null) {
+        if (words == null || words.length == 0) {
             return ans;
         }
         for (String word : words) {

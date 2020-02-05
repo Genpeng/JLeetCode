@@ -49,8 +49,13 @@ public class Solution1 {
      * 存储从word到pattern之间的映射关系，就可以解决word到pattern之间一对多的情况，
      * 从而解决pattern到word之间多对一的映射关系（对偶问题）。
      *
+     * 备注：一个map可以解决一个多对一问题
+     *
      * 时间复杂度：O(N * K)，其中N是字符串的数目，K表示字符串的长度
      * 空间复杂度：O(K)
+     *
+     * Runtime: 1 ms, faster than 94.60% of Java online submissions for Find and Replace Pattern.
+     * Memory Usage: 38.7 MB, less than 7.69% of Java online submissions for Find and Replace Pattern.
      *
      * @param words String[], a list of words
      * @param pattern String, a string represents a pattern
@@ -62,7 +67,7 @@ public class Solution1 {
             throw new IllegalArgumentException("[ERROR] The input pattern must not be null!!!");
         }
         List<String> ans = new LinkedList<>();
-        if (words == null) {
+        if (words == null || words.length == 0) {
             return ans;
         }
         for (String word : words) {
