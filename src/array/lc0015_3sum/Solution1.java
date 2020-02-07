@@ -29,37 +29,38 @@ import java.util.*;
  */
 public class Solution1 {
     /**
-     * 解法（Deprecated）：Brute Force
+     * 解法1（Deprecated）：Brute Force
      * 时间复杂度：O(n^3)
      * 空间复杂度：O(n)
+     *
+     * Time Limit Exceeded
      *
      * @param nums int[], input array
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
      */
     public List<List<Integer>> threeSum(int[] nums) {
-        if (nums == null || nums.length < 3) {
-            return new LinkedList<>();
-        }
-        Arrays.sort(nums);
-        int n = nums.length;
         List<List<Integer>> ans = new LinkedList<>();
+        if (nums == null || nums.length < 3) {
+            return ans;
+        }
+        // Step 1: sort all the integers in the array, O(N * log(N))
+        Arrays.sort(nums);
+        // Step 2: find out all the triplets which give the sum of zero, O(N ^ 3)
+        int n = nums.length;
         for (int i = 0; i < n - 2; ++i) {
-            int a = nums[i];
-            if (i > 0 && a == nums[i-1]) {
+            if (nums[i] > 0 && nums[i] == nums[i-1]) {
                 continue;
             }
             for (int j = i + 1; j < n - 1; ++j) {
-                int b = nums[j];
-                if (j > i + 1 && b == nums[j-1]) {
+                if (j > i + 1 && nums[j] == nums[j-1]) {
                     continue;
                 }
                 for (int k = j + 1; k < n; ++k) {
-                    int c = nums[k];
-                    if (k > j + 1 && c == nums[k-1]) {
+                    if (k > j + 1 && nums[k] == nums[k-1]) {
                         continue;
                     }
-                    if (c == -(a + b)) {
-                        ans.add(Arrays.asList(a, b, c));
+                    if (nums[i] + nums[j] == -nums[k]) {
+                        ans.add(Arrays.asList(nums[i], nums[j], nums[k]));
                     }
                 }
             }

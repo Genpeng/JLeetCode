@@ -29,9 +29,12 @@ import java.util.*;
  */
 public class Solution2 {
     /**
-     * 解法2：哈希表
+     * 解法2：Hash Table
      * 时间复杂度：O(n^2)
      * 空间复杂度：O(n)
+     *
+     * Runtime: 297 ms, faster than 18.65% of Java online submissions for 3Sum.
+     * Memory Usage: 46.5 MB, less than 91.87% of Java online submissions for 3Sum.
      *
      * @param nums int[], input array
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
@@ -40,7 +43,9 @@ public class Solution2 {
         if (nums == null || nums.length < 3) {
             return new LinkedList<>();
         }
+        // Step 1: sort all the integers in the array, O(N * log(N))
         Arrays.sort(nums);
+        // Step 2: find out all the triplets which give the sum of zero, O(N ^ 2)
         int n = nums.length;
         Set<List<Integer>> ans = new HashSet<>();
         for (int i = 0; i < n - 2; ++i) {
