@@ -1,4 +1,4 @@
-package lc0049_group_anagrams;
+package array.lc0049_group_anagrams;
 
 import java.util.*;
 
@@ -28,10 +28,10 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/30
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * 解法一：哈希表，key为排序后的字符串
-     * 时间复杂度：O(N * K * log(K))，其中N表示数组元素的数目，K表示数组中字符串的最大长度
+     * 解法二：哈希表，key为统计字符次数的字符串
+     * 时间复杂度：O(N * K)，其中N表示数组元素的数目，K表示数组中字符串的最大长度
      * 空间复杂度：O(N)
      *
      * @param strs String[], the array of strings
@@ -41,11 +41,21 @@ public class Solution1 {
         if (strs == null || strs.length == 0) {
             return new ArrayList<>();
         }
-        Map<String, List<String>> ans = new HashMap<>(16);
+        Map<String, List<String>> ans = new HashMap<>();
         for (String str : strs) {
-            char[] ca = str.toCharArray();
-            Arrays.sort(ca);
-            String key = String.valueOf(ca);
+            // 统计每个字符串的词频
+            int[] count = new int[26];
+            for (char c : str.toCharArray()) {
+                ++count[c - 'a'];
+            }
+            // 构造每个字符串的编码字符串
+            StringBuilder sb = new StringBuilder();
+            for (int n : count) {
+                sb.append("#");
+                sb.append(n);
+            }
+            String key = sb.toString();
+            // 按照编码字符串的不同对字符串进行分组
             if (!ans.containsKey(key)) {
                 ans.put(key, new ArrayList<>());
             }
@@ -56,6 +66,6 @@ public class Solution1 {
 
     public static void main(String[] args) {
         String[] strs = new String[] {"eat", "tea", "tan", "ate", "nat", "bat"};
-        System.out.println((new Solution1()).groupAnagrams(strs));
+        System.out.println((new Solution2()).groupAnagrams(strs));
     }
 }
