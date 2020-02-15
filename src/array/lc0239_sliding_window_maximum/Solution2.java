@@ -47,9 +47,9 @@ public class Solution2 {
      * 时间复杂度：O(n)，其中，n表示数组的长度
      * 空间复杂度：O(n)
      *
-     * @param nums int[], 输入的数组
-     * @param k int, 窗口的大小
-     * @return int[], 滑动过程中滑动窗口的所有最大值
+     * @param nums int[], the input integer array
+     * @param k int, the size of the sliding window
+     * @return int[], the max sliding window
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
         boolean isKIllegal = k <= 0 || k > nums.length;

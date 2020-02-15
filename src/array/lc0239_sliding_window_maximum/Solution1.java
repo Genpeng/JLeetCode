@@ -45,12 +45,15 @@ public class Solution1 {
      * 时间复杂度：O(n * k * log(k))，其中，n表示数组的长度，k表示窗口的大小
      * 空间复杂度：O(n)
      *
-     * @param nums int[], 输入的数组
-     * @param k int, 窗口的大小
-     * @return int[], 滑动过程中滑动窗口的所有最大值
+     * Runtime: 79 ms, faster than 8.02% of Java online submissions for Sliding Window Maximum.
+     * Memory Usage: 47.6 MB, less than 6.25% of Java online submissions for Sliding Window Maximum.
+     *
+     * @param nums int[], the input integer array
+     * @param k int, the size of the sliding window
+     * @return int[], the max sliding window
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        boolean isKIllegal = k <= 0 || k > nums.length;
+        boolean isKIllegal = k <= 0 || k > nums.length; // 1 <= k <= n if k is legal
         if (nums == null || isKIllegal) {
             throw new IllegalArgumentException("[ERROR] The input array is null, or the value of k is illegal!!!");
         }
