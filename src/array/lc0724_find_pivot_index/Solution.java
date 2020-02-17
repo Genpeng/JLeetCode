@@ -45,15 +45,15 @@ public class Solution {
         if (nums == null) {
             throw new IllegalArgumentException("[ERROR] The input array is null!!!");
         }
-
-        int sum = 0;
+        // Step 1: calculate the sum of all integers in the array
+        int s = 0;
         for (int num : nums) {
-            sum += num;
+            s += num;
         }
-
+        // Step 2: find out the pivot index
         int leftSum = 0;
         for (int i = 0; i < nums.length; ++i) {
-            if (leftSum == sum - nums[i] - leftSum) {
+            if (leftSum == s - nums[i] - leftSum) {
                 return i;
             }
             leftSum += nums[i];
