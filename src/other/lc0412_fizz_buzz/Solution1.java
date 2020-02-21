@@ -1,4 +1,4 @@
-package lc0412_fizz_buzz;
+package other.lc0412_fizz_buzz;
 
 import java.util.LinkedList;
 import java.util.List;
