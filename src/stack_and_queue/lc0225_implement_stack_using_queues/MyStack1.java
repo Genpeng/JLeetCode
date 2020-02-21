@@ -43,11 +43,11 @@ public class MyStack1<E> {
      */
     private Queue<E> q1;
     /**
-     * The auxiliary queue for popping a element from stack_and_queue top.
+     * The auxiliary queue for popping a element from the top of the stack.
      */
     private Queue<E> q2;
     /**
-     * Tail of the queue, which is the stack_and_queue top element.
+     * Tail of the queue, which is the stack's top element.
      */
     private E top;
 
@@ -57,13 +57,13 @@ public class MyStack1<E> {
         q2 = new LinkedList<>();
     }
 
-    /** Push element x onto stack_and_queue. */
+    /** Push element x onto stack. */
     public void push(E e) {
         top = e;
         q1.add(e);
     }
 
-    /** Removes the element on top of the stack_and_queue and returns that element. */
+    /** Removes the element on top of the stack and returns that element. */
     public E pop() {
         if (empty()) {
             throw new EmptyStackException();
@@ -95,7 +95,7 @@ public class MyStack1<E> {
         return top;
     }
 
-    /** Returns whether the stack_and_queue is empty. */
+    /** Returns whether the stack is empty. */
     public boolean empty() {
         return q1.isEmpty();
     }

@@ -48,7 +48,7 @@ public class MyStack3<E> {
         q = new LinkedList<>();
     }
 
-    /** Push element x onto stack_and_queue. */
+    /** Push element x onto stack. */
     public void push(E e) {
         q.add(e);
         for (int i = 0; i < q.size() - 1; ++i) {
@@ -56,7 +56,7 @@ public class MyStack3<E> {
         }
     }
 
-    /** Removes the element on top of the stack_and_queue and returns that element. */
+    /** Removes the element on top of the stack and returns that element. */
     public E pop() {
         if (empty()) {
             throw new EmptyStackException();
@@ -72,7 +72,7 @@ public class MyStack3<E> {
         return q.peek();
     }
 
-    /** Returns whether the stack_and_queue is empty. */
+    /** Returns whether the stack is empty. */
     public boolean empty() {
         return q.isEmpty();
     }

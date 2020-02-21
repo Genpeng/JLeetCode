@@ -53,7 +53,7 @@ public class MyStack2<E> {
         q2 = new LinkedList<>();
     }
 
-    /** Push element x onto stack_and_queue. */
+    /** Push element x onto stack. */
     public void push(E e) {
         q2.add(e);
         while (!empty()) {
@@ -64,7 +64,7 @@ public class MyStack2<E> {
         q2 = q1;
     }
 
-    /** Removes the element on top of the stack_and_queue and returns that element. */
+    /** Removes the element on top of the stack and returns that element. */
     public E pop() {
         if (empty()) {
             throw new EmptyStackException();
@@ -80,7 +80,7 @@ public class MyStack2<E> {
         return q1.peek();
     }
 
-    /** Returns whether the stack_and_queue is empty. */
+    /** Returns whether the stack is empty. */
     public boolean empty() {
         return q1.isEmpty();
     }
