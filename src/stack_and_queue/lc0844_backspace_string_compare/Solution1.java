@@ -45,8 +45,17 @@ import java.util.Stack;
  * @date    2019/04/10
  */
 public class Solution1 {
-    public boolean backspaceCompare(String S, String T) {
-        return restore(S).equals(restore(T));
+    /**
+     * 解法1：栈
+     * 时间复杂度：O(m + n)
+     * 空间复杂度：O(m + n)
+     *
+     * @param s1 String, one input string
+     * @param s2 String, the other input string
+     * @return boolean, true if they are equal when both are typed into empty text editors
+     */
+    public boolean backspaceCompare(String s1, String s2) {
+        return restore(s1).equals(restore(s2));
     }
 
     private String restore(String s) {

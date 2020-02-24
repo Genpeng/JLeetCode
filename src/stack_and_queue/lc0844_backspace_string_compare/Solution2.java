@@ -43,18 +43,30 @@ package stack_and_queue.lc0844_backspace_string_compare;
  * @date    2019/04/10
  */
 public class Solution2 {
-    public boolean backspaceCompare(String S, String T) {
-        int i = S.length() - 1, j = T.length() - 1;
-        int sSkip = 0, tSkip = 0;
+    /**
+     * 解法2：Two Pointers
+     * 时间复杂度：O(min(m, n))
+     * 空间复杂度：O(1)
+     *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Backspace String Compare.
+     * Memory Usage: 37.7 MB, less than 6.06% of Java online submissions for Backspace String Compare.
+     *
+     * @param s1 String, one input string
+     * @param s2 String, the other input string
+     * @return boolean, true true if they are equal when both are typed into empty text editors
+     */
+    public boolean backspaceCompare(String s1, String s2) {
+        int i = s1.length() - 1, j = s2.length() - 1;
+        int skip1 = 0, skip2 = 0;
         while (i >= 0 || j >= 0) {
             // 找到S对应结果字符串的下一个字符（还原退格符的影响）
             while (i >= 0) {
-                if (S.charAt(i) == '#') {
+                if (s1.charAt(i) == '#') {
                     --i;
-                    ++sSkip;
-                } else if (sSkip > 0) {
+                    ++skip1;
+                } else if (skip1 > 0) {
                     --i;
-                    --sSkip;
+                    --skip1;
                 } else {
                     break;
                 }
@@ -62,19 +74,19 @@ public class Solution2 {
 
             // 找到T对应结果字符串的下一个字符
             while (j >= 0) {
-                if (T.charAt(j) == '#') {
+                if (s2.charAt(j) == '#') {
                     --j;
-                    ++tSkip;
-                } else if (tSkip > 0) {
+                    ++skip2;
+                } else if (skip2 > 0) {
                     --j;
-                    --tSkip;
+                    --skip2;
                 } else {
                     break;
                 }
             }
 
             // 如果S和T对应的结果字符串的当前字符不相同
-            if ((i >= 0) && (j >= 0) && (S.charAt(i) != T.charAt(j))) {
+            if ((i >= 0) && (j >= 0) && (s1.charAt(i) != s2.charAt(j))) {
                 return false;
             }
 
