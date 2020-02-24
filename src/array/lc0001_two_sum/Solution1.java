@@ -27,20 +27,24 @@ import java.util.Map;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/28
  */
-public class Solution {
+public class Solution1 {
+    /**
+     * 解法1：Brute Force
+     * 时间复杂度：O(n ^ 2)
+     * 空间复杂度：O(1)
+     *
+     * @param nums int[], the input integer array
+     * @param target int, the target integer
+     * @return int[], indices of the two numbers such that they add up to a specific target
+     */
     public int[] twoSum(int[] nums, int target) {
-        if (nums == null || nums.length < 2) {
-            throw new IllegalArgumentException("[ERROR] The input array is null or the size of it is less than 2!!!");
-        }
-
         int n = nums.length;
-        Map<Integer, Integer> map = new HashMap<>(n); // the complements of the numbers have seen
-        for (int i = 0; i < n; ++i) {
-            int num = nums[i];
-            if (map.containsKey(num)) {
-                return new int[] {map.get(num), i};
+        for (int i = 0; i < n - 1; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[] {i, j};
+                }
             }
-            map.put(target - num, i);
         }
         throw new IllegalArgumentException("[ERROR] There are no two numbers such that their sum is equal to target!!!");
     }
@@ -48,6 +52,6 @@ public class Solution {
     public static void main(String[] args) {
         int[] nums = {2, 7, 11, 15};
         int target = 9;
-        PrintUtil.printArray((new Solution()).twoSum(nums, target));
+        PrintUtil.printArray((new Solution1()).twoSum(nums, target));
     }
 }
