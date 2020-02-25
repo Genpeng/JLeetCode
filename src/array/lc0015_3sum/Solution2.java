@@ -68,8 +68,9 @@ public class Solution2 {
         int[] nums0 = new int[] {-1, 0, 1, 2, -1, -4};
         int[] nums1 = new int[] {0, 0, 0, 0};
         int[] nums2 = new int[] {0, 0, 0, -1, -1, 0};
-        System.out.println((new Solution2()).threeSum(nums0));
-        System.out.println((new Solution2()).threeSum(nums1));
-        System.out.println((new Solution2()).threeSum(nums2));
+        Solution2 solution = new Solution2();
+        System.out.println(solution.threeSum(nums0));
+        System.out.println(solution.threeSum(nums1));
+        System.out.println(solution.threeSum(nums2));
     }
 }
