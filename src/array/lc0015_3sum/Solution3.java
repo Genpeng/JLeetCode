@@ -31,14 +31,14 @@ import java.util.List;
  */
 public class Solution3 {
     /**
-     * 解法3：双指针
+     * 解法3：Two Pointers
      * 时间复杂度：O(n^2)
      * 空间复杂度：O(1)
      *
      * Runtime: 17 ms, faster than 99.24% of Java online submissions for 3Sum.
      * Memory Usage: 45.6 MB, less than 95.76% of Java online submissions for 3Sum.
      *
-     * @param nums int[], input array
+     * @param nums int[], the input array
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
      */
     public List<List<Integer>> threeSum(int[] nums) {

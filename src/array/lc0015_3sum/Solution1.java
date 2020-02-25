@@ -48,7 +48,7 @@ public class Solution1 {
         // Step 2: find out all the triplets which give the sum of zero, O(N ^ 3)
         int n = nums.length;
         for (int i = 0; i < n - 2; ++i) {
-            if (nums[i] > 0 && nums[i] == nums[i-1]) {
+            if (i > 0 && nums[i] == nums[i-1]) {
                 continue;
             }
             for (int j = i + 1; j < n - 1; ++j) {
@@ -71,7 +71,9 @@ public class Solution1 {
     public static void main(String[] args) {
         int[] nums0 = new int[] {-1, 0, 1, 2, -1, -4};
         int[] nums1 = new int[] {0, 0, 0, 0};
+        int[] nums2 = new int[] {0, 0, 0, -1, -1, 0};
         System.out.println((new Solution1()).threeSum(nums0));
         System.out.println((new Solution1()).threeSum(nums1));
+        System.out.println((new Solution1()).threeSum(nums2));
     }
 }

@@ -67,7 +67,9 @@ public class Solution2 {
     public static void main(String[] args) {
         int[] nums0 = new int[] {-1, 0, 1, 2, -1, -4};
         int[] nums1 = new int[] {0, 0, 0, 0};
+        int[] nums2 = new int[] {0, 0, 0, -1, -1, 0};
         System.out.println((new Solution2()).threeSum(nums0));
         System.out.println((new Solution2()).threeSum(nums1));
+        System.out.println((new Solution2()).threeSum(nums2));
     }
 }
