@@ -50,9 +50,9 @@ public class MyStack3<E> {
 
     /** Push element x onto stack. */
     public void push(E e) {
-        q.add(e);
+        q.offer(e);
         for (int i = 0; i < q.size() - 1; ++i) {
-            q.add(q.poll());
+            q.offer(q.poll());
         }
     }
 
@@ -83,6 +83,7 @@ public class MyStack3<E> {
         myStack.push(2);
         myStack.push(3);
         System.out.println(myStack.pop());
-        System.out.println(myStack.top());
+        System.out.println(myStack.pop());
+        System.out.println(myStack.pop());
     }
 }
