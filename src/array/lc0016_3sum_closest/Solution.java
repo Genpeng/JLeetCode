@@ -26,20 +26,21 @@ public class Solution {
      * 时间复杂度：O(N ^ 2)
      * 空间复杂度：O(1)
      *
+     * Runtime: 3 ms, faster than 98.45% of Java online submissions for 3Sum Closest.
+     * Memory Usage: 39 MB, less than 6.67% of Java online submissions for 3Sum Closest.
+     *
      * @param nums int[], the input integer array
      * @param target int, the target integer
      * @return int, the sum closest to target
      */
-    public int threeSumClosest(int[] nums, int target) {
+    public int threeSumClosestV1(int[] nums, int target) {
         if (nums == null || nums.length < 3) {
             throw new IllegalArgumentException("[ERROR] The size of input array is less than 3!!!");
         }
         // Step 1: sort all the integers in the array
         Arrays.sort(nums);
-        // Step 2: find three integers in the array such that the sum is cloest to target
-        int n = nums.length;
-        int cs = nums[0] + nums[1] + nums[n-1]; // closest sum
-        int ce = Math.abs(cs - target); // closest error
+        // Step 2: find out the closest sum
+        int n = nums.length, ce = Integer.MAX_VALUE, cs = 0;
         for (int i = 0; i < n - 2; ++i) {
             if (i > 0 && nums[i] == nums[i-1]) {
                 continue;
@@ -57,7 +58,57 @@ public class Solution {
                 } else if (s > target) {
                     --r;
                 } else {
+                    // ++l;
+                    // --r;
                     return cs;
+                }
+            }
+        }
+        return cs;
+    }
+
+    /**
+     * 解法：Two pointers
+     * 时间复杂度：O(N ^ 2)
+     * 空间复杂度：O(1)
+     *
+     * Runtime: 2 ms, faster than 99.58% of Java online submissions for 3Sum Closest.
+     * Memory Usage: 38.4 MB, less than 6.67% of Java online submissions for 3Sum Closest.
+     *
+     * @param nums int[], the input integer array
+     * @param target int, the target integer
+     * @return int, the sum closest to target
+     */
+    public int threeSumClosestV2(int[] nums, int target) {
+        if (nums == null || nums.length < 3) {
+            throw new IllegalArgumentException("[ERROR] The size of input array is less than 3!!!");
+        }
+        // Step 1: sort all the elements in the array
+        Arrays.sort(nums);
+        // Step 2: find out the closest sum
+        int n = nums.length, cs = nums[0] + nums[1] + nums[2];
+        for (int i = 0; i < n - 2; ++i) {
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+            int l = i + 1, r = n - 1;
+            while (l < r) {
+                if (nums[l] + nums[r] < target - nums[i]) {
+                    while (l < r && nums[l] + nums[r] < target - nums[i]) {
+                        ++l;
+                    }
+                    if (Math.abs(nums[i] + nums[l-1] + nums[r] - target) < Math.abs(cs - target)) {
+                        cs = nums[i] + nums[l-1] + nums[r];
+                    }
+                } else if (nums[l] + nums[r] > target - nums[i]) {
+                    while (l < r && nums[l] + nums[r] > target - nums[i]) {
+                        --r;
+                    }
+                    if (Math.abs(nums[i] + nums[l] + nums[r+1] - target) < Math.abs(cs - target)) {
+                        cs = nums[i] + nums[l] + nums[r+1];
+                    }
+                } else {
+                    return target;
                 }
             }
         }
@@ -68,7 +119,7 @@ public class Solution {
         int[] nums = new int[] {-1, 0, 1, 1, 55};
         int target = 3;
         Solution solution = new Solution();
-        int closestSum = solution.threeSumClosest(nums, target);
+        int closestSum = solution.threeSumClosestV2(nums, target);
         System.out.println(closestSum);
     }
 }
