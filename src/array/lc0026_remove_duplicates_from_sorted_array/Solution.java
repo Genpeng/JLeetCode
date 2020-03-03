@@ -1,5 +1,7 @@
 package array.lc0026_remove_duplicates_from_sorted_array;
 
+import java.util.Arrays;
+
 /**
  * This is the solution of No. 26 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -29,27 +31,37 @@ package array.lc0026_remove_duplicates_from_sorted_array;
  */
 public class Solution {
     /**
-     * 解法：双指针
+     * 解法：Two Pointers
      * 思路：
      * 利用一个快指针发现不重复的元素，利用一个慢指针指向元素的存储位置。
      * 时间复杂度：O(n)
      * 空间复杂度：O(1)
      *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Duplicates from Sorted Array.
+     * Memory Usage: 41.5 MB, less than 17.02% of Java online submissions for Remove Duplicates from Sorted Array.
      *
      * @param nums int[], the input array
      * @return int, the length of the array without duplicates
      */
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
-        int k = 1;
-        for (int i = 1; i < nums.length; ++i) {
-            if (nums[i] != nums[i-1]) {
-                nums[k] = nums[i];
-                ++k;
+         if (nums == null) {
+             throw new IllegalArgumentException("[ERROR] The input array is null!!!");
+         }
+        int i = 0;
+        for (int j = 1; j < nums.length; ++j) {
+            if (nums[i] != nums[j]) {
+                nums[++i] = nums[j];
             }
         }
-        return k;
+        return i + 1;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        System.out.println(Arrays.toString(nums));
+        Solution solution = new Solution();
+        int newLength = solution.removeDuplicates(nums);
+        int[] newNums = Arrays.copyOf(nums, newLength);
+        System.out.println(Arrays.toString(newNums));
     }
 }
