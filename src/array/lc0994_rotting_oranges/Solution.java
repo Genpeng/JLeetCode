@@ -48,6 +48,9 @@ public class Solution {
      * 时间复杂度：O(m * n)
      * 空间复杂度：O(m * n)
      *
+     * Runtime: 3 ms, faster than 75.83% of Java online submissions for Rotting Oranges.
+     * Memory Usage: 38.5 MB, less than 81.25% of Java online submissions for Rotting Oranges.
+     *
      * @param grid int[][], the input two dimensional array
      * @return int, the minimum number of minutes that must elapse until no cell has a fresh orange
      */
