@@ -49,8 +49,8 @@ public class Solution2 {
         }
         int diameter = 0;
         Stack<TreeNode> stack = new Stack<>();
-        stack.push(root);
         Map<TreeNode, Integer> map = new HashMap<>();
+        stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode node = stack.peek();
             if (node.left != null && !map.containsKey(node.left)) {
