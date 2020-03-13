@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class Solution1 {
     /**
-     * 解法1：Hash Map
+     * 解法1：Hash Table
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
@@ -38,9 +38,10 @@ public class Solution1 {
      */
     public int majorityElement(int[] nums) {
         Map<Integer, Integer> counts = new HashMap<>(16);
+        int nMax = nums.length / 2;
         for (int num : nums) {
             counts.put(num, counts.getOrDefault(num, 0) + 1);
-            if (counts.get(num) > nums.length / 2) {
+            if (counts.get(num) > nMax) {
                 return num;
             }
         }
