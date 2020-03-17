@@ -26,6 +26,8 @@ import java.util.Arrays;
  * - You may assume that you have an infinite number of each kind of coin.
  * ==========================================================================================================
  *
+ * Tags: dp
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {

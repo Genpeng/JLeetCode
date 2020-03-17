@@ -26,15 +26,22 @@ import java.util.Arrays;
  * - You may assume that you have an infinite number of each kind of coin.
  * ==========================================================================================================
  *
+ * Tags: dp
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     private int ans;
 
+    // 这道题需要处理3种边界情况：
+    // 1. amount = 0
+    // 2. amount < 0
+    // 3. coins.length = 0
+
     /**
      * Approach 2: Greedy + DFS
-     * Time Complexity: xxx
-     * Space Complexity: xxx
+     * Time Complexity: O(S ^ n)
+     * Space Complexity: O(n)
      * where S is the amount to change, and n is the number of coins
      *
      * @param coins int[], coins of different denominations
@@ -42,7 +49,7 @@ public class Solution2 {
      * @return int, the fewest number of coins that you need to make up that amount, and return -1 if it
      *              does not exist any combination of coins
      */
-    public int coinChange(int[] coins, int amount) {
+    public int coinChangeV1(int[] coins, int amount) {
         if (amount < 0) {
             return -1;
         }
@@ -54,19 +61,11 @@ public class Solution2 {
         }
         Arrays.sort(coins);
         ans = Integer.MAX_VALUE;
-        coinChange(coins, amount, coins.length - 1, 0);
+        coinChangeV1(coins, amount, coins.length - 1, 0);
         return ans == Integer.MAX_VALUE ? -1 : ans;
     }
 
-    /**
-     *
-     *
-     * @param coins
-     * @param amount
-     * @param ei
-     * @param count
-     */
-    private void coinChange(int[] coins, int amount, int ei, int count) {
+    private void coinChangeV1(int[] coins, int amount, int ei, int count) {
         if (ei < 0) {
             return;
         }
@@ -80,14 +79,47 @@ public class Solution2 {
             if (newCount + 1 >= ans) {
                 return;
             }
-            coinChange(coins, remain, ei - 1, newCount);
+            coinChangeV1(coins, remain, ei - 1, newCount);
+        }
+    }
+
+    /**
+     * Approach 2: Greedy + DFS
+     * Time Complexity: O(S ^ n)
+     * Space Complexity: O(n)
+     * where S is the amount to change, and n is the number of coins
+     *
+     * @param coins int[], coins of different denominations
+     * @param amount int, target amount of money
+     * @return int, the fewest number of coins that you need to make up that amount, and return -1 if it
+     *              does not exist any combination of coins
+     */
+    public int coinChangeV2(int[] coins, int amount) {
+        Arrays.sort(coins);
+        ans = Integer.MAX_VALUE;
+        coinChangeV2(coins, amount, coins.length - 1, 0);
+        return ans == Integer.MAX_VALUE ? -1 : ans;
+    }
+
+    private void coinChangeV2(int[] coins, int amount, int ei, int count) {
+        if (amount == 0) {
+            ans = Math.min(ans, count);
+            return;
+        }
+        if (ei < 0) { // amount < 0 的情况也能处理
+            return;
+        }
+        for (int k = amount / coins[ei]; k >= 0 && k + count < ans; --k) {
+            coinChangeV2(coins, amount - k * coins[ei], ei - 1, k + count);
         }
     }
 
     public static void main(String[] args) {
         int[] coins = new int[] {1, 2, 5};
         int amount = 11;
+        int[] coins2 = {429, 171, 485, 26, 381, 31, 290};
+        int amount2 = 8440;
         Solution2 solution = new Solution2();
-        System.out.println(solution.coinChange(coins, amount));
+        System.out.println(solution.coinChangeV2(coins2, amount2));
     }
 }
