@@ -49,8 +49,7 @@ public class Solution {
         int[] counts = new int[128];
         int len = 0;
         for (char c : s.toCharArray()) {
-            ++counts[c];
-            if ((counts[c] & 1) == 0) {
+            if ((++counts[c] & 1) == 0) {
                 len += 2;
             }
         }
@@ -82,5 +81,9 @@ public class Solution {
             }
         }
         return len < s.length() ? len + 1 : len;
+    }
+
+    public static void main(String[] args) {
+
     }
 }
