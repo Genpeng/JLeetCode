@@ -59,13 +59,26 @@ public class Solution2 {
      * Approach 2: Slightly modify the rule
      * board[i][j] = -1 if board[i][j] from 1 to 0
      * board[i][j] = 2 if board[i][j] from 0 to 1
+     * others remain unchanged
+     *
+     * all possible situations list in the table below:
+     *
+     * | curr state | # of neighbors | the output applied question rules | the output applied our rules |
+     * | 1          | < 2            | 0                                 | -1                           |
+     * | 1          | 2 or 3         | 1                                 | 1                            |
+     * | 1          | > 3            | 0                                 | -1                           |
+     * | 0          | 3              | 1                                 | 2                            |
+     * | 0          | != 3           | 0                                 | 0                            |
+     *
+     * finally, in order to get the specified outputs, simply change elements (> 0) to 1, and elements
+     * (<= 0) to 0.
      *
      * Time Complexity: O(m, n)
      * Space Complexity: O(1)
      *
      * @param board int[][], a board with m by n cells
      */
-    public void gameOfLife(int[][] board) {
+    public void gameOfLifeV1(int[][] board) {
         m = board.length;
         n = board[0].length;
         for (int i = 0; i < m; ++i) {
@@ -101,11 +114,58 @@ public class Solution2 {
         }
     }
 
+    /**
+     * Approach 2: Slightly modify the rule
+     * board[i][j] = 3 if (board[i][j] == 1) and (the number of neighbors == 2 or 3)
+     * board[i][j] = 2 if (board[i][j] == 0) and (the number of neighbors == 3)
+     * others remain unchanged
+     *
+     * all possible situations list in the table below:
+     *
+     * | curr state | # of neighbors | the output applied question rules | the output applied our rules |
+     * | 1          | < 2            | 0                                 | 1                            |
+     * | 1          | 2 or 3         | 1                                 | 3                            |
+     * | 1          | > 3            | 0                                 | 1                            |
+     * | 0          | 3              | 1                                 | 2                            |
+     * | 0          | != 3           | 0                                 | 0                            |
+     *
+     * finally, right shift one bit all the output is all we need!
+     *
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Game of Life.
+     * Memory Usage: 37.9 MB, less than 7.69% of Java online submissions for Game of Life.
+     *
+     * Time Complexity: O(m, n)
+     * Space Complexity: O(1)
+     *
+     * @param board int[][], a board with m by n cells
+     */
+    public void gameOfLifeV2(int[][] board) {
+        int m = board.length, n = board[0].length;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int lives = 0;
+                for (int I = Math.max(i-1, 0); I < Math.min(i+2, m); ++I) {
+                    for (int J = Math.max(j-1, 0); J < Math.min(j+2, n); ++J) {
+                        lives += board[I][J] & 1;
+                    }
+                }
+                if (lives == 3 || lives - board[i][j] == 3) {
+                    board[i][j] |= 2;
+                }
+            }
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                board[i][j] >>= 1;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int[][] board = {{0, 1, 0}, {0, 0, 1}, {1, 1, 1}, {0, 0, 0}};
         Solution2 solution = new Solution2();
         System.out.println(Arrays.deepToString(board));
-        solution.gameOfLife(board);
+        solution.gameOfLifeV2(board);
         System.out.println(Arrays.deepToString(board));
     }
 }
