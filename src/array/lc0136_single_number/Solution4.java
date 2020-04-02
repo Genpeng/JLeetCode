@@ -21,6 +21,8 @@ package array.lc0136_single_number;
  * Output: 4
  * ==========================================================================================================
  *
+ * Tags: array;hash table;bit manipulation;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/01/04
  */
@@ -34,9 +36,9 @@ public class Solution4 {
      * @return int, the only integer which appears once
      */
     public int singleNumber(int[] nums) {
-        int ans = nums[0];
-        for (int i = 1; i < nums.length; ++i) {
-            ans ^= nums[i];
+        int ans = 0;
+        for (int num : nums) {
+            ans ^= num;
         }
         return ans;
     }

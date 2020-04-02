@@ -43,12 +43,10 @@ public class Solution3 {
             uniqueNums.add(num);
             sum += num;
         }
-
         int doubleSum = 0;
         for (int num : uniqueNums) {
             doubleSum += 2 * num;
         }
-
         return doubleSum - sum;
     }
 
