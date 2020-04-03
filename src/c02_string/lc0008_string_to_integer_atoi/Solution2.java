@@ -74,6 +74,9 @@ public class Solution2 {
      * @return int, the corresponding integer
      */
     public int myAtoi(String str) {
+        if (str == null) {
+            return 0;
+        }
         Automaton automaton = new Automaton();
         for (char c : str.toCharArray()) {
             automaton.nextState(c);
