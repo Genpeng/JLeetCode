@@ -78,20 +78,20 @@ public class Solution2 {
         for (char c : str.toCharArray()) {
             automaton.nextState(c);
         }
-        return (int) (automaton.sign * automaton.ans);
+        return (int) (automaton.sign * automaton.base);
     }
 
     class Automaton {
         private String state;
         private Map<String, String[]> table;
         public int sign;
-        public long ans;
+        public long base;
 
         public Automaton() {
             this.state = "start";
             this.table = generateTable();
             this.sign = 1;
-            this.ans = 0;
+            this.base = 0;
         }
 
         private Map<String, String[]> generateTable() {
@@ -118,8 +118,8 @@ public class Solution2 {
         public void nextState(char c) {
             state = table.get(state)[getCol(c)];
             if (state.equals("in_number")) {
-                ans = ans * 10 + c - '0';
-                ans = sign == 1 ? Math.min(ans, Integer.MAX_VALUE) : Math.min(ans, - (long) Integer.MIN_VALUE);
+                base = base * 10 + c - '0';
+                base = sign == 1 ? Math.min(base, Integer.MAX_VALUE) : Math.min(base, - (long) Integer.MIN_VALUE);
             } else if (state.equals("signed")) {
                 sign = c == '+' ? 1 : -1;
             }
