@@ -25,19 +25,37 @@ import java.util.Arrays;
  * @date    2018/12/07
  */
 public class Solution3 {
+    /**
+     * Approach 3: Two Pointers
+     *
+     * Note:
+     * - similar with the partition process of quick sort algorithm
+     *
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     *
+     * @param nums int[], the input integer array
+     */
     public void moveZeroes(int[] nums) {
-        for (int slow = 0, fast = 0; fast < nums.length; ++fast) {
-            if (nums[fast] != 0) {
-                int temp = nums[fast];
-                nums[fast] = nums[slow];
-                nums[slow] = temp;
-                ++slow;
+        for (int i = -1, j = 0; j < nums.length; ++j) {
+            if (nums[j] != 0) {
+                ++i;
+                swap(nums, i, j);
             }
         }
     }
 
+    public void swap(int[] nums, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+
     public static void main(String[] args) {
-        int[] nums = {2, 1};
+        int[] nums = {0, 0, 0, 2, 1};
         System.out.println(Arrays.toString(nums));
         Solution3 solution = new Solution3();
         solution.moveZeroes(nums);

@@ -25,19 +25,26 @@ import java.util.Arrays;
  * @date    2018/12/07
  */
 public class Solution2 {
+    /**
+     * Approach 2: Move all nonzero elements to head, and then replace remaining elements to zero
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     *
+     * @param nums int[], the input integer array
+     */
     public void moveZeroes(int[] nums) {
         // 1. 将数组中所有非零元素按照它们本来的顺序移动到数组前面
         //    时间复杂度：O(n)
-        int index = 0;
+        int idx = 0;
         for (int i = 0; i < nums.length; ++i) {
             if (nums[i] != 0) {
-                nums[index++] = nums[i];
+                nums[idx++] = nums[i];
             }
         }
 
         // 2. 将非零元素之外的所有元素设为0
         //    时间复杂度：O(n)
-        for (int i = index; i < nums.length; ++i) {
+        for (int i = idx; i < nums.length; ++i) {
             nums[i] = 0;
         }
     }

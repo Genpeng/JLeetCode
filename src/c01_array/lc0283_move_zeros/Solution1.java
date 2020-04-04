@@ -25,6 +25,13 @@ import java.util.Arrays;
  * @date    2018/12/07
  */
 public class Solution1 {
+    /**
+     * Approach 1: Make a copy
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
+     *
+     * @param nums int[], the input integer array
+     */
     public void moveZeroes(int[] nums) {
         // 1. 生成一个长度相同、元素都是0的数组
         //    时间复杂度：O(n)
