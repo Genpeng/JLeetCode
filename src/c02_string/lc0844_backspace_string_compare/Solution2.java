@@ -1,4 +1,7 @@
-package c05_stack_and_queue.lc0844_backspace_string_compare;
+package c02_string.lc0844_backspace_string_compare;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the solution of No. 844 problem in the LeetCode,
@@ -44,9 +47,9 @@ package c05_stack_and_queue.lc0844_backspace_string_compare;
  */
 public class Solution2 {
     /**
-     * 解法2：Two Pointers
-     * 时间复杂度：O(min(m, n))
-     * 空间复杂度：O(1)
+     * Approach 2: Two Pointers
+     * Time Complexity: O(min(m, n))
+     * Space Complexity: O(1)
      *
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Backspace String Compare.
      * Memory Usage: 37.7 MB, less than 6.06% of Java online submissions for Backspace String Compare.
@@ -56,53 +59,53 @@ public class Solution2 {
      * @return boolean, true true if they are equal when both are typed into empty text editors
      */
     public boolean backspaceCompare(String s1, String s2) {
+//        if (s1 == null || s2 == null) {
+//            throw new IllegalArgumentException("[ERROR] The input strings contain null!!!");
+//        }
         int i = s1.length() - 1, j = s2.length() - 1;
-        int skip1 = 0, skip2 = 0;
         while (i >= 0 || j >= 0) {
-            // 找到S对应结果字符串的下一个字符（还原退格符的影响）
-            while (i >= 0) {
-                if (s1.charAt(i) == '#') {
-                    --i;
-                    ++skip1;
-                } else if (skip1 > 0) {
-                    --i;
-                    --skip1;
-                } else {
-                    break;
-                }
-            }
-
-            // 找到T对应结果字符串的下一个字符
-            while (j >= 0) {
-                if (s2.charAt(j) == '#') {
-                    --j;
-                    ++skip2;
-                } else if (skip2 > 0) {
-                    --j;
-                    --skip2;
-                } else {
-                    break;
-                }
-            }
-
-            // 如果S和T对应的结果字符串的当前字符不相同
-            if ((i >= 0) && (j >= 0) && (s1.charAt(i) != s2.charAt(j))) {
-                return false;
-            }
-
-            // 如果S和T中有一个字符串先遍历完
+            i = findRealIdx(s1, i);
+            j = findRealIdx(s2, j);
             if ((i >= 0) != (j >= 0)) {
                 return false;
             }
-
+            if (i >= 0 && j >= 0 && s1.charAt(i) != s1.charAt(j)) {
+                return false;
+            }
             --i;
             --j;
         }
         return true;
     }
 
+    private int findRealIdx(String s, int idx) {
+        int skip = 0;
+        while (idx >= 0) {
+            if (s.charAt(idx) == '#') {
+                --idx;
+                ++skip;
+            } else if (skip > 0) {
+                --idx;
+                --skip;
+            } else {
+                break;
+            }
+        }
+        return idx;
+    }
+
     public static void main(String[] args) {
-        String S = "ab##", T = "c#d#";
-        System.out.println((new Solution2()).backspaceCompare(S, T));
+        List<String[]> testCases = new ArrayList<>();
+        testCases.add(new String[] {"", ""});
+        testCases.add(new String[] {"ab#c", "ad#c"});
+        testCases.add(new String[] {"abc", "adc"});
+        Solution2 solution = new Solution2();
+        for (String[] testCase : testCases) {
+            String s1 = testCase[0];
+            String s2 = testCase[1];
+            if (!solution.backspaceCompare(s1, s2)) {
+                System.out.format("s1 = %s, s2 = %s\n", s1, s2);
+            }
+        }
     }
 }
