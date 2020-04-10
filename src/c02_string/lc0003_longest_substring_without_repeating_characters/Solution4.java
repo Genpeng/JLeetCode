@@ -1,7 +1,4 @@
-package c02_string.leetcode003;
-
-import java.util.HashSet;
-import java.util.Set;
+package c02_string.lc0003_longest_substring_without_repeating_characters;
 
 /**
  * This is the solution of No. 003 problem in the LeetCode,
@@ -32,45 +29,33 @@ import java.util.Set;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/10
  */
-public class Solution1 {
+public class Solution4 {
     /**
-     * 方法1：暴力枚举
-     * 暴力枚举所有的子串，然后判断子串是否包含重复字符，
-     * 对于不包含重复字符的子串，将它的长度与当前的最长长度进行比较，
-     * 保存较大者。
-     * 时间复杂度：O(n^3)
-     * 空间复杂度：O(min(n, m))，其中，n表示字符串的长度，m是不重复字符的数目
+     * 方法4：滑动窗口（已知字符集）
+     * 方法4和方法3的做法是一致的，方法4可以看成是方法3的特例。
+     * 如果已知字符串的字符属于哪一种字符集的情况下，可以用大小
+     * 固定的数组代替map。
+     *
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(m)，其中，m表示字符集包含的字符数
      *
      * @param s String, 输入的字符串
      * @return int, 无重复字符的最长子串
      */
     public int lengthOfLongestSubstring(String s) {
-        int n = s.length();
-        int ans = 0;
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j <= n; ++j) {
-                if (allUnique(s, i, j)) {
-                    ans = Math.max(ans, j - i);
-                }
-            }
+        int maxLen = 0;
+        int[] index = new int[128];
+        for (int left = 0, right = 0; right < s.length(); ++right) {
+            char c = s.charAt(right);
+            left = Math.max(index[c], left);
+            maxLen = Math.max(right - left + 1, maxLen);
+            index[c] = right + 1;
         }
-        return ans;
-    }
-
-    private boolean allUnique(String s, int start, int end) {
-        Set<Character> set = new HashSet<>();
-        for (int i = start; i < end; ++i) {
-            Character ch = s.charAt(i);
-            if (set.contains(ch)) {
-                return false;
-            }
-            set.add(ch);
-        }
-        return true;
+        return maxLen;
     }
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
-        System.out.println((new Solution1()).lengthOfLongestSubstring(s));
+        String s = "abba";
+        System.out.println((new Solution4()).lengthOfLongestSubstring(s));
     }
 }

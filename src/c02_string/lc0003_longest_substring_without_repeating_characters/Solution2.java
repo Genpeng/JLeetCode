@@ -1,4 +1,4 @@
-package c02_string.leetcode003;
+package c02_string.lc0003_longest_substring_without_repeating_characters;
 
 import java.util.HashSet;
 import java.util.Set;
