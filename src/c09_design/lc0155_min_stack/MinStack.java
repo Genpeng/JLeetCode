@@ -1,5 +1,6 @@
-package c05_stack_and_queue.lc0155_min_stack;
+package c09_design.lc0155_min_stack;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
 /**
@@ -49,17 +50,30 @@ public class MinStack {
     }
 
     public void pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         if (stack.pop() == minElem) {
             minElem = stack.pop();
         }
     }
 
     public int top() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return stack.peek();
     }
 
     public int getMin() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
         return minElem;
+    }
+
+    public boolean isEmpty() {
+        return stack.isEmpty();
     }
 
     public static void main(String[] args) {
