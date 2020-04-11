@@ -31,12 +31,12 @@ import java.util.Stack;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class MinStack {
+public class MinStack1 {
     private Stack<Integer> stack;
     private int minElem;
 
     /** initialize your data structure here. */
-    public MinStack() {
+    public MinStack1() {
         stack = new Stack<>();
         minElem = Integer.MAX_VALUE;
     }
@@ -77,7 +77,7 @@ public class MinStack {
     }
 
     public static void main(String[] args) {
-        MinStack minStack = new MinStack();
+        MinStack1 minStack = new MinStack1();
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
