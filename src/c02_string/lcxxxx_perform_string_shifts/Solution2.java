@@ -93,6 +93,9 @@ public class Solution2 {
     /**
      * Left rotate a string by `offset` elements, where the string represents by a char array.
      *
+     * Reference:
+     * https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
+     *
      * @param ca char[], the input string
      * @param offset int, the left shift steps
      */
