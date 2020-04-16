@@ -45,6 +45,9 @@ public class Solution1 {
      * @return int[], the median of two sorted array
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
+        if (A == null || B == null) {
+            throw new IllegalArgumentException("[ERROR] There must exist null array!!!");
+        }
         int m = A.length, n = B.length;
         int[] nums = merge(A, m, B, n);
         int L = m + n, mid = L / 2;
@@ -55,24 +58,24 @@ public class Solution1 {
         }
     }
 
-    public int[] merge(int[] nums1, int m, int[] nums2, int n) {
+    public int[] merge(int[] A, int m, int[] B, int n) {
         if (m * n == 0) {
-            return m == 0 ? nums2 : nums1;
+            return m == 0 ? B : A;
         }
         int[] ans = new int[m + n];
         int i = m - 1, j = n - 1, k = m + n - 1;
         while (i >= 0 && j >= 0) {
-            if (nums1[i] > nums2[j]) {
-                ans[k--] = nums1[i--];
+            if (A[i] > B[j]) {
+                ans[k--] = A[i--];
             } else {
-                ans[k--] = nums2[j--];
+                ans[k--] = B[j--];
             }
         }
         while (i >= 0) {
-            ans[k--] = nums1[i--];
+            ans[k--] = A[i--];
         }
         while (j >= 0) {
-            ans[k--] = nums2[j--];
+            ans[k--] = B[j--];
         }
         return ans;
     }

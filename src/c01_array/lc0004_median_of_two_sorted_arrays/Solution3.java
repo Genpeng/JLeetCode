@@ -43,6 +43,9 @@ public class Solution3 {
      * @return int[], the median of two sorted array
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
+        if (A == null || B == null) {
+            throw new IllegalArgumentException("[ERROR] There must exist null array!!!");
+        }
         int m = A.length, n = B.length;
         int l = (m + n + 1) >> 1;
         int r = (m + n + 2) >> 1;
