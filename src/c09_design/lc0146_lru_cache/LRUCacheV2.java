@@ -40,75 +40,79 @@ import java.util.Map;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class LRUCacheV2 {
-    private int size;
     private int capacity;
-    private Map<Integer, Node> elems;
-    private Node head;
-    private Node tail;
+    private Map<Integer, Node> key2Node;
+    private DoublyLinkedList cache;
 
     public LRUCacheV2(int capacity) {
         this.capacity = capacity;
-        size = 0;
-        elems = new HashMap<>(capacity);
-        head = new Node(-1, -1);
-        tail = new Node(-1, -1);
-        head.prev = null;
-        head.next = tail;
-        tail.prev = head;
-        tail.next = null;
-    }
-
-    public void put(int key, int val) {
-        Node node = elems.get(key);
-        if (node == null) {
-            Node newNode = new Node(key, val);
-            elems.put(key, newNode);
-            addFirst(newNode);
-            ++size;
-            if (size > capacity) {
-                Node removeNode = removeLast();
-                elems.remove(removeNode.key);
-                --size;
-            }
-        } else {
-            node.val = val;
-            moveToHead(node);
-        }
+        key2Node = new HashMap<>();
+        cache = new DoublyLinkedList();
     }
 
     public int get(int key) {
-        Node node = elems.get(key);
+        Node node = key2Node.get(key);
         if (node == null) {
             return -1;
+        }
+        cache.moveToHead(node);
+        return node.val;
+    }
+
+    public void put(int key, int val) {
+        Node node;
+        if (key2Node.containsKey(key)) {
+            node = key2Node.get(key);
+            node.val = val;
+            cache.moveToHead(node);
         } else {
-            moveToHead(node);
-            return node.val;
+            node = new Node(key, val);
+            key2Node.put(key, node);
+            cache.addFirst(node);
+            if (cache.size > capacity) {
+                Node removeNode = cache.removeLast();
+                key2Node.remove(removeNode.key);
+            }
         }
     }
 
-    private void addFirst(Node node) {
-        node.prev = head;
-        node.next = head.next;
-        head.next.prev = node;
-        head.next = node;
-    }
+    class DoublyLinkedList {
+        Node head, tail;
+        int size;
 
-    private void remove(Node node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
-        node.prev = null;
-        node.next = null;
-    }
+        DoublyLinkedList() {
+            head = new Node(-1, -1);
+            tail = new Node(-1, -1);
+            head.next = tail;
+            tail.prev = head;
+        }
 
-    private void moveToHead(Node node) {
-        remove(node);
-        addFirst(node);
-    }
+        void addFirst(Node node) {
+            node.prev = head;
+            node.next = head.next;
+            head.next.prev = node;
+            head.next = node;
+            ++size;
+        }
 
-    private Node removeLast() {
-        Node node = tail.prev;
-        remove(node);
-        return node;
+        void remove(Node node) {
+            node.prev.next = node.next;
+            node.next.prev = node.prev;
+            node.prev = null;
+            node.next = null;
+            --size;
+        }
+
+        void moveToHead(Node node) {
+            remove(node);
+            addFirst(node);
+        }
+
+        Node removeLast() {
+            Node node = tail.prev;
+            remove(node);
+            return node;
+        }
     }
 
     class Node {
