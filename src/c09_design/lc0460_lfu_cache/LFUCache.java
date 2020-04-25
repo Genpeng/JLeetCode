@@ -50,8 +50,8 @@ public class LFUCache {
 
     public LFUCache(int capacity) {
         this.capacity = capacity;
-        this.key2Node = new HashMap<>();
-        this.freq2List = new HashMap<>();
+        key2Node = new HashMap<>();
+        freq2List = new HashMap<>();
     }
 
     public int get(int key) {
