@@ -43,12 +43,12 @@ import java.util.Map;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class LFUCacheV1 {
+public class LFUCache {
     private int capacity, size, min;
     private Map<Integer, Node> key2Node;
     private Map<Integer, DoublyLinkedList> freq2List;
 
-    public LFUCacheV1(int capacity) {
+    public LFUCache(int capacity) {
         this.capacity = capacity;
         this.key2Node = new HashMap<>();
         this.freq2List = new HashMap<>();
@@ -83,7 +83,7 @@ public class LFUCacheV1 {
             ++size;
             min = 1;
             DoublyLinkedList newList = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
-            newList.add(node);
+            newList.addFirst(node);
             freq2List.put(node.freq, newList);
         }
     }
@@ -96,7 +96,7 @@ public class LFUCacheV1 {
         }
         ++node.freq;
         DoublyLinkedList newList = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
-        newList.add(node);
+        newList.addFirst(node);
         freq2List.put(node.freq, newList);
     }
 
@@ -111,10 +111,10 @@ public class LFUCacheV1 {
             tail.prev = head;
         }
 
-        void add(Node node) {
-            head.next.prev = node;
-            node.next = head.next;
+        void addFirst(Node node) {
             node.prev = head;
+            node.next = head.next;
+            head.next.prev = node;
             head.next = node;
             ++size;
         }
@@ -152,7 +152,7 @@ public class LFUCacheV1 {
     }
 
     public static void main(String[] args) {
-        LFUCacheV1 cache = new LFUCacheV1(2);
+        LFUCache cache = new LFUCache(2);
         cache.put(1, 1);
         cache.put(2, 2);
         System.out.println(cache.get(1)); // returns 1
