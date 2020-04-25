@@ -44,7 +44,7 @@ import java.util.Map;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class LFUCache {
-    private int capacity, size, min;
+    private int capacity, size, minFreq;
     private Map<Integer, Node> key2Node;
     private Map<Integer, DoublyLinkedList> freq2List;
 
@@ -73,26 +73,27 @@ public class LFUCache {
             node.val = val;
             update(node);
         } else {
+            // 备注：这里一定要先删除元素，再添加新的元素
             node = new Node(key, val);
             if (size == capacity) {
-                DoublyLinkedList oldList = freq2List.get(min);
+                DoublyLinkedList oldList = freq2List.get(minFreq);
                 key2Node.remove(oldList.removeLast().key);
                 --size;
             }
             key2Node.put(key, node);
             ++size;
-            min = 1;
-            DoublyLinkedList newList = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
-            newList.addFirst(node);
-            freq2List.put(node.freq, newList);
+            minFreq = 1;
+            DoublyLinkedList list = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
+            list.addFirst(node);
+            freq2List.put(node.freq, list);
         }
     }
 
     private void update(Node node) {
         DoublyLinkedList oldList = freq2List.get(node.freq);
         oldList.remove(node);
-        if (node.freq == min && oldList.size == 0) {
-            ++min;
+        if (node.freq == minFreq && oldList.size == 0) {
+            ++minFreq;
         }
         ++node.freq;
         DoublyLinkedList newList = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
