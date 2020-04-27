@@ -26,13 +26,15 @@ package c01_array.lc0033_search_in_rotated_sorted_array;
  * Output: -1
  * ==========================================================================================================
  *
+ * Tags:array;binary search;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
-     * 解法：Binary Search
-     * 时间复杂度：O(log(N))
-     * 空间复杂度：O(1)
+     * Approach 1: Binary Search
+     * Time Complexity: O(log(N))
+     * Space Complexity: O(1)
      * <p>
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Search in Rotated Sorted Array.
      * Memory Usage: 38.4 MB, less than 44.65% of Java online submissions for Search in Rotated Sorted Array.
@@ -68,9 +70,9 @@ public class Solution {
     }
 
     /**
-     * 解法：Binary Search
-     * 时间复杂度：O(log(N))
-     * 空间复杂度：O(1)
+     * Approach 1: Binary Search
+     * Time Complexity: O(log(N))
+     * Space Complexity: O(1)
      * <p>
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Search in Rotated Sorted Array.
      * Memory Usage: 38.4 MB, less than 44.65% of Java online submissions for Search in Rotated Sorted Array.
@@ -135,10 +137,10 @@ public class Solution {
         int[] nums1 = new int[]{4, 5, 6, 7, 0, 1, 2};
         int[] nums2 = new int[]{5, 1, 3};
         int target = 5;
-        Solution solution = new Solution();
+        Solution1 solu = new Solution1();
         // test `findMinIdx(...)` function
-        System.out.println(solution.findMinIdx(nums1));
-        System.out.println(solution.findMinIdx(nums2));
+        System.out.println(solu.findMinIdx(nums1));
+        System.out.println(solu.findMinIdx(nums2));
         // test `search(...)` function
 //        System.out.println(solution.searchV1(nums1, target));
 //        System.out.println(solution.searchV1(nums2, target));
