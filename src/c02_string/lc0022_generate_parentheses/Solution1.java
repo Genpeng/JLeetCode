@@ -1,5 +1,6 @@
 package c02_string.lc0022_generate_parentheses;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,14 +28,47 @@ import java.util.List;
  */
 public class Solution1 {
     /**
-     * Approach x:
-     * Time Complexity:
-     * Space Complexity:
+     * Approach 1: Recursion (DFS) without pruning
+     * Time Complexity: O(n * 2 ^ (2n))
+     * Space Complexity: O(n)
      *
      * @param n int, the number of pairs of parentheses
      * @return List<String>, all combinations of well-formed parentheses
      */
     public List<String> generateParenthesis(int n) {
-        return null;
+        List<String> ans = new LinkedList<>();
+        generateParenthesis(new char[2 * n], 0, ans);
+        return ans;
+    }
+
+    private void generateParenthesis(char[] s, int idx, List<String> ans) {
+        if (idx == s.length) {
+            if (isValid(s)) {
+                ans.add(new String(s));
+            }
+            return;
+        }
+        s[idx] = '(';
+        generateParenthesis(s, idx + 1, ans);
+        s[idx] = ')';
+        generateParenthesis(s, idx + 1, ans);
+    }
+
+    private boolean isValid(char[] s) {
+        int k = 0;
+        for (char c : s) {
+            k += c == '(' ? 1 : -1;
+            if (k < 0) {
+                return false;
+            }
+        }
+        return k == 0;
+    }
+
+    public static void main(String[] args) {
+        int n = 3;
+        Solution1 solu = new Solution1();
+        List<String> combs = solu.generateParenthesis(n);
+        System.out.println(combs);
     }
 }
