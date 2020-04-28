@@ -18,16 +18,18 @@ package c02_string.lc0557_reverse_words_in_a_string_iii;
  * In the string, each word is separated by single space and there will not be any extra space in the string.
  * ==========================================================================================================
  *
+ * Tags: string;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法1
-     * 解题思路：
+     * Approach 1: Use build-in API
      * Split the string into words, reverse each word, then join them back together.
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
+     * Result of Submission:
      * Runtime: 3 ms, faster than 95.97% of Java online submissions for Reverse Words in a String III.
      * Memory Usage: 41.7 MB, less than 10.53% of Java online submissions for Reverse Words in a String III.
      *
