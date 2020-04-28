@@ -39,7 +39,7 @@ public class Solution2 {
         for (int i = 0, j; i < L; ++i) {
             if (ca[i] != ' ') {
                 j = i;
-                while (ca[j+1] != ' ' && j + 1 < L) {
+                while (j + 1 < L && ca[j+1] != ' ') { // Note: can't reverse the order of two conditions!!!
                     ++j;
                 }
                 reverse(ca, i, j);
@@ -55,5 +55,12 @@ public class Solution2 {
             ca[i] = ca[j];
             ca[j] = tmp;
         }
+    }
+
+    public static void main(String[] args) {
+        String s = "Let's take LeetCode contest";
+        String result = "s'teL ekat edoCteeL tsetnoc";
+        Solution2 solu = new Solution2();
+        System.out.println(solu.reverseWords(s).equals(result));
     }
 }
