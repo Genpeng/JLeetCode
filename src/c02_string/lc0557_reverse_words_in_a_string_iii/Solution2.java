@@ -39,7 +39,7 @@ public class Solution2 {
         for (int i = 0, j; i < L; ++i) {
             if (ca[i] != ' ') {
                 j = i;
-                while (j + 1 < L && ca[j+1] != ' ') {
+                while (ca[j+1] != ' ' && j + 1 < L) {
                     ++j;
                 }
                 reverse(ca, i, j);
