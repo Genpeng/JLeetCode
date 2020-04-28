@@ -1,5 +1,7 @@
 package c02_string.lc0022_generate_parentheses;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,22 +23,37 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
- * Tags: string;backtracking;
+ * Tags: string;backtracking;dfs;bfs;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution4 {
     /**
-     * Approach 4: Dynamic Programming
-     * Time Complexity:
-     * Space Complexity:
-     *
-     * TODO: just do it!!!
+     * Approach 4: "Dynamic Programming" (Optional)
+     * Time Complexity: O(4 ^ n / sqrt(n))
+     * Space Complexity: O(4 ^ n / sqrt(n))
      *
      * @param n int, the number of pairs of parentheses
      * @return List<String>, all combinations of well-formed parentheses
      */
     public List<String> generateParenthesis(int n) {
-        return null;
+        List<List<String>> dp = new ArrayList<>();
+        List<String> dp0 = new LinkedList<>();
+        dp0.add("");
+        dp.add(dp0);
+        for (int i = 1; i <= n; ++i) {
+            List<String> dpi = new LinkedList<>();
+            for (int j = 0; j < i; ++j) {
+                List<String> lefts = dp.get(j);
+                List<String> rights = dp.get(i-j-1);
+                for (String left : lefts) {
+                    for (String right : rights) {
+                        dpi.add(String.format("(%s)%s", left, right));
+                    }
+                }
+            }
+            dp.add(dpi);
+        }
+        return dp.get(n);
     }
 }

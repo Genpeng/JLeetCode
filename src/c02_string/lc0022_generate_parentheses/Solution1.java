@@ -22,13 +22,13 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
- * Tags: string;backtracking;
+ * Tags: string;backtracking;dfs;bfs;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * Approach 1: Recursion (DFS) without pruning
+     * Approach 1: Brute Force (recursion without pruning)
      * Time Complexity: O(n * 2 ^ (2n))
      * Space Complexity: O(n)
      *
