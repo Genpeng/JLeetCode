@@ -39,6 +39,7 @@ package c02_string.lc0151_reverse_words_in_a_string;
 public class Solution3 {
     /**
      * Approach 3: Two Pointers
+     * Start at the end of the string, find each word, and splice.
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
@@ -51,7 +52,7 @@ public class Solution3 {
      */
     public String reverseWords(String s) {
         StringBuilder sb = new StringBuilder();
-        for (int i = s.length() - 1, j = i; i >= 0; --i) {
+        for (int i = s.length() - 1, j; i >= 0; --i) {
             if (s.charAt(i) != ' ') {
                 j = s.lastIndexOf(' ', i);
                 sb.append(s, j + 1, i + 1);
