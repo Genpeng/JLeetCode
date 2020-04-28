@@ -54,9 +54,18 @@ public class Solution3 {
         StringBuilder sb = new StringBuilder();
         for (int i = s.length() - 1, j; i >= 0; --i) {
             if (s.charAt(i) != ' ') {
+                // j = i;
+                // while (j - 1 > - 1 && s.charAt(j-1) != ' ') {
+                //     --j;
+                // }
                 j = s.lastIndexOf(' ', i);
-                sb.append(s, j + 1, i + 1);
-                sb.append(' ');
+
+                // for (int k = j; k <= i; ++k) {
+                //     sb.append(s.charAt(k));
+                // }
+                // sb.append(' ');
+                sb.append(s, j+1, i+1).append(' ');
+
                 i = j;
             }
         }
