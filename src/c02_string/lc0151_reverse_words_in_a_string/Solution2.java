@@ -32,36 +32,71 @@ package c02_string.lc0151_reverse_words_in_a_string;
  * - For C programmers, try to solve it in-place in O(1) extra space.
  * ==========================================================================================================
  *
- * Tags: string;
+ * Tags: string;two pointers;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
      * Approach 2: Two Pointers
+     * remove redundant space -> reverse the whole string -> reverse each word in the string
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
      * Result of Submission:
-     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Words in a String.
-     * Memory Usage: 39.4 MB, less than 30.11% of Java online submissions for Reverse Words in a String.
+     * Runtime: 7 ms, faster than 26.91% of Java online submissions for Reverse Words in a String.
+     * Memory Usage: 39.8 MB, less than 23.65% of Java online submissions for Reverse Words in a String.
      *
      * @param s String, a string which contains multiple words
      * @return String, the modified string
      */
     public String reverseWords(String s) {
+        StringBuilder sb = trimSpaces(s);
+        reverse(sb, 0, sb.length() - 1);
+        reverseEachWords(sb);
+        return new String(sb);
+    }
+
+    private StringBuilder trimSpaces(String s) {
+        int li = 0, ri = s.length() - 1;
+        while (li <= ri && s.charAt(li) == ' ') {
+            ++li;
+        }
+        while (li <= ri && s.charAt(ri) == ' ') {
+            --ri;
+        }
         StringBuilder sb = new StringBuilder();
-        int i = s.length() - 1, j = i;
-        while (i >= 0) {
-            if (s.charAt(i) != ' ') {
-                j = s.lastIndexOf(' ', i);
-                sb.append(s, j + 1, i + 1);
-                sb.append(' ');
+        for (int i = li; i <= ri; ++i) {
+            char c = s.charAt(i);
+            if (c != ' ') {
+                sb.append(c);
+            } else if (sb.charAt(sb.length() - 1) != ' ') {
+                sb.append(c);
+            }
+        }
+        return sb;
+    }
+
+    private void reverse(StringBuilder sb, int i, int j) {
+        for (; i < j; ++i, --j) {
+            char tmp = sb.charAt(i);
+            sb.setCharAt(i, sb.charAt(j));
+            sb.setCharAt(j, tmp);
+        }
+    }
+
+    private void reverseEachWords(StringBuilder sb) {
+        int L = sb.length();
+        for (int i = 0, j; i < L; ++i) {
+            if (sb.charAt(i) != ' ') {
+                j = i;
+                while (j + 1 < L && sb.charAt(j + 1) != ' ') {
+                    ++j;
+                }
+                reverse(sb, i, j);
                 i = j;
             }
-            --i;
         }
-        return sb.toString().trim();
     }
 
     public static void main(String[] args) {

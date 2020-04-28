@@ -1,10 +1,5 @@
 package c02_string.lc0151_reverse_words_in_a_string;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 /**
  * This is the solution of No. 151 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -41,24 +36,28 @@ import java.util.List;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * Approach 1: Use build-in API
+     * Approach 3: Two Pointers
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
      * Result of Submission:
-     * Runtime: 4 ms, faster than 64.11% of Java online submissions for Reverse Words in a String.
-     * Memory Usage: 40 MB, less than 15.05% of Java online submissions for Reverse Words in a String.
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Words in a String.
+     * Memory Usage: 39.4 MB, less than 30.11% of Java online submissions for Reverse Words in a String.
      *
      * @param s String, a string which contains multiple words
      * @return String, the modified string
      */
     public String reverseWords(String s) {
-        String[] words = s.trim().split("\\s+");
         StringBuilder sb = new StringBuilder();
-        for (int i = words.length - 1; i >= 0; --i) {
-            sb.append(words[i]).append(" ");
+        for (int i = s.length() - 1, j = i; i >= 0; --i) {
+            if (s.charAt(i) != ' ') {
+                j = s.lastIndexOf(' ', i);
+                sb.append(s, j + 1, i + 1);
+                sb.append(' ');
+                i = j;
+            }
         }
         return sb.toString().trim();
     }
@@ -66,7 +65,7 @@ public class Solution1 {
     public static void main(String[] args) {
         String[] testCases = {"the sky is blue", "  hello world!  ", "a good   example"};
         String[] results = {"blue is sky the", "world! hello", "example good a"};
-        Solution1 solution = new Solution1();
+        Solution3 solution = new Solution3();
         for (int i = 0; i < testCases.length; ++i) {
             String result = results[i];
             String ans = solution.reverseWords(testCases[i]);
