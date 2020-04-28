@@ -47,14 +47,20 @@ public class Solution1 {
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
+     * Result of Submission:
+     * Runtime: 4 ms, faster than 64.11% of Java online submissions for Reverse Words in a String.
+     * Memory Usage: 40 MB, less than 15.05% of Java online submissions for Reverse Words in a String.
+     *
      * @param s String, a string which contains multiple words
      * @return String, the modified string
      */
     public String reverseWords(String s) {
-        s = s.trim();
-        List<String> wordList = Arrays.asList(s.split("\\s+"));
-        Collections.reverse(wordList);
-        return String.join(" ", wordList);
+        String[] words = s.trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; --i) {
+            sb.append(words[i]).append(" ");
+        }
+        return sb.toString().trim();
     }
 
     public static void main(String[] args) {
