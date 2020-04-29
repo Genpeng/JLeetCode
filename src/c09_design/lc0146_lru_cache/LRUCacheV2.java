@@ -118,6 +118,7 @@ public class LRUCacheV2 {
     class Node {
         int key, val;
         Node prev, next;
+
         Node(int key, int val) {
             this.key = key;
             this.val = val;
