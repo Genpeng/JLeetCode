@@ -51,12 +51,13 @@ public class Solution2 {
         if (si == ei) {
             return 1;
         }
-        if (memo[si][ei] == 0) {
-            if (s.charAt(si) == s.charAt(ei)) {
-                memo[si][ei] = 2 + lps(s, si+1, ei-1, memo);
-            } else {
-                memo[si][ei] = Math.max(lps(s, si+1, ei, memo), lps(s, si, ei-1, memo));
-            }
+        if (memo[si][ei] != 0) {
+            return memo[si][ei];
+        }
+        if (s.charAt(si) == s.charAt(ei)) {
+            memo[si][ei] = 2 + lps(s, si+1, ei-1, memo);
+        } else {
+            memo[si][ei] = Math.max(lps(s, si+1, ei, memo), lps(s, si, ei-1, memo));
         }
         return memo[si][ei];
     }
