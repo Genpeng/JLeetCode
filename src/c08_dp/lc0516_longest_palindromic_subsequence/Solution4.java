@@ -31,7 +31,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution4 {
     /**
-     * Approach 3: Dynamic Programming
+     * Approach 4: Dynamic Programming
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N ^ 2)
      *
@@ -39,7 +39,13 @@ public class Solution4 {
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
+        }
         int L = s.length();
+        if (L == 0 || L == 1) {
+            return L;
+        }
         int[][] dp = new int[L][L];
         for (int i = 0; i < L; ++i) {
             dp[i][i] = 1;

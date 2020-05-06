@@ -31,7 +31,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution3 {
     /**
-     * Approach 2: Recursion with memoization
+     * Approach 3: Recursion with memoization
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N ^ 2)
      *
@@ -44,22 +44,22 @@ public class Solution3 {
         return lps(s, 0, L-1, memo);
     }
 
-    private int lps(String s, int si, int ei, int[][] memo) {
-        if (si > ei) {
+    private int lps(String s, int i, int j, int[][] memo) {
+        if (i > j) {
             return 0;
         }
-        if (si == ei) {
+        if (i == j) {
             return 1;
         }
-        if (memo[si][ei] != 0) {
-            return memo[si][ei];
+        if (memo[i][j] != 0) {
+            return memo[i][j];
         }
-        if (s.charAt(si) == s.charAt(ei)) {
-            memo[si][ei] = 2 + lps(s, si+1, ei-1, memo);
+        if (s.charAt(i) == s.charAt(j)) {
+            memo[i][j] = 2 + lps(s, i+1, j-1, memo);
         } else {
-            memo[si][ei] = Math.max(lps(s, si+1, ei, memo), lps(s, si, ei-1, memo));
+            memo[i][j] = Math.max(lps(s, i+1, j, memo), lps(s, i, j-1, memo));
         }
-        return memo[si][ei];
+        return memo[i][j];
     }
 
     public static void main(String[] args) {

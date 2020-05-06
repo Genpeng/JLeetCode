@@ -31,7 +31,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution5 {
     /**
-     * Approach 4: Dynamic Programming with memory optimization
+     * Approach 5: Dynamic Programming with memory optimization
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N)
      *

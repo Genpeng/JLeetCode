@@ -31,7 +31,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution2 {
     /**
-     * Approach 1: Recursion
+     * Approach 2: Recursion
      * The state transition equation is as follow:
      *              / 0, i > j
      *              / 1, i = j
@@ -53,21 +53,21 @@ public class Solution2 {
      * An auxiliary function to calculate LPS(i, j)
      *
      * @param s String, an input string
-     * @param si int, the start index
-     * @param ei int, the end index
+     * @param i int, the start index
+     * @param j int, the end index
      * @return int, the length of longest palindromic subsequence in the string s[i ... j]
      */
-    private int lps(String s, int si, int ei) {
-        if (si > ei) {
+    private int lps(String s, int i, int j) {
+        if (i > j) {
             return 0;
         }
-        if (si == ei) {
+        if (i == j) {
             return 1;
         }
-        if (s.charAt(si) == s.charAt(ei)) {
-            return 2 + lps(s, si+1, ei-1);
+        if (s.charAt(i) == s.charAt(j)) {
+            return 2 + lps(s, i+1, j-1);
         } else {
-            return Math.max(lps(s, si+1, ei), lps(s, si, ei-1));
+            return Math.max(lps(s, i+1, j), lps(s, i, j-1));
         }
     }
 
