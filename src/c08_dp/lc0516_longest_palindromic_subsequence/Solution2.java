@@ -31,35 +31,44 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution2 {
     /**
-     * Approach 2: Recursion with memoization
-     * Time Complexity: O(N ^ 2)
-     * Space Complexity: O(N ^ 2)
+     * Approach 1: Recursion
+     * The state transition equation is as follow:
+     *              / 0, i > j
+     *              / 1, i = j
+     * LPS(i, j) =  - LPS(i+1, j-1), i < j and s[i] = s[j]
+     *              \ max(LPS(i+1, j), LPS(i, j-1)), i < j and s[i] != s[j]
+     * where the LPS(i, j) represents the length of longest palindromic subsequence in the string s[i ... j]
+     *
+     * Time Complexity: O(2 ^ N)
+     * Space Complexity: O(N)
      *
      * @param s String, an input string
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
-        int L = s.length();
-        int[][] memo = new int[L][L];
-        return lps(s, 0, L-1, memo);
+        return lps(s, 0, s.length() - 1);
     }
 
-    private int lps(String s, int si, int ei, int[][] memo) {
+    /**
+     * An auxiliary function to calculate LPS(i, j)
+     *
+     * @param s String, an input string
+     * @param si int, the start index
+     * @param ei int, the end index
+     * @return int, the length of longest palindromic subsequence in the string s[i ... j]
+     */
+    private int lps(String s, int si, int ei) {
         if (si > ei) {
             return 0;
         }
         if (si == ei) {
             return 1;
         }
-        if (memo[si][ei] != 0) {
-            return memo[si][ei];
-        }
         if (s.charAt(si) == s.charAt(ei)) {
-            memo[si][ei] = 2 + lps(s, si+1, ei-1, memo);
+            return 2 + lps(s, si+1, ei-1);
         } else {
-            memo[si][ei] = Math.max(lps(s, si+1, ei, memo), lps(s, si, ei-1, memo));
+            return Math.max(lps(s, si+1, ei), lps(s, si, ei-1));
         }
-        return memo[si][ei];
     }
 
     public static void main(String[] args) {

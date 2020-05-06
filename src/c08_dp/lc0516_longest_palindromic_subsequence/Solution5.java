@@ -29,42 +29,39 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution3 {
+public class Solution5 {
     /**
-     * Approach 2: Recursion with memoization
+     * Approach 4: Dynamic Programming with memory optimization
      * Time Complexity: O(N ^ 2)
-     * Space Complexity: O(N ^ 2)
+     * Space Complexity: O(N)
      *
      * @param s String, an input string
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
+        char[] ca = s.toCharArray();
         int L = s.length();
-        int[][] memo = new int[L][L];
-        return lps(s, 0, L-1, memo);
-    }
-
-    private int lps(String s, int si, int ei, int[][] memo) {
-        if (si > ei) {
-            return 0;
+        int[] prev = new int[L];
+        int[] curr = new int[L];
+        for (int i = L - 1; i >= 0; --i) {
+            curr[i] = 1;
+            for (int j = i + 1; j < L; ++j) {
+                if (ca[i] == ca[j]) {
+                    curr[j] = 2 + prev[j-1];
+                } else {
+                    curr[j] = Math.max(prev[j], curr[j-1]);
+                }
+            }
+            int[] tmp = prev;
+            prev = curr;
+            curr = tmp;
         }
-        if (si == ei) {
-            return 1;
-        }
-        if (memo[si][ei] != 0) {
-            return memo[si][ei];
-        }
-        if (s.charAt(si) == s.charAt(ei)) {
-            memo[si][ei] = 2 + lps(s, si+1, ei-1, memo);
-        } else {
-            memo[si][ei] = Math.max(lps(s, si+1, ei, memo), lps(s, si, ei-1, memo));
-        }
-        return memo[si][ei];
+        return prev[L-1];
     }
 
     public static void main(String[] args) {
         String s = "bbbab";
-        Solution3 solu = new Solution3();
+        Solution5 solu = new Solution5();
         System.out.println(solu.longestPalindromeSubseq(s));
     }
 }

@@ -31,32 +31,29 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  */
 public class Solution4 {
     /**
-     * Approach 4: Dynamic Programming with memory optimization
+     * Approach 3: Dynamic Programming
      * Time Complexity: O(N ^ 2)
-     * Space Complexity: O(N)
+     * Space Complexity: O(N ^ 2)
      *
      * @param s String, an input string
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
-        char[] ca = s.toCharArray();
         int L = s.length();
-        int[] prev = new int[L];
-        int[] curr = new int[L];
-        for (int i = L - 1; i >= 0; --i) {
-            curr[i] = 1;
+        int[][] dp = new int[L][L];
+        for (int i = 0; i < L; ++i) {
+            dp[i][i] = 1;
+        }
+        for (int i = L - 2; i >= 0; --i) {
             for (int j = i + 1; j < L; ++j) {
-                if (ca[i] == ca[j]) {
-                    curr[j] = 2 + prev[j-1];
+                if (s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = 2 + dp[i+1][j-1];
                 } else {
-                    curr[j] = Math.max(prev[j], curr[j-1]);
+                    dp[i][j] = Math.max(dp[i+1][j], dp[i][j-1]);
                 }
             }
-            int[] tmp = prev;
-            prev = curr;
-            curr = tmp;
         }
-        return prev[L-1];
+        return dp[0][L-1];
     }
 
     public static void main(String[] args) {
