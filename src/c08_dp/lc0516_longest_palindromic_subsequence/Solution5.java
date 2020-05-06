@@ -39,8 +39,14 @@ public class Solution5 {
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
-        char[] ca = s.toCharArray();
+        if (s == null) {
+            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
+        }
         int L = s.length();
+        if (L == 0 || L == 1) {
+            return L;
+        }
+        char[] ca = s.toCharArray();
         int[] prev = new int[L];
         int[] curr = new int[L];
         for (int i = L - 1; i >= 0; --i) {
@@ -60,7 +66,7 @@ public class Solution5 {
     }
 
     public static void main(String[] args) {
-        String s = "bbbab";
+        String s = "";
         Solution5 solu = new Solution5();
         System.out.println(solu.longestPalindromeSubseq(s));
     }

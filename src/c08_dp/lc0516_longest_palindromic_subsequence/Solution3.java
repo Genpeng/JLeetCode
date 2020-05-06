@@ -39,6 +39,9 @@ public class Solution3 {
      * @return int, the length of longest palindromic subsequence
      */
     public int longestPalindromeSubseq(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
+        }
         int L = s.length();
         int[][] memo = new int[L][L];
         return lps(s, 0, L-1, memo);

@@ -47,10 +47,8 @@ public class Solution4 {
             return L;
         }
         int[][] dp = new int[L][L];
-        for (int i = 0; i < L; ++i) {
+        for (int i = L - 1; i >= 0; --i) {
             dp[i][i] = 1;
-        }
-        for (int i = L - 2; i >= 0; --i) {
             for (int j = i + 1; j < L; ++j) {
                 if (s.charAt(i) == s.charAt(j)) {
                     dp[i][j] = 2 + dp[i+1][j-1];
