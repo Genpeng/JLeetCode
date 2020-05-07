@@ -35,10 +35,11 @@ import java.util.Stack;
  */
 public class Solution2 {
     /**
-     * Approach 2: Iterative
+     * Approach 2: Iteration
      * Time complexity: O(n)
      * Space complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 5 ms, faster than 14.18% of Java online submissions for Diameter of Binary Tree.
      * Memory Usage: 39.6 MB, less than 16.88% of Java online submissions for Diameter of Binary Tree.
      *

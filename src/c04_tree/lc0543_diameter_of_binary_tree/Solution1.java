@@ -33,10 +33,11 @@ public class Solution1 {
     private int diameter = 0;
 
     /**
-     * Approach 1: Recursive
+     * Approach 1: Recursion
      * Time complexity: O(n)
      * Space complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Diameter of Binary Tree.
      * Memory Usage: 39.4 MB, less than 18.18% of Java online submissions for Diameter of Binary Tree.
      *
