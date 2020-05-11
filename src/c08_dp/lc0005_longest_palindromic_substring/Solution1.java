@@ -33,9 +33,6 @@ public class Solution1 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        if (s == null) {
-            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
-        }
         int L = s.length();
         String ans = "";
         for (int i = 0; i < L; ++i) {

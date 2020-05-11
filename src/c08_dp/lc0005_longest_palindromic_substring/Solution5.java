@@ -23,45 +23,23 @@ package c08_dp.lc0005_longest_palindromic_substring;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution4 {
+public class Solution5 {
     /**
-     * Approach 4: Expand Around the center
+     * Approach 5: Convert to the Longest Common Substring problem
      * Time Complexity: O(N ^ 2)
-     * Space Complexity: O(1)
+     * Space Complexity: O(N ^ 2)
      *
      * @param s String, an input string
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        int L = s.length();
-        if (L < 2) {
-            return s;
-        }
-        int idx = 0, maxLen = 0;
-        for (int i = 0; i < L; ++i) {
-            int l1 = expand(s, i, i);
-            int l2 = expand(s, i, i+1);
-            int l = Math.max(l1, l2);
-            if (l > maxLen) {
-                idx = l1 > l2 ? i - l1 / 2 : i - l2 / 2 + 1;
-                maxLen = l;
-            }
-        }
-        return s.substring(idx, idx + maxLen);
-    }
-
-    private int expand(String s, int i, int j) {
-        for (; i >= 0 && j < s.length(); --i, ++j) {
-            if (s.charAt(i) != s.charAt(j)) {
-                break;
-            }
-        }
-        return j - i - 1;
+        // TODO: add it
+        return null;
     }
 
     public static void main(String[] args) {
         String s = "bbbab";
-        Solution4 solu = new Solution4();
+        Solution5 solu = new Solution5();
         System.out.println(solu.longestPalindrome(s));
     }
 }

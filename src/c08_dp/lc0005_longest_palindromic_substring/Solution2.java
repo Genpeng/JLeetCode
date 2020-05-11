@@ -38,18 +38,19 @@ public class Solution2 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        if (s == null) {
-            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
-        }
+        char[] ca = s.toCharArray();
         int L = s.length();
         boolean[][] dp = new boolean[L][L];
         String ans = "";
         for (int i = L-1; i >= 0; --i) {
             for (int j = i; j < L; ++j) {
-                dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i < 3 || dp[i+1][j-1]);
-                if (dp[i][j] && j-i+1 > ans.length()) {
-                    ans = s.substring(i, j+1);
+                if (ca[i] == ca[j] && (j-i < 3 || dp[i+1][j-1])) {
+                    dp[i][j] = true;
+                    if (j-i+1 > ans.length()) {
+                        ans = s.substring(i, j+1);
+                    }
                 }
+
             }
         }
         return ans;
