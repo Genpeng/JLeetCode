@@ -63,8 +63,8 @@ public class Solution3 {
         if (k == 1) {
             return Math.min(A[s1], B[s2]);
         }
-        int i = s1 + Math.min(l1, k / 2) - 1;
-        int j = s2 + Math.min(l2, k / 2) - 1;
+        int i = Math.min(e1, s1 + k/2 - 1);
+        int j = Math.min(e2, s2 + k/2 - 1);
         if (A[i] > B[j]) {
             return getKthElem(A, s1, e1, B, j+1, e2, k - (j-s2+1));
         } else {

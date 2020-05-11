@@ -50,11 +50,11 @@ public class Solution1 {
         }
         int m = A.length, n = B.length;
         int[] nums = merge(A, m, B, n);
-        int L = m + n, mid = L / 2;
+        int L = m + n, mi = L / 2;
         if ((L & 1) == 0) {
-            return (nums[mid - 1] + nums[mid]) * 0.5;
+            return (nums[mi - 1] + nums[mi]) * 0.5;
         } else {
-            return nums[mid];
+            return nums[mi];
         }
     }
 
