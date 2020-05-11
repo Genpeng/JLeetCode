@@ -34,11 +34,12 @@ public class Solution4 {
      * Time Complexity:
      * Space Complexity:
      *
-     * @param nums1 int[], one integer array
-     * @param nums2 int[], the other integer array
+     * @param A int[], one integer array
+     * @param B int[], the other integer array
      * @return int[], the median of two sorted array
      */
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    public double findMedianSortedArrays(int[] A, int[] B) {
+        // TODO: add it
         return -1;
     }
 }
