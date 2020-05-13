@@ -54,14 +54,14 @@ public class Solution4 {
      * @param s2 String, another string
      * @return int, the length of the longest common subsequence (LCS) of two input strings
      */
-    public int longestCommonSubsequence(String s1, String s2) {
-        int l1 = s1.length(), l2 = s2.length();
-        if (l1 < l2) {
-            return longestCommonSubsequence(s2, s1);
+    public int longestCommonSubsequenceV1(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
+        if (m < n) {
+            return longestCommonSubsequenceV1(s2, s1);
         }
-        int[][] dp = new int[2][l2+1];
-        for (int i = 1; i <= l1; ++i) {
-            for (int j = 1; j <= l2; ++j) {
+        int[][] dp = new int[2][n+1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
                 if (s1.charAt(i-1) == s2.charAt(j-1)) {
                     dp[i%2][j] = 1 + dp[(i-1) % 2][j-1];
                 } else {
@@ -69,12 +69,47 @@ public class Solution4 {
                 }
             }
         }
-        return dp[l1%2][l2];
+        return dp[m%2][n];
+    }
+
+    /**
+     * Approach 4: Dynamic Programming with memory optimization
+     * Time Complexity: O(m * n)
+     * Space Complexity: O(min(m, n))
+     *
+     * Result of Submission:
+     * Runtime: 8 ms, faster than 91.79% of Java online submissions for Longest Common Subsequence.
+     * Memory Usage: 37.1 MB, less than 100.00% of Java online submissions for Longest Common Subsequence.
+     *
+     * @param s1 String, a string
+     * @param s2 String, another string
+     * @return int, the length of the longest common subsequence (LCS) of two input strings
+     */
+    public int longestCommonSubsequenceV2(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
+        if (m < n) {
+            return longestCommonSubsequenceV2(s2, s1);
+        }
+        int[] prev = new int[n+1];
+        int[] curr = new int[n+1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (s1.charAt(i-1) == s2.charAt(j-1)) {
+                    curr[j] = 1 + prev[j-1];
+                } else {
+                    curr[j] = Math.max(prev[j], curr[j-1]);
+                }
+            }
+            int[] tmp = prev;
+            prev = curr;
+            curr = tmp;
+        }
+        return prev[n];
     }
 
     public static void main(String[] args) {
         String s1 = "abcde", s2 = "ace";
         Solution4 solu = new Solution4();
-        System.out.println(solu.longestCommonSubsequence(s1, s2));
+        System.out.println(solu.longestCommonSubsequenceV1(s1, s2));
     }
 }

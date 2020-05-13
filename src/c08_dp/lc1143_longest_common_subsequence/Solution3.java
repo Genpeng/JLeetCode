@@ -47,18 +47,18 @@ public class Solution3 {
      * Space Complexity: O(m * n)
      *
      * Result of Submission:
-     * Runtime: 17 ms, faster than 18.33% of Java online submissions for Longest Common Subsequence.
-     * Memory Usage: 43.4 MB, less than 100.00% of Java online submissions for Longest Common Subsequence.
+     * Runtime: 9 ms, faster than 89.11% of Java online submissions for Longest Common Subsequence.
+     * Memory Usage: 43.5 MB, less than 100.00% of Java online submissions for Longest Common Subsequence.
      *
      * @param s1 String, a string
      * @param s2 String, another string
      * @return int, the length of the longest common subsequence (LCS) of two input strings
      */
     public int longestCommonSubsequence(String s1, String s2) {
-        int l1 = s1.length(), l2 = s2.length();
-        int[][] dp = new int[l1+1][l2+1];
-        for (int i = 1; i <= l1; ++i) {
-            for (int j = 1; j <= l2; ++j) {
+        int m = s1.length(), n = s2.length();
+        int[][] dp = new int[m+1][n+1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
                 if (s1.charAt(i-1) == s2.charAt(j-1)) {
                     dp[i][j] = 1 + dp[i-1][j-1];
                 } else {
@@ -66,7 +66,7 @@ public class Solution3 {
                 }
             }
         }
-        return dp[l1][l2];
+        return dp[m][n];
     }
 
     public static void main(String[] args) {

@@ -47,10 +47,10 @@ public class Solution1 {
      * Space Complexity: O(m + n)
      *
      * The state transition equation is as follow:
-     *              / 0, i * j = 0 (i = 0 or j = 0)
-     * lcs(i, j) =  - 1 + lcs(i-1, j-1), i * j > 0 and s1[i-1] = s2[j-1]
-     *              \ max(lcs(i-1, j), lcs(i, j-1)), i * j > 0 and s1[i-1] != s2[j-1]
-     * where lcs(i, j) represents the length of longest common subsequence (LCS) between s1[0 ... i-1] and s2[0 ... j-1]
+     *           / 0, i * j = 0 (i = 0 or j = 0)
+     * L(i, j) = - 1 + L(i-1, j-1), i * j > 0 and s1[i-1] = s2[j-1]
+     *           \ max(L(i-1, j), L(i, j-1)), i * j > 0 and s1[i-1] != s2[j-1]
+     * where L(i, j) represents the length of longest common subsequence (LCS) between s1[0 ... i-1] and s2[0 ... j-1]
      *
      * @param s1 String, a string
      * @param s2 String, another string
@@ -61,7 +61,7 @@ public class Solution1 {
     }
 
     /**
-     * The auxiliary function to calculate `lcs(i, j)`.
+     * The auxiliary function to calculate `L(i, j)`.
      *
      * @param s1 String, a string
      * @param i int, the rightmost index in s1

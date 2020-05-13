@@ -55,14 +55,14 @@ public class Solution2 {
      * @return int, the length of the longest common subsequence (LCS) of two input strings
      */
     public int longestCommonSubsequence(String s1, String s2) {
-        int l1 = s1.length(), l2 = s2.length();
-        int[][] memo = new int[l1+1][l2+1];
-        for (int i = 1; i <= l1; ++i) {
-            for (int j = 1; j <= l2; ++j) {
+        int m = s1.length(), n = s2.length();
+        int[][] memo = new int[m+1][n+1];
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
                 memo[i][j] = -1;
             }
         }
-        return lcs(s1, l1, s2, l2, memo);
+        return lcs(s1, m, s2, n, memo);
     }
 
     private int lcs(String s1, int i, String s2, int j, int[][] memo) {
