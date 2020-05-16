@@ -23,14 +23,17 @@ import java.util.Arrays;
  * Follow up: Could you improve it to O(n log n) time complexity?
  * ==========================================================================================================
  *
+ * Tags: dp;binary search;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
-     * Approach 2: Dynamic Programming
+     * Approach 3: Dynamic Programming
      * Time Complexity: O(n ^ 2)
      * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 11 ms, faster than 58.99% of Java online submissions for Longest Increasing Subsequence.
      * Memory Usage: 37.7 MB, less than 34.00% of Java online submissions for Longest Increasing Subsequence.
      *
@@ -38,25 +41,23 @@ public class Solution3 {
      * @return int, the length of longest increasing subsequence
      */
     public int lengthOfLIS(int[] nums) {
-        if (nums == null) {
-            throw new IllegalArgumentException("[ERROR] The input array is illegal!!!");
+        final int L = nums.length;
+        if (L == 0) {
+            return 0;
         }
-        int n = nums.length;
-        if (n <= 1) {
-            return n;
-        }
-        int[] dp = new int[n];
-        Arrays.fill(dp, 1);
-        int ans = 1;
-        for (int i = 1; i < n; ++i) {
+        int[] dp = new int[L];
+        dp[0] = 1;
+        int maxLen = 1;
+        for (int i = 1; i < L; ++i) {
+            dp[i] = 1;
             for (int j = 0; j < i; ++j) {
                 if (nums[i] > nums[j]) {
                     dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
             }
-            ans = Math.max(ans, dp[i]);
+            maxLen = Math.max(maxLen, dp[i]);
         }
-        return ans;
+        return maxLen;
     }
 
     // =================================================================================================== //

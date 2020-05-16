@@ -1,7 +1,5 @@
 package c08_dp.lc0300_longest_increasing_subsequence;
 
-import java.util.ArrayList;
-
 /**
  * This is the solution of No. 300 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -27,13 +25,11 @@ import java.util.ArrayList;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
-    private int maxLen;
-
+public class Solution2 {
     /**
-     * Approach 1: Brute Force
-     * Time Complexity: O(N * 2^N)
-     * Space Complexity: O(1)
+     * Approach 2: Recursion
+     * Time Complexity: O(2 ^ n)
+     * Space Complexity: O(n ^ 2) ???
      *
      * Time Limit Exceeded
      *
@@ -41,36 +37,33 @@ public class Solution1 {
      * @return int, the length of longest increasing subsequence
      */
     public int lengthOfLIS(int[] nums) {
-        maxLen = 0;
-        helper(nums, 0, new ArrayList<>());
-        return maxLen;
+        return lengthOfLIS(nums, Integer.MIN_VALUE, 0);
     }
 
-    private void helper(int[] nums, int i, ArrayList<Integer> subseq) {
-        if (i == nums.length) {
-            if (isIncreasing(subseq)) {
-                maxLen = Math.max(maxLen, subseq.size());
-            }
-            return;
+    /**
+     * Compute the length of longest increasing subsequence with index starts from `si`.
+     *
+     * @param nums int[], the input integer array
+     * @param prev int, the previous element
+     * @param si int, the index of start element
+     * @return int, the length of longest increasing subsequence
+     */
+    private int lengthOfLIS(int[] nums, int prev, int si) {
+        if (si == nums.length) {
+            return 0;
         }
-        subseq.add(nums[i]);
-        helper(nums, i+1, subseq);
-        subseq.remove(subseq.size() - 1);
-        helper(nums, i+1, subseq);
-    }
-
-    private boolean isIncreasing(ArrayList<Integer> subseq) {
-        for (int i = 1; i < subseq.size(); ++i) {
-            if (subseq.get(i) < subseq.get(i-1)) {
-                return false;
-            }
+        int taken = 0;
+        if (nums[si] > prev) {
+            taken = 1 + lengthOfLIS(nums, nums[si], si + 1);
         }
-        return true;
+        int untaken = lengthOfLIS(nums, prev, si + 1);
+        return Math.max(taken, untaken);
     }
 
     public static void main(String[] args) {
-        Solution1 solu = new Solution1();
-        System.out.println(solu.lengthOfLIS(new int[] {10, 9, 2, 5, 3, 7, 101, 18}) == 4);
-        System.out.println(solu.lengthOfLIS(new int[] {4, 2, 3, 6, 10, 1, 12}) == 5);
+        int[] nums1 = {10, 9, 2, 5, 3, 7, 101, 18};
+        int[] nums2 = {1, 3, 6, 7, 9, 4, 10, 5, 6};
+        Solution2 solution = new Solution2();
+        System.out.println(solution.lengthOfLIS(nums2));
     }
 }

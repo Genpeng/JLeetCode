@@ -21,6 +21,8 @@ package c08_dp.lc0300_longest_increasing_subsequence;
  * Follow up: Could you improve it to O(n log n) time complexity?
  * ==========================================================================================================
  *
+ * Tags: dp;binary search;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution4 {
@@ -29,23 +31,20 @@ public class Solution4 {
      * Time Complexity: O(n * log(n))
      * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 1 ms, faster than 86.60% of Java online submissions for Longest Increasing Subsequence.
      * Memory Usage: 37.6 MB, less than 34.00% of Java online submissions for Longest Increasing Subsequence.
      *
      * @param nums int[], the input integer array
      * @return int, the length of longest increasing subsequence
      */
-    public int lengthOfLIS(int[] nums) {
-        int n = nums.length;
-        if (n <= 1) {
-            return n;
-        }
-        int[] tail = new int[n];
+    public int lengthOfLISV1(int[] nums) {
+        int[] tail = new int[nums.length];
         int size = 0;
         for (int num : nums) {
             int l = 0, r = size;
             while (l < r) {
-                int m = l + (r - l) / 2;
+                int m = l + ((r - l) >> 1); // or (l + r) >>> 1
                 if (num > tail[m]) {
                     l = m + 1;
                 } else {
@@ -65,27 +64,28 @@ public class Solution4 {
      * Time Complexity: O(n * log(n))
      * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Increasing Subsequence.
      * Memory Usage: 37.7 MB, less than 34.00% of Java online submissions for Longest Increasing Subsequence.
      *
      * @param nums int[], the input integer array
      * @return int, the length of longest increasing subsequence
      */
-    public int lengthOfLISV1(int[] nums) {
-        int n = nums.length;
-        if (n <= 1) {
-            return n;
+    public int lengthOfLISV2(int[] nums) {
+        final int L = nums.length;
+        if (L == 0) {
+            return 0;
         }
-        int[] tail = new int[n];
+        int[] tail = new int[L];
         tail[0] = nums[0];
-        int len = 0;
-        for (int i = 1; i < n; ++i) {
-            if (nums[i] > tail[len]) {
-                tail[++len] = nums[i];
-            } else if (nums[i] < tail[len]) {
-                int l = 0, r = len;
+        int lastIndex = 0;
+        for (int i = 1; i < L; ++i) {
+            if (nums[i] > tail[lastIndex]) {
+                tail[++lastIndex] = nums[i];
+            } else if (nums[i] < tail[lastIndex]) {
+                int l = 0, r = lastIndex;
                 while (l < r) {
-                    int m = l + (r - l) / 2;
+                    int m = l + ((r - l) >> 1);
                     if (nums[i] > tail[m]) {
                         l = m + 1;
                     } else {
@@ -95,6 +95,6 @@ public class Solution4 {
                 tail[l] = nums[i];
             }
         }
-        return len + 1;
+        return lastIndex + 1;
     }
 }
