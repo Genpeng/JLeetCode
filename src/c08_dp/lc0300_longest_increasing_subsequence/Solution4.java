@@ -27,76 +27,43 @@ package c08_dp.lc0300_longest_increasing_subsequence;
  */
 public class Solution4 {
     /**
-     * Approach 4: Binary Search
-     * The idea is to maintain an array `tail`, where `tail[i]` represents the smallest tail
-     * in all increasing subsequences of length `i+1`.
-     * Time Complexity: O(n * log(n))
+     * Approach 4: Dynamic Programming
+     * Time Complexity: O(n ^ 2)
      * Space Complexity: O(n)
      *
-     * Result of Submission:
-     * Runtime: 1 ms, faster than 86.60% of Java online submissions for Longest Increasing Subsequence.
-     * Memory Usage: 37.6 MB, less than 34.00% of Java online submissions for Longest Increasing Subsequence.
-     *
-     * @param nums int[], the input integer array
-     * @return int, the length of longest increasing subsequence
-     */
-    public int lengthOfLISV1(int[] nums) {
-        int[] tail = new int[nums.length];
-        int size = 0;
-        for (int num : nums) {
-            int l = 0, r = size;
-            while (l < r) {
-                int m = l + ((r - l) >> 1); // or (l + r) >>> 1
-                if (num > tail[m]) {
-                    l = m + 1;
-                } else {
-                    r = m;
-                }
-            }
-            tail[l] = num;
-            if (l == size) {
-                ++size;
-            }
-        }
-        return size;
-    }
-
-    /**
-     * Approach 4: Binary Search
-     * Time Complexity: O(n * log(n))
-     * Space Complexity: O(n)
+     * The state transition equation is as follow:
+     *        / 0, i = 0
+     * T(i) =
+     *        \ max{T(j) | 0 <= j < i, nums[i] > nums[j]} + 1, i > 0
      *
      * Result of Submission:
-     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Increasing Subsequence.
+     * Runtime: 11 ms, faster than 58.99% of Java online submissions for Longest Increasing Subsequence.
      * Memory Usage: 37.7 MB, less than 34.00% of Java online submissions for Longest Increasing Subsequence.
      *
      * @param nums int[], the input integer array
      * @return int, the length of longest increasing subsequence
      */
-    public int lengthOfLISV2(int[] nums) {
+    public int lengthOfLIS(int[] nums) {
         final int L = nums.length;
-        if (L == 0) {
-            return 0;
-        }
-        int[] tail = new int[L];
-        tail[0] = nums[0];
-        int lastIndex = 0;
-        for (int i = 1; i < L; ++i) {
-            if (nums[i] > tail[lastIndex]) {
-                tail[++lastIndex] = nums[i];
-            } else if (nums[i] < tail[lastIndex]) {
-                int l = 0, r = lastIndex;
-                while (l < r) {
-                    int m = l + ((r - l) >> 1);
-                    if (nums[i] > tail[m]) {
-                        l = m + 1;
-                    } else {
-                        r = m;
-                    }
+        int[] dp = new int[L];
+        int maxLen = 0;
+        for (int i = 0; i < L; ++i) {
+            dp[i] = 1;
+            for (int j = 0; j < i; ++j) {
+                if (nums[i] > nums[j]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
                 }
-                tail[l] = nums[i];
             }
+            maxLen = Math.max(maxLen, dp[i]);
         }
-        return lastIndex + 1;
+        return maxLen;
+    }
+
+    public static void main(String[] args) {
+        Solution4 solu = new Solution4();
+        System.out.println(solu.lengthOfLIS(new int[] {}) == 0);
+        System.out.println(solu.lengthOfLIS(new int[] {1}) == 1);
+        System.out.println(solu.lengthOfLIS(new int[] {10, 9, 2, 5, 3, 7, 101, 18}) == 4);
+        System.out.println(solu.lengthOfLIS(new int[] {4, 2, 3, 6, 10, 1, 12}) == 5);
     }
 }

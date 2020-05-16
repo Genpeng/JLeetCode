@@ -37,33 +37,26 @@ public class Solution2 {
      * @return int, the length of longest increasing subsequence
      */
     public int lengthOfLIS(int[] nums) {
-        return lengthOfLIS(nums, Integer.MIN_VALUE, 0);
+        return lengthOfLIS(nums, -1, 0);
     }
 
-    /**
-     * Compute the length of longest increasing subsequence with index starts from `si`.
-     *
-     * @param nums int[], the input integer array
-     * @param prev int, the previous element
-     * @param si int, the index of start element
-     * @return int, the length of longest increasing subsequence
-     */
-    private int lengthOfLIS(int[] nums, int prev, int si) {
-        if (si == nums.length) {
+    private int lengthOfLIS(int[] nums, int prevIndex, int currIndex) {
+        if (currIndex == nums.length) {
             return 0;
         }
-        int taken = 0;
-        if (nums[si] > prev) {
-            taken = 1 + lengthOfLIS(nums, nums[si], si + 1);
+        int take = 0;
+        if (prevIndex == -1 || nums[currIndex] > nums[prevIndex]) {
+            take = 1 + lengthOfLIS(nums, currIndex, currIndex+1);
         }
-        int untaken = lengthOfLIS(nums, prev, si + 1);
-        return Math.max(taken, untaken);
+        int untake = lengthOfLIS(nums, prevIndex, currIndex+1);
+        return Math.max(take, untake);
     }
 
     public static void main(String[] args) {
-        int[] nums1 = {10, 9, 2, 5, 3, 7, 101, 18};
-        int[] nums2 = {1, 3, 6, 7, 9, 4, 10, 5, 6};
-        Solution2 solution = new Solution2();
-        System.out.println(solution.lengthOfLIS(nums2));
+        Solution2 solu = new Solution2();
+        System.out.println(solu.lengthOfLIS(new int[] {}) == 0);
+        System.out.println(solu.lengthOfLIS(new int[] {1}) == 1);
+        System.out.println(solu.lengthOfLIS(new int[] {10, 9, 2, 5, 3, 7, 101, 18}) == 4);
+        System.out.println(solu.lengthOfLIS(new int[] {4, 2, 3, 6, 10, 1, 12}) == 5);
     }
 }

@@ -70,6 +70,8 @@ public class Solution1 {
 
     public static void main(String[] args) {
         Solution1 solu = new Solution1();
+        System.out.println(solu.lengthOfLIS(new int[] {}) == 0);
+        System.out.println(solu.lengthOfLIS(new int[] {1}) == 1);
         System.out.println(solu.lengthOfLIS(new int[] {10, 9, 2, 5, 3, 7, 101, 18}) == 4);
         System.out.println(solu.lengthOfLIS(new int[] {4, 2, 3, 6, 10, 1, 12}) == 5);
     }
