@@ -29,7 +29,7 @@ public class Solution2 {
     /**
      * Approach 2: Recursion
      * Time Complexity: O(2 ^ n)
-     * Space Complexity: O(n ^ 2) ???
+     * Space Complexity: O(n)
      *
      * Time Limit Exceeded
      *
