@@ -28,6 +28,8 @@ package c08_dp.lc0300_longest_increasing_subsequence;
 public class Solution4 {
     /**
      * Approach 4: Binary Search
+     * The idea is to maintain an array `tail`, where `tail[i]` represents the smallest tail
+     * in all increasing subsequences of length `i+1`.
      * Time Complexity: O(n * log(n))
      * Space Complexity: O(n)
      *
