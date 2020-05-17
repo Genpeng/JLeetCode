@@ -39,8 +39,10 @@ import java.util.List;
  * - S and T only contain lowercase letters and '#' characters.
  *
  * Follow up:
- * Can you solve it in O(N) time and O(1) space?
+ * - Can you solve it in O(N) time and O(1) space?
  * ==========================================================================================================
+ *
+ * Tags: string;stack;two pointers;
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/10
@@ -51,31 +53,26 @@ public class Solution2 {
      * Time Complexity: O(min(m, n))
      * Space Complexity: O(1)
      *
-     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Backspace String Compare.
-     * Memory Usage: 37.7 MB, less than 6.06% of Java online submissions for Backspace String Compare.
-     *
-     * @param s1 String, one input string
-     * @param s2 String, the other input string
+     * @param S String, one input string
+     * @param T String, the other input string
      * @return boolean, true true if they are equal when both are typed into empty text editors
      */
-    public boolean backspaceCompare(String s1, String s2) {
-//        if (s1 == null || s2 == null) {
-//            throw new IllegalArgumentException("[ERROR] The input strings contain null!!!");
+    public boolean backspaceCompare(String S, String T) {
+//        if (S == null || T == null) {
+//            throw new IllegalArgumentException("[ERROR] The input strings can not be null!!!");
 //        }
-        int i = s1.length() - 1, j = s2.length() - 1;
-        while (i >= 0 || j >= 0) {
-            i = findRealIdx(s1, i);
-            j = findRealIdx(s2, j);
-            if ((i >= 0) != (j >= 0)) {
-                return false;
+        int i = S.length() - 1, j = T.length() - 1;
+        while (true) {
+            i = findRealIdx(S, i);
+            j = findRealIdx(T, j);
+            if (i >= 0 && j >= 0 && S.charAt(i) == T.charAt(j)) {
+                --i;
+                --j;
+            } else {
+                break;
             }
-            if (i >= 0 && j >= 0 && s1.charAt(i) != s1.charAt(j)) {
-                return false;
-            }
-            --i;
-            --j;
         }
-        return true;
+        return i == -1 && j == -1;
     }
 
     private int findRealIdx(String s, int idx) {
@@ -96,15 +93,21 @@ public class Solution2 {
 
     public static void main(String[] args) {
         List<String[]> testCases = new ArrayList<>();
+        List<Boolean> answers = new ArrayList<>();
         testCases.add(new String[] {"", ""});
+        answers.add(true);
         testCases.add(new String[] {"ab#c", "ad#c"});
+        answers.add(true);
         testCases.add(new String[] {"abc", "adc"});
-        Solution2 solution = new Solution2();
-        for (String[] testCase : testCases) {
-            String s1 = testCase[0];
-            String s2 = testCase[1];
-            if (!solution.backspaceCompare(s1, s2)) {
-                System.out.format("s1 = %s, s2 = %s\n", s1, s2);
+        answers.add(false);
+        Solution2 solu = new Solution2();
+        for (int i = 0; i < testCases.size(); ++i) {
+            String[] strs = testCases.get(i);
+            String S = strs[0];
+            String T = strs[1];
+            boolean ans = answers.get(i);
+            if (solu.backspaceCompare(S, T) != ans) {
+                System.out.format("S: %s, T: %s\n", S, T);
             }
         }
     }

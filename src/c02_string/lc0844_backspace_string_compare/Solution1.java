@@ -1,5 +1,7 @@
 package c02_string.lc0844_backspace_string_compare;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -56,18 +58,18 @@ public class Solution1 {
      * Runtime: 2 ms, faster than 35.71% of Java online submissions for Backspace String Compare.
      * Memory Usage: 38.2 MB, less than 6.06% of Java online submissions for Backspace String Compare.
      *
-     * @param s1 String, one input string
-     * @param s2 String, the other input string
+     * @param S String, one input string
+     * @param T String, the other input string
      * @return boolean, true if they are equal when both are typed into empty text editors
      */
-    public boolean backspaceCompareV1(String s1, String s2) {
-        return restoreV1(s1).equals(restoreV1(s2));
+    public boolean backspaceCompareV1(String S, String T) {
+//        if (S == null || T == null) {
+//            throw new IllegalArgumentException("[ERROR] The input strings can not be null!!!");
+//        }
+        return restoreV1(S).equals(restoreV1(T));
     }
 
     private String restoreV1(String s) {
-        if (s == null || s.isEmpty()) {
-            return "";
-        }
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
             if (c != '#') {
@@ -88,19 +90,19 @@ public class Solution1 {
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Backspace String Compare.
      * Memory Usage: 37.6 MB, less than 6.06% of Java online submissions for Backspace String Compare.
      *
-     * @param s1 String, one input string
-     * @param s2 String, the other input string
+     * @param S String, one input string
+     * @param T String, the other input string
      * @return boolean, true if they are equal when both are typed into empty text editors
      */
-    public boolean backspaceCompareV2(String s1, String s2) {
-        return restoreV2(s1).equals(restoreV2(s2));
+    public boolean backspaceCompareV2(String S, String T) {
+//        if (S == null || T == null) {
+//            throw new IllegalArgumentException("[ERROR] The input strings can not be null!!!");
+//        }
+        return restoreV2(S).equals(restoreV2(T));
     }
 
     private String restoreV2(String s) {
         StringBuilder sb = new StringBuilder();
-        if (s == null || s.isEmpty()) {
-            return sb.toString();
-        }
         for (char c : s.toCharArray()) {
             if (c != '#') {
                 sb.append(c);
@@ -112,7 +114,23 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        String S = "ab#c", T = "ad#c";
-        System.out.println((new Solution1()).backspaceCompareV1(S, T));
+        List<String[]> testCases = new ArrayList<>();
+        List<Boolean> answers = new ArrayList<>();
+        testCases.add(new String[] {"", ""});
+        answers.add(true);
+        testCases.add(new String[] {"ab#c", "ad#c"});
+        answers.add(true);
+        testCases.add(new String[] {"abc", "adc"});
+        answers.add(false);
+        Solution2 solu = new Solution2();
+        for (int i = 0; i < testCases.size(); ++i) {
+            String[] strs = testCases.get(i);
+            String S = strs[0];
+            String T = strs[1];
+            boolean ans = answers.get(i);
+            if (solu.backspaceCompare(S, T) != ans) {
+                System.out.format("S: %s, T: %s\n", S, T);
+            }
+        }
     }
 }
