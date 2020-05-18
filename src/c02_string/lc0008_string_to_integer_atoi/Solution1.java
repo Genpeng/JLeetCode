@@ -64,34 +64,31 @@ public class Solution1 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
-     * @param str String, an input string
+     * @param s String, an input string
      * @return int, the corresponding integer
      */
-    public int myAtoi(String str) {
-        if (str == null) {
-//            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
-            return 0;
-        }
-        int L = str.length();
-        int sign = 1, base = 0, idx = 0;
+    public int myAtoi(String s) {
+        final int L = s.length();
+        int i = 0;
         // remove whitespace character in the front of string
-        while (idx < L && str.charAt(idx) == ' ') {
-            ++idx;
+        while (i < L && s.charAt(i) == ' ') {
+            ++i;
         }
         // if the input string is empty or it contains only whitespace characters
-        if (idx >= L) {
+        if (i >= L) {
             return 0;
         }
-        if (str.charAt(idx) == '+' || str.charAt(idx) == '-') {
-            sign = str.charAt(idx++) == '-' ? -1 : 1;
+        int sign = 1, base = 0;
+        if (s.charAt(i) == '+' || s.charAt(i) == '-') {
+            sign = s.charAt(i++) == '+' ? 1 : -1;
         }
-        while (idx < L && str.charAt(idx) >= '0' && str.charAt(idx) <= '9') {
-            int n = str.charAt(idx) - '0';
+        while (i < L && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            int n = s.charAt(i) - '0';
             if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE / 10 && n > 7)) {
                 return sign > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
             base = base * 10 + n;
-            ++idx;
+            ++i;
         }
         return sign * base;
     }

@@ -70,15 +70,12 @@ public class Solution2 {
      * Reference:
      * https://leetcode-cn.com/problems/string-to-integer-atoi/solution/zi-fu-chuan-zhuan-huan-zheng-shu-atoi-by-leetcode-/
      *
-     * @param str String, an input string
+     * @param s String, an input string
      * @return int, the corresponding integer
      */
-    public int myAtoi(String str) {
-        if (str == null) {
-            return 0;
-        }
+    public int myAtoi(String s) {
         Automaton automaton = new Automaton();
-        for (char c : str.toCharArray()) {
+        for (char c : s.toCharArray()) {
             automaton.nextState(c);
         }
         return (int) (automaton.sign * automaton.base);
