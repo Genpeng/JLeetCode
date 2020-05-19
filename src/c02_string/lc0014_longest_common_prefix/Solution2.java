@@ -23,19 +23,19 @@ package c02_string.lc0014_longest_common_prefix;
  * - All given inputs are in lowercase letters a-z.
  * ==========================================================================================================
  *
- * Tags: string;divide and conquer
+ * Tags: string;divide and conquer;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * Approach 1: Convert to find out the common prefix of two strings
+     * Approach 2: K pointers (Scan K strings simultaneously)
      * Time Complexity: O(L1 + L2 + ... + Ln)
      * Space Complexity: O(1)
      *
      * Result of Submission:
-     * Runtime: 2 ms, faster than 32.50% of Java online submissions for Longest Common Prefix.
-     * Memory Usage: 39.4 MB, less than 5.26% of Java online submissions for Longest Common Prefix.
+     * Runtime: 2 ms, faster than 32.88% of Java online submissions for Longest Common Prefix.
+     * Memory Usage: 39.1 MB, less than 8.19% of Java online submissions for Longest Common Prefix.
      *
      * @param strs String[], an array of strings
      * @return String, the longest common prefix string
@@ -44,34 +44,31 @@ public class Solution1 {
         if (strs == null || strs.length == 0) {
             return "";
         }
-        String lcp = strs[0];
-        for (int i = 1; i < strs.length; ++i) {
-            lcp = commonPrefix(lcp, strs[i]);
-            if (lcp.length() == 0) {
-                break;
+        int minLen = Integer.MAX_VALUE;
+        for (String s : strs) {
+            if (s.length() < minLen) {
+                minLen = s.length();
             }
         }
-        return lcp;
-    }
-
-    public String commonPrefix(String s1, String s2) {
-        int minLen = Math.min(s1.length(), s2.length());
         for (int i = 0; i < minLen; ++i) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                return s1.substring(0, i);
+            char c = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; ++j) {
+                if (strs[j].charAt(i) != c) {
+                    return strs[0].substring(0, i);
+                }
             }
         }
-        return s1.substring(0, minLen);
+        return strs[0].substring(0, minLen);
     }
 
     /**
-     * Approach 1: Convert to find out the common prefix of two strings
+     * Approach 2: K pointers (Scan K strings simultaneously)
      * Time Complexity: O(L1 + L2 + ... + Ln)
      * Space Complexity: O(1)
      *
      * Result of Submission:
-     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Common Prefix.
-     * Memory Usage: 37.9 MB, less than 80.70% of Java online submissions for Longest Common Prefix.
+     * Runtime: 2 ms, faster than 32.88% of Java online submissions for Longest Common Prefix.
+     * Memory Usage: 39.1 MB, less than 5.26% of Java online submissions for Longest Common Prefix.
      *
      * @param strs String[], an array of strings
      * @return String, the longest common prefix string
@@ -80,23 +77,22 @@ public class Solution1 {
         if (strs == null || strs.length == 0) {
             return "";
         }
-        String lcp = strs[0];
-        for (int i = 1; i < strs.length; ++i) {
-            while (strs[i].indexOf(lcp) != 0) {
-                lcp = lcp.substring(0, lcp.length() - 1);
-                if (lcp.isEmpty()) {
-                    return "";
+        for (int i = 0; i < strs[0].length(); ++i) {
+            char c = strs[0].charAt(i);
+            for (int j = 1; j < strs.length; ++j) {
+                if (i == strs[j].length() || strs[j].charAt(i) != c) {
+                    return strs[0].substring(0, i);
                 }
             }
         }
-        return lcp;
+        return strs[0];
     }
 
     public static void main(String[] args) {
-        Solution1 solu = new Solution1();
-        System.out.println(solu.longestCommonPrefixV1(new String[] {})); // ""
-        System.out.println(solu.longestCommonPrefixV1(new String[] {"aa"})); // "aa"
-        System.out.println(solu.longestCommonPrefixV1(new String[] {"aa", "aabbcc", "aab"})); // "aa"
-        System.out.println(solu.longestCommonPrefixV1(new String[] {"abc", "aabbcc", "aab"})); // "a"
+        Solution2 solu = new Solution2();
+        System.out.println(solu.longestCommonPrefixV2(new String[] {})); // ""
+        System.out.println(solu.longestCommonPrefixV2(new String[] {"aa"})); // "aa"
+        System.out.println(solu.longestCommonPrefixV2(new String[] {"aa", "aabbcc", "aab"})); // "aa"
+        System.out.println(solu.longestCommonPrefixV2(new String[] {"abc", "aabbcc", "aab"})); // "a"
     }
 }
