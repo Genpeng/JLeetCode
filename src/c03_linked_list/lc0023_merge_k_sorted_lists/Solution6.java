@@ -37,8 +37,8 @@ public class Solution6 {
         if (lists == null || lists.length == 0) {
             return null;
         }
-        int interval = 1;
         int n = lists.length;
+        int interval = 1;
         while (interval < n) {
             for (int i = 0; i < n - interval; i += 2 * interval) {
                 lists[i] = mergeTwoLists(lists[i], lists[i + interval]);
