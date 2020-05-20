@@ -27,9 +27,9 @@ package c02_string.lc0014_longest_common_prefix;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution4 {
+public class Solution5 {
     /**
-     * Approach 4: Divide and Conquer (Bottom up)
+     * Approach 5: Binary Search
      * Time Complexity: ???
      * Space Complexity: ???
      *
@@ -37,16 +37,8 @@ public class Solution4 {
      * @return String, the longest common prefix string
      */
     public String longestCommonPrefix(String[] strs) {
-        if (strs == null || strs.length == 0) {
-            return "";
-        }
-        final int N = strs.length;
-        for (int interval = 1; interval < N; interval *= 2) {
-            for (int i = 0; i < N - interval; i += 2 * interval) {
-                strs[i] = commonPrefix(strs[i], strs[i + interval]);
-            }
-        }
-        return strs[0];
+        // TODO: add it
+        return null;
     }
 
     public String commonPrefix(String s1, String s2) {
@@ -60,7 +52,7 @@ public class Solution4 {
     }
 
     public static void main(String[] args) {
-        Solution4 solu = new Solution4();
+        Solution5 solu = new Solution5();
         System.out.println(solu.longestCommonPrefix(new String[] {})); // ""
         System.out.println(solu.longestCommonPrefix(new String[] {"aa"})); // "aa"
         System.out.println(solu.longestCommonPrefix(new String[] {"aa", "aabbcc", "aab"})); // "aa"

@@ -25,15 +25,15 @@ import java.util.Arrays;
  * - All given inputs are in lowercase letters a-z.
  * ==========================================================================================================
  *
- * Tags: string;divide and conquer;
+ * Tags: string;divide and conquer;binary search;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
      * Approach 3: Divide and Conquer (Top down)
-     * Time Complexity:
-     * Space Complexity:
+     * Time Complexity: ???
+     * Space Complexity: ???
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 58.69% of Java online submissions for Longest Common Prefix.

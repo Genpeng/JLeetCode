@@ -23,13 +23,13 @@ package c02_string.lc0014_longest_common_prefix;
  * - All given inputs are in lowercase letters a-z.
  * ==========================================================================================================
  *
- * Tags: string;divide and conquer;
+ * Tags: string;divide and conquer;binary search;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * Approach 2: K pointers (Scan K strings simultaneously)
+     * Approach 2: K Pointers (Scan K strings simultaneously)
      * Time Complexity: O(L1 + L2 + ... + Ln)
      * Space Complexity: O(1)
      *
