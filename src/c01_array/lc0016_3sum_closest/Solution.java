@@ -18,14 +18,17 @@ import java.util.Arrays;
  * The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
  * ==========================================================================================================
  *
+ * Tags: array;two pointers;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
     /**
-     * 解法：Two pointers
-     * 时间复杂度：O(N ^ 2)
-     * 空间复杂度：O(1)
+     * Approach 1: Two Pointers
+     * Time Complexity: O(N ^ 2)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 3 ms, faster than 98.45% of Java online submissions for 3Sum Closest.
      * Memory Usage: 39 MB, less than 6.67% of Java online submissions for 3Sum Closest.
      *
@@ -33,93 +36,39 @@ public class Solution {
      * @param target int, the target integer
      * @return int, the sum closest to target
      */
-    public int threeSumClosestV1(int[] nums, int target) {
-        if (nums == null || nums.length < 3) {
-            throw new IllegalArgumentException("[ERROR] The size of input array is less than 3!!!");
-        }
+    public int threeSumClosest(int[] nums, int target) {
+//        if (nums == null || nums.length < 3) {
+//            throw new IllegalArgumentException("[ERROR] The input array is null or the size of array is less than 3!!!");
+//        }
         // Step 1: sort all the integers in the array
         Arrays.sort(nums);
         // Step 2: find out the closest sum
-        int n = nums.length, ce = Integer.MAX_VALUE, cs = 0;
+        int n = nums.length;
+        int ans = nums[0] + nums[1] + nums[n-1];
         for (int i = 0; i < n - 2; ++i) {
-            if (i > 0 && nums[i] == nums[i-1]) {
-                continue;
-            }
             int l = i + 1, r = n - 1;
             while (l < r) {
                 int s = nums[i] + nums[l] + nums[r];
-                int e = Math.abs(s - target);
-                if (e < ce) {
-                    cs = s;
-                    ce = e;
-                }
                 if (s < target) {
                     ++l;
                 } else if (s > target) {
                     --r;
                 } else {
-                    // ++l;
-                    // --r;
-                    return cs;
-                }
-            }
-        }
-        return cs;
-    }
-
-    /**
-     * 解法：Two pointers
-     * 时间复杂度：O(N ^ 2)
-     * 空间复杂度：O(1)
-     *
-     * Runtime: 2 ms, faster than 99.58% of Java online submissions for 3Sum Closest.
-     * Memory Usage: 38.4 MB, less than 6.67% of Java online submissions for 3Sum Closest.
-     *
-     * @param nums int[], the input integer array
-     * @param target int, the target integer
-     * @return int, the sum closest to target
-     */
-    public int threeSumClosestV2(int[] nums, int target) {
-        if (nums == null || nums.length < 3) {
-            throw new IllegalArgumentException("[ERROR] The size of input array is less than 3!!!");
-        }
-        // Step 1: sort all the elements in the array
-        Arrays.sort(nums);
-        // Step 2: find out the closest sum
-        int n = nums.length, cs = nums[0] + nums[1] + nums[2];
-        for (int i = 0; i < n - 2; ++i) {
-            if (i > 0 && nums[i] == nums[i-1]) {
-                continue;
-            }
-            int l = i + 1, r = n - 1;
-            while (l < r) {
-                if (nums[l] + nums[r] < target - nums[i]) {
-                    while (l < r && nums[l] + nums[r] < target - nums[i]) {
-                        ++l;
-                    }
-                    if (Math.abs(nums[i] + nums[l-1] + nums[r] - target) < Math.abs(cs - target)) {
-                        cs = nums[i] + nums[l-1] + nums[r];
-                    }
-                } else if (nums[l] + nums[r] > target - nums[i]) {
-                    while (l < r && nums[l] + nums[r] > target - nums[i]) {
-                        --r;
-                    }
-                    if (Math.abs(nums[i] + nums[l] + nums[r+1] - target) < Math.abs(cs - target)) {
-                        cs = nums[i] + nums[l] + nums[r+1];
-                    }
-                } else {
                     return target;
                 }
+                if (Math.abs(s - target) < Math.abs(ans - target)) {
+                    ans = s;
+                }
+            }
+            while (i < n - 2 && nums[i] == nums[i+1]) {
+                ++i;
             }
         }
-        return cs;
+        return ans;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[] {-1, 0, 1, 1, 55};
-        int target = 3;
-        Solution solution = new Solution();
-        int closestSum = solution.threeSumClosestV2(nums, target);
-        System.out.println(closestSum);
+        Solution solu = new Solution();
+        System.out.println(solu.threeSumClosest(new int[] {-1, 2, 1, -4}, 1));
     }
 }
