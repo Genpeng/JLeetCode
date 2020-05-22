@@ -29,10 +29,11 @@ import java.util.*;
  */
 public class Solution2 {
     /**
-     * 解法2：Hash Table
-     * 时间复杂度：O(n^2)
-     * 空间复杂度：O(n)
+     * Approach 2: Hash Table
+     * Time Complexity: O(N ^ 2)
+     * Space Complexity: O(N)
      *
+     * Result of Submission:
      * Runtime: 297 ms, faster than 18.65% of Java online submissions for 3Sum.
      * Memory Usage: 46.5 MB, less than 91.87% of Java online submissions for 3Sum.
      *

@@ -31,10 +31,11 @@ import java.util.List;
  */
 public class Solution3 {
     /**
-     * 解法3：Two Pointers
-     * 时间复杂度：O(n^2)
-     * 空间复杂度：O(1)
+     * Approach 3: Two Pointers
+     * Time Complexity: O(N ^ 2)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 17 ms, faster than 99.24% of Java online submissions for 3Sum.
      * Memory Usage: 45.6 MB, less than 95.76% of Java online submissions for 3Sum.
      *

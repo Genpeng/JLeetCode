@@ -29,10 +29,11 @@ import java.util.*;
  */
 public class Solution1 {
     /**
-     * 解法1（Deprecated）：Brute Force
-     * 时间复杂度：O(n^3)
-     * 空间复杂度：O(n)
+     * Approach 1: Brute Force
+     * Time Complexity: O(N ^ 3)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Time Limit Exceeded
      *
      * @param nums int[], input array
