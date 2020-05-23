@@ -21,18 +21,19 @@ import java.util.Arrays;
  * Minimize the total number of operations.
  * ==========================================================================================================
  *
+ * Tags: slow & fast pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/07
  */
 public class Solution3 {
     /**
-     * Approach 3: Two Pointers
+     * Approach 3: Slow & Fast Pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * Note:
      * - similar with the partition process of quick sort algorithm
-     *
-     * Time Complexity: O(n)
-     * Space Complexity: O(1)
      *
      * @param nums int[], the input integer array
      */

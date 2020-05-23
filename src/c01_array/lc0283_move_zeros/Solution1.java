@@ -21,6 +21,8 @@ import java.util.Arrays;
  * Minimize the total number of operations.
  * ==========================================================================================================
  *
+ * Tags: slow & fast pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/07
  */
@@ -33,22 +35,15 @@ public class Solution1 {
      * @param nums int[], the input integer array
      */
     public void moveZeroes(int[] nums) {
-        // 1. 生成一个长度相同、元素都是0的数组
-        //    时间复杂度：O(n)
-        int[] tmp = new int[nums.length];
-
-        // 2. 将数组nums中非零元素按照先后顺序依次存储到新的数组temp中
-        //    时间复杂度：O(n)
+        final int N = nums.length;
+        int[] tmp = new int[N];
         int idx = 0;
         for (int num : nums) {
             if (num != 0) {
                 tmp[idx++] = num;
             }
         }
-
-        // 3. 用temp数组覆盖原数组nums
-        //    时间复杂度：O(n)
-        for (int i = 0; i < nums.length; ++i) {
+        for (int i = 0; i < N; ++i) {
             nums[i] = tmp[i];
         }
     }
