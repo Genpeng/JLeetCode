@@ -21,7 +21,7 @@ import java.util.Arrays;
  * Minimize the total number of operations.
  * ==========================================================================================================
  *
- * Tags: slow & fast pointers;
+ * Tags: fast & slow pointers;
  *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/07
