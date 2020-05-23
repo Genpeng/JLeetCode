@@ -27,7 +27,7 @@ import java.util.Arrays;
  * It doesn't matter what values are set beyond the returned length.
  * ==========================================================================================================
  *
- * Tags: slow & fast pointers;
+ * Tags: fast & slow pointers;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
