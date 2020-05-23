@@ -27,16 +27,17 @@ import java.util.Arrays;
  * It doesn't matter what values are set beyond the returned length.
  * ==========================================================================================================
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * Tags: slow & fast pointers;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
     /**
-     * 解法：Two Pointers
-     * 思路：
-     * 利用一个快指针发现不重复的元素，利用一个慢指针指向元素的存储位置。
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 1: slow & fast pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Remove Duplicates from Sorted Array.
      * Memory Usage: 41.5 MB, less than 17.02% of Java online submissions for Remove Duplicates from Sorted Array.
      *
@@ -44,20 +45,21 @@ public class Solution {
      * @return int, the length of the array without duplicates
      */
     public int removeDuplicates(int[] nums) {
-         if (nums == null) {
-             throw new IllegalArgumentException("[ERROR] The input array is null!!!");
-         }
+        int n = nums.length;
+        if (n == 0) {
+            return 0;
+        }
         int i = 0;
-        for (int j = 1; j < nums.length; ++j) {
+        for (int j = 1; j < n; ++j) {
             if (nums[i] != nums[j]) {
                 nums[++i] = nums[j];
             }
         }
-        return i + 1;
+        return i+1;
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[] {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+        int[] nums = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
         System.out.println(Arrays.toString(nums));
         Solution solution = new Solution();
         int newLength = solution.removeDuplicates(nums);
