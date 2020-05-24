@@ -22,27 +22,59 @@ package c01_array.lc0011_container_with_most_water;
  * Output: 49
  * ==========================================================================================================
  *
+ * Tags: two pointers;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法2（Two pointers）
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 2: Two Pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
-     * Runtime: 2 ms, faster than 95.81% of Java online submissions for Container With Most Water.
-     * Memory Usage: 41.1 MB, less than 10.90% of Java online submissions for Container With Most Water.
+     * Result of Submission:
+     * Runtime: 5 ms, faster than 32.15% of Java online submissions for Container With Most Water.
+     * Memory Usage: 39.7 MB, less than 95.51% of Java online submissions for Container With Most Water.
      *
      * @param heights int[], the input integer array which represents the lengths of the rectangle
      * @return int, the max area of the container
      */
-    public int maxArea(int[] heights) {
-        int ma = 0, l = 0, r = heights.length - 1;
+    public int maxAreaV1(int[] heights) {
+        int ma = 0;
+        int l = 0, r = heights.length - 1;
         while (l < r) {
             ma = Math.max(ma, Math.min(heights[l], heights[r]) * (r - l));
             if (heights[l] < heights[r]) {
                 ++l;
             } else {
+                --r;
+            }
+        }
+        return ma;
+    }
+
+    /**
+     * Approach 2: Two Pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
+     *
+     * Result of Submission:
+     * Runtime: 3 ms, faster than 41.56% of Java online submissions for Container With Most Water.
+     * Memory Usage: 46.4 MB, less than 5.77% of Java online submissions for Container With Most Water.
+     *
+     * @param heights int[], the input integer array which represents the lengths of the rectangle
+     * @return int, the max area of the container
+     */
+    public int maxAreaV2(int[] heights) {
+        int ma = 0;
+        int l = 0, r = heights.length - 1;
+        while (l < r) {
+            int h = Math.min(heights[l], heights[r]);
+            ma = Math.max(ma, (r - l) * h);
+            while (l < r && heights[l] <= h) {
+                ++l;
+            }
+            while (l < r && heights[r] <= h) {
                 --r;
             }
         }

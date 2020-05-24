@@ -22,15 +22,17 @@ package c01_array.lc0011_container_with_most_water;
  * Output: 49
  * ==========================================================================================================
  *
+ * Tags: two pointers;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法1（Brute Force）
-     * 解题思路：遍历所有可能的组合，求出最大的面积
-     * 时间复杂度：O(n ^ 2)
-     * 空间复杂度：O(1)
+     * Approach 1: Brute Force
+     * Time Complexity: O(n ^ 2)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 350 ms, faster than 8.05% of Java online submissions for Container With Most Water.
      * Memory Usage: 40.9 MB, less than 23.72% of Java online submissions for Container With Most Water.
      *
@@ -38,12 +40,13 @@ public class Solution1 {
      * @return int, the max area of the container
      */
     public int maxArea(int[] heights) {
-        int n = heights.length, ma = 0;
+        int n = heights.length;
+        int maxArea = 0;
         for (int i = 0; i < n - 1; ++i) {
             for (int j = i + 1; j < n; ++j) {
-                ma = Math.max(ma, Math.min(heights[i], heights[j]) * (j - i));
+                maxArea = Math.max(maxArea, Math.min(heights[i], heights[j]) * (j - i));
             }
         }
-        return ma;
+        return maxArea;
     }
 }
