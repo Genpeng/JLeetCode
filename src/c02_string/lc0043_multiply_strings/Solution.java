@@ -25,16 +25,20 @@ package c02_string.lc0043_multiply_strings;
  * - You must not use any built-in BigInteger library or convert the inputs to integer directly.
  * ==========================================================================================================
  *
+ * Tags: string;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
     /**
-     * ## 解法1 ##
-     * 解题思路：
-     * 参照 https://leetcode.com/problems/multiply-strings/discuss/17605/Easiest-JAVA-Solution-with-Graph-Explanation
-     * 时间复杂度：O(m + n)
-     * 空间复杂度：O(m + n)
+     * Approach 1
+     * Time Complexity: O(m + n)
+     * Space Complexity: O(m + n)
      *
+     * References:
+     * [1] https://leetcode.com/problems/multiply-strings/discuss/17605/Easiest-JAVA-Solution-with-Graph-Explanation
+     *
+     * Result of Submission:
      * Runtime: 3 ms, faster than 96.03% of Java online submissions for Multiply Strings.
      * Memory Usage: 38.2 MB, less than 23.33% of Java online submissions for Multiply Strings.
      *
