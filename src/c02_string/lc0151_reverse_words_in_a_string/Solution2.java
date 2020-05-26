@@ -50,7 +50,7 @@ public class Solution2 {
      * @param s String, a string which contains multiple words
      * @return String, the modified string
      */
-    public String reverseWords(String s) {
+    public String reverseWordsV1(String s) {
         StringBuilder sb = trimSpaces(s);
         reverse(sb, 0, sb.length() - 1);
         reverseEachWords(sb);
@@ -99,13 +99,48 @@ public class Solution2 {
         }
     }
 
+    /**
+     * Approach 2: Two Pointers
+     * reverse the whole string -> reverse each word in the string
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
+     * @param s String, a string which contains multiple words
+     * @return String, the modified string
+     */
+    public String reverseWordsV2(String s) {
+        int L = s.length();
+        char[] ca = s.toCharArray();
+        reverse(ca, 0, L - 1);
+        StringBuilder sb = new StringBuilder();
+        for (int i, j = 0; j < L; ++j) {
+            if (ca[j] != ' ') {
+                i = j;
+                while (j+1 < L && ca[j+1] != ' ') {
+                    ++j;
+                }
+                reverse(ca, i, j);
+                sb.append(ca, i, j-i+1).append(' ');
+            }
+        }
+        return sb.toString().trim();
+    }
+
+    private void reverse(char[] ca, int i, int j) {
+        for (; i < j; ++i, --j) {
+            char tmp = ca[i];
+            ca[i] = ca[j];
+            ca[j] = tmp;
+        }
+    }
+
     public static void main(String[] args) {
         String[] testCases = {"the sky is blue", "  hello world!  ", "a good   example"};
         String[] results = {"blue is sky the", "world! hello", "example good a"};
         Solution2 solution = new Solution2();
         for (int i = 0; i < testCases.length; ++i) {
             String result = results[i];
-            String ans = solution.reverseWords(testCases[i]);
+            String ans = solution.reverseWordsV2(testCases[i]);
             if (!ans.equals(result)) {
                 System.out.format("Original string: %s\nReversed string: %s\n", result, ans);
             }

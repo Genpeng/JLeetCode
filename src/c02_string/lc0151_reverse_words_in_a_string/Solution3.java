@@ -43,6 +43,29 @@ public class Solution3 {
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
+     * @param s String, a string which contains multiple words
+     * @return String, the modified string
+     */
+    public String reverseWordsV1(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = s.length() - 1, j; i >= 0; --i) {
+            if (s.charAt(i) != ' ') {
+                j = i;
+                while (i-1 > -1 && s.charAt(i-1) != ' ') {
+                    --i;
+                }
+                sb.append(s, i, j+1).append(' ');
+            }
+        }
+        return sb.toString().trim();
+    }
+
+    /**
+     * Approach 3: Two Pointers
+     * Start at the end of the string, find each word, and splice.
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
      * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Reverse Words in a String.
      * Memory Usage: 39.4 MB, less than 30.11% of Java online submissions for Reverse Words in a String.
@@ -50,23 +73,13 @@ public class Solution3 {
      * @param s String, a string which contains multiple words
      * @return String, the modified string
      */
-    public String reverseWords(String s) {
+    public String reverseWordsV2(String s) {
         StringBuilder sb = new StringBuilder();
         for (int i = s.length() - 1, j; i >= 0; --i) {
             if (s.charAt(i) != ' ') {
-                // j = i;
-                // while (j - 1 > - 1 && s.charAt(j-1) != ' ') {
-                //     --j;
-                // }
-                j = s.lastIndexOf(' ', i);
-
-                // for (int k = j; k <= i; ++k) {
-                //     sb.append(s.charAt(k));
-                // }
-                // sb.append(' ');
-                sb.append(s, j+1, i+1).append(' ');
-
-                i = j;
+                j = i;
+                i = s.lastIndexOf(' ', i);
+                sb.append(s, i, j+1).append(' ');
             }
         }
         return sb.toString().trim();
@@ -78,7 +91,7 @@ public class Solution3 {
         Solution3 solution = new Solution3();
         for (int i = 0; i < testCases.length; ++i) {
             String result = results[i];
-            String ans = solution.reverseWords(testCases[i]);
+            String ans = solution.reverseWordsV2(testCases[i]);
             if (!ans.equals(result)) {
                 System.out.format("Original string: %s\nReversed string: %s\n", result, ans);
             }
