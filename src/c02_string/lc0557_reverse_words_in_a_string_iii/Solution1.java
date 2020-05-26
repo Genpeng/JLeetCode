@@ -24,7 +24,7 @@ package c02_string.lc0557_reverse_words_in_a_string_iii;
  */
 public class Solution1 {
     /**
-     * Approach 1: Use build-in API
+     * Approach 1: Use Build-in API
      * Split the string into words, reverse each word, then join them back together.
      * Time Complexity: O(N)
      * Space Complexity: O(N)

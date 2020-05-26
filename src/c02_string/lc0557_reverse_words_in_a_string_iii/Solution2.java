@@ -36,17 +36,16 @@ public class Solution2 {
     public String reverseWords(String s) {
         int L = s.length();
         char[] ca = s.toCharArray();
-        for (int i = 0, j; i < L; ++i) {
-            if (ca[i] != ' ') {
-                j = i;
-                while (j + 1 < L && ca[j+1] != ' ') { // Note: can't reverse the order of two conditions!!!
+        for (int i, j = 0; j < L; ++j) {
+            if (ca[j] != ' ') {
+                i = j;
+                while (j+1 < L && ca[j+1] != ' ') {
                     ++j;
                 }
                 reverse(ca, i, j);
-                i = j;
             }
         }
-        return new String(ca);
+        return String.valueOf(ca);
     }
 
     private void reverse(char[] ca, int i, int j) {
