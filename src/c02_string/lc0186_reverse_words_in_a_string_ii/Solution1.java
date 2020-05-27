@@ -47,15 +47,14 @@ public class Solution1 {
     }
 
     private void reverseEachWords(char[] ca) {
-        int L = ca.length;
-        for (int i = 0, j; i < L; ++i) {
-            if (ca[i] != ' ') {
-                j = i;
-                while (j + 1 < L && ca[j+1] != ' ') {
+        int n = ca.length;
+        for (int i, j = 0; j < n; ++j) {
+            if (ca[j] != ' ') {
+                i = j;
+                while (j+1 < n && ca[j+1] != ' ') {
                     ++j;
                 }
                 reverse(ca, i, j);
-                i = j;
             }
         }
     }
