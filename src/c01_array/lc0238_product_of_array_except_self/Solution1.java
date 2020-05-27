@@ -22,14 +22,17 @@ import java.util.Arrays;
  *   for the purpose of space complexity analysis.)
  * ==========================================================================================================
  *
+ * Tags: array;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法1：Left and Right product lists
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Left and Right product lists
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 1 ms, faster than 100.00% of Java online submissions for Product of Array Except Self.
      * Memory Usage: 47.7 MB, less than 5.51% of Java online submissions for Product of Array Except Self.
      *
@@ -40,21 +43,21 @@ public class Solution1 {
     public int[] productExceptSelt(int[] nums) {
         int n = nums.length;
         // Step 1: calculate L[i], where L[i] contains the product of all the elements to the left of i, O(n)
-        int[] L = new int[n];
-        L[0] = 1;
+        int[] left = new int[n];
+        left[0] = 1;
         for (int i = 1; i < n; ++i) {
-            L[i] = L[i-1] * nums[i-1];
+            left[i] = left[i-1] * nums[i-1];
         }
         // Step 2: calculate R[i], where R[i] contains the product of all the elements to the right of i, O(n)
-        int[] R = new int[n];
-        R[n-1] = 1;
+        int[] right = new int[n];
+        right[n-1] = 1;
         for (int i = n - 2; i >= 0; --i) {
-            R[i] = R[i+1] * nums[i+1];
+            right[i] = right[i+1] * nums[i+1];
         }
         // Step3: construct the answer array, where ans[i] = L[i] * R[i]
         int[] ans = new int[n];
         for (int i = 0; i < n; ++i) {
-            ans[i] = L[i] * R[i];
+            ans[i] = left[i] * right[i];
         }
         return ans;
     }

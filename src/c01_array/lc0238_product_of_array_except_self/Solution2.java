@@ -22,14 +22,17 @@ import java.util.Arrays;
  *   for the purpose of space complexity analysis.)
  * ==========================================================================================================
  *
+ * Tags: array;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法2：O(1) space approach (the improved version of solution 1)
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 2: O(1) space approach (the improved version of solution 1)
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 1 ms, faster than 100.00% of Java online submissions for Product of Array Except Self.
      * Memory Usage: 48 MB, less than 5.51% of Java online submissions for Product of Array Except Self.
      *
