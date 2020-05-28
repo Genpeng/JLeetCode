@@ -28,16 +28,25 @@ import java.util.Set;
  * Output: true
  * ==========================================================================================================
  *
+ * Tags: array;hash table;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution3 {
+    /**
+     * Approach 3: Hash Table
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
+     * @param nums int[], the input array of integers
+     * @return boolean, true if the array contains any duplicates
+     */
     public boolean containsDuplicate(int[] nums) {
-        Set<Integer> numsHaveSeen = new HashSet<>();
+        Set<Integer> set = new HashSet<>(nums.length);
         for (int num : nums) {
-            if (numsHaveSeen.contains(num)) {
+            if (!set.add(num)) {
                 return true;
             }
-            numsHaveSeen.add(num);
         }
         return false;
     }
