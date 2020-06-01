@@ -19,14 +19,17 @@ package c01_array.lc0059_spiral_matrix_ii;
  * ]
  * ==========================================================================================================
  *
+ * Tags: array;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
-     * 解法：Layer-by-Layer
-     * 时间复杂度：O(n ^ 2)
-     * 空间复杂度：O(1)
+     * Approach 1: Layer-by-Layer
+     * Time Complexity: O(n ^ 2)
+     * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Spiral Matrix II.
      * Memory Usage: 37.6 MB, less than 8.33% of Java online submissions for Spiral Matrix II.
      *
@@ -34,26 +37,23 @@ public class Solution {
      * @return int[][], the square matrix
      */
     public int[][] generateMatrix(int n) {
-        if (n == 0) {
-            return new int[][] {};
-        }
-        int currElem = 1;
-        int r1 = 0, c1 = 0;
-        int r2 = n - 1, c2 = n - 1;
         int[][] matrix = new int[n][n];
+        int r1 = 0, c1 = 0;
+        int r2 = n-1, c2 = n-1;
+        int i = 1;
         while (r1 <= r2 && c1 <= c2) {
             for (int c = c1; c <= c2; ++c) {
-                matrix[r1][c] = currElem++;
+                matrix[r1][c] = i++;
             }
             for (int r = r1 + 1; r <= r2; ++r) {
-                matrix[r][c2] = currElem++;
+                matrix[r][c2] = i++;
             }
-            if (r1 < r2 && c1 < c2) {
+            if (r2 > r1 && c2 > c1) {
                 for (int c = c2 - 1; c > c1; --c) {
-                    matrix[r2][c] = currElem++;
+                    matrix[r2][c] = i++;
                 }
                 for (int r = r2; r > r1; --r) {
-                    matrix[r][c1] = currElem++;
+                    matrix[r][c1] = i++;
                 }
             }
             ++r1;
