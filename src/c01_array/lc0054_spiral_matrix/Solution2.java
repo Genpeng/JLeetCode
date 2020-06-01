@@ -31,17 +31,20 @@ import java.util.List;
  * Output: [1,2,3,4,8,12,11,10,9,5,6,7]
  * ==========================================================================================================
  *
+ * Tags: array;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法2（Layer-by-Layer）
-     * 时间复杂度：O(m * n)
-     * 空间复杂度：O(1)
+     * Approach 2: Layer-by-Layer
+     * Time Complexity: O(m * n)
+     * Space Complexity: O(1)
      *
-     * 备注：
-     * - 参照官方解答2（https://leetcode.com/articles/spiral-matrix/）
+     * Reference:
+     * [1] https://leetcode.com/articles/spiral-matrix/
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Spiral Matrix.
      * Memory Usage: 37.9 MB, less than 5.21% of Java online submissions for Spiral Matrix.
      *
@@ -50,12 +53,11 @@ public class Solution2 {
      */
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> ans = new LinkedList<>();
-        if (isIllegal(matrix)) {
+        if (matrix.length == 0) { // in practice, we can use `isIllegal(...)` below to judge
             return ans;
         }
-        int rowNum = matrix.length, colNum = matrix[0].length;
         int r1 = 0, c1 = 0;
-        int r2 = rowNum - 1, c2 = colNum - 1;
+        int r2 = matrix.length - 1, c2 = matrix[0].length - 1;
         while (r1 <= r2 && c1 <= c2) {
             for (int c = c1; c <= c2; ++c) {
                 ans.add(matrix[r1][c]);
@@ -63,7 +65,7 @@ public class Solution2 {
             for (int r = r1 + 1; r <= r2; ++r) {
                 ans.add(matrix[r][c2]);
             }
-            if (r1 < r2 && c1 < c2) {
+            if (r1 < r2 && c1 < c2) { // to overcome the situation like `[[3], [2]]`
                 for (int c = c2 - 1; c > c1; --c) {
                     ans.add(matrix[r2][c]);
                 }
