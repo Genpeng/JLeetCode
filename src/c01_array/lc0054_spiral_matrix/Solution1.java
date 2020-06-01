@@ -31,17 +31,22 @@ import java.util.List;
  * Output: [1,2,3,4,8,12,11,10,9,5,6,7]
  * ==========================================================================================================
  *
+ * Tags: array;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法1（Simulation）
-     * 时间复杂度：O(m * n)
-     * 空间复杂度：O(m * n)
-     * <p>
-     * 备注：
-     * - 参照官方解答1（https://leetcode.com/articles/spiral-matrix/）
-     * <p>
+     * Approach 1: Simulation
+     * Draw the path that the spiral makes. We know that the path should turn clockwise
+     * whenever it would go out of bounds or into a cell that was previously visited.
+     * Time Complexity: O(m * n)
+     * Space Complexity: O(m * n)
+     *
+     * Reference:
+     * [1] https://leetcode.com/articles/spiral-matrix/
+     *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Spiral Matrix.
      * Memory Usage: 37.4 MB, less than 5.21% of Java online submissions for Spiral Matrix.
      *
@@ -50,25 +55,26 @@ public class Solution1 {
      */
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> ans = new LinkedList<>();
-        if (isIllegal(matrix)) {
+        if (matrix.length == 0) { // in practice, we can use `isIllegal(...)` below to judge
             return ans;
         }
-        int rowNum = matrix.length, colNum = matrix[0].length; // number of rows, number of columns
-        int[] rowDirs = new int[]{0, 1, 0, -1};
-        int[] colDirs = new int[]{1, 0, -1, 0};
-        boolean[][] seen = new boolean[rowNum][colNum];
-        int ri = 0, ci = 0, di = 0;
-        for (int i = 0; i < rowNum * colNum; ++i) {
-            ans.add(matrix[ri][ci]);
-            seen[ri][ci] = true;
-            int nri = ri + rowDirs[di], nci = ci + colDirs[di]; // next row index, next column index
-            if (nri >= 0 && nri < rowNum && nci >= 0 && nci < colNum && !seen[nri][nci]) {
-                ri = nri;
-                ci = nci;
+        final int R = matrix.length, C = matrix[0].length;
+        boolean[][] seen = new boolean[R][C];
+        int[] dx = {0, 1, 0, -1};
+        int[] dy = {1, 0, -1, 0};
+        int x = 0, y = 0, di = 0;
+        for (int i = 0; i < R * C; ++i) {
+            ans.add(matrix[x][y]);
+            seen[x][y] = true;
+            int nx = x + dx[di];
+            int ny = y + dy[di];
+            if (nx >= 0 && nx < R && ny >= 0 && ny < C && !seen[nx][ny]) {
+                x = nx;
+                y = ny;
             } else {
                 di = (di + 1) % 4;
-                ri = ri + rowDirs[di];
-                ci = ci + colDirs[di];
+                x = x + dx[di];
+                y = y + dy[di];
             }
         }
         return ans;
