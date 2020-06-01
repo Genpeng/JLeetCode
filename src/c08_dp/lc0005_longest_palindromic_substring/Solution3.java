@@ -38,8 +38,8 @@ public class Solution3 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
+        final int L = s.length();
         char[] ca = s.toCharArray();
-        int L = s.length();
         boolean[] dp = new boolean[L];
         String ans = "";
         for (int i = L-1; i >= 0; --i) {
