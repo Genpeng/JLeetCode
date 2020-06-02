@@ -21,40 +21,40 @@ import entity.ListNode;
  * Explanation: 342 + 465 = 807.
  * ==========================================================================================================
  *
+ * Tags: linked list;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/20
  */
 public class Solution1 {
     /**
-     * 解法一：非递归
-     * 时间复杂度：O(max(m, n))，其中m和n分别表示两个的长度
-     * 空间复杂度：O(max(m, n))，返回链表的长度最多为max(m, n)+1
+     * Approach 1: Iteration (Intuition)
+     * Time Complexity: O(max(m, n))
+     * Space Complexity: O(max(m, n))
      *
      * @param l1 ListNode, the head of one of linked list
      * @param l2 ListNode, the head of the other linked list
      * @return ListNode, result represents the sum of two linked lists
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        // can be removed
-//        if (l1 == null || l2 == null) {
-//            return l1 == null ? l2 : l1;
-//        }
         ListNode dummyHead = new ListNode(-1);
-        ListNode tail = dummyHead;
-        int sum, carry = 0;
-        while (l1 != null || l2 != null) {
-            sum = carry;
-            sum += l1 == null ? 0 : l1.val;
-            sum += l2 == null ? 0 : l2.val;
-            tail.next = new ListNode(sum % 10);
-            tail = tail.next;
+        ListNode prev = dummyHead;
+        ListNode p1 = l1, p2 = l2;
+        int s;
+        int carry = 0;
+        while (p1 != null || p2 != null) {
+            s = carry;
+            s += p1 == null ? 0 : p1.val;
+            s += p2 == null ? 0 : p2.val;
+            prev.next = new ListNode(s % 10);
             // update to next iteration
-            carry = sum / 10;
-            l1 = l1 == null ? l1 : l1.next;
-            l2 = l2 == null ? l2 : l2.next;
+            carry = s / 10;
+            p1 = p1 == null ? p1 : p1.next;
+            p2 = p2 == null ? p2 : p2.next;
+            prev = prev.next;
         }
         if (carry > 0) {
-            tail.next = new ListNode(carry);
+            prev.next = new ListNode(carry);
         }
         return dummyHead.next;
     }
