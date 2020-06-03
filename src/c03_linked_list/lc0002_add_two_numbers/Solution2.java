@@ -28,10 +28,9 @@ import entity.ListNode;
  */
 public class Solution2 {
     /**
-     * 解法二：递归
-     * 时间复杂度：O(max(m,n))，其中m和n分别表示两个的长度
-     * 空间复杂度：O(max(m,n))，额外空间是由于递归调用占用系统栈的空间，
-     *           递归的深度最多为 max(m,n)+1 层
+     * Approach 2: Recursion
+     * Time Complexity: O(max(m,n))
+     * Space Complexity: O(max(m,n))
      *
      * @param l1 ListNode, the head of one of linked list
      * @param l2 ListNode, the head of the other linked list
@@ -46,18 +45,18 @@ public class Solution2 {
         if (l1 == null && l2 == null) {
             return carry > 0 ? new ListNode(carry) : null;
         }
-        int sum = carry;
+        int s = carry;
         ListNode l1Next = l1, l2Next = l2;
         if (l1 != null) {
-            sum += l1.val;
+            s += l1.val;
             l1Next = l1.next;
         }
         if (l2 != null) {
-            sum += l2.val;
+            s += l2.val;
             l2Next = l2.next;
         }
-        ListNode head = new ListNode(sum % 10);
-        head.next = addTwoNumbers(l1Next, l2Next, sum / 10);
+        ListNode head = new ListNode(s % 10);
+        head.next = addTwoNumbers(l1Next, l2Next, s / 10);
         return head;
     }
 
