@@ -25,14 +25,17 @@ import java.util.List;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;divide and conquer;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/07/04
  */
 public class Solution1 {
     /**
-     * 解法一：暴力法（Brute force），取出链表中所有节点的值，然后进行排序，最后用排序的数组生成一个新的链表
-     * 时间复杂度：O(N * log(N))
-     * 空间复杂度：O(N)
+     * Approach 1: Brute Force
+     * Time Complexity: O(N * log(N))
+     * Space Complexity: O(N)
+     * where N represents the number of all the elements
      *
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list

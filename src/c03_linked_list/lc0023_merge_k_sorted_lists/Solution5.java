@@ -21,24 +21,26 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;divide and conquer;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/07/04
  */
 public class Solution5 {
     /**
-     * 解法五：Divide & Conquer (Top down)
-     *
-     * 时间复杂度：O(N * log(k))
-     * 空间复杂度：O(log(k))
+     * Approach 5: Divide & Conquer (Top down)
+     * Time Complexity: O(N * log(K))
+     * Space Complexity: O(log(K))
      *
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) {
+        final int N = lists.length;
+        if (N == 0) {
             return null;
         }
-        return mergeLists(lists, 0, lists.length - 1);
+        return mergeLists(lists, 0, N-1);
     }
 
     /**

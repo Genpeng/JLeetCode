@@ -23,24 +23,27 @@ import java.util.PriorityQueue;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;divide and conquer;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/07/04
  */
 public class Solution3 {
     /**
-     * 解法三：
-     * 对解法二进行优化，利用优先队列找出最小值，从而将查找最小值的时间复杂度从O(k)降为O(log(k))，
-     * 当然也将空间复杂度从O(1)提升为O(k)。
-     *
-     * 时间复杂度：O(N * log(k))
-     * 空间复杂度：O(k)
+     * Approach 3: improve approach 2, use priority queue to find out the minimum node
+     * Time Complexity: O(N * log(K))
+     * Space Complexity: O(K)
      *
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) {
+        final int N = lists.length;
+        if (N == 0) {
             return null;
+        }
+        if (N == 1) {
+            return lists[0]; // 当只有一个链表时，不用执行下面的程序
         }
         PriorityQueue<ListNode> pq = new PriorityQueue<>((n1, n2) -> n1.val - n2.val);
 //        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
@@ -49,9 +52,9 @@ public class Solution3 {
 //                return n1.val - n2.val;
 //            }
 //        });
-        for (int i = 0; i < lists.length; ++i) {
-            if (lists[i] != null) {
-                pq.offer(lists[i]);
+        for (ListNode node : lists) {
+            if (node != null) {
+                pq.offer(node);
             }
         }
         ListNode dummyHead = new ListNode(-1);

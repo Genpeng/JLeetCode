@@ -21,28 +21,35 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;divide and conquer;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/07/04
  */
 public class Solution2 {
     /**
-     * 解法二："k指针"（双指针的扩展版），即每次将值最小的节点加到结果链表中
-     * 时间复杂度：O(N * k)
-     * 空间复杂度：O(1)
+     * Approach 2: K Pointers
+     * Time Complexity: O(N * K)
+     * Space Complexity: O(1)
+     * where K is the number of linked lists, and N represents the number of all the elements
      *
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) {
+        final int N = lists.length;
+        if (N == 0) {
             return null;
+        }
+        if (N == 1) {
+            return lists[0]; // 当 N == 1 时，不需要进入循环
         }
         ListNode dummyHead = new ListNode(-1);
         ListNode tail = dummyHead;
         while (true) {
             int minIndex = -1;
             ListNode minNode = new ListNode(Integer.MAX_VALUE);
-            for (int i = 0; i < lists.length; ++i) {
+            for (int i = 0; i < N; ++i) {
                 ListNode node = lists[i];
                 if (node != null && node.val < minNode.val) {
                     minIndex = i;

@@ -21,25 +21,28 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;divide and conquer;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/07/04
  */
 public class Solution4 {
     /**
-     * 解法四：将问题分解成为合并两个链表（k-1次）
-     *
-     * 时间复杂度：O(N * k)
-     * 空间复杂度：O(1)
+     * Approach 4: Convert to Merge Two Sorted Linked Lists (K-1 times)
+     * Time Complexity: O(K ^ 2 * L)
+     * Space Complexity: O(1)
+     * where K is the number of linked lists, and L represents the longest length in all linked lists
      *
      * @param lists ListNode[], k sorted linked lists
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        if (lists == null || lists.length == 0) {
+        final int N = lists.length;
+        if (N == 0) {
             return null;
         }
         ListNode head = lists[0];
-        for (int i = 1; i < lists.length; ++i) {
+        for (int i = 1; i < N; ++i) {
             head = mergeTwoLists(head, lists[i]);
         }
         return head;
