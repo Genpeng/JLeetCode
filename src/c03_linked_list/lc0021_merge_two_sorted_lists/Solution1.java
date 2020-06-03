@@ -17,14 +17,16 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4
  * ==========================================================================================================
  *
+ * Tags: linked list;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/27
  */
 public class Solution1 {
     /**
-     * 解法一：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 1: Iteration
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * @param l1 ListNode, one of two linked lists
      * @param l2 ListNode, the other linked list
@@ -41,7 +43,6 @@ public class Solution1 {
                 tail.next = l2;
                 l2 = l2.next;
             }
-            // update to next iteration
             tail = tail.next;
         }
         tail.next = l1 == null ? l2 : l1;
