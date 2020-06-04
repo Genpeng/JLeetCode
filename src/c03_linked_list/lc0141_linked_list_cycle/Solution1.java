@@ -36,26 +36,28 @@ import java.util.Set;
  * Can you solve it using O(1) (i.e. constant) memory?
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/31
  */
 public class Solution1 {
     /**
-     * 解法一：哈希表
-     * 时间复杂度：O(n)，其中n表示链表的节点数目
-     * 空间复杂度：O(n)
+     * Approach 1: Hash Table
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param head ListNode, the head of the linked list
      * @return boolean, true if the linked list has a cycle
      */
     public boolean hasCycle(ListNode head) {
-        Set<ListNode> nodesHasSeen = new HashSet<>();
+        Set<ListNode> seen = new HashSet<>();
         ListNode curr = head;
         while (curr != null) {
-            if (nodesHasSeen.contains(curr)) {
+            if (seen.contains(curr)) {
                 return true;
             }
-            nodesHasSeen.add(curr);
+            seen.add(curr);
             curr = curr.next;
         }
         return false;

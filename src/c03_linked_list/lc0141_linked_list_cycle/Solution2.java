@@ -33,14 +33,16 @@ import entity.ListNode;
  * Can you solve it using O(1) (i.e. constant) memory?
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/31
  */
 public class Solution2 {
     /**
-     * 解法二：双指针
-     * 时间复杂度：O(n)，详细分析见：https://blog.csdn.net/x273591655/article/details/83343679
-     * 空间复杂度：O(1)，只需要存储两个节点的引用
+     * Approach 2: Fast Slow Pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * @param head ListNode, the head of the linked list
      * @return boolean, true if the linked list has a cycle
