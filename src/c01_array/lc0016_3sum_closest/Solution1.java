@@ -22,7 +22,7 @@ import java.util.Arrays;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: Two Pointers
      * Time Complexity: O(N ^ 2)
@@ -68,7 +68,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solu = new Solution();
+        Solution1 solu = new Solution1();
         System.out.println(solu.threeSumClosest(new int[] {-1, 2, 1, -4}, 1));
     }
 }
