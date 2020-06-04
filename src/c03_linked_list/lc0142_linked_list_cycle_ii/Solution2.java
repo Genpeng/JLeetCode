@@ -46,6 +46,8 @@ public class Solution2 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
+     * TODO: 思考是否有可能慢指针会在环里面走不止一圈，如果那样的话，之前的推导就不严谨。
+     *
      * @param head ListNode, the head of linked list
      * @return ListNode, the node where the cycle begins
      */
