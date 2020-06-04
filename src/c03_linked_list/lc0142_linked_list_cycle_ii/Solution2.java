@@ -35,14 +35,16 @@ import entity.ListNode;
  * Can you solve it without using extra space?
  * ==========================================================================================================
  *
+ * Tags: linked list;two pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/31
  */
 public class Solution2 {
     /**
-     * 解法二：双指针
-     * 时间复杂度：O(n)，其中n表示链表节点的数目
-     * 空间复杂度：O(1)，只需要存储三个节点的引用
+     * Approach 2: Fast Slow Pointers
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * @param head ListNode, the head of linked list
      * @return ListNode, the node where the cycle begins
