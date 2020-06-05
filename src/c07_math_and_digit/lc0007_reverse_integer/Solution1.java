@@ -33,7 +33,7 @@ package c07_math_and_digit.lc0007_reverse_integer;
  */
 public class Solution1 {
     /**
-     * Approach 1: Imagine an integer is a stack, and we can use another stack (integer) to store the popped bits
+     * Approach 1: Imagine an integer is a stack, and we can use another stack (integer) to store the popped digits
      * Time Complexity: O(N)
      * Space Complexity: O(1)
      *
