@@ -23,16 +23,26 @@ package c07_math_and_digit.lc0007_reverse_integer;
  *
  * Note:
  * - Assume we are dealing with an environment which could only store integers within
- *   the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem,
+ *   the 32-bit signed integer range: [−2 ^ 31,  2 ^ 31 − 1]. For the purpose of this problem,
  *   assume that your function returns 0 when the reversed integer overflows.
  * ==========================================================================================================
  *
+ * Tags: math;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
-    public int reverse(int x) {
+public class Solution1 {
+    /**
+     * Approach 1: Imagine an integer is a stack, and we can use another stack (integer) to store the popped bits
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     *
+     * @param x int, the input integer
+     * @return int, the reverse integer
+     */
+    public int reverseV1(int x) {
         int rev = 0;
-        while (x != 0) {
+        while (x != 0) { // !stack.isEmpty()
             // pop from the old integer
             int pop = x % 10;
             x /= 10;
@@ -48,6 +58,14 @@ public class Solution {
         return rev;
     }
 
+    /**
+     * Approach 1: Imagine an integer is a stack, and we can use another stack (integer) to store the popped bits
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     *
+     * @param x int, the input integer
+     * @return int, the reverse integer
+     */
     public int reverseV2(int x) {
         int prevRev = 0, rev = 0;
         while (x != 0) {
@@ -66,8 +84,8 @@ public class Solution {
 
     public static void main(String[] args) {
         int x = 21474;
-        Solution solution = new Solution();
-        System.out.println(solution.reverse(x));
-        System.out.println(solution.reverseV2(x));
+        Solution1 solu = new Solution1();
+        System.out.println(solu.reverseV1(x));
+        System.out.println(solu.reverseV2(x));
     }
 }
