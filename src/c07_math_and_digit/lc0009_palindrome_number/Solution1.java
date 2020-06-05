@@ -27,15 +27,19 @@ package c07_math_and_digit.lc0009_palindrome_number;
  * - Coud you solve it without converting the integer to a string?
  * ==========================================================================================================
  *
+ * Tags: math;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
-     * 解法：Revert half of the number
-     * 思路：对 `x` 的后半部分取反，并与前半部分进行比较
-     * 时间复杂度：O(log(n))
-     * 空间复杂度：O(1)
+     * Approach 1: Reverse half of the integer
+     * Reverse the second half of the integer and compare it with the first half
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     * where N represents the number of digits
      *
+     * Result of Submission:
      * Runtime: 6 ms, faster than 100.00% of Java online submissions for Palindrome Number.
      * Memory Usage: 40.4 MB, less than 5.02% of Java online submissions for Palindrome Number.
      *
@@ -48,9 +52,9 @@ public class Solution {
         }
         int rev = 0;
         while (x > rev) {
-            // push the digit into new rev
+            // push into new integer
             rev = rev * 10 + x % 10;
-            // pop the digit from x
+            // pop from old integer
             x /= 10;
         }
         return x == rev || x == rev / 10;
@@ -58,7 +62,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int x = 12321;
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.isPalindrome(x));
     }
 }
