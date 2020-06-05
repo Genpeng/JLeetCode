@@ -10,7 +10,7 @@ public class ListNode {
 
     public ListNode(int[] arr) {
         if (arr == null || arr.length == 0) {
-            throw new IllegalArgumentException("[ERROR] The input array can not be empty!!!");
+            throw new IllegalArgumentException("[ERROR] The input array is null or empty!!!");
         }
 
         this.val = arr[0];
