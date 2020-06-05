@@ -33,10 +33,12 @@ import entity.ListNode;
  * - Do not return anything from your function.
  * ==========================================================================================================
  *
+ * Tags: linked list;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/05
  */
-public class Solution {
+public class Solution1 {
     public void deleteNode(ListNode node) {
         node.val = node.next.val;
         node.next = node.next.next;
