@@ -12,12 +12,11 @@ public class ListNode {
         if (arr == null || arr.length == 0) {
             throw new IllegalArgumentException("[ERROR] The input array is null or empty!!!");
         }
-
         this.val = arr[0];
-        ListNode cur = this;
+        ListNode prev = this;
         for (int i = 1; i < arr.length; ++i) {
-            cur.next = new ListNode(arr[i]);
-            cur = cur.next;
+            prev.next = new ListNode(arr[i]);
+            prev = prev.next;
         }
     }
 
