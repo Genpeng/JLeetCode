@@ -31,28 +31,31 @@ import java.util.Set;
  * - Your code should preferably run in O(n) time and use only O(1) memory.
  * ==========================================================================================================
  *
+ * Tags: linked list;hash table;two pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/01
  */
 public class Solution1 {
     /**
-     * 解法一：哈希表
-     * 时间复杂度：O(m + n)，其中m和n分别表示两个链表的长度
-     * 空间复杂度：O(m) or O(n)
+     * Approach 1: Hash Table
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     * where N represents the total length of two linked lists
      *
      * @param head1 ListNode, the head of one of the two linked list
      * @param head2 ListNode, the other head of the two linked list
      * @return ListNode, the intersection node
      */
     public ListNode getIntersectionNode(ListNode head1, ListNode head2) {
-        Set<ListNode> nodesHasSeen = new HashSet<>();
+        Set<ListNode> seen = new HashSet<>();
         ListNode p1 = head1, p2 = head2;
         while (p1 != null) {
-            nodesHasSeen.add(p1);
+            seen.add(p1);
             p1 = p1.next;
         }
         while (p2 != null) {
-            if (nodesHasSeen.contains(p2)) {
+            if (seen.contains(p2)) {
                 return p2;
             }
             p2 = p2.next;

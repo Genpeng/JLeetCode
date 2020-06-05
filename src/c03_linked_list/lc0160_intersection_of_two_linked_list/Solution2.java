@@ -28,14 +28,17 @@ import entity.ListNode;
  * - Your code should preferably run in O(n) time and use only O(1) memory.
  * ==========================================================================================================
  *
+ * Tags: linked list;hash table;two pointers;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/01
  */
 public class Solution2 {
     /**
-     * 解法二：双指针
-     * 时间复杂度：O(L1 + L2 + L3)，具体分析见：https://blog.csdn.net/x273591655/article/details/83409873
-     * 空间复杂度：O(1)
+     * Approach 2: Two Pointers
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     * where N represents the total length of two linked lists
      *
      * @param head1 ListNode, the head of one of the two linked list
      * @param head2 ListNode, the other head of the two linked list
