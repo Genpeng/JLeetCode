@@ -21,6 +21,8 @@ package c07_math_and_digit.lc0136_single_number;
  * Output: 4
  * ==========================================================================================================
  *
+ * Tags: array;math;hash table;bit manipulation;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
@@ -29,6 +31,7 @@ public class Solution3 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Single Number.
      * Memory Usage: 42.1 MB, less than 5.93% of Java online submissions for Single Number.
      *
@@ -36,9 +39,9 @@ public class Solution3 {
      * @return int, the element which appears once
      */
     public int singleNumber(int[] nums) {
-        int ans = nums[0];
-        for (int i = 1; i < nums.length; ++i) {
-            ans ^= nums[i];
+        int ans = 0;
+        for (int num : nums) {
+            ans ^= num;
         }
         return ans;
     }

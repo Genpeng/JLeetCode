@@ -24,14 +24,18 @@ import java.util.Map;
  * Output: 4
  * ==========================================================================================================
  *
+ * Tags: array;math;hash table;bit manipulation;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * Solution 1: Map
+     * Solution 1: Hash Table
      * Time Complexity: O(n)
      * Space Complexity: O(n)
+     * where n represents the length of the array
      *
+     * Result of Submission:
      * Runtime: 7 ms, faster than 29.83% of Java online submissions for Single Number.
      * Memory Usage: 41.8 MB, less than 55.56% of Java online submissions for Single Number.
      *

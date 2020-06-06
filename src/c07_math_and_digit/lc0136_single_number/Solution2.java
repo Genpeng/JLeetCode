@@ -24,6 +24,8 @@ import java.util.Set;
  * Output: 4
  * ==========================================================================================================
  *
+ * Tags: array;math;hash table;bit manipulation;
+ *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
@@ -32,6 +34,7 @@ public class Solution2 {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 4 ms, faster than 43.68% of Java online submissions for Single Number.
      * Memory Usage: 41.4 MB, less than 68.15% of Java online submissions for Single Number.
      *
