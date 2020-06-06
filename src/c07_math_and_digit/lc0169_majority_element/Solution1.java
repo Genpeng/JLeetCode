@@ -24,20 +24,22 @@ import java.util.Map;
  * Output: 2
  * ==========================================================================================================
  *
+ * Tags: array;hash table;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/14
  */
 public class Solution1 {
     /**
-     * 解法1：Hash Map
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Hash Table
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param nums int[], the array contains majority element
      * @return int, the majority element
      */
     public int majorityElement(int[] nums) {
-        Map<Integer, Integer> counts = new HashMap<>(16);
+        Map<Integer, Integer> counts = new HashMap<>();
         for (int num : nums) {
             counts.put(num, counts.getOrDefault(num, 0) + 1);
             if (counts.get(num) > nums.length / 2) {
@@ -45,20 +47,6 @@ public class Solution1 {
             }
         }
         throw new IllegalArgumentException("[INFO] The input array is illegal!!!");
-    }
-
-    public int majorityElement1(int[] nums) {
-        Map<Integer, Integer> counts = new HashMap<>(16);
-        for (int num : nums) {
-            counts.put(num, counts.getOrDefault(num, 0) + 1);
-        }
-        Map.Entry<Integer, Integer> majorityEntry = null;
-        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
-            if (majorityEntry == null || entry.getValue() > majorityEntry.getValue()) {
-                majorityEntry = entry;
-            }
-        }
-        return majorityEntry.getKey();
     }
 
     public static void main(String[] args) {

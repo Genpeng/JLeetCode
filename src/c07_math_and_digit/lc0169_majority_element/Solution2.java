@@ -23,14 +23,16 @@ import java.util.Arrays;
  * Output: 2
  * ==========================================================================================================
  *
+ * Tags: array;hash table;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/14
  */
 public class Solution2 {
     /**
-     * 解法2：对数组进行排序，取索引为⌊n/2⌋的元素（即第 ⌊n/2⌋+1 个元素）
-     * 时间复杂度：O(n * log(n))
-     * 空间复杂度：O(n) or O(1)，取决于是否可以直接对原数组进行排序
+     * Approach 2: Sort
+     * Time Complexity: O(n * log(n))
+     * Space Complexity: O(n) or O(1), depends on whether the input array can be modified
      *
      * @param nums int[], the array contains majority element
      * @return int, the majority element

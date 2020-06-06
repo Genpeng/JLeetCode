@@ -21,14 +21,16 @@ package c07_math_and_digit.lc0169_majority_element;
  * Output: 2
  * ==========================================================================================================
  *
+ * Tags: array;hash table;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/14
  */
 public class Solution3 {
     /**
-     * 解法3：多数投票算法（Boyer-Moore majority vote algorithm）
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 3: Boyer-Moore Majority Vote algorithm
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      *
      * @param nums int[], the array contains majority element
      * @return int, the majority element
@@ -36,12 +38,12 @@ public class Solution3 {
     public int majorityElement(int[] nums) {
         int m = nums[0], count = 1;
         for (int i = 1; i < nums.length; ++i) {
-            if (count == 0) {
+            if (m == nums[i]) {
+                ++count;
+            } else if (count == 0) {
                 m = nums[i];
                 count = 1;
-            } else if (nums[i] == m) {
-                ++count;
-            } else { // nums[i] != m
+            } else {
                 --count;
             }
         }
