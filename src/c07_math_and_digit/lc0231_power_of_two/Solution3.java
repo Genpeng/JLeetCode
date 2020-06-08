@@ -28,29 +28,22 @@ package c07_math_and_digit.lc0231_power_of_two;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * Approach 1: Iteration
-     * If a number is a power of two, then the highest digit is 1, and other digits are 0.
-     * Time Complexity: O(log(n))
+     * Approach 3: Bit Manipulation
+     * Time Complexity: O(1)
      * Space Complexity: O(1)
      *
      * @param n int, an integer
      * @return boolean, true if the integer is a power of two
      */
     public boolean isPowerOfTwo(int n) {
-        if (n <= 0) {
-            return false;
-        }
-        while (n % 2 == 0) {
-            n /= 2;
-        }
-        return n == 1;
+        return n > 0 && (n & (n-1)) == 0;
     }
 
     public static void main(String[] args) {
         int n = 1;
-        Solution1 solution = new Solution1();
+        Solution3 solution = new Solution3();
         System.out.println(solution.isPowerOfTwo(n));
     }
 }

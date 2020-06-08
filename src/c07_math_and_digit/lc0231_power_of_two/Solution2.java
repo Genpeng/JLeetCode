@@ -30,15 +30,21 @@ package c07_math_and_digit.lc0231_power_of_two;
  */
 public class Solution2 {
     /**
-     * Approach 2: Bit Manipulation
-     * Time Complexity: O(1)
-     * Space Complexity: O(1)
+     * Approach 2: Recursive
+     * Time Complexity: O(log(n))
+     * Space Complexity: O(log(n))
      *
      * @param n int, an integer
      * @return boolean, true if the integer is a power of two
      */
     public boolean isPowerOfTwo(int n) {
-        return n > 0 && (n & (n-1)) == 0;
+        if (n <= 0) {
+            return false;
+        }
+        while (n % 2 == 0) {
+            n /= 2;
+        }
+        return n == 1;
     }
 
     public static void main(String[] args) {
