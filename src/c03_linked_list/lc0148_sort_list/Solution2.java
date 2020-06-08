@@ -2,33 +2,34 @@ package c03_linked_list.lc0148_sort_list;
 
 import entity.ListNode;
 
-
 /**
  * This is the solution of No. 148 problem in the LeetCode,
  * the website of the problem is as follow:
  * https://leetcode.com/problems/sort-list/
- *
+ * <p>
  * The description of problem is as follow:
  * ==========================================================================================================
  * Sort a linked list in O(n log n) time using constant space complexity.
- *
+ * <p>
  * Example 1:
  * Input: 4->2->1->3
  * Output: 1->2->3->4
- *
+ * <p>
  * Example 2:
  * Input: -1->5->3->4->0
  * Output: -1->0->3->4->5
  * ==========================================================================================================
+ * <p>
+ * Tags: linked list;sort;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/06/30
  */
 public class Solution2 {
     /**
-     * 解法二：归并排序（Top down）
-     * 时间复杂度：O(n * log(n))
-     * 空间复杂度：O(log(n))
+     * Approach 2: Merge Sort (Top down)
+     * Time Complexity: O(N * log(N))
+     * Space Complexity: O(log(N))
      *
      * @param head ListNode, the head of the linked list
      * @return ListNode, the head of the sorted list
@@ -39,12 +40,12 @@ public class Solution2 {
             return head;
         }
         // Find the middle position and split the linked list into two halves
-        ListNode head2 = splitListV0(head);
+        ListNode head2 = bisectV1(head);
         // Recursively call `sortList`
-        ListNode l1 = sortList(head);
-        ListNode l2 = sortList(head2);
+        ListNode left = sortList(head);
+        ListNode right = sortList(head2);
         // Merge two sorted list
-        return mergeTwoLists(l1, l2);
+        return mergeTwoLists(left, right);
         // More Concisely
 //        return mergeTwoLists(sortList(head), sortList(head2));
     }
@@ -55,17 +56,16 @@ public class Solution2 {
      * @param head ListNode, the head of the list
      * @return ListNode, the head of the second half
      */
-    private ListNode splitListV0(ListNode head) {
-//        if (head == null || head.next == null) {
-//            throw new IllegalArgumentException("[ERROR] The linked list cannot be separated into two halves!!!");
-//        }
+    private ListNode bisectV1(ListNode head) {
         ListNode prev = null, slow = head, fast = head;
         while (fast != null && fast.next != null) {
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
         }
-        prev.next = null;
+        if (prev != null) {
+            prev.next = null;
+        }
         return slow;
     }
 
@@ -75,10 +75,7 @@ public class Solution2 {
      * @param head ListNode, the head of the list
      * @return ListNode, the head of the second half
      */
-    private ListNode splitListV1(ListNode head) {
-//        if (head == null || head.next == null) {
-//            throw new IllegalArgumentException("[ERROR] The linked list cannot be separated into two halves!!!");
-//        }
+    private ListNode bisectV2(ListNode head) {
         ListNode slow = head, fast = head.next;
         while (fast != null && fast.next != null) {
             slow = slow.next;
@@ -123,7 +120,7 @@ public class Solution2 {
 //        System.out.println(head2);
 
         // 测试 mergeList 方法
-        ListNode head = new ListNode(new int[] {-1, 5, 3, 4, 0});
+        ListNode head = new ListNode(new int[]{-1, 5, 3, 4, 0});
         System.out.println((new Solution2()).sortList(head));
     }
 }

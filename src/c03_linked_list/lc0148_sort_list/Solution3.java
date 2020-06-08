@@ -2,39 +2,40 @@ package c03_linked_list.lc0148_sort_list;
 
 import entity.ListNode;
 
-
 /**
  * This is the solution of No. 148 problem in the LeetCode,
  * the website of the problem is as follow:
  * https://leetcode.com/problems/sort-list/
- *
+ * <p>
  * The description of problem is as follow:
  * ==========================================================================================================
  * Sort a linked list in O(n log n) time using constant space complexity.
- *
+ * <p>
  * Example 1:
  * Input: 4->2->1->3
  * Output: 1->2->3->4
- *
+ * <p>
  * Example 2:
  * Input: -1->5->3->4->0
  * Output: -1->0->3->4->5
  * ==========================================================================================================
+ * <p>
+ * Tags: linked list;sort;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/06/30
  */
 public class Solution3 {
     /**
-     * 解法三：归并排序（Bottom up）
-     * 时间复杂度：O(n * log(n))
-     * 空间复杂度：O(1)
+     * Approach 3: Merge Sort (Bottom up)
+     * Time Complexity: O(N * log(N))
+     * Space Complexity: O(1)
      *
      * @param head ListNode, the head of the linked list
      * @return ListNode, the head of the sorted list
      */
     public ListNode sortList(ListNode head) {
-        /// Do not need it
+        // Do not need it
 //        if (head == null || head.next == null) {
 //            return head;
 //        }
@@ -68,7 +69,7 @@ public class Solution3 {
      * Split the linked list into two parts, where the first part has `n` nodes.
      *
      * @param head ListNode, the head of the linked list
-     * @param n int, the number of first part
+     * @param n    int, the number of first part
      * @return ListNode, the head of the second part
      */
     private ListNode split(ListNode head, int n) {
@@ -83,6 +84,14 @@ public class Solution3 {
             head.next = null;
         }
         return rest;
+
+        // or can be write as follow:
+//        ListNode rest = null;
+//        if (head != null) {
+//            rest = head.next;
+//            head.next = null;
+//        }
+//        return rest;
     }
 
     /**
@@ -109,7 +118,7 @@ public class Solution3 {
         while (tail.next != null) {
             tail = tail.next;
         }
-        return new ListNode[] {dummyHead.next, tail};
+        return new ListNode[]{dummyHead.next, tail};
     }
 
     public static void main(String[] args) {
