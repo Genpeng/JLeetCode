@@ -28,22 +28,28 @@ package c07_math_and_digit.lc0231_power_of_two;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution2 {
+public class Solution1 {
     /**
-     * Approach 2: Bit Manipulation
-     * Time Complexity: O(1)
+     * Approach 1: Iteration
+     * Time Complexity: log(n)
      * Space Complexity: O(1)
      *
      * @param n int, an integer
      * @return boolean, true if the integer is a power of two
      */
     public boolean isPowerOfTwo(int n) {
-        return n > 0 && (n & (n-1)) == 0;
+        if (n <= 0) {
+            return false;
+        }
+        while (n % 2 == 0) {
+            n /= 2;
+        }
+        return n == 1;
     }
 
     public static void main(String[] args) {
         int n = 1;
-        Solution2 solution = new Solution2();
+        Solution1 solution = new Solution1();
         System.out.println(solution.isPowerOfTwo(n));
     }
 }
