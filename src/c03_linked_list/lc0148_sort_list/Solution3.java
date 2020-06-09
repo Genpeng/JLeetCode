@@ -35,29 +35,24 @@ public class Solution3 {
      * @return ListNode, the head of the sorted list
      */
     public ListNode sortList(ListNode head) {
-        // Do not need it
-//        if (head == null || head.next == null) {
-//            return head;
-//        }
-        // Count the length of the linked list, Time Complexity: O(n)
+        // Count the length of the linked list, Time Complexity: O(N)
         int len = 0;
-        ListNode curr = head;
-        while (curr != null) {
+        for (ListNode curr = head; curr != null; curr = curr.next) {
             ++len;
-            curr = curr.next;
         }
-        // Split the list into sublists with different length, and merge them, Time Complexity: O(n * log(n))
+        // Split the list into sublists with different length, and merge them, Time Complexity: O(N * log(N))
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
-        ListNode l, r, tail;
+        ListNode tail, curr, l, r;
+        ListNode[] pair;
         for (int n = 1; n < len; n <<= 1) {
             tail = dummyHead;
             curr = dummyHead.next;
             while (curr != null) {
                 l = curr;
-                r = split(curr, n);
+                r = split(l, n);
                 curr = split(r, n);
-                ListNode[] pair = merge(l, r);
+                pair = merge(l, r);
                 tail.next = pair[0];
                 tail = pair[1];
             }

@@ -45,10 +45,8 @@ public class Solution1 {
         }
         // Step 1: fetch all the elements in the linked list
         List<Integer> vals = new LinkedList<>();
-        ListNode curr = head;
-        while (curr != null) {
+        for (ListNode curr = head; curr != null; curr = curr.next) {
             vals.add(curr.val);
-            curr = curr.next;
         }
         // Step 2: sort, O(N * log(N))
         Collections.sort(vals);
