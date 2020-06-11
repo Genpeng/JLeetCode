@@ -1,7 +1,7 @@
 package c01_array.lc0704_binary_search;
 
 /**
- * This is the solution of No. xxx problem in the LeetCode,
+ * This is the solution of No. 704 problem in the LeetCode,
  * the website of the problem is as follow:
  * https://leetcode.com/problems/binary-search/
  *
