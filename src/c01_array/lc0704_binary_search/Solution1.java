@@ -31,6 +31,15 @@ package c01_array.lc0704_binary_search;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
+    /**
+     * Approach 1: Binary Search
+     * Time Complexity: O(log(N))
+     * Space Complexity: O(1)
+     *
+     * @param nums int[], a sorted (in ascending order) integer array
+     * @param target int, a target value
+     * @return int, the index of target value or -1 if it does exists
+     */
     public int search(int[] nums, int target) {
         int li = 0, ri = nums.length - 1;
         while (li <= ri) {
