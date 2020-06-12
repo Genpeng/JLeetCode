@@ -1,6 +1,6 @@
 package c01_array.lc0215_kth_largest_element_in_an_array;
 
-import java.util.Arrays;
+import java.util.PriorityQueue;
 
 /**
  * This is the solution of No. 215 problem in the LeetCode,
@@ -27,18 +27,18 @@ import java.util.Arrays;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * Approach 1: Sort
-     * Time Complexity: O(N * log(N))
-     * Space Complexity: O(1)
+     * Approach 3: Quick Sort
+     * Time Complexity: O(N * log(k))
+     * Space Complexity: O(k)
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-        Arrays.sort(nums);
-        return nums[nums.length - k];
+        // TODO: add it
+        return -1;
     }
 }
