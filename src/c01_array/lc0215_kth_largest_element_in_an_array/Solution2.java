@@ -30,16 +30,20 @@ import java.util.PriorityQueue;
  */
 public class Solution2 {
     /**
-     * Approach 2: Priority Queue
+     * Approach 2: Priority Queue (Min Heap)
      * Time Complexity: O(N * log(k))
      * Space Complexity: O(k)
+     *
+     * Result of Submission:
+     * Runtime: 3 ms, faster than 73.83% of Java online submissions for Kth Largest Element in an Array.
+     * Memory Usage: 39.5 MB, less than 89.02% of Java online submissions for Kth Largest Element in an Array.
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> a - b);
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k, (a, b) -> a - b);
         for (int num : nums) {
             if (pq.size() < k) {
                 pq.offer(num);

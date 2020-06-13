@@ -29,9 +29,13 @@ import java.util.Arrays;
  */
 public class Solution1 {
     /**
-     * Approach 1: Sort
+     * Approach 1: Brute Force
      * Time Complexity: O(N * log(N))
      * Space Complexity: O(1)
+     *
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 97.92% of Java online submissions for Kth Largest Element in an Array.
+     * Memory Usage: 39.7 MB, less than 69.15% of Java online submissions for Kth Largest Element in an Array.
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
