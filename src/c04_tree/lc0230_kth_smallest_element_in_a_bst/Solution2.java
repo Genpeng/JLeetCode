@@ -41,6 +41,8 @@ import java.util.Stack;
  * the kth smallest frequently? How would you optimize the kthSmallest routine?
  * ==========================================================================================================
  *
+ * Tags: tree;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/06/21
  */
