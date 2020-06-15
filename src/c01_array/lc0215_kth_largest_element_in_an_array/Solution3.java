@@ -1,6 +1,6 @@
 package c01_array.lc0215_kth_largest_element_in_an_array;
 
-import java.util.PriorityQueue;
+import java.util.Random;
 
 /**
  * This is the solution of No. 215 problem in the LeetCode,
@@ -28,17 +28,67 @@ import java.util.PriorityQueue;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
+    private Random rand = new Random();
+
     /**
-     * Approach 3: Quick Sort
-     * Time Complexity: O(N * log(k))
-     * Space Complexity: O(k)
+     * Approach 3: Quick Select
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-        // TODO: add it
-        return -1;
+//         if (nums == null || k > nums.length || k < 1) {
+//             throw new IllegalArgumentException(
+//                     "[ERROR] The input array is null or " +
+//                     "the value of k is illegal (less than 0 or greater than the length of the array!!!)"
+//             );
+//         }
+        int n = nums.length;
+        k = n - k; // 1 <= k <= N, convert to find the (N-k)th smallest element
+        int li = 0, ri = n - 1;
+        while (li < ri) {
+            int splitPoint = partition(nums, li, ri);
+            if (splitPoint == k) {
+                break;
+            } else if (splitPoint < k) {
+                li = splitPoint + 1;
+            } else { // splitPoint > k
+                ri = splitPoint - 1;
+            }
+        }
+        return nums[k];
+    }
+
+    public int partition(int[] nums, int si, int ei) {
+        swap(nums, si + rand.nextInt(ei - si), ei);
+        int pivot = nums[ei];
+        int i = si - 1;
+        for (int j = si; j < ei; ++j) {
+            if (nums[j] <= pivot) {
+                ++i;
+                if (j > i) {
+                    swap(nums, i, j);
+                }
+            }
+        }
+        swap(nums, ++i, ei);
+        return i;
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
+    }
+
+    public static void main(String[] args) {
+        Random rand = new Random();
+        System.out.println(rand.nextInt(7));
     }
 }
