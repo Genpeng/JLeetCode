@@ -27,11 +27,11 @@ import java.util.Random;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution3 {
+public class Solution4 {
     private Random rand = new Random();
 
     /**
-     * Approach 3: Quick Select (Recursion)
+     * Approach 4: Quick Select (Iteration)
      * Time Complexity: O(N)
      * Space Complexity: O(1)
      *
@@ -47,22 +47,19 @@ public class Solution3 {
 //             );
 //         }
         int n = nums.length;
-        k = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element (0 index)
+        k = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element
         int li = 0, ri = n - 1;
-        quickselect(nums, li, ri, k);
+        while (li < ri) {
+            int splitPoint = partition(nums, li, ri);
+            if (splitPoint == k) {
+                break;
+            } else if (splitPoint < k) {
+                li = splitPoint + 1;
+            } else { // splitPoint > k
+                ri = splitPoint - 1;
+            }
+        }
         return nums[k];
-    }
-
-    private void quickselect(int[] nums, int si, int ei, int k) {
-        if (si >= ei) {
-            return;
-        }
-        int splitPoint = partition(nums, si, ei);
-        if (splitPoint < k) {
-            quickselect(nums, splitPoint + 1, ei, k);
-        } else if (splitPoint > k) {
-            quickselect(nums, si, splitPoint - 1, k);
-        }
     }
 
     public int partition(int[] nums, int si, int ei) {
@@ -88,12 +85,5 @@ public class Solution3 {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {3, 2, 1, 5, 6, 4};
-        int k = 2;
-        Solution3 solu = new Solution3();
-        System.out.println(solu.findKthLargest(nums, k));
     }
 }
