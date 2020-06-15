@@ -43,69 +43,61 @@ import java.util.Stack;
  * the kth smallest frequently? How would you optimize the kthSmallest routine?
  * ==========================================================================================================
  *
+ *  Tags: tree;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/06/21
  */
 public class Solution1 {
     /**
-     * 解法一：利用BST中序遍历的性质（迭代版）
-     * 中序遍历BST，将遍历的结果存储起来，则索引为k-1的元素即为第k小的元素
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Use the property of BST (Iteration)
+     * The inorder traversal of BST is an array sorted in the ascending order
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
      * @param root TreeNode, the root of bst
      * @param k int, an integer used to specify the element to fetch
      * @return int, the kth smallest element in the bst
      */
-    public int kthSmallest(TreeNode root, int k) {
-        List<Integer> elements = new ArrayList<>();
+    public int kthSmallestV1(TreeNode root, int k) {
+        List<Integer> vals = new ArrayList<>();
         // Inorder traversal to take all elements
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
-            if (curr != null) {
+            while (curr != null) {
                 stack.push(curr);
                 curr = curr.left;
-            } else {
-                TreeNode node = stack.pop();
-                elements.add(node.val);
-                curr = node.right;
             }
-
-            // or can write like this, a little faster
-//            while (curr != null) {
-//                stack.push(curr);
-//                curr = curr.left;
-//            }
-//            TreeNode node = stack.pop();
-//            elements.add(node.val);
-//            curr = node.right;
+            TreeNode node = stack.pop();
+            vals.add(node.val);
+            curr = node.right;
         }
-        return elements.get(k-1);
+        return vals.get(k-1);
     }
 
     /**
-     * 解法一：利用BST中序遍历的性质（递归版）
-     * 中序遍历BST，将遍历的结果存储起来，则索引为k-1的元素即为第k小的元素
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Use the property of BST (Recursion)
+     * The inorder traversal of BST is an array sorted in the ascending order
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
      * @param root TreeNode, the root of bst
      * @param k int, an integer used to specify the element to fetch
      * @return int, the kth smallest element in the bst
      */
     public int kthSmallestV2(TreeNode root, int k) {
-        List<Integer> elements = new ArrayList<>();
-        inorderTraversal(root, elements);
-        return elements.get(k - 1);
+        List<Integer> vals = new ArrayList<>();
+        inorderTraversal(root, vals);
+        return vals.get(k - 1);
     }
 
-    private void inorderTraversal(TreeNode root, List<Integer> res) {
+    private void inorderTraversal(TreeNode root, List<Integer> vals) {
         if (root == null) {
             return;
         }
-        inorderTraversal(root.left, res);
-        res.add(root.val);
-        inorderTraversal(root.right, res);
+        inorderTraversal(root.left, vals);
+        vals.add(root.val);
+        inorderTraversal(root.right, vals);
     }
 }

@@ -46,12 +46,11 @@ import java.util.Stack;
  */
 public class Solution2 {
     /**
-     * 解法二：在解法一的基础上进行改进，同样地，中序遍历二叉搜索树，当遍历到第k个元素的时候就停止遍历
-     * 时间复杂度：O(log(N) + k)
-     * 空间复杂度：O(log(N) + k)
+     * Approach 2: Use the property of BST (improve approach 1)
+     * Time Complexity: O(log(N) + k)
+     * Space Complexity: O(log(N) + k)
      *
-     * 疑问：
-     * 对下面文章中时间复杂度和空间复杂度分析有疑惑
+     * Time and space complexity analysis can be found as follow:
      * https://leetcode.com/articles/kth-smallest-element-in-a-bst/
      *
      * @param root TreeNode, the root of bst
@@ -67,14 +66,14 @@ public class Solution2 {
                 curr = curr.left;
             }
             TreeNode node = stack.pop();
-            if (k-- == 1) {
+            if (--k == 0) {
                 return node.val;
             }
             curr = node.right;
         }
         // 异常的两种情况：
-        // 1. BST为空
-        // 2. k < 1 or k > n，其中n表示BST结点数目
+        // 1. BST 为空
+        // 2. k < 1 or k > n，其中 n 表示 BST 的结点数目
         throw new IllegalArgumentException("[ERROR] The BST is null or the value of k is illegal!!!");
     }
 }
