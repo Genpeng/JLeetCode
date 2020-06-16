@@ -31,15 +31,18 @@ import java.util.Queue;
  * return its depth = 3.
  * ==========================================================================================================
  *
+ * Tags: tree;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/20
  */
 public class Solution3 {
     /**
-     * 解法3：迭代（BFS版本）
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 3: Iteration (BFS)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 1 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
      * Memory Usage: 38.8 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
      *
@@ -54,6 +57,7 @@ public class Solution3 {
         q.offer(root);
         int depth = 0;
         while (!q.isEmpty()) {
+            ++depth;
             int n = q.size();
             while (n-- > 0) {
                 TreeNode node = q.poll();
@@ -64,7 +68,6 @@ public class Solution3 {
                     q.offer(node.right);
                 }
             }
-            ++depth;
         }
         return depth;
     }

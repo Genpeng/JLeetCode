@@ -28,15 +28,18 @@ import entity.TreeNode;
  * return its depth = 3.
  * ==========================================================================================================
  *
+ * Tags: tree;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/20
  */
 public class Solution1 {
     /**
-     * 解法1：递归
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Recursion
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Maximum Depth of Binary Tree.
      * Memory Usage: 39.5 MB, less than 89.25% of Java online submissions for Maximum Depth of Binary Tree.
      *

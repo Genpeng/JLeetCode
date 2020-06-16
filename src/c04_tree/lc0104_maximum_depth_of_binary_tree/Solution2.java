@@ -30,15 +30,18 @@ import java.util.Stack;
  * return its depth = 3.
  * ==========================================================================================================
  *
+ * Tags: tree;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/05/20
  */
 public class Solution2 {
     /**
-     * 解法2：迭代（DFS版本）
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration (DFS)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
+     * Result of Submission:
      * Runtime: 3 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
      * Memory Usage: 39.1 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
      *
