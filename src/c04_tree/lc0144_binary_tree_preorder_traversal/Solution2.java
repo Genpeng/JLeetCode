@@ -31,8 +31,12 @@ import java.util.Stack;
  *
  * Tags: tree;
  *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 5, 2019   | 1   | ×      |
+ * | June 17, 2020 | n   | √      |
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
- * @date    2019/05/15
  */
 public class Solution2 {
     /**
