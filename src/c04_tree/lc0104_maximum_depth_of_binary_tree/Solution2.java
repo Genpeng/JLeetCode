@@ -32,7 +32,7 @@ import java.util.Stack;
  *
  * Tags: tree;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/05/20
  */
 public class Solution2 {
