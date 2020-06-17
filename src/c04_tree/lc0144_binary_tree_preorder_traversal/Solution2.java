@@ -29,29 +29,30 @@ import java.util.Stack;
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * Tags: tree;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/05/15
  */
 public class Solution2 {
     /**
-     * 方法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration (v1)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the preorder traversal of binary tree
      */
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+    public List<Integer> preorderTraversalV1(TreeNode root) {
+        List<Integer> vals = new LinkedList<>();
         if (root == null) {
-            return res;
+            return vals;
         }
-
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
         while(!stack.isEmpty()) {
             TreeNode node = stack.pop();
-            res.add(node.val);
+            vals.add(node.val);
             if (node.right != null) {
                 stack.push(node.right);
             }
@@ -59,53 +60,53 @@ public class Solution2 {
                 stack.push(node.left);
             }
         }
-        return res;
+        return vals;
     }
 
     /**
-     * 方法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration (v2)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the preorder traversal of binary tree
      */
     public List<Integer> preorderTraversalV2(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+        List<Integer> vals = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
             if (curr != null) {
-                res.add(curr.val);
+                vals.add(curr.val);
                 stack.push(curr);
                 curr = curr.left;
             } else {
                 curr = stack.pop().right;
             }
         }
-        return res;
+        return vals;
     }
 
     /**
-     * 方法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration (v3, recommended, ☆☆☆)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the preorder traversal of binary tree
      */
     public List<Integer> preorderTraversalV3(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+        List<Integer> vals = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
             while (curr != null) {
                 stack.push(curr);
-                res.add(curr.val);
+                vals.add(curr.val);
                 curr = curr.left;
             }
             curr = stack.pop().right;
         }
-        return res;
+        return vals;
     }
 }
