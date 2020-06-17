@@ -47,17 +47,17 @@ public class Solution1 {
      * @return List<Integer>, the preorder traversal of binary tree
      */
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
-        preorderTraversal(root, res);
-        return res;
+        List<Integer> vals = new LinkedList<>();
+        preorderTraversal(root, vals);
+        return vals;
     }
 
-    private void preorderTraversal(TreeNode root, List<Integer> res) {
+    private void preorderTraversal(TreeNode root, List<Integer> vals) {
         if (root == null) {
             return;
         }
-        res.add(root.val);
-        preorderTraversal(root.left, res);
-        preorderTraversal(root.right, res);
+        vals.add(root.val);
+        preorderTraversal(root.left, vals);
+        preorderTraversal(root.right, vals);
     }
 }
