@@ -28,24 +28,29 @@ import java.util.List;
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/15
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 5, 2019   | 1   | ×      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
-     * 解法三：Morris Traversal
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 3: Morris Traversal (do no require)
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the inorder traversal of binary tree
      */
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+        List<Integer> vals = new LinkedList<>();
         TreeNode curr = root;
         while (curr != null) {
             if (curr.left == null) {
-                res.add(curr.val);
+                vals.add(curr.val);
                 curr = curr.right; // move to next right node
             } else { // has a left subtree
                 TreeNode prev = curr.left;
@@ -58,6 +63,6 @@ public class Solution3 {
                 tmp.left = null; // original curr left be null, avoid infinite loops
             }
         }
-        return res;
+        return vals;
     }
 }

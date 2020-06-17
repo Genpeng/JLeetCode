@@ -29,20 +29,26 @@ import java.util.Stack;
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/15
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 5, 2019   | 1   | ×      |
+ * | June 17, 2020 | n   | √      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the inorder traversal of binary tree
      */
-    public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+    public List<Integer> inorderTraversalV1(TreeNode root) {
+        List<Integer> vals = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
@@ -50,23 +56,23 @@ public class Solution2 {
                 stack.push(curr);
                 curr = curr.left;
             }
-            curr = stack.pop();
-            res.add(curr.val);
-            curr = curr.right;
+            TreeNode node = stack.pop();
+            vals.add(node.val);
+            curr = node.right;
         }
-        return res;
+        return vals;
     }
 
     /**
-     * 解法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Iteration
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the inorder traversal of binary tree
      */
-    public List<Integer> inorderTraversal2(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+    public List<Integer> inorderTraversalV2(TreeNode root) {
+        List<Integer> vals = new LinkedList<>();
         Stack<TreeNode> stack = new Stack<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
@@ -75,10 +81,10 @@ public class Solution2 {
                 curr = curr.left;
             } else {
                 TreeNode node = stack.pop();
-                res.add(node.val);
+                vals.add(node.val);
                 curr = node.right;
             }
         }
-        return res;
+        return vals;
     }
 }
