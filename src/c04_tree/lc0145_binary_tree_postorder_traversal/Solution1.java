@@ -28,22 +28,28 @@ import java.util.List;
  * Follow up: Recursive solution is trivial, could you do it iteratively?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/15
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 5, 2019   | 1   | ×      |
+ * | June 17, 2020 | n   | √      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法一：递归
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Recursion
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param root TreeNode, the root of binary tree
      * @return List<Integer>, the postorder traversal of binary tree
      */
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> ans = new LinkedList<>();
-        postorderTraversal(root, ans);
-        return ans;
+        List<Integer> vals = new LinkedList<>();
+        postorderTraversal(root, vals);
+        return vals;
     }
 
     private void postorderTraversal(TreeNode root, List<Integer> vals) {
