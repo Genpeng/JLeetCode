@@ -41,24 +41,33 @@ import entity.TreeNode;
  * - p and q are different and both values will exist in the BST.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/28
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 28, 2019  | 1   | ×      |
+ * | June 18, 2020 | 3   | ×      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 2: Iteration (v1)
+     * This problem is just want us to find the split point from where p and q won't be
+     * part of the same subtree or when one is the parent of other, that is
+     * (A.val - p.val) * (A.val - q.val) <= 0
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     *
+     * Reference:
+     * [1] https://leetcode.com/articles/lowest-common-ancestor-of-a-binary-search-tree/
      *
      * @param root TreeNode, the root of a BST
      * @param p TreeNode, one node in the BST
      * @param q TreeNode, other node in the BST
      * @return TreeNode, the lowest common ancestor (LCA) of two given nodes
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
-            return null;
-        }
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode curr = root;
         while ((curr.val - p.val) * (curr.val - q.val) > 0) {
             curr = curr.val > p.val ? curr.left : curr.right;
@@ -67,9 +76,15 @@ public class Solution2 {
     }
 
     /**
-     * 解法二：迭代
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(1)
+     * Approach 2: Iteration (v2)
+     * This problem is just want us to find the split point from where p and q won't be
+     * part of the same subtree or when one is the parent of other, that is
+     * (A.val - p.val) * (A.val - q.val) <= 0
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     *
+     * Reference:
+     * [1] https://leetcode.com/articles/lowest-common-ancestor-of-a-binary-search-tree/
      *
      * @param root TreeNode, the root of a BST
      * @param p TreeNode, one node in the BST

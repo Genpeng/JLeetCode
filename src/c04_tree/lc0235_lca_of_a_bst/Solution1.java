@@ -41,59 +41,65 @@ import entity.TreeNode;
  * - p and q are different and both values will exist in the BST.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/28
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | May 28, 2019  | 1   | ×      |
+ * | June 18, 2020 | 3   | ×      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法一：递归
-     * 思路：如果一个结点A是两个结点的最低公共祖先的话，那么只有两种情况：
-     * 1. 两个结点在结点A的两边
-     * 2. 最低公共祖先就是两个结点中的一个
-     * 可以考虑上面两种情况的反面，如果一个结点B不是两个结点的最低公共祖先的话，
-     * 那么这两个结点一定位于结点B的同一个边，即左子树或者右子树上。
+     * Approach 1: Recursion (v1)
+     * If node A is the LCA of two nodes (p and q), then it must be one of two following cases:
+     * - node A is one of two nodes (A is either p or q), that is
+     *   (A.val - p.val) * (A.val - q.val) == 0
+     * - p and q are located at the left and right subtrees of node A respectively, that is
+     *   (A.val - p.val) * (A.val - q.val) < 0
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Reference:
+     * [1] https://leetcode.com/articles/lowest-common-ancestor-of-a-binary-search-tree/
      *
      * @param root TreeNode, the root of a BST
      * @param p TreeNode, one node in the BST
      * @param q TreeNode, other node in the BST
      * @return TreeNode, the lowest common ancestor (LCA) of two given nodes
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        // boundary condition - the root is null
-        // 可以去掉，在题干中已经明确说了，结点p和q一定在BST中
-        if (root == null) {
-            return null;
-        }
-        if (root.val > p.val && root.val > q.val) {
-            return lowestCommonAncestor(root.left, p, q);
-        } else if (root.val < p.val && root.val < q.val) {
-            return lowestCommonAncestor(root.right, p, q);
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
+        if (p.val < root.val && q.val < root.val) {
+            return lowestCommonAncestorV1(root.left, p, q);
+        } else if (p.val > root.val && q.val > root.val) {
+            return lowestCommonAncestorV1(root.right, p, q);
         } else {
             return root;
         }
     }
 
     /**
-     * 解法一：递归
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 1: Recursion (v1)
+     * If node A is the LCA of two nodes (p and q), then it must be one of two following cases:
+     * - node A is one of two nodes (A is either p or q), that is
+     *   (A.val - p.val) * (A.val - q.val) == 0
+     * - p and q are located at the left and right subtrees of node A respectively, that is
+     *   (A.val - p.val) * (A.val - q.val) < 0
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
+     * Reference:
+     * [1] https://leetcode.com/articles/lowest-common-ancestor-of-a-binary-search-tree/
      *
      * @param root TreeNode, the root of a BST
      * @param p TreeNode, one node in the BST
      * @param q TreeNode, other node in the BST
      * @return TreeNode, the lowest common ancestor (LCA) of two given nodes
      */
-    public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
-        // boundary condition - the root is null
-        // 可以去掉，在题干中已经明确说了，结点p和q一定在BST中
-        if (root == null) {
-            return null;
-        }
+    public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
         if ((root.val - p.val) * (root.val - q.val) > 0) { // p and q are in the same subtree
-            return lowestCommonAncestor2(root.val > p.val ? root.left : root.right, p, q);
+            return lowestCommonAncestorV2(root.val > p.val ? root.left : root.right, p, q);
         } else {
             return root;
         }
