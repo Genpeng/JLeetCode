@@ -143,6 +143,9 @@ public class Solution2 {
                 path.put(node.left, node);
             }
         }
+        if (!path.containsKey(p) || !path.containsKey(q)) {
+            return null;
+        }
         Set<TreeNode> ancestors = new HashSet<>();
         node = p;
         while (node != null) {
@@ -150,7 +153,7 @@ public class Solution2 {
             node = path.get(node);
         }
         node = q;
-        while (node != null && !ancestors.contains(node)) {
+        while (!ancestors.contains(node)) {
             node = path.get(node);
         }
         return node;
