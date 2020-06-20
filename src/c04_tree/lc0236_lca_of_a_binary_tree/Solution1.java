@@ -39,25 +39,37 @@ import entity.TreeNode;
  * - p and q are different and both values will exist in the binary tree.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/06/11
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | June 11, 2019 | 1   | ×      |
+ * | June 17, 2020 | 3   | ×      |
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法一：递归
+     * TODO: 把思路用英文表达（英文太烂 -_-||）
      *
+     * Approach 1: Recursion (v1)
      * 思路：
-     * 如果根结点是p或者q之间的一个，则返回该节点，因为此时根结点就是最低公共祖先；否则，在左右子树中进行搜索，
-     * 如果左、右子树的返回结果不为空，说明此时p和q位于左右子树，则根节点即为最低公共祖先；
-     * 如果左、右子树的返回结果存在空的情况，则p和q位于同一个子树下，此时返回非空子树的结果。
+     * 如果根结点是 p 或者 q 中间的一个，返回根结点，此时根结点即为 LCA；否则在左右子树中查找
+     * 如果左右子树的返回结果都不为空，说明 p 和 q 分别位于左右子树中，此时根结点即为 LCA
+     * 如果左右子树的返回结果存在为空的情况，说明 p 和 q 位于同一棵子树，此时 LCA 为非空子树的结果
      *
-     * 备注：
-     * 这种思路的前提是当树不为空时，p和q必须是树的两个不同的结点。否则，一旦根结点是两个结点中的一个，直接就
-     * 返回了，也没有判断左右子树中是否存在另一个结点，这也是这种写法的缺陷。
+     * 这道题如果如果没有备注说明的两点的话，会存在下面几种边界条件
+     * 1. 树为空
+     * 2. p 和 q 存在至少一个为 null
+     * 3. p 和 q 都不为 null，只有一个在树中
+     * 4. p 和 q 都不为 null，而且两个都不在树中
+     * 本解法可以解决的边界条件有 1 和 4
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Complexity Analysis:
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
+     * Result of Submission:
      * Runtime: 5 ms, faster than 100.00% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      * Memory Usage: 35.9 MB, less than 5.55% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      *
@@ -66,44 +78,41 @@ public class Solution1 {
      * @param q TreeNode, the other node in the binary tree
      * @return TreeNode, the lowest common ancestor of two nodes
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q) {
             return root;
         }
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        TreeNode left = lowestCommonAncestorV1(root.left, p, q);
+        TreeNode right = lowestCommonAncestorV1(root.right, p, q);
         if (left != null && right != null) {
             return root;
         }
         return left == null ? right : left;
     }
 
-    // ========================================================================================== //
-    // 以下是递归解法的另一种写法
-
     private TreeNode lca;
 
-    public Solution1() {
-        this.lca = null;
-    }
-
     /**
-     * 解法一：递归
-     *
-     *      root
-     *     /   \
-     * left    right
-     *
+     * Approach 1: Recursion (v2, recommended)
      * 思路：
-     * 二叉树的LCA出现在下面的两种情况：
-     * 1. 二叉树的根节点为两个结点中的一个且另一个结点位于二叉树的左右子树之中
+     * 二叉树的 LCA 出现在下面的两种情况：
+     * 1. 根结点为两个结点中的一个且另一个结点位于二叉树的左右子树之中
      * 2. 两个结点分别位于二叉树的左右子树中
-     * 假设有方法`findLCA(...)`，当找到两个结点中任意一个结点时，返回true。因此，如果某个结点是两个结点的LCA，
-     * 那么`findLCA(root)`、`findLCA(left)`和`findLCA(right)`三个方法的返回值，一定有两个返回true。
+     * 假设有方法 `search(...)`，当找到两个结点中任意一个结点时，返回 `true`。因此，如果某个结点是两个结点的 LCA，
+     * 那么 `search(root)`、`search(left)` 和 `search(right)` 三个方法的返回值，一定有两个返回 `true`。
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * 这道题如果如果没有备注说明的两点的话，会存在下面几种边界条件
+     * 1. 树为空
+     * 2. p 和 q 存在至少一个为 null
+     * 3. p 和 q 都不为 null，只有一个在树中
+     * 4. p 和 q 都不为 null，而且两个都不在树中
+     * 本解法可以解决所有的边界条件
      *
+     * Complexity Analysis:
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
+     * Result of Submission:
      * Runtime: 6 ms, faster than 74.47% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      * Memory Usage: 35.3 MB, less than 5.55% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      *
@@ -113,23 +122,22 @@ public class Solution1 {
      * @return TreeNode, the lowest common ancestor of two nodes
      */
     public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
-        if (p == null || q == null) {
-            // 如果p和q之间有一个为空的话，那么将有多种可能的LCA
+        if (p == null || q == null) { // 解决边界条件 2
             throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
         }
-        // 这个函数返回true并不一定意味着找到了LCA，只要出现两个结点中任意一个就会返回true。
-        // 所以想判断是否找到了LCA，直接看成员变量`lca`是否为空。
-        findLCA(root, p, q);
+        // 这个函数返回 `true` 并不一定意味着找到了 LCA，只要出现两个结点中任意一个就会返回 `true`
+        // 所以想判断是否找到了 LCA，直接看成员变量 `lca` 是否为空
+        search(root, p, q);
         return this.lca;
     }
 
-    private boolean findLCA(TreeNode root, TreeNode p, TreeNode q) {
+    private boolean search(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) {
             return false;
         }
         int mid = root == p || root == q ? 1 : 0;
-        int left = findLCA(root.left, p, q) ? 1 : 0;
-        int right = findLCA(root.right, p, q) ? 1 : 0;
+        int left = search(root.left, p, q) ? 1 : 0;
+        int right = search(root.right, p, q) ? 1 : 0;
         if (mid + left + right >= 2) {
             this.lca = root;
         }

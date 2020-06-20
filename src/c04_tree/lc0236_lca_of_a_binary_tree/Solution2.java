@@ -41,67 +41,76 @@ import java.util.*;
  * - p and q are different and both values will exist in the binary tree.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/06/11
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | June 11, 2019 | 1   | ×      |
+ * | June 17, 2020 | 3   | ×      |
  */
 public class Solution2 {
     /**
-     * 解法二：迭代（分别保留从根结点到p和q的路径，再回溯第一个公共结点）
+     * Approach 2: Iteration (v1, no consider boundary conditions)
+     * The idea is to save the paths from node p and node q to root node respectively, and
+     * then backtrack the first intersection node of two paths
      *
-     * 步骤：
-     * - 遍历二叉树，保存孩子结点到父亲结点的映射，直到找到p和q
-     * - 通过保存的映射关系，回溯从p到根结点的路径，并将路径结点保存到一个set中
-     * - 同样地，也回溯从q到根结点的路径，则第一个出现在set中的结点即为LCA
+     * Complexity Analysis:
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
-     * 备注：
-     * 下面的写法有一个前提，就是二叉树不为空，且两个结点一定是二叉树的孩子结点。
-     *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Result of Submission:
+     * Runtime: 10 ms, faster than 22.37% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
+     * Memory Usage: 40.2 MB, less than 95.75% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      *
      * @param root TreeNode, the root of a binary tree
      * @param p TreeNode, one node in the binary tree
      * @param q TreeNode, the other node in the binary tree
      * @return TreeNode, the lowest common ancestor of two nodes
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
         Stack<TreeNode> stack = new Stack<>();
-        Map<TreeNode, TreeNode> child2Parent = new HashMap<>();
+        Map<TreeNode, TreeNode> path = new HashMap<>();
         stack.push(root);
-        child2Parent.put(root, null);
-        while (!child2Parent.containsKey(p) || !child2Parent.containsKey(q)) {
+        path.put(root, null);
+        while (!stack.isEmpty()) {
+            if (path.containsKey(p) && path.containsKey(q)) {
+                break;
+            }
             TreeNode node = stack.pop();
             if (node.right != null) {
                 stack.push(node.right);
-                child2Parent.put(node.right, node);
+                path.put(node.right, node);
             }
             if (node.left != null) {
                 stack.push(node.left);
-                child2Parent.put(node.left, node);
+                path.put(node.left, node);
             }
         }
         Set<TreeNode> ancestors = new HashSet<>();
-        while (p != null) {
-            ancestors.add(p);
-            p = child2Parent.get(p);
+        TreeNode node = p;
+        while (node != null) {
+            ancestors.add(node);
+            node = path.get(node);
         }
-        while (!ancestors.contains(q)) {
-            q = child2Parent.get(q);
+        node = q;
+        while (!ancestors.contains(node)) {
+            node = path.get(node);
         }
-        return q;
+        return node;
     }
 
-    // ========================================================================================== //
-    // 为了使程序更加鲁棒一些，添加了对于边界、异常情况的处理
-
     /**
-     * 解法二：迭代（分别保留从根结点到p和q的路径，再回溯第一个公共结点）
-     * - 遍历二叉树，保存孩子结点到父亲结点的映射，直到找到p和q
-     * - 通过保存的映射关系，回溯从p到根结点的路径，并将路径结点保存到一个set中
-     * - 同样地，也回溯从q到根结点的路径，则第一个出现在set中的结点即为LCA
+     * Approach 2: Iteration (v2, more robust)
+     * The idea is to save the paths from node p and node q to root node respectively, and
+     * then backtrack the first intersection node of two paths
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Complexity Analysis:
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     *
+     * Result of Submission:
+     * Runtime: 10 ms, faster than 22.37% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
+     * Memory Usage: 40.2 MB, less than 95.75% of Java online submissions for Lowest Common Ancestor of a Binary Tree.
      *
      * @param root TreeNode, the root of a binary tree
      * @param p TreeNode, one node in the binary tree
@@ -109,41 +118,40 @@ public class Solution2 {
      * @return TreeNode, the lowest common ancestor of two nodes
      */
     public TreeNode lowestCommonAncestorV2(TreeNode root, TreeNode p, TreeNode q) {
+        if (p == null || q == null) {
+            throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
+        }
         if (root == null) {
             return null;
         }
-        if (p == null || q == null) {
-            // 如果p和q之间有一个为空的话，那么将有多种可能的LCA
-            throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
-        }
         Stack<TreeNode> stack = new Stack<>();
-        Map<TreeNode, TreeNode> child2Parent = new HashMap<>();
+        Map<TreeNode, TreeNode> path = new HashMap<>();
         stack.push(root);
-        child2Parent.put(root, null);
+        path.put(root, null);
         TreeNode node;
         while (!stack.isEmpty()) {
+            if (path.containsKey(p) && path.containsKey(q)) {
+                break;
+            }
             node = stack.pop();
             if (node.right != null) {
                 stack.push(node.right);
-                child2Parent.put(node.right, node);
+                path.put(node.right, node);
             }
             if (node.left != null) {
                 stack.push(node.left);
-                child2Parent.put(node.left, node);
-            }
-            if (child2Parent.containsKey(p) && child2Parent.containsKey(q)) {
-                break;
+                path.put(node.left, node);
             }
         }
         Set<TreeNode> ancestors = new HashSet<>();
         node = p;
         while (node != null) {
             ancestors.add(node);
-            node = child2Parent.get(node);
+            node = path.get(node);
         }
         node = q;
         while (node != null && !ancestors.contains(node)) {
-            node = child2Parent.get(node);
+            node = path.get(node);
         }
         return node;
     }

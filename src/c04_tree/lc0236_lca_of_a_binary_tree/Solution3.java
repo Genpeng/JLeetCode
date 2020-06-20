@@ -43,8 +43,12 @@ import java.util.Stack;
  * - p and q are different and both values will exist in the binary tree.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/06/11
+ * Tags: tree;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | June 11, 2019 | 1   | ×      |
+ * | June 17, 2020 | 3   | ×      |
  */
 public class Solution3 {
     private static final int BOTH_PENDING = 2;
@@ -53,7 +57,6 @@ public class Solution3 {
 
     /**
      * 解法三：迭代（不推荐）
-     *
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      *
