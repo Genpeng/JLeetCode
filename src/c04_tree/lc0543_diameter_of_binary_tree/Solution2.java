@@ -29,13 +29,20 @@ import java.util.Stack;
  * Note: The length of path between two nodes is represented by the number of edges between them.
  * ==========================================================================================================
  *
- * Tags: tree;
+ * Tags: tree; dfs;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | June 22, 2020 | 3   | √      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * Approach 2: Iteration
+     * Approach 2: Iteration (DFS, post-order)
+     * The idea is to use post-order traversal to simulate the recursive procedure (top down and then bottom up)
+     *
+     * Complexity Analysis:
      * Time complexity: O(n)
      * Space complexity: O(n)
      *

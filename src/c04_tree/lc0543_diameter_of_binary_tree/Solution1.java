@@ -25,15 +25,23 @@ import entity.TreeNode;
  * Note: The length of path between two nodes is represented by the number of edges between them.
  * ==========================================================================================================
  *
- * Tags: tree;
+ * Tags: tree; dfs;
+ *
+ * | Date          | #   | Desc   |
+ * | ------------- | --- | ------ |
+ * | June 22, 2020 | 3   | √      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
-    private int diameter = 0;
+    private int diameter;
 
     /**
      * Approach 1: Recursion
+     * The idea is to find out the max depth of every nodes, and during this procedure,
+     * we can update the length of longest path (diameter).
+     *
+     * Complexity Analysis:
      * Time complexity: O(n)
      * Space complexity: O(n)
      *
@@ -45,6 +53,7 @@ public class Solution1 {
      * @return int, the diameter of this binary tree
      */
     public int diameterOfBinaryTree(TreeNode root) {
+        diameter = 0;
         maxDepth(root);
         return diameter;
     }
@@ -53,9 +62,9 @@ public class Solution1 {
         if (root == null) {
             return 0;
         }
-        int l = maxDepth(root.left);
-        int r = maxDepth(root.right);
-        diameter = Math.max(diameter, l + r);
-        return Math.max(l, r) + 1;
+        int left = maxDepth(root.left);
+        int right = maxDepth(root.right);
+        diameter = Math.max(diameter, left + right);
+        return Math.max(left, right) + 1;
     }
 }
