@@ -29,8 +29,15 @@ import java.util.List;
 public class Solution1 {
     /**
      * Approach 1: Brute Force (recursion without pruning)
+     * The idea is to find out all the possible combinations and check if it is valid.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n * 2 ^ (2n))
      * Space Complexity: O(n)
+     *
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 85.01% of Java online submissions for Generate Parentheses.
+     * Memory Usage: 39.5 MB, less than 70.81% of Java online submissions for Generate Parentheses.
      *
      * @param n int, the number of pairs of parentheses
      * @return List<String>, all combinations of well-formed parentheses

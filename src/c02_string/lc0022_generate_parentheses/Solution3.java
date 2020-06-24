@@ -30,6 +30,10 @@ import java.util.Queue;
 public class Solution3 {
     /**
      * Approach 3: BFS, subtraction
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(4 ^ n / sqrt(n))
      *
@@ -45,7 +49,7 @@ public class Solution3 {
         Queue<Node<String>> q = new LinkedList<>();
         q.offer(new Node<>("", n, n));
         while (!q.isEmpty()) {
-            for (int level = 0; level < q.size(); ++level) {
+            for (int nNodes = q.size(); nNodes > 0; --nNodes) {
                 Node<String> curr = q.poll();
                 if (curr.left == 0 && curr.right == 0) {
                     ans.add(curr.e);
@@ -63,6 +67,10 @@ public class Solution3 {
 
     /**
      * Approach 3: BFS, addition
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(4 ^ n / sqrt(n))
      *
@@ -78,7 +86,7 @@ public class Solution3 {
         Queue<Node<String>> q = new LinkedList<>();
         q.offer(new Node<>("", 0, 0));
         while (!q.isEmpty()) {
-            for (int level = 0; level < q.size(); ++level) {
+            for (int nNodes = q.size(); nNodes > 0; --nNodes) {
                 Node<String> curr = q.poll();
                 if (curr.left == n && curr.right == n) {
                     ans.add(curr.e);

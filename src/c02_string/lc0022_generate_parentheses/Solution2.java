@@ -25,15 +25,22 @@ import java.util.Stack;
  *
  * Tags: string;backtracking;dfs;bfs;
  *
- * TODO: How to analyze time complexity?
- *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
+
+    // Recursive Version
+    // ============================================================================================ //
+
     /**
      * Approach 2: Backtracking (or DFS), subtraction
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
+     * TODO: How to analyze time complexity?
      *
      * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Generate Parentheses.
@@ -73,6 +80,10 @@ public class Solution2 {
 
     /**
      * Approach 2: Backtracking (or DFS), subtraction
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
      *
@@ -115,6 +126,10 @@ public class Solution2 {
 
     /**
      * Approach 2: Backtracking (or DFS), addition
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
      *
@@ -157,6 +172,10 @@ public class Solution2 {
 
     /**
      * Approach 2: Backtracking (or DFS), addition
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
      *
@@ -198,8 +217,15 @@ public class Solution2 {
         }
     }
 
+    // Iterative Version
+    // ============================================================================================ //
+
     /**
      * Approach 2: Backtracking (or DFS), subtraction without recursion
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
      *
@@ -219,11 +245,11 @@ public class Solution2 {
             if (curr.left == 0 && curr.right == 0) {
                 ans.add(curr.e);
             }
-            if (curr.left > 0) {
-                stack.push(new Node<>(curr.e + "(", curr.left - 1, curr.right));
-            }
             if (curr.right > curr.left) {
                 stack.push(new Node<>(curr.e + ")", curr.left, curr.right - 1));
+            }
+            if (curr.left > 0) {
+                stack.push(new Node<>(curr.e + "(", curr.left - 1, curr.right));
             }
         }
         return ans;
@@ -231,6 +257,10 @@ public class Solution2 {
 
     /**
      * Approach 2: Backtracking (or DFS), addition without recursion
+     * This method is the improved version of Approach 1, the basic idea is the same as Approach 1,
+     * but this time we generate all the possible combinations with pruning.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(4 ^ n / sqrt(n))
      * Space Complexity: O(n)
      *
