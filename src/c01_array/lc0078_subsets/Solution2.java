@@ -58,15 +58,23 @@ public class Solution2 {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> subs = new LinkedList<>();
         List<Integer> sub = new ArrayList<>(); // current track in the result tree
-        backtrack(nums, 0, sub, subs);
+        subsets(nums, 0, sub, subs);
         return subs;
     }
 
-    private void backtrack(int[] nums, int fromIndex, List<Integer> sub, List<List<Integer>> subs) {
+    /**
+     * Find out all the possible subsets start from `fromIndex` in the `nums`.
+     *
+     * @param nums int[], a set of distinct integers
+     * @param fromIndex int, the index to start
+     * @param sub List<Integer>, the current track
+     * @param subs List<List<Integer>, all the possible combinations
+     */
+    private void subsets(int[] nums, int fromIndex, List<Integer> sub, List<List<Integer>> subs) {
         subs.add(new ArrayList<>(sub));
         for (int i = fromIndex; i < nums.length; ++i) {
             sub.add(nums[i]);
-            backtrack(nums, i + 1, sub, subs);
+            subsets(nums, i + 1, sub, subs);
             sub.remove(sub.size() - 1);
         }
     }

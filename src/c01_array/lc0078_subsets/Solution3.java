@@ -41,6 +41,8 @@ import java.util.List;
 public class Solution3 {
     /**
      * Approach 3: Bit Manipulation
+     * The idea is to represent all the combinations by using binary representation,
+     * and for each binary representation, 1 stands for in and 0 stands for not in.
      *
      * Complexity Analysis:
      * Time Complexity: O(N * 2^N)
@@ -62,8 +64,8 @@ public class Solution3 {
         for (int i = 0; i < p; ++i) {
             subs.add(new LinkedList<>());
         }
-        for (int i = 0; i < p; ++i) {
-            for (int j = 0; j < n; ++j) {
+        for (int i = 0; i < p; ++i) { // 2 ^ n
+            for (int j = 0; j < n; ++j) { // n
                 if (((i >> j) & 1) != 0) {
                     subs.get(i).add(nums[j]);
                 }
