@@ -50,7 +50,7 @@ public class Solution4 {
         int n = nums.length, ti = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element
         int li = 0, ri = n - 1;
         while (li < ri) {
-            int splitPoint = partition(nums, li, ri);
+            int splitPoint = randomPartition(nums, li, ri);
             if (splitPoint == ti) {
                 break;
             } else if (splitPoint < ti) {
