@@ -32,44 +32,60 @@ public class Solution3 {
 
     /**
      * Approach 3: Quick Select (Recursion)
+     * The idea is to use quick select algorithm.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N)
-     * Space Complexity: O(1)
+     * Space Complexity: O(log(N))
+     *
+     * References:
+     * [1] Cormen, Thomas H., et al. Introduction to algorithms. MIT press, 2009. (Chapter 9.2)
+     * [2] https://leetcode-cn.com/problems/kth-largest-element-in-an-array/solution/shu-zu-zhong-de-di-kge-zui-da-yuan-su-by-leetcode-/
+     *
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 97.99% of Java online submissions for Kth Largest Element in an Array.
+     * Memory Usage: 39.9 MB, less than 50.37% of Java online submissions for Kth Largest Element in an Array.
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-//         if (nums == null || k > nums.length || k < 1) {
-//             throw new IllegalArgumentException(
-//                     "[ERROR] The input array is null or " +
-//                     "the value of k is illegal (less than 0 or greater than the length of the array!!!)"
-//             );
-//         }
-        int n = nums.length;
-        k = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element (0 index)
-        int li = 0, ri = n - 1;
-        quickselect(nums, li, ri, k);
-        return nums[k];
+        int n = nums.length, ti = n - k; // convert to find the (n-k)th smallest element (0 index)
+        quickSelect(nums, 0, n - 1, ti);
+        return nums[ti];
     }
 
-    private void quickselect(int[] nums, int si, int ei, int k) {
-        if (si >= ei) {
+    /**
+     * Find out the target element (specify by index) in an unsorted array
+     * by using Quick Select Algorithm.
+     *
+     * @param nums int[], an unsorted array of integers
+     * @param li int, the index of the first element, inclusive, to be searched
+     * @param ri int, the index of the last element, inclusive, to be searched
+     * @param ti int, the index of the target element
+     */
+    public void quickSelect(int[] nums, int li, int ri, int ti) {
+        if (li >= ri) {
             return;
         }
-        int splitPoint = partition(nums, si, ei);
-        if (splitPoint < k) {
-            quickselect(nums, splitPoint + 1, ei, k);
-        } else if (splitPoint > k) {
-            quickselect(nums, si, splitPoint - 1, k);
+        int splitPoint = randomPartition(nums, li, ri);
+        if (splitPoint < ti) {
+            quickSelect(nums, splitPoint + 1, ri, ti);
+        } else if (splitPoint > ti) {
+            quickSelect(nums, li, splitPoint - 1, ti);
         }
     }
 
-    public int partition(int[] nums, int si, int ei) {
-        swap(nums, si + rand.nextInt(ei - si), ei);
-        int pivot = nums[ei];
-        int i = si - 1;
-        for (int j = si; j < ei; ++j) {
+    public int randomPartition(int[] nums, int li, int ri) {
+        swap(nums, li + rand.nextInt(ri - li), ri);
+        return partition(nums, li, ri);
+    }
+
+    public int partition(int[] nums, int li, int ri) {
+        int pivot = nums[ri];
+        int i = li - 1;
+        for (int j = li; j < ri; ++j) {
             if (nums[j] <= pivot) {
                 ++i;
                 if (j > i) {
@@ -77,7 +93,7 @@ public class Solution3 {
                 }
             }
         }
-        swap(nums, ++i, ei);
+        swap(nums, ++i, ri);
         return i;
     }
 

@@ -32,41 +32,45 @@ public class Solution4 {
 
     /**
      * Approach 4: Quick Select (Iteration)
+     * The idea is to use quick select algorithm.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N)
-     * Space Complexity: O(1)
+     * Space Complexity: O(log(N))
+     *
+     * Result of Submission:
+     * Runtime: 15 ms, faster than 17.73% of Java online submissions for Kth Largest Element in an Array.
+     * Memory Usage: 41.7 MB, less than 17.93% of Java online submissions for Kth Largest Element in an Array.
      *
      * @param nums int[], an input integer array
      * @param k int, an integer represents the kth
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-//         if (nums == null || k > nums.length || k < 1) {
-//             throw new IllegalArgumentException(
-//                     "[ERROR] The input array is null or " +
-//                     "the value of k is illegal (less than 0 or greater than the length of the array!!!)"
-//             );
-//         }
-        int n = nums.length;
-        k = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element
+        int n = nums.length, ti = n - k; // 1 <= k <= n, convert to find the (n-k)th smallest element
         int li = 0, ri = n - 1;
         while (li < ri) {
             int splitPoint = partition(nums, li, ri);
-            if (splitPoint == k) {
+            if (splitPoint == ti) {
                 break;
-            } else if (splitPoint < k) {
+            } else if (splitPoint < ti) {
                 li = splitPoint + 1;
-            } else { // splitPoint > k
+            } else { // splitPoint > ti
                 ri = splitPoint - 1;
             }
         }
-        return nums[k];
+        return nums[ti];
     }
 
-    public int partition(int[] nums, int si, int ei) {
-        swap(nums, si + rand.nextInt(ei - si), ei);
-        int pivot = nums[ei];
-        int i = si - 1;
-        for (int j = si; j < ei; ++j) {
+    private int randomPartition(int[] nums, int li, int ri) {
+        swap(nums, li + rand.nextInt(ri - li), ri);
+        return partition(nums, li, ri);
+    }
+
+    private int partition(int[] nums, int li, int ri) {
+        int pivot = nums[ri];
+        int i = li - 1;
+        for (int j = li; j < ri; ++j) {
             if (nums[j] <= pivot) {
                 ++i;
                 if (j > i) {
@@ -74,7 +78,7 @@ public class Solution4 {
                 }
             }
         }
-        swap(nums, ++i, ei);
+        swap(nums, ++i, ri);
         return i;
     }
 

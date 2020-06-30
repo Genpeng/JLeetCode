@@ -30,6 +30,11 @@ import java.util.PriorityQueue;
 public class Solution2 {
     /**
      * Approach 2: Priority Queue (Min Heap)
+     * The idea is to maintain a min heap with a capacity of k, each time if a integer
+     * is larger than the top of heap, we update the heap, and finally return the top
+     * of the heap.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N * log(k))
      * Space Complexity: O(k)
      *
@@ -42,7 +47,7 @@ public class Solution2 {
      * @return int, the kth largest element
      */
     public int findKthLargest(int[] nums, int k) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>(k, (a, b) -> a - b);
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> a - b);
         for (int num : nums) {
             if (pq.size() < k) {
                 pq.offer(num);

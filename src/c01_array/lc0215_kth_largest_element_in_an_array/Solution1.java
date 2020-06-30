@@ -30,8 +30,12 @@ import java.util.Arrays;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     * The idea is to sort all the elements by using built-in sort api, and then
+     * return the kth element from tail.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N * log(N))
-     * Space Complexity: O(1)
+     * Space Complexity: O(log(N))
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 97.92% of Java online submissions for Kth Largest Element in an Array.
