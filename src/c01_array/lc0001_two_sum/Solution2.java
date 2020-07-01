@@ -24,14 +24,17 @@ import java.util.Map;
  * return [0, 1].
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2018/12/28
+ * Tags: array;hash table;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * 解法2：Hash Table
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 2: Hash Table
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
      *
      * @param nums int[], the input integer array
      * @param target int, the target integer

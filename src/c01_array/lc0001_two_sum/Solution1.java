@@ -21,14 +21,17 @@ import util.PrintUtil;
  * return [0, 1].
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2018/12/28
+ * Tags: array;hash table;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法1：Brute Force
-     * 时间复杂度：O(n ^ 2)
-     * 空间复杂度：O(1)
+     * Approach 1: Brute Force
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N ^ 2)
+     * Space Complexity: O(1)
      *
      * @param nums int[], the input integer array
      * @param target int, the target integer
