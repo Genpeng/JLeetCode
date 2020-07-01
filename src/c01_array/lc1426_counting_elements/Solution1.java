@@ -1,4 +1,4 @@
-package c01_array.lc1462_counting_elements;
+package c01_array.lc1426_counting_elements;
 
 import java.util.HashSet;
 import java.util.Set;
