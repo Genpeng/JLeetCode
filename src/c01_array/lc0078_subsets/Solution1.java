@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class Solution1 {
     /**
-     * Approach 1: Cascading
+     * Approach 1: Cascading (Iterative Version)
      * The idea is start from empty subset, and then we take a new integer into consideration at each step,
      * and generate new subsets.
      *
@@ -54,7 +54,7 @@ public class Solution1 {
      * @param nums int[], a set of distinct integers
      * @return List<List<Integer>, all possible subsets
      */
-    public List<List<Integer>> subsets(int[] nums) {
+    public List<List<Integer>> subsetsV1(int[] nums) {
         List<List<Integer>> subs = new LinkedList<>();
         subs.add(new LinkedList<>());
         for (int num : nums) {
@@ -69,10 +69,47 @@ public class Solution1 {
         return subs;
     }
 
+    /**
+     * Approach 1: Cascading (Recursive Version)
+     * The idea is start from empty subset, and then we take a new integer into consideration at each step,
+     * and generate new subsets.
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N * 2^N)
+     * Space Complexity: O(N * 2^N)
+     *
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 61.82% of Java online submissions for Subsets.
+     * Memory Usage: 39.9 MB, less than 35.55% of Java online submissions for Subsets.
+     *
+     * @param nums int[], a set of distinct integers
+     * @return List<List<Integer>, all possible subsets
+     */
+    public List<List<Integer>> subsetsV2(int[] nums) {
+        List<List<Integer>> subs = new LinkedList<>();
+        subsetsV2(nums, nums.length - 1, subs);
+        return subs;
+    }
+
+    private void subsetsV2(int[] nums, int ei, List<List<Integer>> subs) {
+        if (ei < 0) {
+            subs.add(new LinkedList<>());
+            return;
+        }
+        subsetsV2(nums, ei - 1, subs);
+        List<List<Integer>> newSubs = new LinkedList<>();
+        for (List<Integer> sub : subs) {
+            List<Integer> newSub = new LinkedList<>(sub);
+            newSub.add(nums[ei]);
+            newSubs.add(newSub);
+        }
+        subs.addAll(newSubs);
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution1 solu = new Solution1();
-        List<List<Integer>> subsets = solu.subsets(nums);
+        List<List<Integer>> subsets = solu.subsetsV1(nums);
         System.out.println(subsets);
     }
 }
