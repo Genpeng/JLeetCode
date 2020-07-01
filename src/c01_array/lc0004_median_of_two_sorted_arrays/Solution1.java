@@ -26,7 +26,7 @@ import java.util.Arrays;
  * The median is (2 + 3)/2 = 2.5
  * ==========================================================================================================
  *
- * Tags: array;divide-and-conquer;binary-search
+ * Tags: array;divide and conquer;binary search
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */

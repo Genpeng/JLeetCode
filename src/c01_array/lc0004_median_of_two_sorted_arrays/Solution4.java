@@ -24,7 +24,7 @@ package c01_array.lc0004_median_of_two_sorted_arrays;
  * The median is (2 + 3)/2 = 2.5
  * ==========================================================================================================
  *
- * Tags: array;divide-and-conquer;binary-search
+ * Tags: array;divide and conquer;binary search
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
