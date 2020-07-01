@@ -42,7 +42,7 @@ import java.util.*;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: BFS
      * 时间复杂度：O(m * n)
@@ -98,7 +98,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int[][] grid = {{2, 1, 1}, {1, 1, 0}, {0, 1, 1}};
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.orangesRotting(grid));
     }
 }
