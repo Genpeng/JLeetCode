@@ -30,7 +30,7 @@ import util.PrintUtil;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/27
  */
-public class Solution {
+public class Solution1 {
     public int[] plusOne(int[] digits) {
         int n = digits.length;
         for (int i = n - 1; i >= 0; --i) {
@@ -47,6 +47,6 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] digits = {9, 9, 9};
-        PrintUtil.printArray((new Solution()).plusOne(digits));
+        PrintUtil.printArray((new Solution1()).plusOne(digits));
     }
 }
