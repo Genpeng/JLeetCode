@@ -31,7 +31,7 @@ import java.util.Arrays;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: slow & fast pointers
      * Time Complexity: O(n)
@@ -61,7 +61,7 @@ public class Solution {
     public static void main(String[] args) {
         int[] nums = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
         System.out.println(Arrays.toString(nums));
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         int newLength = solution.removeDuplicates(nums);
         int[] newNums = Arrays.copyOf(nums, newLength);
         System.out.println(Arrays.toString(newNums));
