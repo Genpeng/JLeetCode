@@ -43,6 +43,10 @@ public class Solution1 {
      * The idea is to enumerate all the combinations without containing duplicates
      * with the help of backtracking technique.
      *
+     * Complexity Analysis:
+     * Time Complexity: O(N * 2^N)
+     * Space Complexity: O(N * 2^N)
+     *
      * @param nums int[], a collection of integers that might contain duplicates
      * @return List<List<Integer>, all possible subsets (the power set)
      */
