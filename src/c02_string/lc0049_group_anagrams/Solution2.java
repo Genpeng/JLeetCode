@@ -1,4 +1,4 @@
-package c01_array.lc0049_group_anagrams;
+package c02_string.lc0049_group_anagrams;
 
 import java.util.*;
 
