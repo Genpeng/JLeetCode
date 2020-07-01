@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution2 {
+public class Solution1 {
     /**
      * Approach 2: Sort
      * Time Complexity: O(n * log(n))
