@@ -11,10 +11,6 @@
  *
  * Tags: xxx;xxx
  *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | xxxx xx, 20xx | x   | √ or × |
- *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
