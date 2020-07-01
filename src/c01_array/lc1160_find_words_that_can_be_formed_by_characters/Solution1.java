@@ -38,7 +38,7 @@ import java.util.Map;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: Hash Table
      * Time Complexity: O(N)
