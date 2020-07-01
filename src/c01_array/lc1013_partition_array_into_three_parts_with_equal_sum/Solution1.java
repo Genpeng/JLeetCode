@@ -34,7 +34,7 @@ package c01_array.lc1013_partition_array_into_three_parts_with_equal_sum;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1
      * Time complexity: O(n)
@@ -67,7 +67,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {1, -1, 1, -1, 1, -1, 1, -1};
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.canThreePartsEqualSum(nums));
     }
 }
