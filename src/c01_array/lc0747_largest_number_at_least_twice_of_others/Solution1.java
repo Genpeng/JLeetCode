@@ -32,7 +32,7 @@ package c01_array.lc0747_largest_number_at_least_twice_of_others;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/18
  */
-public class Solution {
+public class Solution1 {
     public int dominantIndex(int[] nums) {
         if (nums == null || nums.length == 0) {
             return -1;
@@ -55,6 +55,6 @@ public class Solution {
 
     public static void main(String[] args) {
         int[] nums = {3, 6, 1, 0};
-        System.out.println((new Solution()).dominantIndex(nums));
+        System.out.println((new Solution1()).dominantIndex(nums));
     }
 }
