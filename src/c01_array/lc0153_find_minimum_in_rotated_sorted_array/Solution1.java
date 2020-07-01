@@ -26,7 +26,7 @@ package c01_array.lc0153_find_minimum_in_rotated_sorted_array;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach: Binary Search
      * Time complexity: O(log(N))
@@ -81,7 +81,7 @@ public class Solution {
         int[] nums2 = new int[] {1, 2};
         int[] nums3 = new int[] {2, 1};
         int[] nums4 = new int[] {5, 1, 3};
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.findPivot(nums1)); // 4
         System.out.println(solution.findPivot(nums2)); // 0
         System.out.println(solution.findPivot(nums3)); // 1
