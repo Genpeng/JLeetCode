@@ -40,7 +40,7 @@ package c01_array.lc0724_find_pivot_index;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/03/17
  */
-public class Solution {
+public class Solution1 {
     public int pivotIndex(int[] nums) {
         if (nums == null) {
             throw new IllegalArgumentException("[ERROR] The input array is null!!!");
