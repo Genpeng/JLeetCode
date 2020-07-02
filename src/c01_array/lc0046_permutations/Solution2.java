@@ -28,55 +28,61 @@ import java.util.*;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * Approach 1: Backtracking
-     * The idea is to use backtracking technique to enumerate all the permutations,
-     * and by the same time, use a boolean array to mark the numbers that have been
-     * enumerated.
+     * Approach 2: Backtracking (improve approach 1)
+     * The basic idea is the same as approach 1, the only difference is to use swap operations
+     * instead of the auxiliary array.
      *
      * Complexity Analysis:
      * Time Complexity: O(N * N!)
      * Space Complexity: O(N * N!)
      *
      * References:
-     * [1] https://leetcode-cn.com/problems/permutations/solution/hui-su-suan-fa-python-dai-ma-java-dai-ma-by-liweiw/
+     * [1] https://leetcode.com/problems/permutations/discuss/18360/C%2B%2B-backtracking-and-nextPermutation
+     * [2] https://leetcode-cn.com/problems/permutations/solution/quan-pai-lie-by-leetcode-solution-2/
      *
      * Result of Submission:
-     * Runtime: 1 ms, faster than 92.10% of Java online submissions for Permutations.
-     * Memory Usage: 39.9 MB, less than 38.19% of Java online submissions for Permutations.
+     * Runtime: 0 ms, faster than 100.00% of Java online submissions for Permutations.
+     * Memory Usage: 40.1 MB, less than 24.91% of Java online submissions for Permutations.
      *
      * @param nums int[], a collection of distinct integers
      * @return List<List<Integer>>, all possible permutations
      */
     public List<List<Integer>> permute(int[] nums) {
-        int n = nums.length;
         List<List<Integer>> perms = new LinkedList<>();
-        List<Integer> path = new ArrayList<>(n);
-        boolean[] used = new boolean[n];
-        permute(nums, 0, path, used, perms);
+        permute(nums, 0, perms);
         return perms;
     }
 
-    private void permute(int[] nums, int idx, List<Integer> path, boolean[] used, List<List<Integer>> perms) {
-        if (idx == nums.length) {
-            perms.add(new ArrayList<>(path));
+    private void permute(int[] nums, int fromIndex, List<List<Integer>> perms) {
+        if (fromIndex == nums.length) {
+            List<Integer> perm = new LinkedList<>();
+            for (int num : nums) {
+                perm.add(num);
+            }
+            perms.add(perm);
             return;
         }
-        for (int i = 0; i < nums.length; ++i) {
-            if (!used[i]) {
-                path.add(nums[i]);
-                used[i] = true;
-                permute(nums, idx + 1, path, used, perms);
-                used[i] = false;
-                path.remove(path.size() - 1);
-            }
+        for (int i = fromIndex; i < nums.length; ++i) {
+            swap(nums, fromIndex, i);
+            permute(nums, fromIndex + 1, perms);
+            swap(nums, fromIndex, i);
         }
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        if (i == j) {
+            return;
+        }
+        int tmp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = tmp;
     }
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
-        Solution1 solu = new Solution1();
+        Solution2 solu = new Solution2();
         List<List<Integer>> perms = solu.permute(nums);
         System.out.println(perms);
     }
