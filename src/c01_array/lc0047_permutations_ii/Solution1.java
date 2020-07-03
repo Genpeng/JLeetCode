@@ -1,9 +1,6 @@
 package c01_array.lc0047_permutations_ii;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This is the solution of No. 47 problem in the LeetCode,
