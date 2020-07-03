@@ -1,6 +1,9 @@
 package c01_array.lc0047_permutations_ii;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This is the solution of No. 47 problem in the LeetCode,
@@ -28,6 +31,8 @@ import java.util.*;
 public class Solution1 {
     /**
      * Approach 1: Backtracking
+     * The basic idea is the same as no. 46 problem, but this time we must to prune the branches
+     * that create repeated results.
      *
      * Complexity Analysis:
      * Time Complexity: O(N * N!)
@@ -40,16 +45,16 @@ public class Solution1 {
      * @return List<List<Integer>, all possible unique permutations
      */
     public List<List<Integer>> permuteUnique(int[] nums) {
-        Arrays.sort(nums);
+        Arrays.sort(nums); // key point #1
         int n = nums.length;
         List<List<Integer>> perms = new LinkedList<>();
-        Deque<Integer> path = new ArrayDeque<>();
+        List<Integer> path = new ArrayList<>(n);
         boolean[] used = new boolean[n];
         permuteUnique(nums, 0, path, used, perms);
         return perms;
     }
 
-    private void permuteUnique(int[] nums, int idx, Deque<Integer> path, boolean[] used, List<List<Integer>> perms) {
+    private void permuteUnique(int[] nums, int idx, List<Integer> path, boolean[] used, List<List<Integer>> perms) {
         if (idx == nums.length) {
             perms.add(new ArrayList<>(path));
             return;
@@ -58,14 +63,14 @@ public class Solution1 {
             if (used[i]) {
                 continue;
             }
-            if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) {
+            if (i > 0 && nums[i] == nums[i-1] && !used[i-1]) { // key point #2, pruning
                 continue;
             }
-            path.addLast(nums[i]);
+            path.add(nums[i]);
             used[i] = true;
             permuteUnique(nums, idx + 1, path, used, perms);
             used[i] = false;
-            path.removeLast();
+            path.remove(path.size() - 1);
         }
     }
 
