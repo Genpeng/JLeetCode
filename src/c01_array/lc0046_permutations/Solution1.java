@@ -64,13 +64,14 @@ public class Solution1 {
             return;
         }
         for (int i = 0; i < nums.length; ++i) {
-            if (!used[i]) {
-                path.add(nums[i]);
-                used[i] = true;
-                permute(nums, idx + 1, path, used, perms);
-                used[i] = false;
-                path.remove(path.size() - 1);
+            if (used[i]) {
+                continue;
             }
+            path.add(nums[i]);
+            used[i] = true;
+            permute(nums, idx + 1, path, used, perms);
+            used[i] = false;
+            path.remove(path.size() - 1);
         }
     }
 
