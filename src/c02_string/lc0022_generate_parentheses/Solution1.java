@@ -44,21 +44,22 @@ public class Solution1 {
      */
     public List<String> generateParenthesis(int n) {
         List<String> ans = new LinkedList<>();
-        generateParenthesis(new char[2 * n], 0, ans);
+        char[] path = new char[2 * n];
+        generateParenthesis(0, path, ans);
         return ans;
     }
 
-    private void generateParenthesis(char[] s, int idx, List<String> ans) {
-        if (idx == s.length) {
-            if (isValid(s)) {
-                ans.add(new String(s));
+    private void generateParenthesis(int idx, char[] path, List<String> ans) {
+        if (idx == path.length) {
+            if (isValid(path)) {
+                ans.add(new String(path));
             }
             return;
         }
-        s[idx] = '(';
-        generateParenthesis(s, idx + 1, ans);
-        s[idx] = ')';
-        generateParenthesis(s, idx + 1, ans);
+        path[idx] = '(';
+        generateParenthesis(idx + 1, path, ans);
+        path[idx] = ')';
+        generateParenthesis(idx + 1, path, ans);
     }
 
     private boolean isValid(char[] s) {
