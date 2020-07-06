@@ -29,14 +29,17 @@ package c08_dp.lc0070_climbing_stairs;
  * 3. 2 steps + 1 step
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/15
+ * Tags: dp;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 解法一：递归
-     * 时间复杂度：O(2^n)
-     * 空间复杂度：O(n)
+     * Approach 1: Recursion
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(2^n)
+     * Space Complexity: O(n)
      *
      * @param n int, the number of steps to reach to the top of the stair
      * @return int, the number of distinct ways you can climb to the top

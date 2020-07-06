@@ -29,8 +29,9 @@ package c08_dp.lc0070_climbing_stairs;
  * 3. 2 steps + 1 step
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/15
+ * Tags: dp;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution5 {
     /**

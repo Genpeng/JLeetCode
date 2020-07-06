@@ -29,26 +29,29 @@ package c08_dp.lc0070_climbing_stairs;
  * 3. 2 steps + 1 step
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/15
+ * Tags: dp;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
-     * 解法三：动态规划
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(n)
+     * Approach 3: Dynamic Programming
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(n)
+     * Space Complexity: O(n)
      *
      * @param n int, the number of steps to reach to the top of the stair
      * @return int, the number of distinct ways you can climb to the top
      */
     public int climbStairs(int n) {
-        int[] memo = new int[n+1];
-        memo[0] = 1;
-        memo[1] = 1;
+        int[] dp = new int[n+1];
+        dp[0] = 1;
+        dp[1] = 1;
         for (int i = 2; i <= n; ++i) {
-            memo[i] = memo[i-1] + memo[i-2];
+            dp[i] = dp[i-1] + dp[i-2];
         }
-        return memo[n];
+        return dp[n];
     }
 
     public static void main(String[] args) {
