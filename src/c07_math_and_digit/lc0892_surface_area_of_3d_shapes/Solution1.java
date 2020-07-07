@@ -42,7 +42,7 @@ package c07_math_and_digit.lc0892_surface_area_of_3d_shapes;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: Intuition
      * Time complexity: O(n ^ 2)
@@ -104,7 +104,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int[][] grid = {{1, 0}, {0, 2}};
-        Solution solution = new Solution();
+        Solution1 solution = new Solution1();
         System.out.println(solution.surfaceAreaV2(grid));
     }
 }
