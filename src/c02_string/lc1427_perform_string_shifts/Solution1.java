@@ -1,4 +1,4 @@
-package c02_string.lcxxxx_perform_string_shifts;
+package c02_string.lc1427_perform_string_shifts;
 
 /**
  * This is the solution of No. xxx problem in the LeetCode,
@@ -44,7 +44,7 @@ package c02_string.lcxxxx_perform_string_shifts;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution2 {
+public class Solution1 {
     /**
      * Approach 2: Merge all shift operations and execute only once
      * Time Complexity: O(N + L)
@@ -143,7 +143,7 @@ public class Solution2 {
     public static void main(String[] args) {
         String s = "love";
         int offset = 5;
-        Solution2 solu = new Solution2();
+        Solution1 solu = new Solution1();
         System.out.println(solu.rotateRight(s, offset));
     }
 }
