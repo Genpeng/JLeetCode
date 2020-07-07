@@ -32,7 +32,7 @@ import entity.ListNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/10/12
  */
-public class Solution {
+public class Solution1 {
     /**
      * 解法：双指针
      * 时间复杂度：O(n)
