@@ -29,7 +29,7 @@ import java.util.Map;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * 解法1
      * 解题思路：统计字符中出现次数为偶数的字符的长度
