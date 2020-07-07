@@ -24,9 +24,9 @@ package c08_dp.lc0053_maximum_subarray;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution2 {
+public class Solution3 {
     /**
-     * Approach 2: Dynamic programming
+     * Approach 3: Dynamic programming with memory optimization (or Kadane's algorithm)
      * Suppose `F(A, n)` represents the max sum of subarray A[:n] which must contains A[n]
      * as the last element, the state transition equation can be written as follow:
      *           / A[0], n = 0
@@ -35,31 +35,36 @@ public class Solution2 {
      *
      * Complexity Analysis:
      * Time complexity: O(n)
-     * Space complexity: O(n)
+     * Space complexity: O(1)
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 85.31% of Java online submissions for Maximum Subarray.
-     * Memory Usage: 41.8 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+     * Memory Usage: 41.7 MB, less than 5.16% of Java online submissions for Maximum Subarray.
      *
      * @param nums int[], the input integer
      * @return int, the largest sum of all the contiguous subarray
      */
     public int maxSubArray(int[] nums) {
-        int n = nums.length;
-        int[] dp  = new int[n];
-        dp[0] = nums[0];
-        int maxSum = nums[0];
-        for (int i = 1; i < n; ++i) {
-            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
-            maxSum = Math.max(dp[i], maxSum);
+        int currSum = nums[0], maxSum = nums[0];
+        for (int i = 1; i < nums.length; ++i) {
+            currSum = Math.max(currSum + nums[i], nums[i]);
+            maxSum = Math.max(maxSum, currSum);
         }
         return maxSum;
+
+        // or write as follow:
+//        int currSum = nums[0], maxSum = nums[0];
+//        for (int i = 1; i < nums.length; ++i) {
+//            currSum = Math.max(currSum, 0) + nums[i];
+//            maxSum = Math.max(maxSum, currSum);
+//        }
+//        return maxSum;
     }
 
     public static void main(String[] args) {
         int[] nums1 = new int[] {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int[] nums2 = new int[] {1};
-        Solution2 solution = new Solution2();
+        Solution3 solution = new Solution3();
         System.out.println(solution.maxSubArray(nums1));
         System.out.println(solution.maxSubArray(nums2));
     }
