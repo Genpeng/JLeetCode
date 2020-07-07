@@ -29,9 +29,11 @@ package c02_string.lc0043_multiply_strings;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m + n)
      * Space Complexity: O(m + n)
      *
@@ -69,7 +71,7 @@ public class Solution {
     public static void main(String[] args) {
         String num1 = "123";
         String num2 = "456";
-        Solution solution = new Solution();
-        System.out.println(solution.multiply(num1, num2));
+        Solution1 solu = new Solution1();
+        System.out.println(solu.multiply(num1, num2));
     }
 }
