@@ -45,7 +45,7 @@ package c08_dp.lc1312_minimum_insertion_steps_to_make_a_string_palindromic;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * Approach 1: find out the length of longest palindromic subsequence (LPS)
      * Time Complexity: O(N ^ 2)
