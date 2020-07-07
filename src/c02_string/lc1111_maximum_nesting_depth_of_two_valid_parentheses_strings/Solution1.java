@@ -43,6 +43,6 @@ package c02_string.lc1111_maximum_nesting_depth_of_two_valid_parentheses_strings
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
 
 }
