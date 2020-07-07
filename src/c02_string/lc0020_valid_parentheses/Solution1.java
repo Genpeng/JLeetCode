@@ -1,4 +1,4 @@
-package c05_stack_and_queue.lc0020_valid_parentheses;
+package c02_string.lc0020_valid_parentheses;
 
 import java.util.Stack;
 
@@ -39,9 +39,11 @@ import java.util.Stack;
  * Output: true
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227atgmail.com)
+ * Tags: string;stack;
+ *
+ * @author Genpeng Xu (xgp1227atgmai.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * All possible scenarios are shown below:
      *
@@ -77,6 +79,6 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println((new Solution()).isValid(null));
+        System.out.println((new Solution1()).isValid(null));
     }
 }
