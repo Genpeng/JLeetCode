@@ -25,7 +25,7 @@ import entity.ListNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/05
  */
-public class Solution {
+public class Solution1 {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode p1 = head, p2 = head;
         // 指针p2移动n个节点，此时p1和p2之间有n+1个节点
@@ -51,6 +51,6 @@ public class Solution {
     public static void main(String[] args) {
         ListNode head = new ListNode(new int[] {1, 2, 3, 4, 5});
         System.out.println(head);
-        System.out.println((new Solution()).removeNthFromEnd(head, 2));
+        System.out.println((new Solution1()).removeNthFromEnd(head, 2));
     }
 }
