@@ -1,4 +1,4 @@
-package c08_dp.lc0120_;
+package c08_dp.lc0120_triangle;
 
 /**
  * This is the solution of No. xxx problem in the LeetCode,
@@ -13,6 +13,6 @@ package c08_dp.lc0120_;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    xxx
  */
-public class Solution {
+public class Solution1 {
 
 }
