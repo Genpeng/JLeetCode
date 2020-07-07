@@ -19,7 +19,7 @@ import entity.ListNode;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/01
  */
-public class Solution {
+public class Solution1 {
     public ListNode removeElements(ListNode head, int val) {
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
