@@ -27,7 +27,7 @@ package c02_string.lc0344_reverse_string;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     public void reverseString(char[] s) {
         for (int i = 0, j = s.length - 1; i < j; ++i, --j) {
             char tmp = s[i];
