@@ -55,7 +55,7 @@ import java.util.Stack;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution {
+public class Solution1 {
     /**
      * 解法1：栈
      * 时间复杂度：O(n)
