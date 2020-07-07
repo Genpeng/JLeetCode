@@ -1,4 +1,4 @@
-package c09_design.lcxxxx_first_unique_number;
+package c09_design.lc1429_first_unique_number;
 
 import java.util.HashMap;
 import java.util.Map;
