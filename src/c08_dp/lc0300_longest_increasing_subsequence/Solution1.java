@@ -1,6 +1,7 @@
 package c08_dp.lc0300_longest_increasing_subsequence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is the solution of No. 300 problem in the LeetCode,
@@ -31,10 +32,16 @@ public class Solution1 {
     private int maxLen;
 
     /**
-     * Approach 1: Brute Force
-     * Time Complexity: O(N * 2^N)
-     * Space Complexity: O(1)
+     * Approach 1: Brute Force (Backtracking)
+     * The idea is to find out all the possible combinations, check whether it is
+     * an increasing subsequence, and by the same time update the maximum length
+     * of subsequence we have seen.
      *
+     * Complexity Analysis:
+     * Time Complexity: O(N * 2^N)
+     * Space Complexity: O(N)
+     *
+     * Result of Submission:
      * Time Limit Exceeded
      *
      * @param nums int[], the input integer array
@@ -42,26 +49,27 @@ public class Solution1 {
      */
     public int lengthOfLIS(int[] nums) {
         maxLen = 0;
-        helper(nums, 0, new ArrayList<>());
+        List<Integer> path = new ArrayList<>();
+        helper(nums, 0, path);
         return maxLen;
     }
 
-    private void helper(int[] nums, int i, ArrayList<Integer> subseq) {
+    private void helper(int[] nums, int i, List<Integer> path) {
         if (i == nums.length) {
-            if (isIncreasing(subseq)) {
-                maxLen = Math.max(maxLen, subseq.size());
+            if (isIncreasing(path)) {
+                maxLen = Math.max(maxLen, path.size());
             }
             return;
         }
-        subseq.add(nums[i]);
-        helper(nums, i+1, subseq);
-        subseq.remove(subseq.size() - 1);
-        helper(nums, i+1, subseq);
+        path.add(nums[i]);
+        helper(nums, i+1, path);
+        path.remove(path.size() - 1);
+        helper(nums, i+1, path);
     }
 
-    private boolean isIncreasing(ArrayList<Integer> subseq) {
-        for (int i = 1; i < subseq.size(); ++i) {
-            if (subseq.get(i) < subseq.get(i-1)) {
+    private boolean isIncreasing(List<Integer> seq) {
+        for (int i = 1; i < seq.size(); ++i) {
+            if (seq.get(i) < seq.get(i-1)) {
                 return false;
             }
         }
