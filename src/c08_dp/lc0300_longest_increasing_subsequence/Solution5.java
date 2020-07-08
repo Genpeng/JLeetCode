@@ -32,8 +32,8 @@ public class Solution5 {
      * in all increasing subsequences of length `i+1`.
      *
      * Complexity Analysis:
-     * Time Complexity: O(n * log(n))
-     * Space Complexity: O(n)
+     * Time Complexity: O(N * log(N))
+     * Space Complexity: O(N)
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 86.60% of Java online submissions for Longest Increasing Subsequence.
@@ -64,13 +64,13 @@ public class Solution5 {
     }
 
     /**
-     * Approach 4: Binary Search
+     * Approach 4: Binary Search (Recommended)
      * The idea is to maintain an array `tail`, where `tail[i]` represents the smallest tail
      * in all increasing subsequences of length `i+1`.
      *
      * Complexity Analysis:
-     * Time Complexity: O(n * log(n))
-     * Space Complexity: O(n)
+     * Time Complexity: O(N * log(N))
+     * Space Complexity: O(N)
      *
      * Result of Submission:
      * Runtime: 0 ms, faster than 100.00% of Java online submissions for Longest Increasing Subsequence.
@@ -91,16 +91,16 @@ public class Solution5 {
             if (nums[i] > tail[lastIndex]) {
                 tail[++lastIndex] = nums[i];
             } else if (nums[i] < tail[lastIndex]) {
-                int l = 0, r = lastIndex;
-                while (l < r) {
-                    int m = l + ((r - l) >> 1);
-                    if (nums[i] > tail[m]) {
-                        l = m + 1;
+                int li = 0, ri = lastIndex;
+                while (li < ri) {
+                    int mi = li + ((ri - li) >> 1);
+                    if (nums[i] > tail[mi]) {
+                        li = mi + 1;
                     } else {
-                        r = m;
+                        ri = mi;
                     }
                 }
-                tail[l] = nums[i];
+                tail[li] = nums[i];
             }
         }
         return lastIndex + 1;
