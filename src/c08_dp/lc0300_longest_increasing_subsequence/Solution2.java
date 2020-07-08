@@ -27,10 +27,13 @@ package c08_dp.lc0300_longest_increasing_subsequence;
  */
 public class Solution2 {
     /**
-     * Approach 2: Recursion
-     * Time Complexity: O(2 ^ n)
-     * Space Complexity: O(n)
+     * Approach 2: Recursion (with pruning)
      *
+     * Complexity Analysis:
+     * Time Complexity: O(2 ^ N)
+     * Space Complexity: O(N)
+     *
+     * Result of Submission:
      * Time Limit Exceeded
      *
      * @param nums int[], the input integer array

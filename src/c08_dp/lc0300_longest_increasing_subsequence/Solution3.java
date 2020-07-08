@@ -27,9 +27,11 @@ package c08_dp.lc0300_longest_increasing_subsequence;
  */
 public class Solution3 {
     /**
-     * Approach 3: Recursion with memoization
-     * Time Complexity: O(n ^ 2)
-     * Space Complexity: O(n ^ 2)
+     * Approach 3: Recursion with memoization (with pruning)
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N ^ 2)
+     * Space Complexity: O(N ^ 2)
      *
      * @param nums int[], the input integer array
      * @return int, the length of longest increasing subsequence

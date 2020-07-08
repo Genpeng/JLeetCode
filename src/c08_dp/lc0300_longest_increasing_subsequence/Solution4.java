@@ -28,13 +28,15 @@ package c08_dp.lc0300_longest_increasing_subsequence;
 public class Solution4 {
     /**
      * Approach 4: Dynamic Programming
+     * Suppose `dp[i]` is the length of LCS in `A[0 ... i]` with the `A[i]` as the last element,
+     * the state transition equation can be written as follow:
+     *        / 1, i = 0
+     * dp[i] =
+     *        \ max{ dp[j] + 1 | 0 <= j < i and A[i] > A[j] }, i > 0
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n ^ 2)
      * Space Complexity: O(n)
-     *
-     * The state transition equation is as follow:
-     *        / 0, i = 0
-     * T(i) =
-     *        \ max{T(j) | 0 <= j < i, nums[i] > nums[j]} + 1, i > 0
      *
      * Result of Submission:
      * Runtime: 11 ms, faster than 58.99% of Java online submissions for Longest Increasing Subsequence.
@@ -44,10 +46,10 @@ public class Solution4 {
      * @return int, the length of longest increasing subsequence
      */
     public int lengthOfLIS(int[] nums) {
-        final int L = nums.length;
-        int[] dp = new int[L];
+        final int n = nums.length;
+        int[] dp = new int[n];
         int maxLen = 0;
-        for (int i = 0; i < L; ++i) {
+        for (int i = 0; i < n; ++i) {
             dp[i] = 1;
             for (int j = 0; j < i; ++j) {
                 if (nums[i] > nums[j]) {

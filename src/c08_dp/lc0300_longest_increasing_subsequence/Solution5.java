@@ -30,6 +30,8 @@ public class Solution5 {
      * Approach 5: Binary Search
      * The idea is to maintain an array `tail`, where `tail[i]` represents the smallest tail
      * in all increasing subsequences of length `i+1`.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n * log(n))
      * Space Complexity: O(n)
      *
@@ -63,6 +65,10 @@ public class Solution5 {
 
     /**
      * Approach 4: Binary Search
+     * The idea is to maintain an array `tail`, where `tail[i]` represents the smallest tail
+     * in all increasing subsequences of length `i+1`.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n * log(n))
      * Space Complexity: O(n)
      *
@@ -74,14 +80,14 @@ public class Solution5 {
      * @return int, the length of longest increasing subsequence
      */
     public int lengthOfLISV2(int[] nums) {
-        final int L = nums.length;
-        if (L == 0) {
+        final int n = nums.length;
+        if (n == 0) {
             return 0;
         }
-        int[] tail = new int[L];
+        int[] tail = new int[n];
         tail[0] = nums[0];
         int lastIndex = 0;
-        for (int i = 1; i < L; ++i) {
+        for (int i = 1; i < n; ++i) {
             if (nums[i] > tail[lastIndex]) {
                 tail[++lastIndex] = nums[i];
             } else if (nums[i] < tail[lastIndex]) {
