@@ -40,9 +40,12 @@ package c08_dp.lc0072_edit_distance;
 public class Solution1 {
     /**
      * Approach 1: Recursion
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m * n)
      * Time Complexity: O(m * n)
      *
+     * Result of Submission:
      * Runtime: 3 ms, faster than 99.83% of Java online submissions for Edit Distance.
      * Memory Usage: 40 MB, less than 5.88% of Java online submissions for Edit Distance.
      *

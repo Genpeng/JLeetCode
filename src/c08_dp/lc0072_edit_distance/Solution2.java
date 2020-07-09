@@ -35,14 +35,17 @@ package c08_dp.lc0072_edit_distance;
  *
  * Tags: dp;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
      * Approach 2: Dynamic Programming (Bottom up)
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m * n)
      * Time Complexity: O(m * n)
      *
+     * Result of Submission:
      * Runtime: 4 ms, faster than 94.73% of Java online submissions for Edit Distance.
      * Memory Usage: 39.5 MB, less than 5.88% of Java online submissions for Edit Distance.
      *
