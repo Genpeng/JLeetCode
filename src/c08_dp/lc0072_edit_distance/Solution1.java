@@ -56,7 +56,7 @@ public class Solution1 {
     public int minDistance(String word1, String word2) {
         int m = word1.length(), n = word2.length();
         int[][] memo = new int[m+1][n+1];
-        return minDistance(word1, word2, memo, m, n);
+        return minDistance(word1, word2, m, n, memo);
     }
 
     /**
@@ -70,12 +70,12 @@ public class Solution1 {
      *
      * @param word1 String, one word
      * @param word2 String, the other word
-     * @param memo int[][], the auxiliary array to memorize intermediate values
      * @param i int, the upper bound in word1
      * @param j int, the upper bound in word2
+     * @param memo int[][], the auxiliary array to memorize intermediate values
      * @return int, the edit distance between the prefixes word1[1 ... i] and word2[1 ... j]
      */
-    private int minDistance(String word1, String word2, int[][] memo, int i, int j) {
+    private int minDistance(String word1, String word2, int i, int j, int[][] memo) {
         if (i * j == 0) {
             return i + j;
         }
@@ -83,11 +83,11 @@ public class Solution1 {
             return memo[i][j];
         }
         if (word1.charAt(i-1) == word2.charAt(j-1)) {
-            memo[i][j] = minDistance(word1, word2, memo, i-1, j-1);
+            memo[i][j] = minDistance(word1, word2, i-1, j-1, memo);
         } else {
-            memo[i][j] = min(minDistance(word1, word2, memo, i-1, j),
-                             minDistance(word1, word2, memo, i, j-1),
-                             minDistance(word1, word2, memo, i-1, j-1)) + 1;
+            memo[i][j] = min(minDistance(word1, word2, i-1, j, memo),
+                             minDistance(word1, word2, i, j-1, memo),
+                             minDistance(word1, word2, i-1, j-1, memo)) + 1;
         }
         return memo[i][j];
     }
