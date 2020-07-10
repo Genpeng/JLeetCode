@@ -82,9 +82,10 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        String word1 = "horse";
-        String word2 = "ros";
-        Solution2 solution = new Solution2();
-        System.out.println(solution.minDistance(word1, word2));
+//        String word1 = "horse";
+//        String word2 = "ros";
+//        Solution2 solution = new Solution2();
+//        System.out.println(solution.minDistance(word1, word2));
+        System.out.format("1/%d\n", 2);
     }
 }
