@@ -67,10 +67,8 @@ public class Solution1 {
      *            / dp[i-1][j-1], i > 0, j > 0, s[i-1] = p[j-1] or p[j-1] = '?'
      *            / dp[i-1][j] | dp[i][j-1], i > 0, j > 0, p[j-1] = '*'
      * dp[i][j] = - true, i = 0, j = 0
-     *            \ false, i >= 1, j = 0
-     *            \ true, i = 0, 0 < k <= j and p[k-1] = '*' <- 待修改
-     *
-     * TODO: 对于 i = 0 的情况，即字符串为空，模式中，只有前 k 个为 * 的位置 dp[i][j] 为 true，其余为 false，这个用数学式子如何表达
+     *            \ true, i = 0, j > 0, V 0 < k <= j, p[k] = '*'
+     *            \ false, others
      *
      * Complexity Analysis:
      * Time Complexity: O(m * n)
