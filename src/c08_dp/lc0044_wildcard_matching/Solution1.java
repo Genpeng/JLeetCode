@@ -67,7 +67,7 @@ public class Solution1 {
      *            / dp[i-1][j-1], i > 0, j > 0, s[i-1] = p[j-1] or p[j-1] = '?'
      *            / dp[i-1][j] | dp[i][j-1], i > 0, j > 0, p[j-1] = '*'
      * dp[i][j] = - true, i = 0, j = 0
-     *            \ true, i = 0, j > 0, V 0 < k <= j, p[k] = '*'
+     *            \ true, i = 0, j > 0, V 0 < k <= j, p[k-1] = '*'
      *            \ false, others
      *
      * Complexity Analysis:
