@@ -38,9 +38,9 @@ package c08_dp.lc0072_edit_distance;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution2 {
+public class Solution3 {
     /**
-     * Approach 2: Dynamic Programming (Bottom up)
+     * Approach 3: Dynamic Programming with memory optimization
      * Suppose `dp[i][j]` represents the edit distance between `word1[0 ... i-1]` and `word2[0 ... j-1]`,
      * so the state transition equation can be written as follow:
      *            / dp[i-1][j-1], i > 0, j > 0, word1[i-1] = words[j-1]
@@ -49,11 +49,10 @@ public class Solution2 {
      *
      * Complexity Analysis:
      * Time Complexity: O(m * n)
-     * Time Complexity: O(m * n)
+     * Time Complexity: O(min{m, n})
      *
      * Result of Submission:
-     * Runtime: 4 ms, faster than 94.73% of Java online submissions for Edit Distance.
-     * Memory Usage: 39.5 MB, less than 5.88% of Java online submissions for Edit Distance.
+     *
      *
      * @param word1 String, one word
      * @param word2 String, the other word
@@ -61,26 +60,36 @@ public class Solution2 {
      */
     public int minDistance(String word1, String word2) {
         int m = word1.length(), n = word2.length();
-        if (m * n == 0) {
-            return m + n;
+        if (m < n) {
+            return minDistance(word2, word1);
         }
-        int[][] dp = new int[m+1][n+1];
-        for (int i = 1; i <= m; ++i) {
-            dp[i][0] = i;
-        }
+        int[] prev = new int[n+1];
+        int[] curr = new int[n+1];
         for (int j = 1; j <= n; ++j) {
-            dp[0][j] = j;
+            prev[j] = j;
         }
         for (int i = 1; i <= m; ++i) {
+            curr[0] = i;
             for (int j = 1; j <= n; ++j) {
                 if (word1.charAt(i-1) == word2.charAt(j-1)) {
-                    dp[i][j] = dp[i-1][j-1];
+                    curr[j] = prev[j-1];
                 } else {
-                    dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
+                    curr[j] = min(curr[j-1], prev[j-1], prev[j]) + 1;
                 }
             }
+            int[] tmp = prev;
+            prev = curr;
+            curr = tmp;
+            // TODO: 为什么用 swap 函数结果不一样？
+//            swap(prev, curr);
         }
-        return dp[m][n];
+        return prev[n];
+    }
+
+    private void swap(int[] a, int[] b) {
+        int[] tmp = a;
+        a = b;
+        b = tmp;
     }
 
     public int min(int a, int b, int c) {
@@ -88,7 +97,8 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        Solution2 solu = new Solution2();
+        Solution3 solu = new Solution3();
         System.out.println(solu.minDistance("horse", "ros") == 3);
+        System.out.println(solu.minDistance("intention", "execution") == 5);
     }
 }

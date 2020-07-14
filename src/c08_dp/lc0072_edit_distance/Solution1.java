@@ -33,6 +33,7 @@ package c08_dp.lc0072_edit_distance;
  * exection -> execution (insert 'u')
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -97,9 +98,7 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        String word1 = "horse";
-        String word2 = "ros";
-        Solution1 solution = new Solution1();
-        System.out.println(solution.minDistance(word1, word2));
+        Solution1 solu = new Solution1();
+        System.out.println(solu.minDistance("horse", "ros") == 3);
     }
 }
