@@ -36,6 +36,7 @@ package c08_dp.lc1143_longest_common_subsequence;
  * - The input strings consist of lowercase English characters only.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -43,6 +44,8 @@ package c08_dp.lc1143_longest_common_subsequence;
 public class Solution4 {
     /**
      * Approach 4: Dynamic Programming with memory optimization
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m * n)
      * Space Complexity: O(min(m, n))
      *

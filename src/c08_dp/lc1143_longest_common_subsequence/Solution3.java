@@ -36,6 +36,7 @@ package c08_dp.lc1143_longest_common_subsequence;
  * - The input strings consist of lowercase English characters only.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -43,6 +44,8 @@ package c08_dp.lc1143_longest_common_subsequence;
 public class Solution3 {
     /**
      * Approach 3: Dynamic Programming (Bottom-up)
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m * n)
      * Space Complexity: O(m * n)
      *
@@ -70,8 +73,9 @@ public class Solution3 {
     }
 
     public static void main(String[] args) {
-        String s1 = "abcde", s2 = "ace";
         Solution3 solu = new Solution3();
-        System.out.println(solu.longestCommonSubsequence(s1, s2));
+        System.out.println(solu.longestCommonSubsequence("", "") == 0);
+        System.out.println(solu.longestCommonSubsequence("", "ace") == 0);
+        System.out.println(solu.longestCommonSubsequence("abcde", "ace") == 3);
     }
 }

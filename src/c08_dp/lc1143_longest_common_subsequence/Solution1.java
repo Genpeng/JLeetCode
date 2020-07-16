@@ -36,6 +36,7 @@ package c08_dp.lc1143_longest_common_subsequence;
  * - The input strings consist of lowercase English characters only.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -43,14 +44,15 @@ package c08_dp.lc1143_longest_common_subsequence;
 public class Solution1 {
     /**
      * Approach 1: Recursion
+     * Suppose dp[i][j] represents the length of longest common subsequence between s1[0 ... i-1]
+     * and s2[0 ... j-1], so the state transition equation can be written as follow:
+     *            / 0, i * j = 0 (i = 0 or j = 0)
+     * dp[i][j] = - dp[i-1][j-1], i * j > 0 and s1[i-1] = s2[j-1]
+     *            \ max{dp[i-1][j], dp[i][j-1]}, i * j > 0 and s1[i-1] != s2[j-1]
+     *
+     * Complexity Analysis:
      * Time Complexity: O(2 ^ (m+n))
      * Space Complexity: O(m + n)
-     *
-     * The state transition equation is as follow:
-     *           / 0, i * j = 0 (i = 0 or j = 0)
-     * L(i, j) = - 1 + L(i-1, j-1), i * j > 0 and s1[i-1] = s2[j-1]
-     *           \ max(L(i-1, j), L(i, j-1)), i * j > 0 and s1[i-1] != s2[j-1]
-     * where L(i, j) represents the length of longest common subsequence (LCS) between s1[0 ... i-1] and s2[0 ... j-1]
      *
      * @param s1 String, a string
      * @param s2 String, another string
@@ -61,7 +63,7 @@ public class Solution1 {
     }
 
     /**
-     * The auxiliary function to calculate `L(i, j)`.
+     * The auxiliary function to calculate dp[i][j].
      *
      * @param s1 String, a string
      * @param i int, the rightmost index in s1
