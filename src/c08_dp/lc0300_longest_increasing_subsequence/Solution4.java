@@ -28,7 +28,7 @@ package c08_dp.lc0300_longest_increasing_subsequence;
 public class Solution4 {
     /**
      * Approach 4: Dynamic Programming
-     * Suppose `dp[i]` is the length of LCS in `A[0 ... i]` with the `A[i]` as the last element,
+     * Suppose `dp[i]` is the length of LIS in `A[0 ... i]` with the `A[i]` as the last element,
      * the state transition equation can be written as follow:
      *        / 1, i = 0
      * dp[i] =
