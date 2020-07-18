@@ -20,6 +20,7 @@ package c08_dp.lc0053_maximum_subarray;
  *   which is more subtle.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;dp;divide and conquer;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)

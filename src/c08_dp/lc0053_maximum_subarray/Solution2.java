@@ -20,6 +20,7 @@ package c08_dp.lc0053_maximum_subarray;
  * which is more subtle.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;dp;divide and conquer;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -27,11 +28,11 @@ package c08_dp.lc0053_maximum_subarray;
 public class Solution2 {
     /**
      * Approach 2: Dynamic programming
-     * Suppose `F(A, n)` represents the max sum of subarray A[:n] which must contains A[n]
+     * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
      * as the last element, the state transition equation can be written as follow:
-     *           / A[0], n = 0
-     * F(A, n) =
-     *           \ max(F(A, n-1), 0) + A[n], n > 0
+     *         / A[0], n = 0
+     * dp[n] =
+     *         \ max(dp[n-1], 0) + A[n], n > 0
      *
      * Complexity Analysis:
      * Time complexity: O(n)
@@ -50,7 +51,7 @@ public class Solution2 {
         dp[0] = nums[0];
         int maxSum = nums[0];
         for (int i = 1; i < n; ++i) {
-            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+            dp[i] = nums[i] + Math.max(dp[i-1], 0);
             maxSum = Math.max(dp[i], maxSum);
         }
         return maxSum;

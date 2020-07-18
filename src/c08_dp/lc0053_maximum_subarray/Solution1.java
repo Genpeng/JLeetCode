@@ -20,6 +20,7 @@ package c08_dp.lc0053_maximum_subarray;
  * which is more subtle.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;dp;divide and conquer;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -29,11 +30,11 @@ public class Solution1 {
 
     /**
      * Approach 1: Recursive
-     * Suppose `F(A, n)` represents the max sum of subarray A[:n] which must contains A[n]
+     * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
      * as the last element, the state transition equation can be written as follow:
-     *           / A[0], n = 0
-     * F(A, n) =
-     *           \ max(F(A, n-1), 0) + A[n], n > 0
+     *         / A[0], n = 0
+     * dp[n] =
+     *         \ max(dp[n-1], 0) + A[n], n > 0
      *
      * Complexity Analysis:
      * Time complexity: O(n)
@@ -47,23 +48,16 @@ public class Solution1 {
      * @return int, the largest sum of all the contiguous subarray
      */
     public int maxSubArray(int[] nums) {
-        helper(nums, nums.length - 1);
+        maxSubArray(nums, nums.length - 1);
         return maxSum;
     }
 
-    /**
-     * The auxiliary function of the recursive approach.
-     *
-     * @param nums int[], the input integer
-     * @param n    int, the index of last element
-     * @return int, the largest sum of subarray `nums[:n]`, which must have `nums[n]` as the last element
-     */
-    public int helper(int[] nums, int n) {
+    private int maxSubArray(int[] nums, int n) {
         if (n == 0) {
             maxSum = nums[0];
             return nums[0];
         }
-        int s = Math.max(helper(nums, n - 1), 0) + nums[n];
+        int s = Math.max(maxSubArray(nums, n - 1), 0) + nums[n];
         maxSum = Math.max(maxSum, s);
         return s;
     }
