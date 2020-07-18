@@ -60,6 +60,9 @@ public class Solution3 {
      */
     public int minDistance(String word1, String word2) {
         int m = word1.length(), n = word2.length();
+        if (m * n == 0) {
+            return m + n;
+        }
         if (m < n) {
             return minDistance(word2, word1);
         }

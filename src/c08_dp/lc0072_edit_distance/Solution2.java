@@ -43,8 +43,8 @@ public class Solution2 {
      * Approach 2: Dynamic Programming (Bottom up)
      * Suppose `dp[i][j]` represents the edit distance between `word1[0 ... i-1]` and `word2[0 ... j-1]`,
      * so the state transition equation can be written as follow:
-     *            / dp[i-1][j-1], i > 0, j > 0, word1[i-1] = words[j-1]
-     * dp[i][j] = - min{dp[i-1][j], dp[i][j-1], dp[i-1][j-1]} + 1, i > 0, j > 0, word1[i-1] != word2[j-1]
+     *            / dp[i-1][j-1], i * j > 0, word1[i-1] = words[j-1]
+     * dp[i][j] = - min{dp[i-1][j], dp[i][j-1], dp[i-1][j-1]} + 1, i * j > 0, word1[i-1] != word2[j-1]
      *            \ i + j, i * j = 0
      *
      * Complexity Analysis:
@@ -55,12 +55,12 @@ public class Solution2 {
      * Runtime: 4 ms, faster than 94.73% of Java online submissions for Edit Distance.
      * Memory Usage: 39.5 MB, less than 5.88% of Java online submissions for Edit Distance.
      *
-     * @param word1 String, one word
-     * @param word2 String, the other word
+     * @param s1 String, one word
+     * @param s2 String, the other word
      * @return int, the edit distance between two strings
      */
-    public int minDistance(String word1, String word2) {
-        int m = word1.length(), n = word2.length();
+    public int minDistance(String s1, String s2) {
+        int m = s1.length(), n = s2.length();
         if (m * n == 0) {
             return m + n;
         }
@@ -73,7 +73,7 @@ public class Solution2 {
         }
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
-                if (word1.charAt(i-1) == word2.charAt(j-1)) {
+                if (s1.charAt(i-1) == s2.charAt(j-1)) {
                     dp[i][j] = dp[i-1][j-1];
                 } else {
                     dp[i][j] = min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
