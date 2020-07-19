@@ -63,7 +63,6 @@ public class Solution1 {
      * Approach 1: Dynamic Programming
      * Suppose `dp[i][j]` represents whether the substring `s[0 ... i-1]` and the pattern `p[0 ... j-1]`
      * is matching, so the state transition equation can be written as follow:
-     *
      *            / dp[i-1][j-1], i > 0, j > 0, s[i-1] = p[j-1] or p[j-1] = '?'
      *            / dp[i-1][j] | dp[i][j-1], i > 0, j > 0, p[j-1] = '*'
      * dp[i][j] = - true, i = 0, j = 0
