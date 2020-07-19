@@ -25,6 +25,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  * One possible longest palindromic subsequence is "bb".
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -36,7 +37,9 @@ public class Solution1 {
      * Approach 1: Brute Force
      * Enumerate all the subsequences, judge whether they are palindromic, and save the length of current
      * longest palindromic subsequence.
-     * Time Complexity: O(2 ^ N)
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(2 ^ N * N)
      * Space Complexity: O(N)
      *
      * @param s String, an input string

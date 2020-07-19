@@ -25,6 +25,7 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
  * One possible longest palindromic subsequence is "bb".
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -32,13 +33,14 @@ package c08_dp.lc0516_longest_palindromic_subsequence;
 public class Solution2 {
     /**
      * Approach 2: Recursion
-     * The state transition equation is as follow:
-     *              / 0, i > j
-     *              / 1, i = j
-     * LPS(i, j) =  - LPS(i+1, j-1), i < j and s[i] = s[j]
-     *              \ max(LPS(i+1, j), LPS(i, j-1)), i < j and s[i] != s[j]
-     * where the LPS(i, j) represents the length of longest palindromic subsequence in the string s[i ... j]
+     * Suppose dp[i][j] represents the length of longest palindromic subsequence
+     * in the substring s[i ... j], so the state transition equation can be written as follow:
+     *            / 0, i > j
+     *            / 1, i = j
+     * dp[i][j] = - 2 + dp[i+1][j-1], i < j and s[i] = s[j]
+     *            \ max{ dp[i+1][j], dp[i][j-1] }, i < j and s[i] != s[j]
      *
+     * Complexity Analysis:
      * Time Complexity: O(2 ^ N)
      * Space Complexity: O(N)
      *
@@ -52,14 +54,6 @@ public class Solution2 {
         return lps(s, 0, s.length() - 1);
     }
 
-    /**
-     * An auxiliary function to calculate LPS(i, j)
-     *
-     * @param s String, an input string
-     * @param i int, the start index
-     * @param j int, the end index
-     * @return int, the length of longest palindromic subsequence in the string s[i ... j]
-     */
     private int lps(String s, int i, int j) {
         if (i > j) {
             return 0;
