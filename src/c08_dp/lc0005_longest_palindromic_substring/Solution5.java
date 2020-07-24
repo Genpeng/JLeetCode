@@ -26,6 +26,8 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution5 {
     /**
      * Approach 5: Convert to the Longest Common Substring problem
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N ^ 2)
      *

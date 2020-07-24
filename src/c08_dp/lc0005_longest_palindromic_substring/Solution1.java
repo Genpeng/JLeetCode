@@ -19,6 +19,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
  * Output: "bb"
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -26,6 +27,8 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 3)
      * Space Complexity: O(1)
      *

@@ -19,6 +19,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
  * Output: "bb"
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -31,6 +32,8 @@ public class Solution3 {
      * dp[i][j] =
      *            \ false, others
      * where dp[i][j] represents whether s[i ... j] is palindromic substring
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N)
      *

@@ -19,6 +19,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
  * Output: "bb"
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;dp;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -26,6 +27,8 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution4 {
     /**
      * Approach 4: Expand Around the center
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(1)
      *
@@ -37,17 +40,17 @@ public class Solution4 {
         if (L < 2) {
             return s;
         }
-        int idx = 0, maxLen = 0;
+        int startIndex = 0, maxLen = 0;
         for (int i = 0; i < L; ++i) {
             int l1 = expand(s, i, i);
             int l2 = expand(s, i, i+1);
             int l = Math.max(l1, l2);
             if (l > maxLen) {
-                idx = l1 > l2 ? i - l1 / 2 : i - l2 / 2 + 1;
+                startIndex = l1 > l2 ? i - l1 / 2 : i - l2 / 2 + 1;
                 maxLen = l;
             }
         }
-        return s.substring(idx, idx + maxLen);
+        return s.substring(startIndex, startIndex + maxLen);
     }
 
     private int expand(String s, int i, int j) {
