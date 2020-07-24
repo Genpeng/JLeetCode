@@ -41,16 +41,16 @@ public class Solution3 {
         final int L = s.length();
         char[] ca = s.toCharArray();
         boolean[] dp = new boolean[L];
-        String ans = "";
+        String lps = "";
         for (int i = L-1; i >= 0; --i) {
             for (int j = L-1; j >= i; --j) {
                 dp[j] = ca[i] == ca[j] && (j - i < 3 || dp[j-1]);
-                if (dp[j] && j-i+1 > ans.length()) {
-                    ans = s.substring(i, j+1);
+                if (dp[j] && j-i+1 > lps.length()) {
+                    lps = s.substring(i, j+1);
                 }
             }
         }
-        return ans;
+        return lps;
     }
 
     public static void main(String[] args) {
