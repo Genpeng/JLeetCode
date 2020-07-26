@@ -30,11 +30,8 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;backtracking;bit manipulation;
- *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | June 25, 2020 | 1   | ×      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
