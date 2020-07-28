@@ -26,6 +26,7 @@ import java.util.Arrays;
  * The median is (2 + 3)/2 = 2.5
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: array;divide and conquer;binary search
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -33,6 +34,9 @@ import java.util.Arrays;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     * The idea is to merge two sorted arrays and then find out the median in the merged array.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m + n)
      * Space Complexity: O(m + n)
      *
@@ -46,12 +50,15 @@ public class Solution1 {
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
         if (A == null || B == null) {
-            throw new IllegalArgumentException("[ERROR] There must exist null array!!!");
+            throw new IllegalArgumentException("[ERROR] There must exist null array in two input arrays!!!");
         }
-        int m = A.length, n = B.length;
+        int m = A.length, n = B.length, k = m + n;
+        if (k == 0) {
+            throw new IllegalArgumentException("[ERROR] The two input arrays are both empty!!!");
+        }
         int[] nums = merge(A, m, B, n);
-        int L = m + n, mi = L / 2;
-        if ((L & 1) == 0) {
+        int mi = k / 2;
+        if ((k & 1) == 0) {
             return (nums[mi - 1] + nums[mi]) * 0.5;
         } else {
             return nums[mi];
@@ -60,7 +67,7 @@ public class Solution1 {
 
     public int[] merge(int[] A, int m, int[] B, int n) {
         if (m * n == 0) {
-            return m == 0 ? B : A;
+            return m != 0 ? A : B;
         }
         int[] ans = new int[m + n];
         int i = m - 1, j = n - 1, k = m + n - 1;
@@ -81,9 +88,7 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        int[] nums1 = {1, 2, 3};
-        int[] nums2 = {2, 3, 4};
         Solution1 solution = new Solution1();
-        System.out.println(solution.findMedianSortedArrays(nums1, nums2));
+        System.out.println(solution.findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}) == 2.5);
     }
 }

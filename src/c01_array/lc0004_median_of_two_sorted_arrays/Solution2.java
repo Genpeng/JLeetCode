@@ -28,13 +28,17 @@ import java.util.List;
  * The median is (2 + 3)/2 = 2.5
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: array;divide and conquer;binary search
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * Approach 2: Find out the number in the middle without merging two arrays
+     * Approach 2: Two Pointers
+     * The idea is to find out the median in the two sorted arrays by using two pointers.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(m + n)
      * Space Complexity: O(1)
      *
@@ -44,12 +48,15 @@ public class Solution2 {
      */
     public double findMedianSortedArrays(int[] A, int[] B) {
         if (A == null || B == null) {
-            throw new IllegalArgumentException("[ERROR] There must exist null array!!!");
+            throw new IllegalArgumentException("[ERROR] There must exist null array in two input arrays!!!");
         }
-        int m = A.length, n = B.length, L = m + n;
+        int m = A.length, n = B.length, k = m + n;
+        if (k == 0) {
+            throw new IllegalArgumentException("[ERROR] The two input arrays are both empty!!!");
+        }
         int i = 0, j = 0;
         int prev = 0, curr = 0;
-        for (int idx = 0; idx <= L / 2; ++idx) {
+        for (int idx = 0; idx <= k / 2; ++idx) {
             prev = curr;
             if (i < m && (j >= n || A[i] < B[j])) {
                 curr = A[i++];
@@ -57,8 +64,8 @@ public class Solution2 {
                 curr = B[j++];
             }
         }
-        if ((L & 1) == 0) {
-            return (prev + curr) / 2.0;
+        if ((k & 1) == 0) {
+            return (prev + curr) * 0.5;
         } else {
             return curr;
         }
