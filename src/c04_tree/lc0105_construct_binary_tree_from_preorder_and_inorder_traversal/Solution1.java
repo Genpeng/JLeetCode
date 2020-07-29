@@ -39,6 +39,8 @@ public class Solution1 {
 
     /**
      * Approach 1: Recursion
+     * 这道题的思路是：递归地将前序遍历的结果划分为根结点、左子树和右子树，直到到达叶子结点。
+     * 中序遍历数组的作用是确定左右子树的结点数目，前序遍历数组的左右是确定左右子树的根结点。
      *
      * Complexity Analysis:
      * Time Complexity: O(N)
