@@ -31,7 +31,7 @@ package c01_array.lc0004_median_of_two_sorted_arrays;
  */
 public class Solution4 {
     /**
-     * Approach xx:
+     * Approach 4:
      * Time Complexity:
      * Space Complexity:
      *
@@ -42,5 +42,12 @@ public class Solution4 {
     public double findMedianSortedArrays(int[] A, int[] B) {
         // TODO: add it
         return -1;
+    }
+
+    public static void main(String[] args) {
+        Solution4 solu = new Solution4();
+        System.out.println(solu.findMedianSortedArrays(new int[] {1}, new int[] {}) == 1);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3}) == 2);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}) == 2.5);
     }
 }

@@ -1,7 +1,5 @@
 package c01_array.lc0004_median_of_two_sorted_arrays;
 
-import java.util.Arrays;
-
 /**
  * This is the solution of No. 4 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -88,7 +86,9 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        Solution1 solution = new Solution1();
-        System.out.println(solution.findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}) == 2.5);
+        Solution1 solu = new Solution1();
+        System.out.println(solu.findMedianSortedArrays(new int[] {1}, new int[] {}) == 1);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3}) == 2);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}) == 2.5);
     }
 }

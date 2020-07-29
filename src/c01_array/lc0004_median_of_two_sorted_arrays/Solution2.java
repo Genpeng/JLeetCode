@@ -1,9 +1,5 @@
 package c01_array.lc0004_median_of_two_sorted_arrays;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * This is the solution of No. 4 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -72,24 +68,9 @@ public class Solution2 {
     }
 
     public static void main(String[] args) {
-        List<int[]> As = new LinkedList<>();
-        As.add(new int[] {1, 3});
-        As.add(new int[] {1, 2, 4});
-        As.add(new int[] {});
-        List<int[]> Bs = new LinkedList<>();
-        Bs.add(new int[] {2});
-        Bs.add(new int[] {3});
-        Bs.add(new int[] {1, 2, 3, 4});
-        double[] results = {2.0, 2.5, 2.5};
         Solution2 solu = new Solution2();
-        for (int i = 0; i < As.size(); ++i) {
-            int[] A = As.get(i);
-            int[] B = Bs.get(i);
-            double result = results[i];
-            double pred = solu.findMedianSortedArrays(A, B);
-            if (pred != result) {
-                System.out.format("A: %s, B: %s", Arrays.toString(A), Arrays.toString(B));
-            }
-        }
+        System.out.println(solu.findMedianSortedArrays(new int[] {1}, new int[] {}) == 1);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3}) == 2);
+        System.out.println(solu.findMedianSortedArrays(new int[] {1, 2}, new int[] {3, 4}) == 2.5);
     }
 }
