@@ -44,7 +44,7 @@ public class Solution1 {
      */
     public List<String> generateParenthesis(int n) {
         List<String> ans = new LinkedList<>();
-        char[] path = new char[2 * n];
+        char[] path = new char[n << 1];
         generateParenthesis(0, path, ans);
         return ans;
     }
