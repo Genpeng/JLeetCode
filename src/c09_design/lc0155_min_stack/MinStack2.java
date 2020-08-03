@@ -16,7 +16,6 @@ import java.util.EmptyStackException;
  * top() -- Get the top element.
  * getMin() -- Retrieve the minimum element in the stack.
  *
- *
  * Example:
  * MinStack minStack = new MinStack();
  * minStack.push(-2);
@@ -27,6 +26,9 @@ import java.util.EmptyStackException;
  * minStack.top();      --> Returns 0.
  * minStack.getMin();   --> Returns -2.
  * ==========================================================================================================
+ *
+ * Difficulty: Easy
+ * Tags: design;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
