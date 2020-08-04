@@ -18,11 +18,16 @@ package c02_string.lc0557_reverse_words_in_a_string_iii;
  * In the string, each word is separated by single space and there will not be any extra space in the string.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
+ * Tags: string;fast and slow pointers;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * Approach 2: Two Pointers
+     * Approach 2: Fast and Slow Pointers
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
@@ -34,8 +39,8 @@ public class Solution2 {
      * @return String, the modified string
      */
     public String reverseWords(String s) {
-        int L = s.length();
         char[] ca = s.toCharArray();
+        final int L = ca.length;
         for (int i, j = 0; j < L; ++j) {
             if (ca[j] != ' ') {
                 i = j;

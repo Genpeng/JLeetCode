@@ -18,7 +18,8 @@ package c02_string.lc0557_reverse_words_in_a_string_iii;
  * In the string, each word is separated by single space and there will not be any extra space in the string.
  * ==========================================================================================================
  *
- * Tags: string;
+ * Difficulty: Easy
+ * Tags: string;fast and slow pointers;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
@@ -26,6 +27,8 @@ public class Solution1 {
     /**
      * Approach 1: Use Build-in API
      * Split the string into words, reverse each word, then join them back together.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      *
