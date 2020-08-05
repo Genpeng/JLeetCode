@@ -26,36 +26,41 @@ package c02_string.lc0003_longest_substring_without_repeating_characters;
  *              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2018/12/10
+ * Difficulty: Medium
+ * Tags: string;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution4 {
     /**
      * 方法4：滑动窗口（已知字符集）
-     * 方法4和方法3的做法是一致的，方法4可以看成是方法3的特例。
-     * 如果已知字符串的字符属于哪一种字符集的情况下，可以用大小
-     * 固定的数组代替map。
+     * 方法4和方法3的做法是一致的，方法4可以看成是方法3的特例。如果已知字符串的字符
+     * 属于哪一种字符集的情况下，可以用大小固定的数组代替 map。
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(m)，其中，m表示字符集包含的字符数
+     * 复杂度分析
+     * 时间复杂度：O(L)
+     * 空间复杂度：O(L)
+     * 其中，L 表示字符串的长度
      *
-     * @param s String, 输入的字符串
-     * @return int, 无重复字符的最长子串
+     * @param s String, the input string
+     * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
         int maxLen = 0;
         int[] index = new int[128];
-        for (int left = 0, right = 0; right < s.length(); ++right) {
-            char c = s.charAt(right);
-            left = Math.max(index[c], left);
-            maxLen = Math.max(right - left + 1, maxLen);
-            index[c] = right + 1;
+        for (int li = 0, ri = 0; ri < s.length(); ++ri) {
+            char c = s.charAt(ri);
+            li = Math.max(index[c], li);
+            maxLen = Math.max(ri - li + 1, maxLen);
+            index[c] = ri + 1;
         }
         return maxLen;
     }
 
     public static void main(String[] args) {
-        String s = "abba";
-        System.out.println((new Solution4()).lengthOfLongestSubstring(s));
+        Solution4 solu = new Solution4();
+        System.out.println(solu.lengthOfLongestSubstring("abcabcbb") == 3);
+        System.out.println(solu.lengthOfLongestSubstring("bbbbb") == 1);
+        System.out.println(solu.lengthOfLongestSubstring("pwwkew") == 3);
     }
 }

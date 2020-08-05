@@ -29,48 +29,54 @@ import java.util.Set;
  *              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2018/12/10
+ * Difficulty: Medium
+ * Tags: string;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * 方法1：暴力枚举
-     * 暴力枚举所有的子串，然后判断子串是否包含重复字符，
-     * 对于不包含重复字符的子串，将它的长度与当前的最长长度进行比较，
-     * 保存较大者。
-     * 时间复杂度：O(n^3)
-     * 空间复杂度：O(min(n, m))，其中，n表示字符串的长度，m是不重复字符的数目
+     * 方法 1：暴力法
+     * 暴力枚举所有的子串，然后判断子串是否包含重复字符，对于不包含重复字符的子串，
+     * 将它的长度与当前的最长长度进行比较，保存较大者
      *
-     * @param s String, 输入的字符串
-     * @return int, 无重复字符的最长子串
+     * 复杂度分析
+     * 时间复杂度：O(L^3)
+     * 空间复杂度：O(L)
+     * 其中，L 表示字符串的长度
+     *
+     * @param s String, the input string
+     * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
-        int n = s.length();
-        int ans = 0;
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j <= n; ++j) {
-                if (allUnique(s, i, j)) {
-                    ans = Math.max(ans, j - i);
+        final int L = s.length();
+        int maxLen = 0;
+        for (int i = 0; i < L; ++i) {
+            for (int j = i; j < L; ++j) {
+                if (isAllUnique(s, i, j)) {
+                    maxLen = Math.max(maxLen, j-i+1);
                 }
             }
         }
-        return ans;
+        return maxLen;
     }
 
-    private boolean allUnique(String s, int start, int end) {
+    private boolean isAllUnique(String s, int si, int ei) {
         Set<Character> set = new HashSet<>();
-        for (int i = start; i < end; ++i) {
-            Character ch = s.charAt(i);
-            if (set.contains(ch)) {
+        for (int i = si; i <= ei; ++i) {
+            char c = s.charAt(i);
+            if (set.contains(c)) {
                 return false;
             }
-            set.add(ch);
+            set.add(c);
         }
         return true;
     }
 
     public static void main(String[] args) {
-        String s = "abcabcbb";
-        System.out.println((new Solution1()).lengthOfLongestSubstring(s));
+        Solution1 solu = new Solution1();
+        System.out.println(solu.lengthOfLongestSubstring("abcabcbb") == 3);
+        System.out.println(solu.lengthOfLongestSubstring("bbbbb") == 1);
+        System.out.println(solu.lengthOfLongestSubstring("pwwkew") == 3);
     }
 }

@@ -29,8 +29,10 @@ import java.util.Set;
  *              Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2018/12/10
+ * Difficulty: Medium
+ * Tags: string;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
@@ -41,29 +43,37 @@ public class Solution2 {
      * 则左边界向右滑动一个字符。如此循环往复，直到右边界到达字符串的末尾字符。
      * 每次滑动之后，都会保存当前子串的最大长度。
      *
-     * 时间复杂度：O(n)
-     * 空间复杂度：O(min(n, m))，其中，n表示字符串的长度，m是不重复字符的数目
+     * 复杂度分析
+     * 时间复杂度：O(L)
+     * 空间复杂度：O(L)
+     * 其中，L 表示字符串的长度
      *
-     * @param s String, 输入的字符串
-     * @return int, 无重复字符的最长子串
+     * @param s String, the input string
+     * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
-        int left = 0, right = 0, maxLen = 0;
         Set<Character> window = new HashSet<>();
-        while (right < s.length()) {
-            if (window.contains(s.charAt(right))) {
-                window.remove(s.charAt(left++));
+        int li = 0, ri = 0, maxLen = 0;
+        while (ri < s.length()) {
+            char c = s.charAt(ri);
+            if (window.contains(c)) {
+                // 如果待加入的字符在窗口中，滑动左边界
+                window.remove(s.charAt(li));
+                ++li;
             } else {
-                window.add(s.charAt(right++));
-                maxLen = Math.max(right - left, maxLen);
+                // 如果待加入的字符不在窗口中，滑动右边界
+                window.add(c);
+                ++ri;
+                maxLen = Math.max(maxLen, ri - li);
             }
         }
         return maxLen;
     }
 
     public static void main(String[] args) {
-//        String s = "abcabcbb";
-        String s = "pwwkew";
-        System.out.println((new Solution2()).lengthOfLongestSubstring(s));
+        Solution2 solu = new Solution2();
+        System.out.println(solu.lengthOfLongestSubstring("abcabcbb") == 3);
+        System.out.println(solu.lengthOfLongestSubstring("bbbbb") == 1);
+        System.out.println(solu.lengthOfLongestSubstring("pwwkew") == 3);
     }
 }
