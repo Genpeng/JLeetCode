@@ -56,33 +56,41 @@ public class Solution3 {
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters
      */
-    public int lengthOfLongestSubstring(String s) {
+    public int lengthOfLongestSubstringV1(String s) {
         final int L = s.length();
-        int maxLen = 0;
         Map<Character, Integer> idxMap = new HashMap<>(L);
+        int maxLen = 0;
         for (int li = 0, ri = 0; ri < L; ++ri) {
             char c = s.charAt(ri);
-            if (idxMap.containsKey(c) && li <= idxMap.get(c)) {
-                // 如果子串存在重复字符，一定满足两个条件：
-                // 1. 字符在 map 中已经存在
-                // 2. 左边界小于等于右边界字符上一次的位置（注意！）
-                // 例如：
-                // a b b a
-                //     l r
-                // 右边界字符a虽然已经出现过，但是窗口的子串并不重复
+            if (idxMap.containsKey(c) && idxMap.get(c) >= li) {
                 li = idxMap.get(c) + 1;
             } else {
-                maxLen = Math.max(ri - li + 1, maxLen);
+                // 如果不包含该字符，或者出现过该字符但是不在窗口中
+                maxLen = Math.max(maxLen, ri - li + 1);
             }
             idxMap.put(c, ri);
         }
         return maxLen;
     }
 
+    public int lengthOfLongestSubstringV2(String s) {
+        final int L = s.length();
+        Map<Character, Integer> idxMap = new HashMap<>(L);
+        int maxLen = 0;
+        for (int li = 0, ri = 0; ri < L; ++ri) {
+            char c = s.charAt(ri);
+            li = Math.max(li, idxMap.getOrDefault(c, 0));
+            maxLen = Math.max(maxLen, ri - li + 1);
+            idxMap.put(c, ri + 1);
+        }
+        return maxLen;
+    }
+
     public static void main(String[] args) {
         Solution3 solu = new Solution3();
-        System.out.println(solu.lengthOfLongestSubstring("abcabcbb") == 3);
-        System.out.println(solu.lengthOfLongestSubstring("bbbbb") == 1);
-        System.out.println(solu.lengthOfLongestSubstring("pwwkew") == 3);
+        System.out.println(solu.lengthOfLongestSubstringV1("abcabcbb") == 3);
+        System.out.println(solu.lengthOfLongestSubstringV1("bbbbb") == 1);
+        System.out.println(solu.lengthOfLongestSubstringV1("pwwkew") == 3);
+        System.out.println(solu.lengthOfLongestSubstringV1("tmmzuxt") == 5);
     }
 }
