@@ -32,7 +32,8 @@ package c01_array.lc0004_median_of_two_sorted_arrays;
 public class Solution2 {
     /**
      * Approach 2: Two Pointers
-     * The idea is to find out the median in the two sorted arrays by using two pointers.
+     * The idea is to transform the problem into find out the kth element in two sorted arrays,
+     * the easiest way is to use two pointers.
      *
      * Complexity Analysis:
      * Time Complexity: O(m + n)

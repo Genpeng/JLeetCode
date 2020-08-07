@@ -32,10 +32,10 @@ package c01_array.lc0004_median_of_two_sorted_arrays;
 public class Solution3 {
     /**
      * Approach 3: Binary Search
-     * 在一个大小为 n 的排序数组中查找中位数，其实就是找出第 n/2 个元素（当 n 为奇数的时候），或者是同时找出
-     * 第 n/2 和 n/2 + 1 个元素（当 n 为偶数的时候）。这种解法的基本思路就是如此。为了在两个数组中查找第 k 个
-     * 元素，每次都取出两个数组中第 k/2 个元素进行比较，对于较小结果的数组缩小 k/2 的查找范围，即 k/2 之前的元素
-     * 都不必查找了。
+     * 在一个大小为 n 的排序数组中查找中位数，其实就是找出第 n/2 + 1 个元素（当 n 为奇数的时候），或者是同时找出
+     * 第 n/2 和 n/2 + 1 个元素（当 n 为偶数的时候）。因为两个排序数组的元素数目是已知的，因此，这道题可以转化为
+     * 求两个排序数组中第 k 小的元素。为了在两个数组中查找第 k 个元素，每次都取出两个数组中第 k/2 个元素进行比较，
+     * 对于较小结果的数组缩小 k/2 的查找范围，即 k/2 之前的元素都不必查找了。
      *
      * Complexity Analysis:
      * Time Complexity: O(log(m + n))
@@ -53,13 +53,16 @@ public class Solution3 {
         if (A == null || B == null) {
             throw new IllegalArgumentException("[ERROR] There must exist null array!!!");
         }
-        int m = A.length, n = B.length;
-        if (m + n == 0) {
-            throw new IllegalArgumentException("[ERROR] The two input array are both empty!!!");
+        int m = A.length, n = B.length, L = m + n;
+        if (L == 0) {
+            throw new IllegalArgumentException("[ERROR] The two input arrays are both empty!!!");
         }
-        int l = (m + n + 1) >> 1;
-        int r = (m + n + 2) >> 1;
-        return (getKthElem(A, 0, m-1, B, 0, n-1, l) + getKthElem(A, 0, m-1, B, 0, n-1, r)) * 0.5;
+        int mid = L / 2;
+        if ((L & 1) == 0) {
+            return (getKthElem(A, 0, m-1, B, 0, n-1, mid) + getKthElem(A, 0, m-1, B, 0, n-1, mid+1)) * 0.5;
+        } else {
+            return getKthElem(A, 0, m-1, B, 0, n-1, mid+1) * 1.0;
+        }
     }
 
     private int getKthElem(int[] A, int aLeft, int aRight, int[] B, int bLeft, int bRight, int k) {
