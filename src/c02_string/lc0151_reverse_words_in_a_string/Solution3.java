@@ -32,13 +32,14 @@ package c02_string.lc0151_reverse_words_in_a_string;
  * - For C programmers, try to solve it in-place in O(1) extra space.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;two pointers;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
-     * Approach 3: Two Pointers
+     * Approach 3: Fast and Slow Pointers
      * Start at the end of the string, find each word, and splice.
      * Time Complexity: O(N)
      * Space Complexity: O(N)
@@ -51,7 +52,7 @@ public class Solution3 {
         for (int i = s.length() - 1, j; i >= 0; --i) {
             if (s.charAt(i) != ' ') {
                 j = i;
-                while (i-1 > -1 && s.charAt(i-1) != ' ') {
+                while (i > 0 && s.charAt(i-1) != ' ') {
                     --i;
                 }
                 sb.append(s, i, j+1).append(' ');
