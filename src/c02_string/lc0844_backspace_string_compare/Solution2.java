@@ -42,10 +42,10 @@ import java.util.List;
  * - Can you solve it in O(N) time and O(1) space?
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: string;stack;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/10
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**

@@ -43,10 +43,10 @@ import java.util.Stack;
  * Can you solve it in O(N) time and O(1) space?
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: string;stack;two pointers;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
- * @date    2019/04/10
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
