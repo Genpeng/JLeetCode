@@ -35,9 +35,10 @@ import java.util.Map;
  * cache.get(4);      // returns 4
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: design;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class LRUCacheV1 extends LinkedHashMap<Integer, Integer> {
     private int capacity;

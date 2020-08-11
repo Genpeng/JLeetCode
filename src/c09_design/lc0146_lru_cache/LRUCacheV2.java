@@ -35,9 +35,10 @@ import java.util.Map;
  * cache.get(4);      // returns 4
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: design;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class LRUCacheV2 {
     private int capacity;
@@ -60,13 +61,12 @@ public class LRUCacheV2 {
     }
 
     public void put(int key, int val) {
-        Node node;
         if (key2Node.containsKey(key)) {
-            node = key2Node.get(key);
+            Node node = key2Node.get(key);
             node.val = val;
             cache.moveToHead(node);
         } else {
-            node = new Node(key, val);
+            Node node = new Node(key, val);
             key2Node.put(key, node);
             cache.addFirst(node);
             if (cache.size > capacity) {
