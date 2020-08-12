@@ -41,7 +41,7 @@ import java.util.Map;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class LRUCacheV2 {
-    private int capacity;
+    private int capacity; // 不需要 size，因为 cache 元素的数目就是 LRU 元素的数目
     private Map<Integer, Node> key2Node;
     private DoublyLinkedList cache;
 
@@ -70,8 +70,7 @@ public class LRUCacheV2 {
             key2Node.put(key, node);
             cache.addFirst(node);
             if (cache.size > capacity) {
-                Node removeNode = cache.removeLast();
-                key2Node.remove(removeNode.key);
+                key2Node.remove(cache.removeLast().key);
             }
         }
     }
