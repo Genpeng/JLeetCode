@@ -39,9 +39,10 @@ import java.util.Map;
  * cache.get(4);       // returns 4
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: design;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class LFUCache {
     private int capacity, size, minFreq;
@@ -67,25 +68,24 @@ public class LFUCache {
         if (capacity <= 0) {
             return;
         }
-        Node node;
         if (key2Node.containsKey(key)) {
-            node = key2Node.get(key);
+            Node node = key2Node.get(key);
             node.val = val;
             update(node);
         } else {
             // 备注：这里一定要先删除元素，再添加新的元素
-            node = new Node(key, val);
+            Node node = new Node(key, val);
             if (size == capacity) {
                 DoublyLinkedList oldList = freq2List.get(minFreq);
                 key2Node.remove(oldList.removeLast().key);
                 --size;
             }
-            key2Node.put(key, node);
-            ++size;
             minFreq = 1;
+            key2Node.put(key, node);
             DoublyLinkedList list = freq2List.getOrDefault(node.freq, new DoublyLinkedList());
             list.addFirst(node);
             freq2List.put(node.freq, list);
+            ++size;
         }
     }
 
