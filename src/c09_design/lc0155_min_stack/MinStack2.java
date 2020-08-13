@@ -33,6 +33,14 @@ import java.util.EmptyStackException;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class MinStack2 {
+    // 解题思路：
+    // 使用一个单向链表模拟栈，即链表的结点只有 next 指针，用一个 top 指针指向栈顶结点，
+    // 同时每个结点都保存当前最小的元素。
+    // - 添加元素（push）时，新建一个结点，并将结点的 next 指针指向 top 指针，最后更新 top 指针
+    //   指向新建的结点
+    // - 删除元素（pop）时，将 top 指针指向下一个元素
+    // - 查看（top）和返回最小值（getMin）时，只需要返回栈顶结点的值或者最小值即可
+
     private int size;
     private Node top;
 
