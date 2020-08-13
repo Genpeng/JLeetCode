@@ -30,23 +30,23 @@ import java.util.EmptyStackException;
  * Difficulty: Easy
  * Tags: design;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class MinStack2 {
-    private Node head;
     private int size;
+    private Node top;
 
     /** initialize your data structure here. */
     public MinStack2() {
-        head = null;
         size = 0;
+        top = null;
     }
 
     public void push(int x) {
-        if (head == null) {
-            head = new Node(x, x);
+        if (top == null) {
+            top = new Node(x, x);
         } else {
-            head = new Node(x, Math.min(x, head.min), head);
+            top = new Node(x, Math.min(x, top.min), top);
         }
         ++size;
     }
@@ -55,7 +55,7 @@ public class MinStack2 {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        head = head.next;
+        top = top.next;
         --size;
     }
 
@@ -63,14 +63,14 @@ public class MinStack2 {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return head.val;
+        return top.val;
     }
 
     public int getMin() {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return head.min;
+        return top.min;
     }
 
     public boolean isEmpty() {

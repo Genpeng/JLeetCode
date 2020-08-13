@@ -31,7 +31,7 @@ import java.util.Stack;
  * Difficulty: Easy
  * Tags: design;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class MinStack1 {
     private Stack<Integer> stack;
