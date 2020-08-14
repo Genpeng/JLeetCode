@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This is the solution of No. xxx problem in the LeetCode,
+ * This is the solution of No. 1429 problem in the LeetCode,
  * the website of the problem is as follow:
- * xxx
+ * https://leetcode.com/problems/first-unique-number/
  *
  * The description of problem is as follow:
  * ==========================================================================================================
@@ -68,13 +68,17 @@ import java.util.Map;
  * - At most 50000 calls will be made to showFirstUnique and add.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: design;
- *
- * TODO: fix the bug!!!
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class FirstUnique {
+    // 解题思路：
+    // 可以用一个双端队列来保存所有只出现一次的数字，因此，对于 showFirstUnique 方法，只需要返回
+    // 队首的元素即可，时间复杂度是 O(1) 的。同时，为了能用 O(1) 的复杂度删除队列中的元素（当队列
+    // 中的元素重复时），借用一个 map 来指向双端队列中结点，而对于重复出现的数字，map 的值为 null。
+
     private Map<Integer, Node> num2Node;
     private DoublyLinkedList uniques;
 
@@ -90,36 +94,36 @@ public class FirstUnique {
         return uniques.peekFirst();
     }
 
-    public void add(int num) {
-        Node node;
-        if (num2Node.containsKey(num) && num2Node.get(num) != null) {
-            node = num2Node.get(num);
+    public void add(int val) {
+        if (!num2Node.containsKey(val)) {
+            Node node = new Node(val);
+            num2Node.put(val, node);
+            uniques.addLast(node);
+        } else if (num2Node.get(val) != null) {
+            Node node = num2Node.get(val);
+            num2Node.put(val, null);
             uniques.remove(node);
-        } else {
-            node = uniques.addLast(num);
-            num2Node.put(num, node);
         }
     }
 
     class DoublyLinkedList {
-        Node head, tail;
         int size;
+        Node head, tail;
 
         DoublyLinkedList() {
+            size = 0;
             head = new Node(-1);
             tail = new Node(-1);
             head.next = tail;
             tail.prev = head;
         }
 
-        Node addLast(int val) {
-            Node node = new Node(val);
+        void addLast(Node node) {
             node.prev = tail.prev;
             node.next = tail;
             tail.prev.next = node;
             tail.prev = node;
             ++size;
-            return node;
         }
 
         void remove(Node node) {
@@ -130,12 +134,12 @@ public class FirstUnique {
             --size;
         }
 
-        boolean isEmpty() {
-            return size == 0;
-        }
-
         int peekFirst() {
             return isEmpty() ? -1 : head.next.val;
+        }
+
+        boolean isEmpty() {
+            return size == 0;
         }
     }
 
@@ -144,7 +148,13 @@ public class FirstUnique {
         Node prev, next;
 
         Node(int val) {
+            this(val, null, null);
+        }
+
+        Node(int val, Node prev, Node next) {
             this.val = val;
+            this.prev = prev;
+            this.next = next;
         }
     }
 
