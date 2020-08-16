@@ -41,13 +41,22 @@ import java.util.Map;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class LRUCacheV2 {
+    // 解题思路：
+    // 这道题需要我们设计一个缓存的数据结构，使得这个数据结构满足读（get）和写（put）的时间复杂度
+    // 都是 O(1) 的，同时，当缓存的容量（capacity）满了的时候，将最近最少使用的元素删除。为了
+    // 删除元素的时候能够满足要求，很容易想到用一个"队列"形式的数据结构来存放数据，最近最少使用的
+    // 元素就排在队列的末尾，而最近使用到的元素就排列在队列的队首，即入队会从队首入，出队会从队尾出，
+    // 因此双向链表就是一个自然的选择。但是，链表的查询是 O(N) 的时间复杂度，不满足题目的要求。
+    // 所以为了使得这个数据结构的读操作的时间复杂度也是 O(1) 的，我们用一个 map 来保存元素在队列中
+    // 的位置（指针）。
+
     private int capacity; // 不需要 size，因为 cache 元素的数目就是 LRU 元素的数目
     private Map<Integer, Node> key2Node;
     private DoublyLinkedList cache;
 
     public LRUCacheV2(int capacity) {
         this.capacity = capacity;
-        key2Node = new HashMap<>();
+        key2Node = new HashMap<>(capacity);
         cache = new DoublyLinkedList();
     }
 
@@ -66,12 +75,12 @@ public class LRUCacheV2 {
             node.val = val;
             cache.moveToHead(node);
         } else {
+            if (cache.size >= capacity) {
+                key2Node.remove(cache.removeLast().key);
+            }
             Node node = new Node(key, val);
             key2Node.put(key, node);
             cache.addFirst(node);
-            if (cache.size > capacity) {
-                key2Node.remove(cache.removeLast().key);
-            }
         }
     }
 
@@ -108,9 +117,16 @@ public class LRUCacheV2 {
         }
 
         Node removeLast() {
+            if (isEmpty()) {
+                return null;
+            }
             Node node = tail.prev;
             remove(node);
             return node;
+        }
+
+        boolean isEmpty() {
+            return size == 0;
         }
     }
 
