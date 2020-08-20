@@ -50,21 +50,22 @@ public class Solution1 {
             throw new IllegalArgumentException("[ERROR] The input string is null!!!");
         }
         maxLen = 0;
-        helper(s, 0, new StringBuilder());
+        StringBuilder subseq = new StringBuilder();
+        helper(s, 0, subseq);
         return maxLen;
     }
 
-    private void helper(String s, int idx, StringBuilder currStr) {
+    private void helper(String s, int idx, StringBuilder subseq) {
         if (idx == s.length()) {
-            if (isPalindromic(currStr)) {
-                maxLen = Math.max(maxLen, currStr.length());
+            if (isPalindromic(subseq)) {
+                maxLen = Math.max(maxLen, subseq.length());
             }
             return;
         }
-        currStr.append(s.charAt(idx));
-        helper(s, idx+1, currStr);
-        currStr.deleteCharAt(currStr.length() - 1);
-        helper(s, idx+1, currStr);
+        subseq.append(s.charAt(idx));
+        helper(s, idx+1, subseq);
+        subseq.deleteCharAt(subseq.length() - 1);
+        helper(s, idx+1, subseq);
     }
 
     private boolean isPalindromic(StringBuilder sb) {
