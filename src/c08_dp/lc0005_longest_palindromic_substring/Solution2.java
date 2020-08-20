@@ -44,19 +44,20 @@ public class Solution2 {
         final int L = s.length();
         char[] ca = s.toCharArray();
         boolean[][] dp = new boolean[L][L];
-        String ans = "";
+        int startIndex = 0, maxLen = 0;
         for (int i = L-1; i >= 0; --i) {
             for (int j = i; j < L; ++j) {
                 if (ca[i] == ca[j] && (j-i < 3 || dp[i+1][j-1])) {
                     dp[i][j] = true;
-                    if (j-i+1 > ans.length()) {
-                        ans = s.substring(i, j+1);
+                    if (j-i+1 > maxLen) {
+                        startIndex = i;
+                        maxLen = j - i + 1;
                     }
                 }
 
             }
         }
-        return ans;
+        return s.substring(startIndex, startIndex+maxLen);
     }
 
     public static void main(String[] args) {

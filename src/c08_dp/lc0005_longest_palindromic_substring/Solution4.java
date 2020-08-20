@@ -36,17 +36,13 @@ public class Solution4 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        int L = s.length();
-        if (L < 2) {
-            return s;
-        }
         int startIndex = 0, maxLen = 0;
-        for (int i = 0; i < L; ++i) {
+        for (int i = 0; i < s.length(); ++i) {
             int l1 = expand(s, i, i);
             int l2 = expand(s, i, i+1);
             int l = Math.max(l1, l2);
             if (l > maxLen) {
-                startIndex = l1 > l2 ? i - l1 / 2 : i - l2 / 2 + 1;
+                startIndex = l == l1 ? i - l1/2 : i - l2/2 + 1;
                 maxLen = l;
             }
         }
