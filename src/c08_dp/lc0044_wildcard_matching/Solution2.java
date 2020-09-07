@@ -60,26 +60,55 @@ package c08_dp.lc0044_wildcard_matching;
  */
 public class Solution2 {
     /**
-     * Approach 2: Greedy
+     * Approach 2: Dynamic Programming with memory optimization
+     * Suppose `dp[i][j]` represents whether the substring `s[0 ... i-1]` and the pattern `p[0 ... j-1]`
+     * is matching, so the state transition equation can be written as follow:
+     *            / dp[i-1][j-1], i > 0, j > 0, s[i-1] = p[j-1] or p[j-1] = '?'
+     *            / dp[i-1][j] | dp[i][j-1], i > 0, j > 0, p[j-1] = '*'
+     * dp[i][j] = - true, i = 0, j = 0
+     *            \ true, i = 0, j > 0, V 0 < k <= j, p[k-1] = '*'
+     *            \ false, others
      *
      * Complexity Analysis:
      * Time Complexity: O(m * n)
-     * Space Complexity: O(m * n)
+     * Space Complexity: O(n)
      *
      * @param s String, the input string
      * @param p String, the input pattern
      * @return boolean, true if and only the string is matching to the pattern
      */
     public boolean isMatch(String s, String p) {
-        // TODO: add it
-        return true;
+        int m = s.length(), n = p.length();
+        boolean[] prev = new boolean[n+1];
+        boolean[] curr = new boolean[n+1];
+        prev[0] = true;
+        for (int j = 1; j <= n; ++j) {
+            if (p.charAt(j-1) != '*') {
+                break;
+            }
+            prev[j] = true;
+        }
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?') {
+                    curr[j] = prev[j-1];
+                } else if (p.charAt(j-1) == '*') {
+                    curr[j] = curr[j-1] || prev[j];
+                }
+            }
+            boolean[] tmp = prev;
+            prev = curr;
+            curr = tmp;
+        }
+        return prev[n];
     }
 
     public static void main(String[] args) {
         Solution2 solu = new Solution2();
-        System.out.println(solu.isMatch("", "") == true);
-        System.out.println(solu.isMatch("aa", "a") == false);
-        System.out.println(solu.isMatch("cb", "?a") == false);
-        System.out.println(solu.isMatch("adceb", "*a*b") == true);
+//        System.out.println(solu.isMatch("", "") == true);
+//        System.out.println(solu.isMatch("aa", "a") == false);
+//        System.out.println(solu.isMatch("cb", "?a") == false);
+//        System.out.println(solu.isMatch("adceb", "*a*b") == true);
+        System.out.println(solu.isMatch("abcdefde", "abc*def") == false);
     }
 }
