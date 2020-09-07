@@ -28,11 +28,11 @@ package c08_dp.lc0053_maximum_subarray;
 public class Solution2 {
     /**
      * Approach 2: Dynamic programming
-     * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
+     * Suppose dp[i] represents the max sum of subarray A[0 ... i] which must contains A[i]
      * as the last element, the state transition equation can be written as follow:
-     *         / A[0], n = 0
-     * dp[n] =
-     *         \ max(dp[n-1], 0) + A[n], n > 0
+     *         / A[0], i = 0
+     * dp[i] =
+     *         \ max(dp[i-1], 0) + A[i], i > 0
      *
      * Complexity Analysis:
      * Time complexity: O(n)
