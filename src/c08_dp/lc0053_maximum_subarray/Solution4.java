@@ -27,7 +27,7 @@ package c08_dp.lc0053_maximum_subarray;
  */
 public class Solution4 {
     /**
-     * Approach 3: Dynamic programming with memory optimization (or Kadane's algorithm)
+     * Approach 4: Dynamic programming with memory optimization (or Kadane's algorithm)
      * Suppose dp[i] represents the max sum of subarray A[0 ... i] which must contains A[i]
      * as the last element, the state transition equation can be written as follow:
      *         / A[0], i = 0

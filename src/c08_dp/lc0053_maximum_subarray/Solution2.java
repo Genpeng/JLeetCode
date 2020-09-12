@@ -29,7 +29,7 @@ public class Solution2 {
     private int maxSum = Integer.MIN_VALUE;
 
     /**
-     * Approach 1: Recursive
+     * Approach 2: Recursive
      * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
      * as the last element, the state transition equation can be written as follow:
      *         / A[0], n = 0

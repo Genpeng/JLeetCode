@@ -27,7 +27,7 @@ package c08_dp.lc0053_maximum_subarray;
  */
 public class Solution5 {
     /**
-     * Approach 4: Divide and conquer
+     * Approach 5: Divide and conquer
      *
      * Complexity Analysis:
      * Time complexity: O(N * log(N))
