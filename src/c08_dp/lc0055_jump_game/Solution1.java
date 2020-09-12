@@ -43,16 +43,16 @@ public class Solution1 {
      * @return boolean, true if and only if you can reach the last index
      */
     public boolean canJump(int[] A) {
-        return canJumpFromPosition(A, 0);
+        return canJump(A, 0);
     }
 
-    private boolean canJumpFromPosition(int[] A, int idx) {
-        if (idx == A.length - 1) {
+    private boolean canJump(int[] A, int startIndex) {
+        if (startIndex == A.length - 1) {
             return true;
         }
-        int rightmost = Math.min(idx + A[idx], A.length - 1);
-        for (int i = rightmost; i > idx; --i) {
-            if (canJumpFromPosition(A, i)) {
+        int rightmost = Math.min(startIndex + A[startIndex], A.length - 1);
+        for (int i = rightmost; i > startIndex; --i) {
+            if (canJump(A, i)) {
                 return true;
             }
         }

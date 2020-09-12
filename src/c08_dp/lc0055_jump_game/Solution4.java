@@ -41,9 +41,9 @@ public class Solution4 {
      * @return boolean, true if and only if you can reach the last index
      */
     public boolean canJump(int[] A) {
-        final int L = A.length;
-        int leftmost = L - 1; // `leftmost` represents the leftmost index which can reach last index
-        for (int i = L - 2; i >= 0; --i) {
+        int n = A.length;
+        int leftmost = n - 1; // `leftmost` represents the leftmost index which can reach last index
+        for (int i = n - 2; i >= 0; --i) {
             if (i + A[i] >= leftmost) {
                 leftmost = i;
             }
