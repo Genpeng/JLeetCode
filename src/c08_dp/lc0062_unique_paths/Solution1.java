@@ -40,7 +40,7 @@ package c08_dp.lc0062_unique_paths;
 public class Solution1 {
     /**
      * Approach 1: Dynamic Programming
-     * Suppose dp[i][i] represents the number of unique paths starting from (0, 0) to (i, j),
+     * Suppose dp[i][j] represents the number of unique paths starting from (0, 0) to (i, j),
      * the state transition equation can be written as follow:
      *            / dp[i-1][j] + dp[i][j-1], i * j > 0
      * dp[i][j] =
@@ -59,7 +59,7 @@ public class Solution1 {
         for (int i = 0; i < m; ++i) {
             dp[i][0] = 1;
         }
-        for (int j = 0; j < n; ++j) {
+        for (int j = 1; j < n; ++j) {
             dp[0][j] = 1;
         }
         for (int i = 1; i < m; ++i) {
