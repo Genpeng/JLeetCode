@@ -26,40 +26,28 @@ package c08_dp.lc0053_maximum_subarray;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
-    private int maxSum = Integer.MIN_VALUE;
-
     /**
-     * Approach 1: Recursive
-     * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
-     * as the last element, the state transition equation can be written as follow:
-     *         / A[0], n = 0
-     * dp[n] =
-     *         \ max(dp[n-1], 0) + A[n], n > 0
+     * Approach 1: Brute Force
+     * Find out all the sub-arrays and save the maximum sum.
      *
      * Complexity Analysis:
-     * Time complexity: O(n)
-     * Space complexity: O(n)
-     *
-     * Result of Submission:
-     * Runtime: 1 ms, faster than 85.31% of Java online submissions for Maximum Subarray.
-     * Memory Usage: 43.6 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+     * Time complexity: O(n^2)
+     * Space complexity: O(1)
      *
      * @param nums int[], the input integer
      * @return int, the largest sum of all the contiguous subarray
      */
     public int maxSubArray(int[] nums) {
-        maxSubArray(nums, nums.length - 1);
-        return maxSum;
-    }
-
-    private int maxSubArray(int[] nums, int n) {
-        if (n == 0) {
-            maxSum = nums[0];
-            return nums[0];
+        int n = nums.length;
+        int maxSum = Integer.MIN_VALUE;
+        for (int i = 0; i < n; ++i) {
+            int currSum = 0;
+            for (int j = i; j < n; ++j) {
+                currSum += nums[j];
+                maxSum = Math.max(maxSum, currSum);
+            }
         }
-        int s = Math.max(maxSubArray(nums, n - 1), 0) + nums[n];
-        maxSum = Math.max(maxSum, s);
-        return s;
+        return maxSum;
     }
 
     public static void main(String[] args) {

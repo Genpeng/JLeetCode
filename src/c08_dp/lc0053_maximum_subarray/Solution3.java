@@ -27,7 +27,7 @@ package c08_dp.lc0053_maximum_subarray;
  */
 public class Solution3 {
     /**
-     * Approach 3: Dynamic programming with memory optimization (or Kadane's algorithm)
+     * Approach 2: Dynamic programming
      * Suppose dp[i] represents the max sum of subarray A[0 ... i] which must contains A[i]
      * as the last element, the state transition equation can be written as follow:
      *         / A[0], i = 0
@@ -36,30 +36,25 @@ public class Solution3 {
      *
      * Complexity Analysis:
      * Time complexity: O(n)
-     * Space complexity: O(1)
+     * Space complexity: O(n)
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 85.31% of Java online submissions for Maximum Subarray.
-     * Memory Usage: 41.7 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+     * Memory Usage: 41.8 MB, less than 5.16% of Java online submissions for Maximum Subarray.
      *
      * @param nums int[], the input integer
      * @return int, the largest sum of all the contiguous subarray
      */
     public int maxSubArray(int[] nums) {
-        int currSum = nums[0], maxSum = nums[0];
-        for (int i = 1; i < nums.length; ++i) {
-            currSum = Math.max(currSum + nums[i], nums[i]);
-            maxSum = Math.max(maxSum, currSum);
+        int n = nums.length;
+        int[] dp  = new int[n];
+        dp[0] = nums[0];
+        int maxSum = nums[0];
+        for (int i = 1; i < n; ++i) {
+            dp[i] = nums[i] + Math.max(dp[i-1], 0);
+            maxSum = Math.max(dp[i], maxSum);
         }
         return maxSum;
-
-        // or write as follow:
-//        int currSum = nums[0], maxSum = nums[0];
-//        for (int i = 1; i < nums.length; ++i) {
-//            currSum = Math.max(currSum, 0) + nums[i];
-//            maxSum = Math.max(maxSum, currSum);
-//        }
-//        return maxSum;
     }
 
     public static void main(String[] args) {

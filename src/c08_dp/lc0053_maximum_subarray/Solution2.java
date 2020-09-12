@@ -26,13 +26,15 @@ package c08_dp.lc0053_maximum_subarray;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
+    private int maxSum = Integer.MIN_VALUE;
+
     /**
-     * Approach 2: Dynamic programming
-     * Suppose dp[i] represents the max sum of subarray A[0 ... i] which must contains A[i]
+     * Approach 1: Recursive
+     * Suppose dp[n] represents the max sum of subarray A[:n] which must contains A[n]
      * as the last element, the state transition equation can be written as follow:
-     *         / A[0], i = 0
-     * dp[i] =
-     *         \ max(dp[i-1], 0) + A[i], i > 0
+     *         / A[0], n = 0
+     * dp[n] =
+     *         \ max(dp[n-1], 0) + A[n], n > 0
      *
      * Complexity Analysis:
      * Time complexity: O(n)
@@ -40,21 +42,24 @@ public class Solution2 {
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 85.31% of Java online submissions for Maximum Subarray.
-     * Memory Usage: 41.8 MB, less than 5.16% of Java online submissions for Maximum Subarray.
+     * Memory Usage: 43.6 MB, less than 5.16% of Java online submissions for Maximum Subarray.
      *
      * @param nums int[], the input integer
      * @return int, the largest sum of all the contiguous subarray
      */
     public int maxSubArray(int[] nums) {
-        int n = nums.length;
-        int[] dp  = new int[n];
-        dp[0] = nums[0];
-        int maxSum = nums[0];
-        for (int i = 1; i < n; ++i) {
-            dp[i] = nums[i] + Math.max(dp[i-1], 0);
-            maxSum = Math.max(dp[i], maxSum);
-        }
+        maxSubArray(nums, nums.length - 1);
         return maxSum;
+    }
+
+    private int maxSubArray(int[] nums, int n) {
+        if (n == 0) {
+            maxSum = nums[0];
+            return nums[0];
+        }
+        int s = Math.max(maxSubArray(nums, n - 1), 0) + nums[n];
+        maxSum = Math.max(maxSum, s);
+        return s;
     }
 
     public static void main(String[] args) {
