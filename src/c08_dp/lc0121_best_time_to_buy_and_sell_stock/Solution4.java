@@ -31,29 +31,33 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution4 {
     /**
-     * Approach 1: Brute Force
+     * Approach 4: Greedy Algorithm
+     * 因为只能买卖一次，因此只能在最低点买，然后在最低点之后的高点卖。所以，首先找到最低点，
+     * 然后遇到比最低点高的值时，更新最大收益。特殊情况，如果序列是单调递减的，这时选择不卖，
+     * 也就是最大收益为 0.
+     *
+     * TODO: 这种思想能算贪心吗？
      *
      * Complexity Analysis:
-     * Time complexity: O(n ^ 2)
+     * Time complexity: O(n)
      * Space complexity: O(1)
      *
-     * Runtime: 267 ms, faster than 7.24% of Java online submissions for Best Time to Buy and Sell Stock.
-     * Memory Usage: 42.6 MB, less than 5.31% of Java online submissions for Best Time to Buy and Sell Stock.
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 95.18% of Java online submissions for Best Time to Buy and Sell Stock.
+     * Memory Usage: 42.7 MB, less than 5.31% of Java online submissions for Best Time to Buy and Sell Stock.
      *
      * @param prices int[], the price of a given stock on each day
      * @return int, the max profit
      */
     public int maxProfit(int[] prices) {
-        int n = prices.length;
-        int maxProfit = 0;
-        for (int i = 0; i < n - 1; ++i) {
-            for (int j = i + 1; j < n; ++j) {
-                int profit = prices[j] - prices[i];
-                if (profit > maxProfit) {
-                    maxProfit = profit;
-                }
+        int minPrice = Integer.MAX_VALUE, maxProfit = 0;
+        for (int price : prices) {
+            if (price < minPrice) {
+                minPrice = price;
+            } else if (price - minPrice > maxProfit) {
+                maxProfit = price - minPrice;
             }
         }
         return maxProfit;
@@ -61,7 +65,7 @@ public class Solution1 {
 
     public static void main(String[] args) {
         int[] prices = new int[] {7, 1, 5, 3, 6, 4};
-        Solution1 solution = new Solution1();
+        Solution4 solution = new Solution4();
         System.out.println(solution.maxProfit(prices));
     }
 }

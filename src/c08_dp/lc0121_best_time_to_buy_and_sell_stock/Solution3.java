@@ -31,37 +31,41 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * Approach 1: Brute Force
+     * Approach 3: Dynamic Programming with memory optimization
+     * 令 dp[i] 表示到第 i 天为止的最大利润，则有
+     *         / max(dp[i-1], prices[i] - minPrice), i > 0
+     * dp[i] =
+     *         \ 0, i = 0
      *
      * Complexity Analysis:
-     * Time complexity: O(n ^ 2)
+     * Time complexity: O(n)
      * Space complexity: O(1)
      *
-     * Runtime: 267 ms, faster than 7.24% of Java online submissions for Best Time to Buy and Sell Stock.
-     * Memory Usage: 42.6 MB, less than 5.31% of Java online submissions for Best Time to Buy and Sell Stock.
+     * Result of Submission:
+     * Runtime: 1 ms, faster than 95.18% of Java online submissions for Best Time to Buy and Sell Stock.
+     * Memory Usage: 42.7 MB, less than 5.31% of Java online submissions for Best Time to Buy and Sell Stock.
      *
      * @param prices int[], the price of a given stock on each day
      * @return int, the max profit
      */
     public int maxProfit(int[] prices) {
         int n = prices.length;
+        if (n == 0) {
+            return 0;
+        }
         int maxProfit = 0;
-        for (int i = 0; i < n - 1; ++i) {
-            for (int j = i + 1; j < n; ++j) {
-                int profit = prices[j] - prices[i];
-                if (profit > maxProfit) {
-                    maxProfit = profit;
-                }
-            }
+        int minPrice = prices[0];
+        for (int i = 1; i < n; ++i) {
+            minPrice = Math.min(minPrice, prices[i]);
+            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
         }
         return maxProfit;
     }
 
     public static void main(String[] args) {
-        int[] prices = new int[] {7, 1, 5, 3, 6, 4};
-        Solution1 solution = new Solution1();
-        System.out.println(solution.maxProfit(prices));
+        Solution3 solution = new Solution3();
+        System.out.println(solution.maxProfit(new int[] {7, 1, 5, 3, 6, 4}) == 5);
     }
 }
