@@ -41,7 +41,7 @@ package c08_dp.lc0063_unique_paths_ii;
  */
 public class Solution5 {
     /**
-     * Approach 2: Dynamic Programming with memory optimization and early stopping
+     * Approach 5: Dynamic Programming with memory optimization and early stopping
      * Suppose dp[i][j] represents the number of unique paths starting from (0, 0) to (i, j),
      * the state transition equation can be written as follow:
      *            / dp[i-1][j] + dp[i][j-1], i * j > 0 and o[i][j] = 0
