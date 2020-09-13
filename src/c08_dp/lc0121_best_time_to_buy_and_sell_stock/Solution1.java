@@ -26,7 +26,8 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  * Explanation: In this case, no transaction is done, i.e. max profit = 0.
  * ==========================================================================================================
  *
- * Tags: dp;
+ * Difficulty: Easy
+ * Tags: dp; greedy algorithm;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */

@@ -26,13 +26,17 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  * Explanation: In this case, no transaction is done, i.e. max profit = 0.
  * ==========================================================================================================
  *
- * Tags: dp;
+ * Difficulty: Easy
+ * Tags: dp; greedy algorithm;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
-     * Approach 2
+     * Approach 2: Greedy Algorithm
+     * 因为只能买卖一次，因此只能在最低点买，然后在最低点之后的高点卖。所以，首先找到最低点，
+     * 然后遇到比最低点高的值时，更新最大收益。特殊情况，如果序列是单调递减的，这时选择不卖，
+     * 也就是最大收益为 0.
      *
      * Complexity Analysis:
      * Time complexity: O(n)
