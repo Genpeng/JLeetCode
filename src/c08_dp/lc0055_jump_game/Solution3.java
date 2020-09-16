@@ -30,8 +30,11 @@ package c08_dp.lc0055_jump_game;
 public class Solution3 {
     /**
      * Approach 3: Dynamic Programming
-     * 用一个数组 dp 保存输入数组 A 中每个位置是否可以到达最后一个元素（1 表示可以到达），然后反向填充数组 dp，
-     * 因为前面的元素的判断需要利用到后面的元素。最后，判断数组 dp 的第一个位置是否为 1 即可。
+     * 令 dp[i] 表示从 i 位置开始能否到达数组的末尾，则有
+     *         / any([dp[i+1], ..., dp[n-1]]), i < n-1
+     * dp[i] =
+     *         \ true, i = n-1
+     * 其中，any 函数表示序列中如果有一个为 true 则函数的返回值为 true，反之，函数值为 false。
      *
      * Complexity Analysis:
      * Time Complexity: O(n ^ 2)
@@ -46,21 +49,18 @@ public class Solution3 {
      */
     public boolean canJump(int[] A) {
         int n = A.length;
-        int[] dp = new int[n];  // -1 表示无法到达，0 表示未知，1 表示可以到达
-        dp[n-1] = 1;
-        for (int i = n - 2; i >= 0; --i) {
-            int rightmost = Math.min(i + A[i], n-1);
+        boolean[] dp = new boolean[n];
+        dp[n-1] = true;
+        for (int i = n-2; i >= 0; --i) {
+            int rightmost = Math.min(n-1, i + A[i]);
             for (int j = rightmost; j > i; --j) {
-                if (dp[j] == 1) {
-                    dp[i] = 1;
+                if (dp[j]) {
+                    dp[i] = true;
                     break;
                 }
             }
-            if (dp[i] != 1) {
-                dp[i] = -1;
-            }
         }
-        return dp[0] == 1;
+        return dp[0];
     }
 
     public static void main(String[] args) {
