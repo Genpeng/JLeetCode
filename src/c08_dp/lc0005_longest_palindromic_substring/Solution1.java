@@ -27,6 +27,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     * 遍历所有的子串，判断每个子串是否为回文的，如果是回文的就更新起始的位置以及它的长度。
      *
      * Complexity Analysis:
      * Time Complexity: O(N ^ 3)
@@ -36,16 +37,23 @@ public class Solution1 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        int L = s.length();
-        String ans = "";
+        if (s == null) {
+            throw new IllegalArgumentException("[ERROR] The input string is null!!!");
+        }
+        final int L = s.length();
+        if (L == 0 || L == 1) {
+            return s;
+        }
+        int startIndex = 0, maxLen = 1;
         for (int i = 0; i < L; ++i) {
             for (int j = i; j < L; ++j) {
-                if (isPalindromic(s, i, j) && j-i+1 > ans.length()) {
-                    ans = s.substring(i, j+1);
+                if (isPalindromic(s, i, j) && j-i+1 > maxLen) {
+                    startIndex = i;
+                    maxLen = j-i+1;
                 }
             }
         }
-        return ans;
+        return s.substring(startIndex, startIndex+maxLen);
     }
 
     private boolean isPalindromic(String s, int i, int j) {

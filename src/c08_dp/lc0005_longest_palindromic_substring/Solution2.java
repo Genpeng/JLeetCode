@@ -28,7 +28,7 @@ public class Solution2 {
     /**
      * Approach 2: Dynamic Programming
      * The state transition equation is as follow:
-     *            / true, s[i] == s[j] and (j - i < 3 or dp[i+1][j-1] = true)
+     *            / s[i] == s[j] && (j - i < 3 || dp[i+1][j-1]), i <= j
      * dp[i][j] =
      *            \ false, others
      * where dp[i][j] represents whether s[i ... j] is palindromic substring
