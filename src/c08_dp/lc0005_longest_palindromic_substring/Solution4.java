@@ -27,6 +27,10 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution4 {
     /**
      * Approach 4: Expand Around the center
+     * 一个字符串如果是回文的，它一定会关于中心对称，当字符串的数目是奇数的时候，中心即为中间点，
+     * 而当字符串的数目为偶数时，中心位于中间两个字符串之间。这种解法的思路就是遍历所有可能的中心，
+     * 找出该中心对应的最长回文子串，每次都更新最长的回文子串，遍历结束后就可以找出所有中心中
+     * 最长的回文子串，也就是字符串最长的回文子串。
      *
      * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
