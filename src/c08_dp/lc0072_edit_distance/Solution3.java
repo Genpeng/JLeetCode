@@ -52,7 +52,8 @@ public class Solution3 {
      * Time Complexity: O(min{m, n})
      *
      * Result of Submission:
-     *
+     * 执行用时：5 ms, 在所有 Java 提交中击败了 98.21% 的用户
+     * 内存消耗：38.9 MB, 在所有 Java 提交中击败了 60.37% 的用户
      *
      * @param word1 String, one word
      * @param word2 String, the other word
