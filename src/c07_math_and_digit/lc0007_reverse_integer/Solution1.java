@@ -27,14 +27,19 @@ package c07_math_and_digit.lc0007_reverse_integer;
  *   assume that your function returns 0 when the reversed integer overflows.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: math;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * Approach 1: Imagine an integer is a stack, and we can use another stack (integer) to store the popped digits
-     * Time Complexity: O(N)
+     * Approach 1: Simulation
+     * Imagine an integer is a stack, and we can use another stack (integer) to
+     * store the popped digits
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(log(N))
      * Space Complexity: O(1)
      *
      * @param x int, the input integer
