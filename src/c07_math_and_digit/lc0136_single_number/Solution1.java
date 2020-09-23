@@ -24,6 +24,7 @@ import java.util.Map;
  * Output: 4
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;math;hash table;bit manipulation;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -31,6 +32,8 @@ import java.util.Map;
 public class Solution1 {
     /**
      * Solution 1: Hash Table
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      * where n represents the length of the array

@@ -24,6 +24,7 @@ import java.util.Set;
  * Output: 4
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;math;hash table;bit manipulation;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -31,6 +32,8 @@ import java.util.Set;
 public class Solution2 {
     /**
      * Solution 2: Math
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      *

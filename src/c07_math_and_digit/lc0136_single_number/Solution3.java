@@ -21,6 +21,7 @@ package c07_math_and_digit.lc0136_single_number;
  * Output: 4
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;math;hash table;bit manipulation;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -28,6 +29,8 @@ package c07_math_and_digit.lc0136_single_number;
 public class Solution3 {
     /**
      * Solution 3: Bit Manipulation
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
