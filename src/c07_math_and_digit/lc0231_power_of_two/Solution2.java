@@ -24,6 +24,7 @@ package c07_math_and_digit.lc0231_power_of_two;
  * Output: false
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: math;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)

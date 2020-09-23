@@ -24,6 +24,7 @@ package c07_math_and_digit.lc0231_power_of_two;
  * Output: false
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: math;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -32,6 +33,8 @@ public class Solution1 {
     /**
      * Approach 1: Iteration
      * If a number is a power of two, then the highest digit is 1, and other digits are 0.
+     *
+     * Complexity Analysis:
      * Time Complexity: O(log(n))
      * Space Complexity: O(1)
      *

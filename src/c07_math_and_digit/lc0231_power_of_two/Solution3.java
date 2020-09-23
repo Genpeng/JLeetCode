@@ -24,6 +24,7 @@ package c07_math_and_digit.lc0231_power_of_two;
  * Output: false
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: math;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -31,6 +32,8 @@ package c07_math_and_digit.lc0231_power_of_two;
 public class Solution3 {
     /**
      * Approach 3: Bit Manipulation
+     *
+     * Complexity Analysis:
      * Time Complexity: O(1)
      * Space Complexity: O(1)
      *
