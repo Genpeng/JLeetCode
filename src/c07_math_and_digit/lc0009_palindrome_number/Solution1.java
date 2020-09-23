@@ -27,6 +27,7 @@ package c07_math_and_digit.lc0009_palindrome_number;
  * - Coud you solve it without converting the integer to a string?
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: math;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -35,6 +36,8 @@ public class Solution1 {
     /**
      * Approach 1: Reverse half of the integer
      * Reverse the second half of the integer and compare it with the first half
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N)
      * Space Complexity: O(1)
      * where N represents the number of digits
@@ -61,8 +64,9 @@ public class Solution1 {
     }
 
     public static void main(String[] args) {
-        int x = 12321;
-        Solution1 solution = new Solution1();
-        System.out.println(solution.isPalindrome(x));
+        Solution1 solu = new Solution1();
+        System.out.println(solu.isPalindrome(123321) == true);
+        System.out.println(solu.isPalindrome(-121) == false);
+        System.out.println(solu.isPalindrome(10) == false);
     }
 }
