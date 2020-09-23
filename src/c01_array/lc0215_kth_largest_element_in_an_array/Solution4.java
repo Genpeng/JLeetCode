@@ -23,6 +23,7 @@ import java.util.Random;
  * You may assume k is always valid, 1 ≤ k ≤ array's length.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;sort;heap;divide and conquer;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -89,5 +90,11 @@ public class Solution4 {
         int tmp = nums[i];
         nums[i] = nums[j];
         nums[j] = tmp;
+    }
+
+    public static void main(String[] args) {
+        Solution4 solu = new Solution4();
+        System.out.println(solu.findKthLargest(new int[] {3, 2, 1, 5, 6, 4}, 2) == 5);
+        System.out.println(solu.findKthLargest(new int[] {3, 2, 3, 1, 2, 4, 5, 5, 6}, 4) == 4);
     }
 }

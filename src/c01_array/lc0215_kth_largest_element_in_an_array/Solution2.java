@@ -23,6 +23,7 @@ import java.util.PriorityQueue;
  * You may assume k is always valid, 1 ≤ k ≤ array's length.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;sort;heap;divide and conquer;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
