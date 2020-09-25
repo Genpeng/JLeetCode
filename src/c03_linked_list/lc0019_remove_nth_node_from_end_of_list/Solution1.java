@@ -22,6 +22,9 @@ import entity.ListNode;
  * Could you do this in one pass?
  * ==========================================================================================================
  *
+ * Difficulty: Medium
+ * Tags: linked list;
+ *
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2019/04/05
  */
