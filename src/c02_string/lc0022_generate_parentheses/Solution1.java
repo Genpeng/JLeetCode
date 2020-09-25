@@ -22,6 +22,7 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;backtracking;dfs;bfs;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
