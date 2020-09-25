@@ -21,6 +21,7 @@ import entity.ListNode;
  * Explanation: 342 + 465 = 807.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: linked list;
  *
  * @author  StrongXGP (xgp1227@gmail.com)
@@ -29,6 +30,8 @@ import entity.ListNode;
 public class Solution1 {
     /**
      * Approach 1: Iteration (Intuition)
+     *
+     * Complexity Analysis:
      * Time Complexity: O(max(m, n))
      * Space Complexity: O(max(m, n))
      *
@@ -38,23 +41,21 @@ public class Solution1 {
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
-        ListNode p1 = l1, p2 = l2;
-        int s;
+        ListNode tail = dummyHead;
         int carry = 0;
-        while (p1 != null || p2 != null) {
-            s = carry;
-            s += p1 == null ? 0 : p1.val;
-            s += p2 == null ? 0 : p2.val;
-            prev.next = new ListNode(s % 10);
+        while (l1 != null || l2 != null) {
+            int s = carry;
+            s += l1 == null ? 0 : l1.val;
+            s += l2 == null ? 0 : l2.val;
+            tail.next = new ListNode(s % 10);
+            tail = tail.next;
             // update to next iteration
             carry = s / 10;
-            p1 = p1 == null ? p1 : p1.next;
-            p2 = p2 == null ? p2 : p2.next;
-            prev = prev.next;
+            l1 = l1 == null ? l1 : l1.next;
+            l2 = l2 == null ? l2 : l2.next;
         }
         if (carry > 0) {
-            prev.next = new ListNode(carry);
+            tail.next = new ListNode(carry);
         }
         return dummyHead.next;
     }

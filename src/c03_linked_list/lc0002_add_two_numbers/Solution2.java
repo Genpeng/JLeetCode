@@ -21,6 +21,7 @@ import entity.ListNode;
  * Explanation: 342 + 465 = 807.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: linked list;
  *
  * @author  StrongXGP (xgp1227@gmail.com)
@@ -29,6 +30,8 @@ import entity.ListNode;
 public class Solution2 {
     /**
      * Approach 2: Recursion
+     *
+     * Complexity Analysis:
      * Time Complexity: O(max(m,n))
      * Space Complexity: O(max(m,n))
      *
