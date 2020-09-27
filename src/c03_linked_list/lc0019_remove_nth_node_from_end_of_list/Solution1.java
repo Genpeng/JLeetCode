@@ -46,9 +46,6 @@ public class Solution1 {
         }
         // 删除倒数第n个节点
         p1.next = p1.next.next;
-//        ListNode deleteNode = p1.next;
-//        p1.next = deleteNode.next;
-//        deleteNode.next = null;
         return head;
     }
 
