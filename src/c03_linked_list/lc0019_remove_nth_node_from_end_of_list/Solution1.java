@@ -25,7 +25,7 @@ import entity.ListNode;
  * Difficulty: Medium
  * Tags: linked list;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/04/05
  */
 public class Solution1 {
@@ -45,9 +45,10 @@ public class Solution1 {
             p2 = p2.next;
         }
         // 删除倒数第n个节点
-        ListNode deleteNode = p1.next;
-        p1.next = deleteNode.next;
-        deleteNode.next = null;
+        p1.next = p1.next.next;
+//        ListNode deleteNode = p1.next;
+//        p1.next = deleteNode.next;
+//        deleteNode.next = null;
         return head;
     }
 
