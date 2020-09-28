@@ -28,6 +28,7 @@ import entity.ListNode;
  * rotate 4 steps to the right: 2->0->1->NULL
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: linked list;two pointers;
  *
  * @author  StrongXGP (xgp1227@gmail.com)
