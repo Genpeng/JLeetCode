@@ -24,6 +24,7 @@ import java.util.Map;
  * return [0, 1].
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: array;hash table;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
