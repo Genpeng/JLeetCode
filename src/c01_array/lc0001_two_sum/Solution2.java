@@ -41,8 +41,9 @@ public class Solution2 {
      * @return int[], indices of the two numbers such that they add up to a specific target
      */
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < nums.length; ++i) {
+        int n = nums.length;
+        Map<Integer, Integer> map = new HashMap<>(n);
+        for (int i = 0; i < n; ++i) {
             int num = nums[i];
             if (map.containsKey(num)) {
                 return new int[] {map.get(num), i};
