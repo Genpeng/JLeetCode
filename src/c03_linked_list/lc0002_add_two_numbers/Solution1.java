@@ -49,8 +49,8 @@ public class Solution1 {
             s += l2 == null ? 0 : l2.val;
             tail.next = new ListNode(s % 10);
             tail = tail.next;
-            // update to next iteration
             carry = s / 10;
+            // update to next iteration
             l1 = l1 == null ? l1 : l1.next;
             l2 = l2 == null ? l2 : l2.next;
         }

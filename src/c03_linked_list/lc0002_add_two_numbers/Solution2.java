@@ -49,17 +49,16 @@ public class Solution2 {
             return carry > 0 ? new ListNode(carry) : null;
         }
         int s = carry;
-        ListNode l1Next = l1, l2Next = l2;
         if (l1 != null) {
             s += l1.val;
-            l1Next = l1.next;
+            l1 = l1.next;
         }
         if (l2 != null) {
             s += l2.val;
-            l2Next = l2.next;
+            l2 = l2.next;
         }
         ListNode head = new ListNode(s % 10);
-        head.next = addTwoNumbers(l1Next, l2Next, s / 10);
+        head.next = addTwoNumbers(l1, l2, s / 10);
         return head;
     }
 
