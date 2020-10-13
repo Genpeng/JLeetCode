@@ -19,8 +19,11 @@ import entity.ListNode;
  * A linked list can be reversed either iteratively or recursively. Could you implement both?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/03/28
+ * Difficulty: Easy
+ * Tags: linked list;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
+ * @date   2019/03/28
  */
 public class Solution1 {
     /**

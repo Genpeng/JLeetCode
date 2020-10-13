@@ -19,12 +19,15 @@ import entity.ListNode;
  * A linked list can be reversed either iteratively or recursively. Could you implement both?
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/03/28
+ * Difficulty: Easy
+ * Tags: linked list;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
+ * @date   2019/03/28
  */
 public class Solution2 {
     /**
-     * 解法二：迭代
+     * 解法二：递归
      * 时间复杂度：O(n)，其中n为链表的长度
      * 空间复杂度：O(n)，额外的空间是由于递归占用系统栈空间，递归深度最多为n
      *
