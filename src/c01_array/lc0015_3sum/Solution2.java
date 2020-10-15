@@ -24,14 +24,17 @@ import java.util.*;
  * ]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;hash table;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/06
+ * @author Genpeng Xu (xgp1227atgmail.com)
+ * @date   2019/05/06
  */
 public class Solution2 {
     /**
      * Approach 2: Hash Table
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(N)
      *

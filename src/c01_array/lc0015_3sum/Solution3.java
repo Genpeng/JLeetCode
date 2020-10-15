@@ -26,14 +26,17 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;hash table;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/05/06
+ * @author Genpeng Xu (xgp1227atgmail.com)
+ * @date   2019/05/06
  */
 public class Solution3 {
     /**
      * Approach 3: Two Pointers
+     *
+     * Complexity Analysis:
      * Time Complexity: O(N ^ 2)
      * Space Complexity: O(1)
      *
@@ -57,23 +60,23 @@ public class Solution3 {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
-            int l = i + 1, r = n - 1;
-            while (l < r) {
-                int s = nums[i] + nums[l] + nums[r];
+            int li = i + 1, ri = n - 1;
+            while (li < ri) {
+                int s = nums[i] + nums[li] + nums[ri];
                 if (s < 0) {
-                    ++l;
+                    ++li;
                 } else if (s > 0) {
-                    --r;
+                    --ri;
                 } else {
-                    ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
-                    while (l < r && nums[l] == nums[l+1]) {
-                        ++l;
+                    ans.add(Arrays.asList(nums[i], nums[li], nums[ri]));
+                    while (li < ri && nums[li] == nums[li+1]) {
+                        ++li;
                     }
-                    while (l < r && nums[r] == nums[r-1]) {
-                        --r;
+                    while (li < ri && nums[ri] == nums[ri-1]) {
+                        --ri;
                     }
-                    ++l;
-                    --r;
+                    ++li;
+                    --ri;
                 }
             }
         }
