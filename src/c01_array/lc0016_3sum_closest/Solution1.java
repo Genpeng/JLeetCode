@@ -46,22 +46,22 @@ public class Solution1 {
         int n = nums.length;
         int ans = nums[0] + nums[1] + nums[n-1];
         for (int i = 0; i < n - 2; ++i) {
-            int l = i + 1, r = n - 1;
-            while (l < r) {
-                int s = nums[i] + nums[l] + nums[r];
-                if (s < target) {
-                    ++l;
-                } else if (s > target) {
-                    --r;
-                } else {
-                    return target;
-                }
+            if (i > 0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+            int li = i + 1, ri = n - 1;
+            while (li < ri) {
+                int s = nums[i] + nums[li] + nums[ri];
                 if (Math.abs(s - target) < Math.abs(ans - target)) {
                     ans = s;
                 }
-            }
-            while (i < n - 2 && nums[i] == nums[i+1]) {
-                ++i;
+                if (s < target) {
+                    ++li;
+                } else if (s > target) {
+                    --ri;
+                } else {
+                    return target;
+                }
             }
         }
         return ans;
