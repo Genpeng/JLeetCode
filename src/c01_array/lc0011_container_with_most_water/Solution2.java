@@ -22,6 +22,7 @@ package c01_array.lc0011_container_with_most_water;
  * Output: 49
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: two pointers;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -29,6 +30,8 @@ package c01_array.lc0011_container_with_most_water;
 public class Solution2 {
     /**
      * Approach 2: Two Pointers
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
@@ -40,21 +43,23 @@ public class Solution2 {
      * @return int, the max area of the container
      */
     public int maxAreaV1(int[] heights) {
-        int ma = 0;
-        int l = 0, r = heights.length - 1;
-        while (l < r) {
-            ma = Math.max(ma, Math.min(heights[l], heights[r]) * (r - l));
-            if (heights[l] < heights[r]) {
-                ++l;
+        int li = 0, ri = heights.length - 1;
+        int maxArea = 0;
+        while (li < ri) {
+            maxArea = Math.max(maxArea, Math.min(heights[li], heights[ri]) * (ri - li));
+            if (heights[li] < heights[ri]) {
+                ++li;
             } else {
-                --r;
+                --ri;
             }
         }
-        return ma;
+        return maxArea;
     }
 
     /**
      * Approach 2: Two Pointers
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
@@ -66,18 +71,18 @@ public class Solution2 {
      * @return int, the max area of the container
      */
     public int maxAreaV2(int[] heights) {
-        int ma = 0;
-        int l = 0, r = heights.length - 1;
-        while (l < r) {
-            int h = Math.min(heights[l], heights[r]);
-            ma = Math.max(ma, (r - l) * h);
-            while (l < r && heights[l] <= h) {
-                ++l;
+        int li = 0, ri = heights.length - 1;
+        int maxArea = 0;
+        while (li < ri) {
+            int h = Math.min(heights[li], heights[ri]);
+            maxArea = Math.max(maxArea, (ri - li) * h);
+            while (li < ri && heights[li] <= h) {
+                ++li;
             }
-            while (l < r && heights[r] <= h) {
-                --r;
+            while (li < ri && heights[ri] <= h) {
+                --ri;
             }
         }
-        return ma;
+        return maxArea;
     }
 }

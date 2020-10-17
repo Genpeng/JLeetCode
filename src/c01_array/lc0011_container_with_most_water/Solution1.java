@@ -22,6 +22,7 @@ package c01_array.lc0011_container_with_most_water;
  * Output: 49
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: two pointers;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -29,6 +30,8 @@ package c01_array.lc0011_container_with_most_water;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n ^ 2)
      * Space Complexity: O(1)
      *
