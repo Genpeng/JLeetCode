@@ -25,7 +25,7 @@ package c01_array.lc0011_container_with_most_water;
  * Difficulty: Medium
  * Tags: two pointers;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
