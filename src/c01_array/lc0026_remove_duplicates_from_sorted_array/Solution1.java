@@ -34,6 +34,8 @@ import java.util.Arrays;
 public class Solution1 {
     /**
      * Approach 1: slow & fast pointers
+     *
+     * Complexity Analysis:
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
@@ -45,17 +47,19 @@ public class Solution1 {
      * @return int, the length of the array without duplicates
      */
     public int removeDuplicates(int[] nums) {
-        int n = nums.length;
-        if (n == 0) {
+        if (nums == null || nums.length == 0) {
             return 0;
         }
         int i = 0;
-        for (int j = 1; j < n; ++j) {
+        for (int j = 1; j < nums.length; ++j) {
             if (nums[i] != nums[j]) {
-                nums[++i] = nums[j];
+                ++i;
+                if (i < j) {
+                    nums[i] = nums[j];
+                }
             }
         }
-        return i+1;
+        return i + 1;
     }
 
     public static void main(String[] args) {
