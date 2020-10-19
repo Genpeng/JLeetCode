@@ -52,20 +52,17 @@ public class Solution2 {
      * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
-        Set<Character> window = new HashSet<>();
-        int li = 0, ri = 0, maxLen = 0;
-        while (ri < s.length()) {
+        final int L = s.length();
+        Set<Character> set = new HashSet<>();
+        int maxLen = 0;
+        for (int li = 0, ri = 0; ri < L; ++ri) {
             char c = s.charAt(ri);
-            if (window.contains(c)) {
-                // 如果待加入的字符在窗口中，滑动左边界
-                window.remove(s.charAt(li));
+            while (set.contains(c)) {
+                set.remove(s.charAt(li));
                 ++li;
-            } else {
-                // 如果待加入的字符不在窗口中，滑动右边界
-                window.add(c);
-                ++ri;
-                maxLen = Math.max(maxLen, ri - li);
             }
+            set.add(c);
+            maxLen = Math.max(maxLen, ri - li + 1);
         }
         return maxLen;
     }
