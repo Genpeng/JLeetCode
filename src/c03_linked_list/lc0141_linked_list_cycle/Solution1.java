@@ -36,9 +36,10 @@ import java.util.Set;
  * Can you solve it using O(1) (i.e. constant) memory?
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: linked list;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/03/31
  */
 public class Solution1 {
