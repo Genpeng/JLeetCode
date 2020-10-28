@@ -38,9 +38,10 @@ import java.util.Set;
  * Can you solve it without using extra space?
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: linked list;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/03/31
  */
 public class Solution1 {
