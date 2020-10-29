@@ -37,11 +37,10 @@ import java.util.Set;
 public class Solution1 {
     /**
      * Approach 1: Hash Table
-     * 7 -> 49 -> 97 -> 130 -> 10 -> 1
      *
      * Complexity Analysis:
-     * Time Complexity: xx
-     * Space Complexity: xx
+     * Time Complexity: O(log(N))
+     * Space Complexity: O(log(N))
      *
      * Result of Submission:
      * Runtime: 1 ms, faster than 86.72% of Java online submissions for Happy Number.
