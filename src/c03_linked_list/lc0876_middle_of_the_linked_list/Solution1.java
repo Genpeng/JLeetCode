@@ -29,7 +29,10 @@ import entity.ListNode;
  * The number of nodes in the given list will be between 1 and 100.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * Difficulty: Easy
+ * Tags: linked list;fast and slow pointers;
+ *
+ * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/10/12
  */
 public class Solution1 {
