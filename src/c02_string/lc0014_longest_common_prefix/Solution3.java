@@ -25,6 +25,7 @@ import java.util.Arrays;
  * - All given inputs are in lowercase letters a-z.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: string;divide and conquer;binary search;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)

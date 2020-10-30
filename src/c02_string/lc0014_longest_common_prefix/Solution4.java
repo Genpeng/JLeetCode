@@ -23,6 +23,7 @@ package c02_string.lc0014_longest_common_prefix;
  * - All given inputs are in lowercase letters a-z.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: string;divide and conquer;binary search;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
