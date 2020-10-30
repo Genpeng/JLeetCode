@@ -91,7 +91,7 @@ public class Solution1 {
                 return sign > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
             base = base * 10 + d;
-            ++i;
+            ++i; // 记得跳到下一位，否则会溢出，返回边界值
         }
         return sign * base;
     }
