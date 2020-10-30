@@ -25,6 +25,7 @@ package c02_string.lc0043_multiply_strings;
  * - You must not use any built-in BigInteger library or convert the inputs to integer directly.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: string;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
@@ -54,9 +55,9 @@ public class Solution1 {
         for (int i = m - 1; i >= 0; --i) {
             for (int j = n - 1; j >= 0; --j) {
                 int p1 = i + j, p2 = i + j + 1;
-                int sum = (num1.charAt(i) - '0') * (num2.charAt(j) - '0') + prod[p2];
-                prod[p1] += sum / 10;
-                prod[p2] = sum % 10;
+                int s = (num1.charAt(i) - '0') * (num2.charAt(j) - '0') + prod[p2];
+                prod[p2] = s % 10;
+                prod[p1] += s / 10;
             }
         }
         StringBuilder sb = new StringBuilder();
