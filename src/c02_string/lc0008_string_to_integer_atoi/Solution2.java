@@ -59,6 +59,9 @@ import java.util.Map;
  *              Thefore INT_MIN (−231) is returned.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
+ * Tags: string;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {

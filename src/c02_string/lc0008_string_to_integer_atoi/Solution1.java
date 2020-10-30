@@ -56,6 +56,9 @@ package c02_string.lc0008_string_to_integer_atoi;
  *              Thefore INT_MIN (−231) is returned.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
+ * Tags: string;
+ *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
