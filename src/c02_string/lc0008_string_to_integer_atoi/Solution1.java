@@ -86,11 +86,11 @@ public class Solution1 {
             sign = s.charAt(i++) == '+' ? 1 : -1;
         }
         while (i < L && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
-            int n = s.charAt(i) - '0';
-            if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE / 10 && n > 7)) {
+            int d = s.charAt(i) - '0';
+            if (base > Integer.MAX_VALUE / 10 || (base == Integer.MAX_VALUE / 10 && d > 7)) {
                 return sign > 0 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
-            base = base * 10 + n;
+            base = base * 10 + d;
             ++i;
         }
         return sign * base;
