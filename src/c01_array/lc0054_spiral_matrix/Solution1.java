@@ -31,6 +31,7 @@ import java.util.List;
  * Output: [1,2,3,4,8,12,11,10,9,5,6,7]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
@@ -103,9 +104,9 @@ public class Solution1 {
         int[] row1 = new int[] {1, 2, 3, 4};
         int[] row2 = new int[] {5, 6, 7, 8};
         int[] row3 = new int[] {9, 10, 11, 12};
-        int[][] matrix = new int[][]{row1, row2, row3};
-        Solution1 solution = new Solution1();
+        int[][] matrix = new int[][] {row1, row2, row3};
+        Solution1 solu = new Solution1();
         System.out.println("[1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]");
-        System.out.println(solution.spiralOrder(matrix));
+        System.out.println(solu.spiralOrder(matrix));
     }
 }
