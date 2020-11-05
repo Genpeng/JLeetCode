@@ -89,12 +89,12 @@ public class Solution2 {
      * @return boolean, true if the input matrix is illegal
      */
     private boolean isIllegal(int[][] matrix) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+        if (matrix == null || matrix.length == 0) {
             return true;
         }
-        int cn = matrix[0].length;
+        int numCols = matrix[0].length;
         for (int i = 1; i < matrix.length; ++i) {
-            if (matrix[i].length != cn) {
+            if (matrix[i].length != numCols) {
                 return true;
             }
         }
