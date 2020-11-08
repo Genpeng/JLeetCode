@@ -1,7 +1,5 @@
 package c01_array.lc0384_shuffle_an_array;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
