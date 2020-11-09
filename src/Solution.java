@@ -12,7 +12,7 @@
  * Difficulty: Easy or Medium or Hard
  * Tags: xxx;xxx;
  *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution {
 
