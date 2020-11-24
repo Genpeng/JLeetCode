@@ -48,10 +48,12 @@ public class Solution1 {
         if (A.length <= 1) {
             return 0;
         }
+        // Step 1: count the number of occurrences of each element
         int[] counts = new int[80000];
         for (int x : A) {
             ++counts[x];
         }
+        // Step 2: count the number of moves
         int moves = 0, duplicated = 0;
         for (int x = 0; x < counts.length; ++x) {
             if (counts[x] >= 2) {
