@@ -31,44 +31,47 @@ package c01_array.lc0945_minimum_increment_to_make_array_unique;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
-     * Approach 1
-     * 对于重复出现的数字，先从 moves 中减去，之后遇到一个没有出现过的数字再加上该数字。
+     * Approach 3
+     * 统计出每个数字的出现次数，然后将重复重现的数字往前 +1，直到到达最大值。
      *
      * Complexity Analysis:
-     * Time Complexity: O(L)
-     * Space Complexity: O(L)
-     * where L represents `max(A) + A.length`
+     * Time Complexity: O(max{A.length, A[i]})
+     * Space Complexity: O(A[i])
      *
      * Result of Submission:
-     * Runtime: 19 ms, faster than 28.89% of Java online submissions for Minimum Increment to Make Array Unique.
-     * Memory Usage: 65.2 MB, less than 16.67% of Java online submissions for Minimum Increment to Make Array Unique.
+     * Runtime: 2 ms, faster than 100.00% of Java online submissions for Minimum Increment to Make Array Unique.
+     * Memory Usage: 46.5 MB, less than 86.30% of Java online submissions for Minimum Increment to Make Array Unique.
      *
      * @param A int, the integer array
      * @return int, the least number of moves to make every value in A unique
      */
     public int minIncrementForUnique(int[] A) {
-        if (A.length <= 1) {
+        final int N = A.length;
+        if (N <= 1) {
             return 0;
         }
-        // Step 1: count the number of occurrences of each element
-        int[] counts = new int[80000];
+        // Step 1: find out the maximum element
+        int max = Integer.MIN_VALUE;
+        for (int x : A) {
+            max = Math.max(max, x);
+        }
+        // Step 2: count the number of occurrence
+        int[] counts = new int[max+1];
         for (int x : A) {
             ++counts[x];
         }
-        // Step 2: count the number of moves
-        int moves = 0, duplicates = 0;
-        for (int x = 0; x < 80000; ++x) {
+        // Step 3: count the number of moves
+        int moves = 0;
+        for (int x = 0; x < max; ++x) {
             int t = counts[x];
-            if (t > 1) {
-                duplicates += (t - 1);
-                moves -= (t - 1) * x;
-            } else if (t == 0 && duplicates > 0) {
-                moves += x;
-                --duplicates;
+            if (t > 0) {
+                moves += (t - 1);
+                counts[x+1] += (t - 1); // 将重复出现的数字 +1
             }
         }
+        moves += counts[max] * (counts[max] - 1) * 0.5;
         return moves;
     }
 }
