@@ -50,21 +50,24 @@ public class Solution2 {
      * @return int, the least number of moves to make every value in A unique
      */
     public int minIncrementForUniqueV0(int[] A) {
-        final int N = A.length;
+        int n = A.length;
+        if (n <= 1) {
+            return 0;
+        }
         Arrays.sort(A);
         int moves = 0, duplicates = 0;
-        for (int i = 1; i < N; ++i) {
+        for (int i = 1; i < n; ++i) {
             if (A[i-1] == A[i]) {
                 ++duplicates;
                 moves -= A[i];
             } else if (duplicates > 0) {
-                int give = Math.min(duplicates, A[i] - A[i-1] - 1);
-                duplicates -= give;
-                moves += A[i-1] * give + give * (give + 1) * 0.5;
+                int span = Math.min(duplicates, A[i] - A[i-1] - 1);
+                duplicates -= span;
+                moves += A[i-1] * span + span * (span + 1) * 0.5;
             }
         }
         if (duplicates > 0) {
-            moves += A[N - 1] * duplicates + duplicates * (duplicates + 1) * 0.5;
+            moves += A[n - 1] * duplicates + duplicates * (duplicates + 1) * 0.5;
         }
         return moves;
     }

@@ -34,7 +34,8 @@ package c01_array.lc0945_minimum_increment_to_make_array_unique;
 public class Solution1 {
     /**
      * Approach 1
-     * 对于重复出现的数字，先从 moves 中减去，之后遇到一个没有出现过的数字再加上该数字。
+     * - 统计每个数字出现的次数
+     * - 对于重复出现的数字，先从 moves 中减去，之后遇到一个没有出现过的数字再加上该数字
      *
      * Complexity Analysis:
      * Time Complexity: O(L)
@@ -49,7 +50,8 @@ public class Solution1 {
      * @return int, the least number of moves to make every value in A unique
      */
     public int minIncrementForUnique(int[] A) {
-        if (A.length <= 1) {
+        int n = A.length;
+        if (n <= 1) {
             return 0;
         }
         // Step 1: count the number of occurrences of each element
