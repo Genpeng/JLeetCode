@@ -1,4 +1,4 @@
-package c06_heap_and_priority_queue.lc0347_top_k_frequent_element;
+package c06_heap_and_priority_queue.lc0347_top_k_frequent_elements;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import java.util.*;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/11/11
  */
-public class Solution1 {
+public class Solution1_bak {
     public List<Integer> topKFrequent(int[] nums, int k) {
         // 统计元素的频率
         Map<Integer, Integer> map = new HashMap<>(16);
@@ -64,7 +64,7 @@ public class Solution1 {
     public static void main(String[] args) {
         int[] nums = {1, 1, 1, 2, 2, 3};
         int k = 2;
-        Solution1 solution = new Solution1();
+        Solution1_bak solution = new Solution1_bak();
         printList(solution.topKFrequent(nums, k));
     }
 }
