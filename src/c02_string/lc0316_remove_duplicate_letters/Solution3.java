@@ -43,10 +43,6 @@ public class Solution3 {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      *
-     * Result of Submission:
-     * Runtime: 4 ms, faster than 41.28% of Java online submissions for Remove Duplicate Letters.
-     * Memory Usage: 39.2 MB, less than 28.47% of Java online submissions for Remove Duplicate Letters.
-     *
      * @param s String, an input string
      * @return String, the modified string whose every letter appears once
      */
