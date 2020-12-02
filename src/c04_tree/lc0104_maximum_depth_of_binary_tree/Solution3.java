@@ -58,8 +58,7 @@ public class Solution3 {
         int depth = 0;
         while (!q.isEmpty()) {
             ++depth;
-            int n = q.size();
-            while (n-- > 0) {
+            for (int n = q.size(); n > 0; --n) {
                 TreeNode node = q.poll();
                 if (node.left != null) {
                     q.offer(node.left);
