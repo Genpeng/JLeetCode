@@ -39,14 +39,10 @@ import entity.TreeNode;
  * - p and q are different and both values will exist in the binary tree.
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: tree;
  *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | June 11, 2019 | 1   | ×      |
- * | June 17, 2020 | 3   | ×      |
- *
- * @author  Genpeng Xu (xgp1227atgmail.com)
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
