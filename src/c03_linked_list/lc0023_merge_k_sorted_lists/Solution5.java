@@ -21,10 +21,10 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: linked list;two pointers;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/04
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution5 {
     /**
@@ -36,11 +36,11 @@ public class Solution5 {
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeLists(ListNode[] lists) {
-        final int N = lists.length;
-        if (N == 0) {
+        final int n = lists.length;
+        if (n == 0) {
             return null;
         }
-        return mergeLists(lists, 0, N-1);
+        return mergeLists(lists, 0, n - 1);
     }
 
     /**
@@ -55,26 +55,26 @@ public class Solution5 {
         if (si == ei) {
             return lists[si];
         }
-        int mi = si + (ei - si) / 2;
+        int mi = si + ((ei - si) >> 1);
         ListNode l1 = mergeLists(lists, si, mi);
         ListNode l2 = mergeLists(lists, mi + 1, ei);
         return mergeTwoLists(l1, l2);
     }
 
-    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
-        ListNode prev = dummyHead;
+        ListNode tail = dummyHead;
         while (l1 != null && l2 != null) {
             if (l1.val < l2.val) {
-                prev.next = l1;
+                tail.next = l1;
                 l1 = l1.next;
             } else {
-                prev.next = l2;
+                tail.next = l2;
                 l2 = l2.next;
             }
-            prev = prev.next;
+            tail = tail.next;
         }
-        prev.next = l1 == null ? l2 : l1;
+        tail.next = l1 == null ? l2 : l1;
         return dummyHead.next;
     }
 

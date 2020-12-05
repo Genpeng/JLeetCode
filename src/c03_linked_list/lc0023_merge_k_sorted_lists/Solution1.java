@@ -25,10 +25,10 @@ import java.util.List;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: linked list;two pointers;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/04
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**

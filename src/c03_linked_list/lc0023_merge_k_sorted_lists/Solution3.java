@@ -23,10 +23,10 @@ import java.util.PriorityQueue;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: linked list;two pointers;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/04
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
     /**
@@ -38,14 +38,14 @@ public class Solution3 {
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        final int N = lists.length;
-        if (N == 0) {
+        final int n = lists.length;
+        if (n == 0) {
             return null;
         }
-        if (N == 1) {
+        if (n == 1) {
             return lists[0]; // 当只有一个链表时，不用执行下面的程序
         }
-        PriorityQueue<ListNode> pq = new PriorityQueue<>((n1, n2) -> n1.val - n2.val);
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(n, (n1, n2) -> n1.val - n2.val);
 //        PriorityQueue<ListNode> pq = new PriorityQueue<>(new Comparator<ListNode>() {
 //            @Override
 //            public int compare(ListNode n1, ListNode n2) {

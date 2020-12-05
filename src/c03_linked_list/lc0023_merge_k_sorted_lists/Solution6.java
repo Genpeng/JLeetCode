@@ -21,10 +21,10 @@ import entity.ListNode;
  * Output: 1->1->2->3->4->4->5->6
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: linked list;two pointers;divide and conquer;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/07/04
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution6 {
     /**
@@ -36,19 +36,19 @@ public class Solution6 {
      * @return ListNode, the new sorted linked list
      */
     public ListNode mergeKLists(ListNode[] lists) {
-        final int N = lists.length;
-        if (N == 0) {
+        final int n = lists.length;
+        if (n == 0) {
             return null;
         }
-        for (int interval = 1; interval < N; interval *= 2) {
-            for (int i = 0; i < N - interval; i += 2 * interval) {
+        for (int interval = 1; interval < n; interval <<= 1) {
+            for (int i = 0; i < n - interval; i += 2 * interval) {
                 lists[i] = mergeTwoLists(lists[i], lists[i+interval]);
             }
         }
         return lists[0];
     }
 
-    private ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode dummyHead = new ListNode(-1);
         ListNode tail = dummyHead;
         while (l1 != null && l2 != null) {
