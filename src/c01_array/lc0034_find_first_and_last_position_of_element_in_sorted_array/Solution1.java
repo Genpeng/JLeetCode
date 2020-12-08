@@ -1,7 +1,7 @@
-package c01_array.lc0035_find_first_and_last_position_of_element_in_sorted_array;
+package c01_array.lc0034_find_first_and_last_position_of_element_in_sorted_array;
 
 /**
- * This is the solution of No. 35 problem in the LeetCode,
+ * This is the solution of No. 34 problem in the LeetCode,
  * the website of the problem is as follow:
  * https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/
  *
