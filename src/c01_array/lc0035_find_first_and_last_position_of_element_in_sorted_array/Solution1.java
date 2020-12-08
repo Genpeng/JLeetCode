@@ -64,7 +64,7 @@ public class Solution1 {
         }
         int firstIdx = findFirstEqualOrGreater(nums, target);
         if (firstIdx == -1 || nums[firstIdx] != target) {
-            // 如果找不到 >= target，那就说明整个数组都小于 target
+            // 如果找不到 >= target，那就说明整个数组都小于 target，即数组不存在 target
             // 如果有 >= target 的元素，但是 nums[firstIdx] != target，那就说明数组不存在 target
             return ans;
         }
