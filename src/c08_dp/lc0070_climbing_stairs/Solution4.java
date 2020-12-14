@@ -45,13 +45,13 @@ public class Solution4 {
      * @return int, the number of distinct ways you can climb to the top
      */
     public int climbStairs(int n) {
-        int prevPrev = 1, prev = 1;
+        int prevPrev = 1, prev = 1, curr = 1;
         for (int i = 2; i <= n; ++i) {
-            int curr = prevPrev + prev;
+            curr = prevPrev + prev;
             prevPrev = prev;
             prev = curr;
         }
-        return prev;
+        return curr;
     }
 
     public static void main(String[] args) {
