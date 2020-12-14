@@ -91,19 +91,26 @@ public class Solution5 {
             if (nums[i] > tail[lastIndex]) {
                 tail[++lastIndex] = nums[i];
             } else if (nums[i] < tail[lastIndex]) {
-                int li = 0, ri = lastIndex;
-                while (li < ri) {
-                    int mi = li + ((ri - li) >> 1);
-                    if (nums[i] > tail[mi]) {
-                        li = mi + 1;
-                    } else {
-                        ri = mi;
-                    }
-                }
-                tail[li] = nums[i];
+                int idx = findFirstGreaterOrEqual(tail, 0, lastIndex, nums[i]);
+                tail[idx] = nums[i];
             }
         }
         return lastIndex + 1;
+    }
+
+    private int findFirstGreaterOrEqual(int[] nums, int li, int ri, int target) {
+        if (nums[ri] < target) {
+            return -1;
+        }
+        while (li <= ri) {
+            int mi = li + ((ri - li) >> 1);
+            if (nums[mi] < target) {
+                li = mi + 1;
+            } else {
+                ri = mi - 1;
+            }
+        }
+        return li;
     }
 
     public static void main(String[] args) {
