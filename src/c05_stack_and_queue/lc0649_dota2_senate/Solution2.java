@@ -59,47 +59,26 @@ import java.util.Deque;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
-    /**
-     * Approach 1: Simulation
-     *
-     * Complexity Analysis:
-     * Time Complexity: O(L)
-     * Space Complexity: O(L)
-     *
-     * Result of Submission:
-     * Runtime: 8 ms, faster than 59.86% of Java online submissions for Dota2 Senate.
-     * Memory Usage: 39.2 MB, less than 78.23% of Java online submissions for Dota2 Senate.
-     *
-     * @param senate String, a string representing each senator's party belonging
-     * @return String, the party finally win the victory
-     */
+public class Solution2 {
     public String predictPartyVictory(String senate) {
         final int L = senate.length();
-        Deque<Integer> q = new ArrayDeque<>();
-        int[] remain  = new int[2]; // 0 - Dire, 1 - Radiant
-        int[] ban = new int[2];
+        Deque<Integer> radiant = new ArrayDeque<>();
+        Deque<Integer> dire = new ArrayDeque<>();
         for (int i = 0; i < L; ++i) {
-            int pos = senate.charAt(i) == 'R' ? 1 : 0;
-            ++remain[pos];
-            q.offerLast(pos);
-        }
-        while (remain[0] > 0 && remain[1] > 0) {
-            int pos = q.pollFirst();
-            if (ban[pos] > 0) {
-                --remain[pos];
-                --ban[pos];
+            if (senate.charAt(i) == 'R') {
+                radiant.offerLast(i);
             } else {
-                ++ban[pos ^ 1];
-                q.offerLast(pos);
+                dire.offerLast(i);
             }
         }
-        return remain[0] > 0 ? "Dire" : "Radiant";
-    }
-
-    public static void main(String[] args) {
-        Solution1 solu = new Solution1();
-        System.out.println(solu.predictPartyVictory("RD").equals("Radiant"));
-        System.out.println(solu.predictPartyVictory("RDD").equals("Dire"));
+        while (!radiant.isEmpty() && !dire.isEmpty()) {
+            int ri = radiant.pollFirst(), di = dire.pollFirst();
+            if (ri < di) {
+                radiant.offerLast(ri + L);
+            } else {
+                dire.offerLast(di + L);
+            }
+        }
+        return radiant.isEmpty() ? "Dire" : "Radiant";
     }
 }
