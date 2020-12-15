@@ -60,6 +60,20 @@ import java.util.Deque;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
+    /**
+     * Approach 2: Queue
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(L)
+     * Space Complexity: O(L)
+     *
+     * Result of Submission:
+     * Runtime: 7 ms, faster than 78.91% of Java online submissions for Dota2 Senate.
+     * Memory Usage: 39.7 MB, less than 53.06% of Java online submissions for Dota2 Senate.
+     *
+     * @param senate String, a string representing each senator's party belonging
+     * @return String, the party finally win the victory
+     */
     public String predictPartyVictory(String senate) {
         final int L = senate.length();
         Deque<Integer> radiant = new ArrayDeque<>();
