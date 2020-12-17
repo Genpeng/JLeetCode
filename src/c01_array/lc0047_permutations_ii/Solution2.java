@@ -26,11 +26,11 @@ import java.util.*;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * Approach 1: Backtracking
-     * The basic idea is the same as no. 46 problem, and in order to remove duplicated permutation,
-     * we use a hash table to store all the permutations.
+     * Approach 2: Backtracking with pruning
+     * The basic idea is the same as no. 46 problem, but this time we must to prune the branches
+     * that create repeated results.
      *
      * Complexity Analysis:
      * Time Complexity: O(N * N!)
@@ -43,38 +43,38 @@ public class Solution1 {
      * @return List<List<Integer>, all possible unique permutations
      */
     public List<List<Integer>> permuteUnique(int[] nums) {
-        Set<List<Integer>> perms = new HashSet<>();
-        permute(nums, 0, perms);
-        return new LinkedList<>(perms);
+        Arrays.sort(nums); // key point #1
+        int n = nums.length;
+        List<List<Integer>> perms = new LinkedList<>();
+        Deque<Integer> path = new ArrayDeque<>(n);
+        boolean[] seen = new boolean[n];
+        permuteUnique(nums, 0, path, seen, perms);
+        return perms;
     }
 
-    private void permute(int[] nums, int fromIndex, Set<List<Integer>> perms) {
-        if (fromIndex == nums.length) {
-            List<Integer> perm = new LinkedList<>();
-            for (int num : nums) {
-                perm.add(num);
-            }
-            perms.add(perm);
+    private void permuteUnique(int[] nums, int depth, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
+        if (depth == nums.length) {
+            perms.add(new LinkedList<>(path));
             return;
         }
-        for (int i = fromIndex; i < nums.length; ++i) {
-            swap(nums, fromIndex, i);
-            permute(nums, fromIndex+1, perms);
-            swap(nums, fromIndex, i);
-        }
-    }
-
-    public void swap(int[] nums, int i, int j) {
-        if (i != j) {
-            int tmp = nums[i];
-            nums[i] = nums[j];
-            nums[j] = tmp;
+        for (int i = 0; i < nums.length; ++i) {
+            if (seen[i]) {
+                continue;
+            }
+            if (i > 0 && nums[i] == nums[i-1] && !seen[i-1]) { // key point #2, pruning
+                continue;
+            }
+            path.offerLast(nums[i]);
+            seen[i] = true;
+            permuteUnique(nums, depth + 1, path, seen, perms);
+            seen[i] = false;
+            path.pollLast();
         }
     }
 
     public static void main(String[] args) {
         int[] nums = {1, 1, 2};
-        Solution1 solu = new Solution1();
+        Solution2 solu = new Solution2();
         System.out.println(solu.permuteUnique(nums));
     }
 }
