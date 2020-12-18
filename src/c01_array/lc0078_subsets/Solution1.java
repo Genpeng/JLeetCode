@@ -49,7 +49,7 @@ public class Solution1 {
      * Memory Usage: 39.9 MB, less than 35.55% of Java online submissions for Subsets.
      *
      * @param nums int[], a set of distinct integers
-     * @return List<List<Integer>, all possible subsets
+     * @return List<List<Integer>>, all possible subsets
      */
     public List<List<Integer>> subsetsV1(int[] nums) {
         List<List<Integer>> subs = new LinkedList<>();

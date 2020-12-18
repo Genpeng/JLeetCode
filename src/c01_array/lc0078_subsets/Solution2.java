@@ -1,8 +1,6 @@
 package c01_array.lc0078_subsets;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This is the solution of No. 78 problem in the LeetCode,
@@ -50,7 +48,7 @@ public class Solution2 {
      * [3] https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
      *
      * @param nums int[], a set of distinct integers
-     * @return List<List<Integer>, all possible subsets
+     * @return List<List<Integer>>, all possible subsets
      */
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> subs = new LinkedList<>();
@@ -74,5 +72,44 @@ public class Solution2 {
             subsets(nums, i + 1, sub, subs);
             sub.remove(sub.size() - 1);
         }
+    }
+
+    /**
+     * Approach 2: Backtracking
+     * The idea is to enumerate all the possible combinations with the help of backtracking technique.
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N * 2^N)
+     * Space Complexity: O(N * 2^N)
+     *
+     * References:
+     * [1] https://leetcode.com/articles/subsets/
+     * [2] https://leetcode.com/problems/subsets/discuss/27278/C%2B%2B-RecursiveIterativeBit-Manipulation
+     * [3] https://leetcode.com/problems/subsets/discuss/27281/A-general-approach-to-backtracking-questions-in-Java-(Subsets-Permutations-Combination-Sum-Palindrome-Partitioning)
+     *
+     * @param nums int[], a set of distinct integers
+     * @return List<List<Integer>>, all possible subsets
+     */
+    public List<List<Integer>> subsetsV2(int[] nums) {
+        List<List<Integer>> subs = new LinkedList<>();
+        Deque<Integer> path = new ArrayDeque<>();
+        subsetsV2(nums, 0, path, subs);
+        return subs;
+    }
+
+    private void subsetsV2(int[] nums, int fromIndex, Deque<Integer> path, List<List<Integer>> subs) {
+        if (fromIndex == nums.length) {
+            subs.add(new LinkedList<>(path));
+            return;
+        }
+        path.offerLast(nums[fromIndex]);
+        subsetsV2(nums, fromIndex+1, path, subs);
+        path.pollLast();
+        subsetsV2(nums, fromIndex+1, path, subs);
+    }
+
+    public static void main(String[] args) {
+        Solution2 solu = new Solution2();
+        System.out.println(solu.subsetsV2(new int[] {1, 2, 3}));
     }
 }

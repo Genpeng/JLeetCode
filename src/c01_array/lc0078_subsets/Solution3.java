@@ -53,7 +53,7 @@ public class Solution3 {
      * [1] https://leetcode.com/problems/subsets/discuss/27288/My-solution-using-bit-manipulation
      *
      * @param nums int[], a set of distinct integers
-     * @return List<List<Integer>, all possible subsets
+     * @return List<List<Integer>>, all possible subsets
      */
     public List<List<Integer>> subsets(int[] nums) {
         int n = nums.length, p = 1 << n;
