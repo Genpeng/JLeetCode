@@ -1,9 +1,6 @@
 package c01_array.lc0090_subsets_ii;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * This is the solution of No. 90 problem in the LeetCode,
@@ -29,11 +26,8 @@ import java.util.List;
  * ]
  * ==========================================================================================================
  *
+ * Difficulty: Medium
  * Tags: array;backtracking;
- *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | June 29, 2020 | 1   | ×      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
@@ -48,25 +42,26 @@ public class Solution1 {
      * Space Complexity: O(N * 2^N)
      *
      * @param nums int[], a collection of integers that might contain duplicates
-     * @return List<List<Integer>, all possible subsets (the power set)
+     * @return List<List<Integer>>, all possible subsets (the power set)
      */
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
+        int n = nums.length;
         List<List<Integer>> subs = new LinkedList<>();
-        List<Integer> sub = new ArrayList<>();
-        subsetsWithDup(nums, 0, sub, subs);
+        Deque<Integer> path = new ArrayDeque<>();
+        subsetsWithDup(nums, n, 0, path, subs);
         return subs;
     }
 
-    private void subsetsWithDup(int[] nums, int fromIndex, List<Integer> sub, List<List<Integer>> subs) {
-        subs.add(new ArrayList<>(sub));
-        for (int i = fromIndex; i < nums.length; ++i) {
-            if (i > fromIndex && nums[i] == nums[i-1]) {
+    private void subsetsWithDup(int[] nums, int len, int pos, Deque<Integer> path, List<List<Integer>> subs) {
+        subs.add(new LinkedList<>(path));
+        for (int i = pos; i < len; ++i) {
+            if (i > pos && nums[i] == nums[i-1]) {
                 continue;
             }
-            sub.add(nums[i]);
-            subsetsWithDup(nums, i + 1, sub, subs);
-            sub.remove(sub.size() - 1);
+            path.offerLast(nums[i]);
+            subsetsWithDup(nums, len, i+1, path, subs);
+            path.pollLast();
         }
     }
 }
