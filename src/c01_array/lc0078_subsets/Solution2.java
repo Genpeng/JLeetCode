@@ -51,26 +51,19 @@ public class Solution2 {
      * @return List<List<Integer>>, all possible subsets
      */
     public List<List<Integer>> subsets(int[] nums) {
+        int n = nums.length;
         List<List<Integer>> subs = new LinkedList<>();
-        List<Integer> sub = new ArrayList<>(); // current track in the result tree
-        subsets(nums, 0, sub, subs);
+        Deque<Integer> path = new ArrayDeque<>(); // current track in the result tree
+        subsets(nums, n, 0, path, subs);
         return subs;
     }
 
-    /**
-     * Find out all the possible subsets start from `fromIndex` in the `nums`.
-     *
-     * @param nums int[], a set of distinct integers
-     * @param fromIndex int, the index to start
-     * @param sub List<Integer>, the current track
-     * @param subs List<List<Integer>, all the possible combinations
-     */
-    private void subsets(int[] nums, int fromIndex, List<Integer> sub, List<List<Integer>> subs) {
-        subs.add(new ArrayList<>(sub));
-        for (int i = fromIndex; i < nums.length; ++i) {
-            sub.add(nums[i]);
-            subsets(nums, i + 1, sub, subs);
-            sub.remove(sub.size() - 1);
+    private void subsets(int[] nums, int len, int pos, Deque<Integer> path, List<List<Integer>> subs) {
+        subs.add(new LinkedList<>(path));
+        for (int i = pos; i < len; ++i) {
+            path.offerLast(nums[i]);
+            subsets(nums, len, i + 1, path, subs);
+            path.pollLast();
         }
     }
 
