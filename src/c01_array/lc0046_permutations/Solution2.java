@@ -50,13 +50,14 @@ public class Solution2 {
      * @return List<List<Integer>>, all possible permutations
      */
     public List<List<Integer>> permute(int[] nums) {
+        int n = nums.length;
         List<List<Integer>> perms = new LinkedList<>();
-        permute(nums, 0, perms);
+        permute(nums, n, 0, perms);
         return perms;
     }
 
-    private void permute(int[] nums, int fromIndex, List<List<Integer>> perms) {
-        if (fromIndex == nums.length) {
+    private void permute(int[] nums, int len, int pos, List<List<Integer>> perms) {
+        if (pos == len) {
             List<Integer> perm = new LinkedList<>();
             for (int num : nums) {
                 perm.add(num);
@@ -64,10 +65,10 @@ public class Solution2 {
             perms.add(perm);
             return;
         }
-        for (int i = fromIndex; i < nums.length; ++i) {
-            swap(nums, fromIndex, i);
-            permute(nums, fromIndex + 1, perms);
-            swap(nums, fromIndex, i);
+        for (int i = pos; i < nums.length; ++i) {
+            swap(nums, pos, i);
+            permute(nums, len, pos + 1, perms);
+            swap(nums, pos, i);
         }
     }
 

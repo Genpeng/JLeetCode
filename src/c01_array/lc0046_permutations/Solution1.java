@@ -54,23 +54,23 @@ public class Solution1 {
         List<List<Integer>> perms = new LinkedList<>();
         Deque<Integer> path = new ArrayDeque<>();
         boolean[] seen = new boolean[n];
-        permute(nums, 0, path, seen, perms);
+        permute(nums, n, 0, path, seen, perms);
         return perms;
     }
 
-    private void permute(int[] nums, int depth, Deque<Integer> path, boolean[] used, List<List<Integer>> perms) {
-        if (depth == nums.length) {
+    private void permute(int[] nums, int len, int pos, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
+        if (pos == len) {
             perms.add(new LinkedList<>(path));
             return;
         }
         for (int i = 0; i < nums.length; ++i) {
-            if (used[i]) {
+            if (seen[i]) {
                 continue;
             }
             path.offerLast(nums[i]);
-            used[i] = true;
-            permute(nums, depth + 1, path, used, perms); // keypoint
-            used[i] = false;
+            seen[i] = true;
+            permute(nums, len, pos + 1, path, seen, perms); // keypoint
+            seen[i] = false;
             path.pollLast();
         }
     }
