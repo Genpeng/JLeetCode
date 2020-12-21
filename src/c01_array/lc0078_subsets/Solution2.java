@@ -36,7 +36,7 @@ import java.util.*;
 public class Solution2 {
     /**
      * Approach 2: Backtracking
-     * The idea is to enumerate all the possible combinations with the help of backtracking technique.
+     * 一个位置一个位置地考虑可以选择哪些元素
      *
      * Complexity Analysis:
      * Time Complexity: O(N * 2^N)
@@ -76,7 +76,7 @@ public class Solution2 {
 
     /**
      * Approach 2: Backtracking
-     * The idea is to enumerate all the possible combinations with the help of backtracking technique.
+     * 一个元素一个元素地考虑是否使用
      *
      * Complexity Analysis:
      * Time Complexity: O(N * 2^N)

@@ -1,6 +1,5 @@
 package c01_array.lc0078_subsets;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -57,16 +56,15 @@ public class Solution3 {
      */
     public List<List<Integer>> subsets(int[] nums) {
         int n = nums.length, p = 1 << n;
-        List<List<Integer>> subs = new ArrayList<>();
-        for (int i = 0; i < p; ++i) {
-            subs.add(new LinkedList<>());
-        }
+        List<List<Integer>> subs = new LinkedList<>();
         for (int i = 0; i < p; ++i) { // 2 ^ n
+            List<Integer> sub = new LinkedList<>();
             for (int j = 0; j < n; ++j) { // n
-                if (((i >> j) & 1) != 0) {
-                    subs.get(i).add(nums[j]);
+                if (((i >> j) & 1) == 1) {
+                    sub.add(nums[j]);
                 }
             }
+            subs.add(sub);
         }
         return subs;
     }
