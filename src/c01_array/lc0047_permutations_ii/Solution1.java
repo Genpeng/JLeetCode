@@ -43,13 +43,14 @@ public class Solution1 {
      * @return List<List<Integer>, all possible unique permutations
      */
     public List<List<Integer>> permuteUnique(int[] nums) {
+        int n = nums.length;
         Set<List<Integer>> perms = new HashSet<>();
-        permute(nums, 0, perms);
+        permute(nums, n, 0, perms);
         return new LinkedList<>(perms);
     }
 
-    private void permute(int[] nums, int fromIndex, Set<List<Integer>> perms) {
-        if (fromIndex == nums.length) {
+    private void permute(int[] nums, int len, int pos, Set<List<Integer>> perms) {
+        if (pos == len) {
             List<Integer> perm = new LinkedList<>();
             for (int num : nums) {
                 perm.add(num);
@@ -57,10 +58,10 @@ public class Solution1 {
             perms.add(perm);
             return;
         }
-        for (int i = fromIndex; i < nums.length; ++i) {
-            swap(nums, fromIndex, i);
-            permute(nums, fromIndex+1, perms);
-            swap(nums, fromIndex, i);
+        for (int i = pos; i < nums.length; ++i) {
+            swap(nums, pos, i);
+            permute(nums, len, pos+1, perms);
+            swap(nums, pos, i);
         }
     }
 

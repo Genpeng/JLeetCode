@@ -43,32 +43,35 @@ public class Solution2 {
      * @return List<List<Integer>, all possible unique permutations
      */
     public List<List<Integer>> permuteUnique(int[] nums) {
-        Arrays.sort(nums); // key point #1
         int n = nums.length;
         List<List<Integer>> perms = new LinkedList<>();
-        Deque<Integer> path = new ArrayDeque<>(n);
+        if (n == 0) {
+            return perms;
+        }
+        Arrays.sort(nums);
+        Deque<Integer> path = new ArrayDeque<>();
         boolean[] seen = new boolean[n];
-        permuteUnique(nums, 0, path, seen, perms);
+        permuteUnique(nums, n, 0, path, seen, perms);
         return perms;
     }
 
-    private void permuteUnique(int[] nums, int depth, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
-        if (depth == nums.length) {
+    private void permuteUnique(int[] nums, int len, int pos, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
+        if (pos == len) {
             perms.add(new LinkedList<>(path));
             return;
         }
-        for (int i = 0; i < nums.length; ++i) {
+        for (int i = 0; i < len; ++i) {
             if (seen[i]) {
                 continue;
             }
-            if (i > 0 && nums[i] == nums[i-1] && !seen[i-1]) { // key point #2, pruning
+            if (i > 0 && nums[i] == nums[i-1] && !seen[i-1]) {
                 continue;
             }
             path.offerLast(nums[i]);
             seen[i] = true;
-            permuteUnique(nums, depth + 1, path, seen, perms);
-            seen[i] = false;
+            permuteUnique(nums, len, pos+1, path, seen, perms);
             path.pollLast();
+            seen[i] = false;
         }
     }
 
