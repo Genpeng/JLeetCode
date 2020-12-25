@@ -57,21 +57,21 @@ public class Solution1 {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == '1') {
                     ++count;
-                    dfs(grid, m, n, i, j);
+                    eraseIslands(grid, m, n, i, j);
                 }
             }
         }
         return count;
     }
 
-    private void dfs(char[][] grid, int m, int n, int i, int j) {
+    private void eraseIslands(char[][] grid, int m, int n, int i, int j) {
         if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != '1') {
             return;
         }
         grid[i][j] = '2';
-        dfs(grid, m, n, i-1, j);
-        dfs(grid, m, n, i+1, j);
-        dfs(grid, m, n, i, j-1);
-        dfs(grid, m, n, i, j+1);
+        eraseIslands(grid, m, n, i-1, j);
+        eraseIslands(grid, m, n, i+1, j);
+        eraseIslands(grid, m, n, i, j-1);
+        eraseIslands(grid, m, n, i, j+1);
     }
 }

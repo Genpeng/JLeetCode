@@ -60,6 +60,7 @@ public class Solution2 {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == '1') {
                     ++count;
+                    // BFS
                     grid[i][j] = '2';
                     Queue<Pair<Integer, Integer>> q = new LinkedList<>();
                     q.offer(new Pair<>(i, j));
