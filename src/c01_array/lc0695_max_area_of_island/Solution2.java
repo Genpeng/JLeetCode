@@ -1,5 +1,8 @@
 package c01_array.lc0695_max_area_of_island;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * This is the solution of No. 695 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -37,9 +40,9 @@ package c01_array.lc0695_max_area_of_island;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
-     * Approach 1: DFS (Recursive)
+     * Approach 2: BFS (Iterative)
      *
      * Complexity Analysis:
      * Time Complexity: O(m * n)
@@ -54,26 +57,31 @@ public class Solution1 {
      */
     public int maxAreaOfIsland(int[][] grid) {
         int m = grid.length, n = m > 0 ? grid[0].length : 0;
+        int[] dr = {-1, 1, 0, 0};
+        int[] dc = {0, 0, -1, 1};
         int maxArea = 0;
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 1) {
-                    int area = areaOfIsland(grid, m, n, i, j);
+                    int area = 1;
+                    grid[i][j] = 2;
+                    Queue<int[]> q = new LinkedList<>();
+                    q.offer(new int[] {i, j});
+                    while (!q.isEmpty()) {
+                        int[] pos = q.poll();
+                        for (int k = 0; k < 4; ++k) {
+                            int nr = pos[0] + dr[k], nc = pos[1] + dc[k];
+                            if (nr >= 0 && nr < m && nc >= 0 && nc < n && grid[nr][nc] == 1) {
+                                q.offer(new int[] {nr, nc});
+                                ++area;
+                                grid[nr][nc] = 2;
+                            }
+                        }
+                    }
                     maxArea = Math.max(maxArea, area);
                 }
             }
         }
         return maxArea;
-    }
-
-    private int areaOfIsland(int[][] grid, int m, int n, int i, int j) {
-        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] != 1) {
-            return 0;
-        }
-        grid[i][j] = 2;
-        return 1 + areaOfIsland(grid, m, n, i-1, j)
-                    + areaOfIsland(grid, m, n, i+1, j)
-                    + areaOfIsland(grid, m, n, i, j-1)
-                    + areaOfIsland(grid, m, n, i, j+1);
     }
 }
