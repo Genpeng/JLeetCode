@@ -1,6 +1,6 @@
 package c01_array.lc0200_number_of_islands;
 
-import com.sun.tools.javac.util.Pair;
+import entity.Pair;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -65,9 +65,9 @@ public class Solution2 {
                     Queue<Pair<Integer, Integer>> q = new LinkedList<>();
                     q.offer(new Pair<>(i, j));
                     while (!q.isEmpty()) {
-                        Pair<Integer, Integer> coord = q.poll();
-                        for (int k = 0; i < 4; ++i) {
-                            int r = coord.fst + dr[k], c = coord.snd + dc[k];
+                        Pair<Integer, Integer> pair = q.poll();
+                        for (int k = 0; k < 4; ++k) {
+                            int r = pair.first + dr[k], c = pair.second + dc[k];
                             if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1') {
                                 grid[r][c] = '2';
                                 q.offer(new Pair<>(r, c));
@@ -78,5 +78,11 @@ public class Solution2 {
             }
         }
         return count;
+    }
+
+    public static void main(String[] args) {
+        Solution2 solu = new Solution2();
+        char[][] grid = {{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}};
+        System.out.println(solu.numIslands(grid));
     }
 }
