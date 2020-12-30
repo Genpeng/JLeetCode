@@ -31,13 +31,14 @@ import java.util.PriorityQueue;
  * - 1 <= stones[i] <= 1000
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: heap;
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
-     * Approach 1: Priority Queue
+     * Approach 1: Heap
      * Time Complexity: O(N * log(N))
      * Space Complexity: O(N)
      *
@@ -45,13 +46,16 @@ public class Solution1 {
      * @return int, the weight of the remaining stone, or 0 if there are no stones left
      */
     public int lastStoneWeight(int[] stones) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> b - a);
-        for (int stone : stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> (b - a));
+        for (int stone : stones) { // O(N * log(N))
             pq.offer(stone);
         }
         while (pq.size() > 1) {
-            pq.offer(pq.poll() - pq.poll());
+            int gap = pq.poll() - pq.poll();
+            if (gap > 0) {
+                pq.offer(gap);
+            }
         }
-        return pq.poll();
+        return pq.isEmpty() ? 0 : pq.peek();
     }
 }
