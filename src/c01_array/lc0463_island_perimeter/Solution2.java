@@ -51,6 +51,8 @@ public class Solution2 {
      * Space Complexity: O(m*n)
      *
      * Result of Submission:
+     * Runtime: 7 ms, faster than 44.15% of Java online submissions for Island Perimeter.
+     * Memory Usage: 40.5 MB, less than 36.55% of Java online submissions for Island Perimeter.
      *
      * @param grid int[][], a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water
      * @return int, the perimeter of the island
