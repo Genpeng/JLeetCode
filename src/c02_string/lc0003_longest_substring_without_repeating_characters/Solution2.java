@@ -43,25 +43,28 @@ public class Solution2 {
      * 则左边界向右滑动一个字符。如此循环往复，直到右边界到达字符串的末尾字符。
      * 每次滑动之后，都会保存当前子串的最大长度。
      *
-     * 复杂度分析
-     * 时间复杂度：O(L)
-     * 空间复杂度：O(L)
-     * 其中，L 表示字符串的长度
+     * Complexity Analysis:
+     * Time Complexity: O(L)
+     * Space Complexity: O(L)
+     * where L represents the length of the string.
      *
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
         final int L = s.length();
-        Set<Character> set = new HashSet<>();
+        if (L <= 1) {
+            return L;
+        }
+        Set<Character> window = new HashSet<>();
         int maxLen = 0;
         for (int li = 0, ri = 0; ri < L; ++ri) {
             char c = s.charAt(ri);
-            while (set.contains(c)) {
-                set.remove(s.charAt(li));
+            while (window.contains(c)) {
+                window.remove(s.charAt(li));
                 ++li;
             }
-            set.add(c);
+            window.add(c);
             maxLen = Math.max(maxLen, ri - li + 1);
         }
         return maxLen;

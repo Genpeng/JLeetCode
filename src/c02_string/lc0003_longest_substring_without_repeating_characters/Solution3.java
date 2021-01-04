@@ -48,10 +48,10 @@ public class Solution3 {
      *
      * 记得，每次遍历时，还需要更新 map 中字符的位置。
      *
-     * 复杂度分析
-     * 时间复杂度：O(L)
-     * 空间复杂度：O(L)
-     * 其中，L 表示字符串的长度
+     * Complexity Analysis:
+     * Time Complexity: O(L)
+     * Space Complexity: O(L)
+     * where L represents the length of the string.
      *
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters

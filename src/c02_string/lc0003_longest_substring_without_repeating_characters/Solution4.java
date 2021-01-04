@@ -37,10 +37,10 @@ public class Solution4 {
      * 方法4和方法3的做法是一致的，方法4可以看成是方法3的特例。如果已知字符串的字符
      * 属于哪一种字符集的情况下，可以用大小固定的数组代替 map。
      *
-     * 复杂度分析
-     * 时间复杂度：O(L)
-     * 空间复杂度：O(L)
-     * 其中，L 表示字符串的长度
+     * Complexity Analysis:
+     * Time Complexity: O(L)
+     * Space Complexity: O(L)
+     * where L represents the length of the string.
      *
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters
