@@ -79,7 +79,7 @@ public class Solution3 {
     }
 
     public int randomPartition(int[] nums, int li, int ri) {
-        swap(nums, li + rand.nextInt(ri - li), ri);
+        swap(nums, li + rand.nextInt(ri - li + 1), ri);
         return partition(nums, li, ri);
     }
 
