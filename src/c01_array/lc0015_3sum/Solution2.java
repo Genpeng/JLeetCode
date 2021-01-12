@@ -50,6 +50,7 @@ public class Solution2 {
             return new LinkedList<>();
         }
         // Step 1: sort all the integers in the array, O(N * log(N))
+        // 排序解决了不包含重复三元组的问题
         Arrays.sort(nums);
         // Step 2: find out all the triplets which give the sum of zero, O(N ^ 2)
         int n = nums.length;
