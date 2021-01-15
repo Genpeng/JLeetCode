@@ -44,7 +44,7 @@ class Solution1 {
             ++freqMap[c];
         }
         // 步骤2：采用一个可变的窗口向右滑动，一开始右边界尽可能向右滑动，
-        // 直到窗口包含 t 中所有字符，然后开始搜索左边界，找出最短的子串
+        // 直到窗口包含 t 中所有字符，然后开始收缩左边界，找出最短的子串
         int count = n;
         int startIndex = -1, minLen = Integer.MAX_VALUE;
         char c;
