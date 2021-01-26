@@ -47,13 +47,13 @@ public class Solution2 {
         if (A == null || B == null) {
             throw new IllegalArgumentException("[ERROR] There must exist null array in two input arrays!!!");
         }
-        int m = A.length, n = B.length, k = m + n;
-        if (k == 0) {
+        int m = A.length, n = B.length, L = m + n;
+        if (L == 0) {
             throw new IllegalArgumentException("[ERROR] The two input arrays are both empty!!!");
         }
         int i = 0, j = 0;
         int prev = 0, curr = 0;
-        for (int idx = 0; idx <= k / 2; ++idx) {
+        for (int idx = 0; idx <= L / 2; ++idx) {
             prev = curr;
             if (i < m && (j >= n || A[i] < B[j])) {
                 curr = A[i++];
@@ -61,7 +61,7 @@ public class Solution2 {
                 curr = B[j++];
             }
         }
-        if ((k & 1) == 0) {
+        if ((L & 1) == 0) {
             return (prev + curr) * 0.5;
         } else {
             return curr;
