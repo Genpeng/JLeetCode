@@ -54,11 +54,9 @@ public class Solution2 {
      */
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> ans = new LinkedList<>();
-        if (matrix.length == 0) { // in practice, we can use `isIllegal(...)` below to judge
-            return ans;
-        }
+        int m = matrix.length, n = m == 0 ? 0 : matrix[0].length;
         int r1 = 0, c1 = 0;
-        int r2 = matrix.length - 1, c2 = matrix[0].length - 1;
+        int r2 = m - 1, c2 = n - 1;
         while (r1 <= r2 && c1 <= c2) {
             for (int c = c1; c <= c2; ++c) {
                 ans.add(matrix[r1][c]);
