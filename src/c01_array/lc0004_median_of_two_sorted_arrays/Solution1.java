@@ -50,13 +50,13 @@ public class Solution1 {
         if (A == null || B == null) {
             throw new IllegalArgumentException("[ERROR] There must exist null array in two input arrays!!!");
         }
-        int m = A.length, n = B.length, k = m + n;
-        if (k == 0) {
+        int m = A.length, n = B.length, L = m + n;
+        if (L == 0) {
             throw new IllegalArgumentException("[ERROR] The two input arrays are both empty!!!");
         }
         int[] nums = merge(A, m, B, n);
-        int mi = k / 2;
-        if ((k & 1) == 0) {
+        int mi = L / 2;
+        if ((L & 1) == 0) {
             return (nums[mi - 1] + nums[mi]) * 0.5;
         } else {
             return nums[mi];
