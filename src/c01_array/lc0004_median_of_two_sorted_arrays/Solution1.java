@@ -64,9 +64,6 @@ public class Solution1 {
     }
 
     public int[] merge(int[] A, int m, int[] B, int n) {
-        if (m * n == 0) {
-            return m != 0 ? A : B;
-        }
         int[] ans = new int[m + n];
         int i = m - 1, j = n - 1, k = m + n - 1;
         while (i >= 0 && j >= 0) {
