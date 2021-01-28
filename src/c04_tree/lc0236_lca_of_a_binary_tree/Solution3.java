@@ -1,8 +1,7 @@
 package c04_tree.lc0236_lca_of_a_binary_tree;
 
+import entity.Pair;
 import entity.TreeNode;
-
-import javafx.util.Pair;
 
 import java.util.Stack;
 
@@ -78,8 +77,8 @@ public class Solution3 {
         TreeNode childNode = null;
         while (!stack.isEmpty()) {
             Pair<TreeNode, Integer> top = stack.peek();
-            TreeNode parentNode = top.getKey();
-            int parentState = top.getValue();
+            TreeNode parentNode = top.first;
+            int parentState = top.second;
             if (parentState != BOTH_DONE) {
                 if (parentState == BOTH_PENDING) { // parentState == BOTH_PENDING
                     if (parentNode == p || parentNode == q) {
@@ -100,8 +99,8 @@ public class Solution3 {
                     stack.push(new Pair<>(childNode, BOTH_PENDING));
                 }
             } else { // parentState == BOTH_DONE
-                if (lca == stack.pop().getKey() && oneNodeFound) {
-                    lca = stack.peek().getKey();
+                if (lca == stack.pop().first && oneNodeFound) {
+                    lca = stack.peek().first;
                 }
             }
         }
