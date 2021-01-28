@@ -18,7 +18,7 @@ import java.util.Map;
  * - You may assume that duplicates do not exist in the tree.
  *
  * For example, given
- * preorder = [3,9,20,15,7]
+ * preorder = [3,9,20,15,7]
  * inorder = [9,3,15,20,7]
  * Return the following binary tree:
  *     3
@@ -40,7 +40,7 @@ public class Solution1 {
     /**
      * Approach 1: Recursion
      * 这道题的思路是：递归地将前序遍历的结果划分为根结点、左子树和右子树，直到到达叶子结点。
-     * 中序遍历数组的作用是确定左右子树的结点数目，前序遍历数组的左右是确定左右子树的根结点。
+     * 中序遍历数组的作用是确定左右子树的结点数目，前序遍历数组的作用是确定左右子树的根结点。
      *
      * Complexity Analysis:
      * Time Complexity: O(N)
@@ -67,7 +67,7 @@ public class Solution1 {
         TreeNode root = new TreeNode(preorder[preRoot]);
         int inRoot = inorderMap.get(root.val);
         root.left = build(preRoot + 1, inLeft, inRoot - 1);
-        root.right = build(inRoot - inLeft + preRoot + 1, inRoot + 1, inRight);
+        root.right = build(preRoot + inRoot - inLeft + 1, inRoot + 1, inRight);
         return root;
     }
 }
