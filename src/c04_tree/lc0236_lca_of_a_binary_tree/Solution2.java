@@ -66,15 +66,16 @@ public class Solution2 {
      * @return TreeNode, the lowest common ancestor of two nodes
      */
     public TreeNode lowestCommonAncestorV1(TreeNode root, TreeNode p, TreeNode q) {
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         Map<TreeNode, TreeNode> path = new HashMap<>();
         stack.push(root);
         path.put(root, null);
+        TreeNode node;
         while (!stack.isEmpty()) {
             if (path.containsKey(p) && path.containsKey(q)) {
                 break;
             }
-            TreeNode node = stack.pop();
+            node = stack.pop();
             if (node.right != null) {
                 stack.push(node.right);
                 path.put(node.right, node);
@@ -85,7 +86,7 @@ public class Solution2 {
             }
         }
         Set<TreeNode> ancestors = new HashSet<>();
-        TreeNode node = p;
+        node = p;
         while (node != null) {
             ancestors.add(node);
             node = path.get(node);
@@ -122,7 +123,7 @@ public class Solution2 {
         if (root == null) {
             return null;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         Map<TreeNode, TreeNode> path = new HashMap<>();
         stack.push(root);
         path.put(root, null);
