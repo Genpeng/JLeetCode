@@ -31,7 +31,7 @@ package c01_array.lc0004_median_of_two_sorted_arrays;
  */
 public class Solution3 {
     /**
-     * Approach 3: Binary Search
+     * Approach 3: Divide & Conquer
      * 在一个大小为 n 的排序数组中查找中位数，其实就是找出第 n/2 + 1 个元素（当 n 为奇数的时候），或者是同时找出
      * 第 n/2 和 n/2 + 1 个元素（当 n 为偶数的时候）。因为两个排序数组的元素数目是已知的，因此，这道题可以转化为
      * 求两个排序数组中第 k 小的元素。为了在两个数组中查找第 k 个元素，每次都取出两个数组中第 k/2 个元素进行比较，
