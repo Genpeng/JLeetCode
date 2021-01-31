@@ -121,6 +121,7 @@ public class Solution1 {
         if (p == null || q == null) { // 解决边界条件 2
             throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
         }
+        this.lca = null;
         // 这个函数返回 `true` 并不一定意味着找到了 LCA，只要出现两个结点中任意一个就会返回 `true`
         // 所以想判断是否找到了 LCA，直接看成员变量 `lca` 是否为空
         search(root, p, q);
