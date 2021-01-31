@@ -41,12 +41,8 @@ import entity.TreeNode;
  * - p and q are different and both values will exist in the BST.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: tree;
- *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | May 28, 2019  | 1   | ×      |
- * | June 18, 2020 | 3   | ×      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
