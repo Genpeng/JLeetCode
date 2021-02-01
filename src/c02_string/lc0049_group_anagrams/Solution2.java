@@ -53,7 +53,7 @@ public class Solution2 {
             // 构造每个字符串的编码字符串
             StringBuilder code = new StringBuilder();
             for (int n : count) {
-                code.append("#");
+                code.append("#"); // 注意，必需要加，否则对于 ["bdddddddddd", "bbbbbbbbbbc"] 等的例子无法通过
                 code.append(n);
             }
             String key = code.toString();
