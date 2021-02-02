@@ -31,10 +31,10 @@ import java.util.Set;
  * - Your code should preferably run in O(n) time and use only O(1) memory.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: linked list;hash table;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/01
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**
@@ -54,12 +54,9 @@ public class Solution1 {
             seen.add(p1);
             p1 = p1.next;
         }
-        while (p2 != null) {
-            if (seen.contains(p2)) {
-                return p2;
-            }
+        while (p2 != null && !seen.contains(p2)) {
             p2 = p2.next;
         }
-        return null;
+        return p2;
     }
 }
