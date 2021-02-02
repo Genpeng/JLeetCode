@@ -32,11 +32,8 @@ import entity.TreeNode;
  * Output: 42
  * ==========================================================================================================
  *
+ * Difficulty: Hard
  * Tags: tree;
- *
- * | Date          | #   | Desc   |
- * | ------------- | --- | ------ |
- * | June 21, 2020 | 1   | ×      |
  *
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
