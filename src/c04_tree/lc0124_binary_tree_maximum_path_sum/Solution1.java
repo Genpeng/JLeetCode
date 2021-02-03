@@ -54,6 +54,9 @@ public class Solution1 {
      * @return int, the maximum path sum
      */
     public int maxPathSum(TreeNode root) {
+        // 定义“最大增益”表示从该结点到所有叶子结点的最大路径和，
+        // 这道题的思路就是转化为在求出所有叶子结点最大增益的过程中，
+        // 顺带得到最大路径和。
         maxSum = Integer.MIN_VALUE;
         maxGain(root);
         return maxSum;
