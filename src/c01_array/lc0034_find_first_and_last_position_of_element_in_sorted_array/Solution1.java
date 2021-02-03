@@ -7,7 +7,8 @@ package c01_array.lc0034_find_first_and_last_position_of_element_in_sorted_array
  *
  * The description of problem is as follow:
  * ==========================================================================================================
- * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+ * Given an array of integers nums sorted in ascending order, find the starting and ending position of
+ * a given target value.
  *
  * If target is not found in the array, return [-1, -1].
  *
