@@ -54,7 +54,7 @@ public class Solution1 {
         // Step 2: search the target value, O(log(N))
         int li = 0, ri = n - 1;
         while (li <= ri) {
-            int mi = li + ((ri-li) >> 1);
+            int mi = li + ((ri - li) >> 1);
             int realMi = (mi + minIdx) % n;
             if (nums[realMi] < target) {
                 li = mi + 1;
