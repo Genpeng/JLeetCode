@@ -43,7 +43,7 @@ public class Solution1 {
      * @param target int, the integer to search
      * @return int, the index of target integer
      */
-    public int searchV1(int[] nums, int target) {
+    public int search(int[] nums, int target) {
         int n = nums.length;
         if (n == 0) {
             return -1;
