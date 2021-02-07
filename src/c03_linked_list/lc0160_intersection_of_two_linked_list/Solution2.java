@@ -28,10 +28,10 @@ import entity.ListNode;
  * - Your code should preferably run in O(n) time and use only O(1) memory.
  * ==========================================================================================================
  *
+ * Difficulty: Easy
  * Tags: linked list;hash table;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/01
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**

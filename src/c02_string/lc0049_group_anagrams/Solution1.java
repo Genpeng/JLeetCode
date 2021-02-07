@@ -25,8 +25,10 @@ import java.util.*;
  * - The order of your output does not matter.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/30
+ * Difficulty: Medium
+ * Tags: string;hash table;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
     /**

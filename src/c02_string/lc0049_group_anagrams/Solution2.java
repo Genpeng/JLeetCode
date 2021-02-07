@@ -25,8 +25,10 @@ import java.util.*;
  * - The order of your output does not matter.
  * ==========================================================================================================
  *
- * @author  StrongXGP (xgp1227@gmail.com)
- * @date    2019/04/30
+ * Difficulty: Medium
+ * Tags: string;hash table;
+ *
+ * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution2 {
     /**
@@ -41,31 +43,31 @@ public class Solution2 {
         if (strs == null || strs.length == 0) {
             return new ArrayList<>();
         }
-        Map<String, List<String>> ans = new HashMap<>();
-        for (String str : strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String s : strs) {
             // 统计每个字符串的词频
             int[] count = new int[26];
-            for (char c : str.toCharArray()) {
+            for (char c : s.toCharArray()) {
                 ++count[c - 'a'];
             }
             // 构造每个字符串的编码字符串
-            StringBuilder sb = new StringBuilder();
+            StringBuilder code = new StringBuilder();
             for (int n : count) {
-                sb.append("#");
-                sb.append(n);
+                code.append("#"); // 注意，必需要加，否则对于 ["bdddddddddd", "bbbbbbbbbbc"] 等的例子无法通过
+                code.append(n);
             }
-            String key = sb.toString();
+            String key = code.toString();
             // 按照编码字符串的不同对字符串进行分组
-            if (!ans.containsKey(key)) {
-                ans.put(key, new ArrayList<>());
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
             }
-            ans.get(key).add(str);
+            map.get(key).add(s);
         }
-        return new ArrayList<>(ans.values());
+        return new ArrayList<>(map.values());
     }
 
     public static void main(String[] args) {
-        String[] strs = new String[] {"eat", "tea", "tan", "ate", "nat", "bat"};
+        String[] strs = new String[] {"bdddddddddd", "bbbbbbbbbbc"};
         System.out.println((new Solution2()).groupAnagrams(strs));
     }
 }

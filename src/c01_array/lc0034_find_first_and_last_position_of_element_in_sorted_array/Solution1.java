@@ -7,7 +7,8 @@ package c01_array.lc0034_find_first_and_last_position_of_element_in_sorted_array
  *
  * The description of problem is as follow:
  * ==========================================================================================================
- * Given an array of integers nums sorted in ascending order, find the starting and ending position of a given target value.
+ * Given an array of integers nums sorted in ascending order, find the starting and ending position of
+ * a given target value.
  *
  * If target is not found in the array, return [-1, -1].
  *
@@ -62,18 +63,18 @@ public class Solution1 {
         if (n == 0) {
             return ans;
         }
-        int firstIdx = findFirstEqualOrGreater(nums, target);
+        int firstIdx = firstGreaterOrEqual(nums, target);
         if (firstIdx == -1 || nums[firstIdx] != target) {
             // 如果找不到 >= target，那就说明整个数组都小于 target，即数组不存在 target
             // 如果有 >= target 的元素，但是 nums[firstIdx] != target，那就说明数组不存在 target
             return ans;
         }
         ans[0] = firstIdx; // 如果可以找到等于 target 的元素，下面的二分查找肯定可以找到
-        ans[1] = findLastEqualOrLesser(nums, target);
+        ans[1] = lastLessOrEqual(nums, target);
         return ans;
     }
 
-    private int findFirstEqualOrGreater(int[] nums, int target) {
+    private int firstGreaterOrEqual(int[] nums, int target) {
         int n = nums.length;
         if (n == 0 || nums[n-1] < target) {
             return -1;
@@ -90,7 +91,7 @@ public class Solution1 {
         return li;
     }
 
-    private int findLastEqualOrLesser(int[] nums, int target) {
+    private int lastLessOrEqual(int[] nums, int target) {
         int n = nums.length;
         if (n == 0 || nums[0] > target) {
             return -1;
