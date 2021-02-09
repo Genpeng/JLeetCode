@@ -51,4 +51,9 @@ public class Solution1 {
         p2.next = curr;
         return dummyHead.next;
     }
+
+    public static void main(String[] args) {
+        Solution1 solu = new Solution1();
+        System.out.println(solu.reverseBetween(new ListNode(new int[] {1, 2, 3, 4, 5}), 2, 4));
+    }
 }
