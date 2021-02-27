@@ -84,7 +84,7 @@ public class Solution2 {
             } else if (skip > 0) {
                 --idx;
                 --skip;
-            } else {
+            } else { // s.charAt(idx) != '#' && skip == 0
                 break;
             }
         }
