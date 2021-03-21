@@ -59,10 +59,10 @@ public class Solution2 {
             if (i > 0 && nums[i-1] == nums[i]) {
                 continue;
             }
-            Set<Integer> s = new HashSet<>();
+            Set<Integer> set = new HashSet<>();
             for (int j = i + 1; j < n; ++j) {
-                if (!s.contains(nums[j])) {
-                    s.add(-nums[i]-nums[j]);
+                if (!set.contains(nums[j])) {
+                    set.add(-nums[i]-nums[j]);
                 } else {
                     ans.add(Arrays.asList(nums[i], -nums[i]-nums[j], nums[j]));
                 }
