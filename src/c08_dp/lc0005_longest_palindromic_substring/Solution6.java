@@ -35,10 +35,28 @@ public class Solution6 {
      * @return String, the longest palindromic substring
      */
     public String longestPalindrome(String s) {
-        // TODO: add it
-        return null;
+         if (s.length() <= 1) {
+            return s;
+        }
+        String s1 = "";
+        String s2 = "";
+        for (int i = 0; i < s.length() - 1; i++) {
+            String maxS1 = maxStr(s, i, i);
+            String maxS2 = maxStr(s, i, i + 1);
+            s1 = s1.length() >= maxS1.length() ? s1 : maxS1;
+            s2 = s2.length() >= maxS2.length() ? s2 : maxS2;
+        }
+        return s1.length() >= s2.length() ? s1 : s2;
     }
-
+    
+    private static String maxStr(String s, int i, int j) {
+        while (i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)) {
+            i--;
+            j++;
+        }
+        return s.substring(i + 1, j);
+    }
+    
     public static void main(String[] args) {
         String s = "bbbab";
         Solution6 solu = new Solution6();
