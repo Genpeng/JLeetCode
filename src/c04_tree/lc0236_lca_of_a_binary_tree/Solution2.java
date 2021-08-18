@@ -85,17 +85,25 @@ public class Solution2 {
                 path.put(node.left, node);
             }
         }
-        Set<TreeNode> ancestors = new HashSet<>();
-        node = p;
-        while (node != null) {
-            ancestors.add(node);
-            node = path.get(node);
+//        Set<TreeNode> ancestors = new HashSet<>();
+//        node = p;
+//        while (node != null) {
+//            ancestors.add(node);
+//            node = path.get(node);
+//        }
+//        node = q;
+//        while (!ancestors.contains(node)) {
+//            node = path.get(node);
+//        }
+//        return node;
+
+        // 采用类似于查找两个相交链表节点的方式
+        TreeNode n1 = p, n2 = q;
+        while (n1 != n2) {
+            n1 = path.getOrDefault(n1, q);
+            n2 = path.getOrDefault(n2, p);
         }
-        node = q;
-        while (!ancestors.contains(node)) {
-            node = path.get(node);
-        }
-        return node;
+        return n1;
     }
 
     /**
