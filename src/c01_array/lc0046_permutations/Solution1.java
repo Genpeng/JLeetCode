@@ -58,18 +58,18 @@ public class Solution1 {
         return perms;
     }
 
-    private void permute(int[] nums, int len, int pos, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
-        if (pos == len) {
-            perms.add(new LinkedList<>(path));
+    private void permute(int[] nums, int L, int depth, Deque<Integer> path, boolean[] seen, List<List<Integer>> perms) {
+        if (depth == L) {
+            perms.add(new ArrayList<>(path));
             return;
         }
-        for (int i = 0; i < nums.length; ++i) {
+        for (int i = 0; i < L; ++i) {
             if (seen[i]) {
                 continue;
             }
             path.offerLast(nums[i]);
             seen[i] = true;
-            permute(nums, len, pos + 1, path, seen, perms); // keypoint
+            permute(nums, L, depth + 1, path, seen, perms); // keypoint
             seen[i] = false;
             path.pollLast();
         }
