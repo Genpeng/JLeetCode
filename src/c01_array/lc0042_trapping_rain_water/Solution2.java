@@ -34,6 +34,8 @@ package c01_array.lc0042_trapping_rain_water;
 public class Solution2 {
     /**
      * 解法二：动态规划
+     * 思路：解法二是在「解法一」的基础上进行优化，采用动态规划的思想，提前将需要用到的
+     * 「当前列左边最高的高度」和「当前列右边最高的高度」存起来，用空间换时间
      * 时间复杂度：O(N)
      * 空间复杂度：O(N)
      *
@@ -47,10 +49,10 @@ public class Solution2 {
         final int L = heights.length;
         int[] leftMaxArray = new int[L];
         int[] rightMaxArray = new int[L];
-        for (int i = 1; i < L - 1; ++i) {
+        for (int i = 1; i < L; ++i) {
             leftMaxArray[i] = Math.max(leftMaxArray[i-1], heights[i-1]);
         }
-        for (int i = L - 2; i > 0; --i) {
+        for (int i = L - 2; i >= 0; --i) {
             rightMaxArray[i] = Math.max(rightMaxArray[i+1], heights[i+1]);
         }
         int waters = 0;
