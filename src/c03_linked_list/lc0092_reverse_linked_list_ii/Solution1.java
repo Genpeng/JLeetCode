@@ -11,7 +11,7 @@ import entity.ListNode;
  * ==========================================================================================================
  * Reverse a linked list from position m to n. Do it in one-pass.
  *
- * Note: 1 ≤ m ≤ n ≤ length of list.
+ * Note: 1 ≤ m ≤ n ≤ length of list.
  *
  * Example:
  * Input: 1->2->3->4->5->NULL, m = 2, n = 4
@@ -24,29 +24,28 @@ import entity.ListNode;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
-    public ListNode reverseBetween(ListNode head, int m, int n) {
-        // 步骤0：创建一个虚拟结点，主要用于处理 m = 1 的情况
+    public ListNode reverseBetween(ListNode head, int left, int right) {
+        // 步骤1：创建一个虚拟头结点
         ListNode dummyHead = new ListNode(-1, head);
-        // 步骤1：创建一个指针，并指向反转区域的前一个结点
-        int index = 0;
+        // 步骤2：跳转到 left 前一个位置
+        int i = 0;
         ListNode p1 = dummyHead;
-        while (index < m - 1) {
+        while (i < left - 1) {
             p1 = p1.next;
-            ++index;
+            ++i;
         }
-        // 步骤2：对反转区域中的结点进行反转
+        // 步骤3：翻转区间内的链表
         ListNode p2 = p1.next;
-        ListNode prev = null;
-        ListNode curr = p2;
-        ++index;
-        while (index <= n) {
+        ListNode prev = null, curr = p2;
+        ++i;
+        while (i <= right) {
             ListNode next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
-            ++index;
+            ++i;
         }
-        // 步骤3：将断开的链表进行连接
+        // 步骤4：链接断开的链表
         p1.next = prev;
         p2.next = curr;
         return dummyHead.next;
