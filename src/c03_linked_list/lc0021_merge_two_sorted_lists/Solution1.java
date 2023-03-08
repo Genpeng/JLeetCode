@@ -19,7 +19,7 @@ import entity.ListNode;
  *
  * Tags: linked list;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Lukas (xgp1227@gmail.com)
  * @date    2019/03/27
  */
 public class Solution1 {
