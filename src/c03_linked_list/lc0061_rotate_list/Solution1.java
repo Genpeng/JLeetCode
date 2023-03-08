@@ -37,6 +37,12 @@ import entity.ListNode;
 public class Solution1 {
     /**
      * Approach 1: Two Pointers
+     * Time Complexity: O(N)
+     * Space Complexity: O(1)
+     *
+     * 思路：
+     * rotate the list to the right by k places <=> 以倒数第 k 个结点为分界，将前半部分移动到链表的尾部，
+     * 其中，第 k 个结点之前为前半部分，第 k 个结点之后为后半部分（包含第 k 个结点）
      *
      * @param head ListNode, the head of the linked list
      * @param k int, rotation steps
