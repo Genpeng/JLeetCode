@@ -31,7 +31,7 @@ import entity.ListNode;
  * Difficulty: Medium
  * Tags: linked list;two pointers;
  *
- * @author  StrongXGP (xgp1227@gmail.com)
+ * @author  Lukas (xgp1227@gmail.com)
  * @date    2019/04/02
  */
 public class Solution1 {
