@@ -31,7 +31,7 @@ import java.util.PriorityQueue;
 public class Solution2 {
     /**
      * Approach 2: Priority Queue (Min Heap)
-     * The idea is to maintain a min heap with a capacity of k, each time if a integer
+     * The idea is to maintain a min heap with a capacity of k, each time if an integer
      * is larger than the top of heap, we update the heap, and finally return the top
      * of the heap.
      *

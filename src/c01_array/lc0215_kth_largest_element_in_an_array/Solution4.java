@@ -37,7 +37,7 @@ public class Solution4 {
      *
      * Complexity Analysis:
      * Time Complexity: O(N)
-     * Space Complexity: O(log(N))
+     * Space Complexity: O(1)
      *
      * Result of Submission:
      * Runtime: 15 ms, faster than 17.73% of Java online submissions for Kth Largest Element in an Array.
