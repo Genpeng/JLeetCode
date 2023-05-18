@@ -2,7 +2,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
 
 /**
  * This is the solution of No. 5 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/longest-palindromic-substring/
  *
  * The description of problem is as follow:
@@ -27,6 +27,8 @@ package c08_dp.lc0005_longest_palindromic_substring;
 public class Solution1 {
     /**
      * Approach 1: Brute Force
+     * Iterate all the substrings, if a substring is palindromic, then update the start index and its length,
+     * finally output the result substring.
      * 遍历所有的子串，判断每个子串是否为回文的，如果是回文的就更新起始的位置以及它的长度。
      *
      * Complexity Analysis:

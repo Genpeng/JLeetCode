@@ -2,7 +2,7 @@ package c08_dp.lc0005_longest_palindromic_substring;
 
 /**
  * This is the solution of No. 5 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/longest-palindromic-substring/
  *
  * The description of problem is as follow:
