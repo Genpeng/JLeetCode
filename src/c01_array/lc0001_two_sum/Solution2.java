@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * This is the solution of No. 1 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/two-sum/
  *
  * The description of problem is as follow:
