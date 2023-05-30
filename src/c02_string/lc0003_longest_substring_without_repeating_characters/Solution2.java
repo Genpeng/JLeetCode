@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This is the solution of No. 003 problem in the LeetCode,
- * the website of the problem is as follow:
+ * This is the solution of No. 3 problem in the LeetCode,
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
  * The description of problem is as follow:
@@ -37,21 +37,24 @@ import java.util.Set;
 public class Solution2 {
     /**
      * 方法2：滑动窗口
-     * 用一个长度可变的“窗口”在字符串上滑动。最初，窗口的左右边界索引都位于
+     * 用一个长度可变的「窗口」在字符串上滑动。最初，窗口的左右边界索引都位于
      * 字符串的起始字符。之后，右边界向右滑动一个字符，如果窗口内的子串不包含
      * 重复字符时，右边界继续向右滑动一个字符；如果窗口内的子串包含重复字符，
      * 则左边界向右滑动一个字符。如此循环往复，直到右边界到达字符串的末尾字符。
      * 每次滑动之后，都会保存当前子串的最大长度。
      *
-     * Complexity Analysis:
-     * Time Complexity: O(L)
-     * Space Complexity: O(L)
-     * where L represents the length of the string.
+     * 复杂度分析：
+     * - 时间复杂度：O(L)
+     * - 空间复杂度：O(L)
+     * 其中，L 表示字符串的长度
      *
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("the input string is null");
+        }
         final int L = s.length();
         if (L <= 1) {
             return L;

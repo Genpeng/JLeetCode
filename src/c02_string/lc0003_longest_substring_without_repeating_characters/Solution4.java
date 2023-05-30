@@ -1,8 +1,8 @@
 package c02_string.lc0003_longest_substring_without_repeating_characters;
 
 /**
- * This is the solution of No. 003 problem in the LeetCode,
- * the website of the problem is as follow:
+ * This is the solution of No. 3 problem in the LeetCode,
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
  * The description of problem is as follow:

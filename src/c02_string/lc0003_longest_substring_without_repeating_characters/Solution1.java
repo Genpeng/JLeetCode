@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This is the solution of No. 003 problem in the LeetCode,
- * the website of the problem is as follow:
+ * This is the solution of No. 3 problem in the LeetCode,
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/
  *
  * The description of problem is as follow:
@@ -40,30 +40,39 @@ public class Solution1 {
      * 暴力枚举所有的子串，然后判断子串是否包含重复字符，对于不包含重复字符的子串，
      * 将它的长度与当前的最长长度进行比较，保存较大者
      *
-     * 复杂度分析
-     * 时间复杂度：O(L^3)
-     * 空间复杂度：O(L)
+     * 复杂度分析：
+     * - 时间复杂度：O(L^3)
+     * - 空间复杂度：O(L)
      * 其中，L 表示字符串的长度
      *
      * @param s String, the input string
      * @return int, the length of longest substring without repeating characters
      */
     public int lengthOfLongestSubstring(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("the input string is null");
+        }
         final int L = s.length();
-        int maxLen = 0;
-        for (int i = 0; i < L; ++i) {
-            for (int j = i; j < L; ++j) {
-                if (isAllUnique(s, i, j)) {
-                    maxLen = Math.max(maxLen, j-i+1);
+        if (L <= 1) {
+            return L;
+        }
+        int maxLen = 1;
+        for (int i = 0; i < L-1; ++i) {
+            for (int j = i+1; j < L; ++j) {
+                if (isAllUnique(s, i, j) && j-i+1 > maxLen) {
+                    maxLen = j-i+1;
                 }
             }
         }
         return maxLen;
     }
 
-    private boolean isAllUnique(String s, int si, int ei) {
+    private boolean isAllUnique(String s, int li, int ri) {
+        if (li < 0 || ri >= s.length()) {
+            throw new IllegalArgumentException(String.format("illegal string index, li = %d, ri = %d",  li, ri));
+        }
         Set<Character> set = new HashSet<>();
-        for (int i = si; i <= ei; ++i) {
+        for (int i = li; i <= ri; ++i) {
             char c = s.charAt(i);
             if (set.contains(c)) {
                 return false;
