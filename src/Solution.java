@@ -1,8 +1,8 @@
 
 /**
  * This is the solution of No. xxx problem in the LeetCode,
- * the website of the problem is as follow:
- * xxx
+ * the website of the problem is as follows:
+ *
  *
  * The description of problem is as follow:
  * ==========================================================================================================
@@ -12,7 +12,8 @@
  * Difficulty: Easy or Medium or Hard
  * Tags: xxx;xxx;
  *
- * @author Genpeng Xu (xgp1227atgmail.com)
+ * @author  Lukas (xgp1227atgmail.com)
+ * @date    20xx/xx/xx (first commit)
  */
 public class Solution {
 
