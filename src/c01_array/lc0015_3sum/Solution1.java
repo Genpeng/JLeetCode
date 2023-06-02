@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * This is the solution of No. 15 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/3sum/
  *
  * The description of problem is as follow:
