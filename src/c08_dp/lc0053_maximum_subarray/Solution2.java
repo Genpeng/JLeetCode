@@ -2,7 +2,7 @@ package c08_dp.lc0053_maximum_subarray;
 
 /**
  * This is the solution of No. 53 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/maximum-subarray/
  *
  * The description of problem is as follow:
