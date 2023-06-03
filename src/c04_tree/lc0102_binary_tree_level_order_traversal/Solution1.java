@@ -2,13 +2,14 @@ package c04_tree.lc0102_binary_tree_level_order_traversal;
 
 import entity.TreeNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
 /**
  * This is the solution of No. 102 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/binary-tree-level-order-traversal/
  *
  * The description of problem is as follow:
@@ -69,5 +70,38 @@ public class Solution1 {
             ans.add(vals);
         }
         return ans;
+    }
+
+    /**
+     * 解法一：迭代
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of a binary tree
+     * @return List<List<Integer>>, the level order traversal of its nodes' values
+     */
+    public List<List<Integer>> levelOrderV2(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            int n = q.size();
+            List<Integer> vals = new ArrayList<>();
+            for (int i = 0; i < n; ++i) {
+                TreeNode node = q.poll();
+                vals.add(node.val);
+                if (node.left != null) {
+                    q.add(node.left);
+                }
+                if (node.right != null) {
+                    q.add(node.right);
+                }
+            }
+            result.add(vals);
+        }
+        return result;
     }
 }
