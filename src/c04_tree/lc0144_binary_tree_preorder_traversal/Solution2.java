@@ -8,7 +8,7 @@ import java.util.Stack;
 
 /**
  * This is the solution of No. 144 problem in the LeetCode,
- * the website of the problem is as follow:
+ * the website of the problem is as follows:
  * https://leetcode.com/problems/binary-tree-preorder-traversal/
  *
  * The description of problem is as follow:
