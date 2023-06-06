@@ -1,5 +1,7 @@
 package c02_string.lc0020_valid_parentheses;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 /**
@@ -72,6 +74,40 @@ public class Solution1 {
             } else if (c == '{') {
                 stack.push('}');
             } else if (stack.isEmpty() || c != stack.pop()) {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    /**
+     * Approach 1: Stack
+     * Iterate the string from left to right, if current character in open brackets, then push corresponding
+     * close bracket into the stack; otherwise, if current character is close bracket, then pop the stack,
+     * and find if two character is same
+     *
+     * Complexity Analysis:
+     * - Time Complexity: O(L)
+     * - Space Complexity: O(L)
+     * where L represents the length of the string
+     *
+     * @param s String, the input string
+     * @return boolean, true if the input string is valid
+     */
+    public boolean isValidV2(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("input string is null");
+        }
+        Deque<Character> stack = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            if (c == '(') {
+                stack.push(')');
+            } else if (c == '[') {
+                stack.push(']');
+            } else if (c == '{') {
+                stack.push('}');
+            } else if (stack.isEmpty() || stack.pop() != c) {
                 return false;
             }
         }
