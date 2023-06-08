@@ -48,9 +48,9 @@ public class Solution3 {
      * @return List<List<Integer>>, all unique triplets in the array which gives the sum of zero
      */
     public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> ans = new LinkedList<>();
+        List<List<Integer>> result = new LinkedList<>();
         if (nums == null || nums.length < 3) {
-            return ans;
+            return result;
         }
         // Step 1: sort all the integers in the array, O(N * log(N))
         Arrays.sort(nums);
@@ -63,12 +63,8 @@ public class Solution3 {
             int li = i + 1, ri = n - 1;
             while (li < ri) {
                 int s = nums[i] + nums[li] + nums[ri];
-                if (s < 0) {
-                    ++li;
-                } else if (s > 0) {
-                    --ri;
-                } else {
-                    ans.add(Arrays.asList(nums[i], nums[li], nums[ri]));
+                if (s == 0) {
+                    result.add(Arrays.asList(nums[i], nums[li], nums[ri]));
                     while (li < ri && nums[li] == nums[li+1]) {
                         ++li;
                     }
@@ -77,10 +73,14 @@ public class Solution3 {
                     }
                     ++li;
                     --ri;
+                } else if (s < 0) {
+                    ++li;
+                } else {
+                    --ri;
                 }
             }
         }
-        return ans;
+        return result;
     }
 
     public static void main(String[] args) {
