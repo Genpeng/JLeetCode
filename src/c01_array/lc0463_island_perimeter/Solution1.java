@@ -81,6 +81,40 @@ public class Solution1 {
         return perimeter;
     }
 
+    /**
+     * 解法1：迭代
+     * 遍历网格中的每一个格子的四条边，当边满足以下任意一个条件时，边是岛屿周长的一部分
+     * 1. 边位于网格的边缘，即 r < 0 || r >= m || c < 0 || c >= n
+     * 2. 毗邻海水，grid[r][c] = 0
+     * 其中，r 表示格子的横坐标，而 c 表示格子的纵坐标
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(m*n)
+     * Space Complexity: O(1)
+     *
+     * @param grid int[][], a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water
+     * @return int, the perimeter of the island
+     */
+    public int islandPerimeterV2(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int perimeter = 0;
+        int[] ra = new int[] {1, -1, 0, 0};
+        int[] ca = new int[] {0, 0, 1, -1};
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j] == 1) {
+                    for (int k = 0; k < 4; ++k) {
+                        int r = i + ra[k], c = j + ca[k];
+                        if (r < 0 || r >= m || c < 0 || c >= n || grid[r][c] == 0) {
+                            ++perimeter;
+                        }
+                    }
+                }
+            }
+        }
+        return perimeter;
+    }
+
     public static void main(String[] args) {
         int[][] grid1 = {{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}};
         int[][] grid2 = {{0, 0, 0, 0}, {0, 1, 1, 1}, {0, 1, 0, 1}, {0, 1, 1, 1}};

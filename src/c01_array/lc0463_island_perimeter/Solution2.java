@@ -84,6 +84,45 @@ public class Solution2 {
                 + islandPerimeter(grid, m, n, i, j+1);
     }
 
+    /**
+     * 解法2：DFS
+     * 遍历网格中的每一个格子，当遍历到一个格子是陆地，则采用 DFS 统计出岛屿的周长
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(m*n)
+     * Space Complexity: O(m*n)
+     *
+     * Result of Submission:
+     * Runtime: 7 ms, faster than 44.15% of Java online submissions for Island Perimeter.
+     * Memory Usage: 40.5 MB, less than 36.55% of Java online submissions for Island Perimeter.
+     *
+     * @param grid int[][], a map where grid[i][j] = 1 represents land and grid[i][j] = 0 represents water
+     * @return int, the perimeter of the island
+     */
+    public int islandPerimeterV2(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        int perimeter = 0;
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j] == 1) {
+                    perimeter += dfs(grid, i, j);
+                }
+            }
+        }
+        return perimeter;
+    }
+
+    private int dfs(int[][] grid, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] == 0) {
+            return 1;
+        }
+        if (grid[i][j] == 2) {
+            return 0;
+        }
+        grid[i][j] = 2;
+        return dfs(grid, i+1, j) + dfs(grid, i-1, j) + dfs(grid, i, j+1) + dfs(grid, i, j-1);
+    }
+
     public static void main(String[] args) {
         int[][] grid1 = {{0, 1, 0, 0}, {1, 1, 1, 0}, {0, 1, 0, 0}, {1, 1, 0, 0}};
         int[][] grid2 = {{0, 0, 0, 0}, {0, 1, 1, 1}, {0, 1, 0, 1}, {0, 1, 1, 1}};
