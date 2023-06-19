@@ -68,8 +68,8 @@ public class Solution1 {
         }
         // 第二次遍历，遍历所有海洋格子，对于每个海洋格子，检查其相邻四个方向
         int maxArea = 0;
-        for (int i = 0; i < count.length; ++i) {
-            maxArea = Math.max(maxArea, count[i]);
+        for (int k : count) {
+            maxArea = Math.max(maxArea, k);
         }
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
