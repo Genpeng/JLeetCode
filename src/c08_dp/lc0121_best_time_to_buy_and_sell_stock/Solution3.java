@@ -64,6 +64,33 @@ public class Solution3 {
         return maxProfit;
     }
 
+    /**
+     * Approach 3: Dynamic Programming with memory optimization
+     * 令 dp[i] 表示到第 i 天为止的最大利润，则有
+     *         / max(dp[i-1], prices[i] - minPrice), i > 0
+     * dp[i] =
+     *         \ 0, i = 0
+     *
+     * Complexity Analysis:
+     * Time complexity: O(n)
+     * Space complexity: O(1)
+     *
+     * @param prices int[], the price of a given stock on each day
+     * @return int, the max profit
+     */
+    public int maxProfitV2(int[] prices) {
+        int n = prices.length;
+        int[] dp = new int[n];
+        int minPrice = prices[0];
+        int prev = 0, curr = 0;
+        for (int i = 1; i < n; ++i) {
+            curr = Math.max(prev, prices[i] - minPrice);
+            minPrice = Math.min(minPrice, prices[i]);
+            prev = curr;
+        }
+        return curr;
+    }
+
     public static void main(String[] args) {
         Solution3 solution = new Solution3();
         System.out.println(solution.maxProfit(new int[] {7, 1, 5, 3, 6, 4}) == 5);
