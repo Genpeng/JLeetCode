@@ -58,20 +58,24 @@ public class Solution1 {
      */
     public int maxProfit(int[] prices) {
         ans = 0;
-        maxProfit(prices, 0, 0, 0);
+        dfs(prices, 0, 0, 0);
         return ans;
     }
 
-    private void maxProfit(int[] prices, int i, int status, int currProfit) {
+    private void dfs(int[] prices, int i, int status, int currProfit) {
         if (i == prices.length) {
             ans = Math.max(ans, currProfit);
             return;
         }
-        maxProfit(prices, i + 1, status, currProfit);
+        // 可以选择保持状态不变
+        dfs(prices, i + 1, status, currProfit);
+        // 也可以选择改变状态
         if (status == 0) {
-            maxProfit(prices, i + 1, 1, currProfit - prices[i]);
+            // 如果之前的状态为「持有现金」，可以选择买入股票
+            dfs(prices, i + 1, 1, currProfit - prices[i]);
         } else {
-            maxProfit(prices, i + 1, 0, currProfit + prices[i]);
+            // 如果之前的状态为「持有股票」，可以选择卖出股票
+            dfs(prices, i + 1, 0, currProfit + prices[i]);
         }
     }
 

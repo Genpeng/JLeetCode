@@ -44,19 +44,41 @@ package c08_dp.lc0122_best_time_to_buy_and_sell_stock_ii;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution3 {
-
     /**
      * Approach 3: Dynamic Programming
+     * 设 dp[i][j] 表示截止到第 i 天为止，不持有/持有（0/1）股票可以收获的最大收益，则有
+     *            / max(dp[i-1][0], dp[i-1][1] + prices[i]), i > 0
+     * dp[i][0] =
+     *            \ 0, i = 0
+     *            / max(dp[i-1][1], dp[i-1][0] - prices[i]), i > 0
+     * dp[i][1] =
+     *            \ -prices[0], i = 0
      *
      * Complexity Analysis:
      * Time Complexity: O(N)
-     * Space Complexity: O(1)
+     * Space Complexity: O(N)
      *
      * @param prices int[], the prices of a given stock
      * @return int, the maximum profit
      */
     public int maxProfit(int[] prices) {
-        // TODO: add it
-        return -1;
+        int n = prices.length;
+        if (n <= 1) {
+            return 0;
+        }
+        int[][] dp = new int[n][2];
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        for (int i = 1; i < n; ++i) {
+            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i]);
+        }
+        return dp[n-1][0];
+    }
+
+    public static void main(String[] args) {
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        Solution3 solu = new Solution3();
+        System.out.println(solu.maxProfit(prices));
     }
 }
