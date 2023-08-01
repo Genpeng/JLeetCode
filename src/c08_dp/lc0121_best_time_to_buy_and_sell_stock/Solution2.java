@@ -76,8 +76,11 @@ public class Solution2 {
      */
     public int maxProfitV2(int[] prices) {
         int n = prices.length;
+        if (n < 2) {
+            return 0;
+        }
         int[] dp = new int[n];
-         dp[0] = 0; // 可去掉
+        dp[0] = 0; // 可去掉
         int minPrice = prices[0]; // 表示到当前位置之前的最小价格
         for (int i = 1; i < n; ++i) {
             dp[i] = Math.max(dp[i-1], prices[i] - minPrice);

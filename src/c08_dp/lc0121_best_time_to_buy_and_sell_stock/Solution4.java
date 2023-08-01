@@ -38,8 +38,6 @@ public class Solution4 {
      * 然后遇到比最低点高的值时，更新最大收益。特殊情况，如果序列是单调递减的，这时选择不卖，
      * 也就是最大收益为 0.
      *
-     * TODO: 这种思想能算贪心吗？
-     *
      * Complexity Analysis:
      * Time complexity: O(n)
      * Space complexity: O(1)

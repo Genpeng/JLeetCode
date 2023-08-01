@@ -52,14 +52,14 @@ public class Solution3 {
      */
     public int maxProfit(int[] prices) {
         int n = prices.length;
-        if (n == 0) {
+        if (n < 2) {
             return 0;
         }
         int maxProfit = 0;
         int minPrice = prices[0];
         for (int i = 1; i < n; ++i) {
-            minPrice = Math.min(minPrice, prices[i]);
             maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+            minPrice = Math.min(minPrice, prices[i]); // 更新价格
         }
         return maxProfit;
     }
