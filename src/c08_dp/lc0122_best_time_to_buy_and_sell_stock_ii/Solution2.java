@@ -58,7 +58,7 @@ public class Solution2 {
     public int maxProfit(int[] prices) {
         int maxProfit = 0;
         for (int i = 1; i < prices.length; ++i) {
-            int profit = prices[i] - prices[i-1];
+            int profit = prices[i] - prices[i-1]; // 现实中不可能等今天价格比昨天高，再买入昨天的吧
             if (profit > 0) {
                 maxProfit += profit;
             }
