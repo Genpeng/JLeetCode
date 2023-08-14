@@ -62,20 +62,20 @@ public class Solution1 {
         return ans;
     }
 
-    private void dfs(int[] prices, int i, int status, int currProfit) {
+    private void dfs(int[] prices, int i, int status, int profit) {
         if (i == prices.length) {
-            ans = Math.max(ans, currProfit);
+            ans = Math.max(ans, profit);
             return;
         }
         // 可以选择保持状态不变
-        dfs(prices, i + 1, status, currProfit);
+        dfs(prices, i + 1, status, profit);
         // 也可以选择改变状态
         if (status == 0) {
             // 如果之前的状态为「持有现金」，可以选择买入股票
-            dfs(prices, i + 1, 1, currProfit - prices[i]);
+            dfs(prices, i + 1, 1, profit - prices[i]);
         } else {
             // 如果之前的状态为「持有股票」，可以选择卖出股票
-            dfs(prices, i + 1, 0, currProfit + prices[i]);
+            dfs(prices, i + 1, 0, profit + prices[i]);
         }
     }
 
