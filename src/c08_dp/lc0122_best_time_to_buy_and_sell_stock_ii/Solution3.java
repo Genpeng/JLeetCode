@@ -45,6 +45,15 @@ package c08_dp.lc0122_best_time_to_buy_and_sell_stock_ii;
  */
 public class Solution3 {
     /**
+     * 题意：
+     * - 已知一只股票每天的价格
+     * - 每天可以买卖股票的一股
+     * - 最多只能持有一股
+     * - 交易频次为 T0，即支持当天买后，立即卖出
+     *
+     * 思路：
+     * 求出股票的所有上升趋势
+     *
      * Approach 3: Dynamic Programming
      * 设 dp[i][j] 表示截止到第 i 天为止，不持有/持有（0/1）股票可以收获的最大收益，则有
      *            / max(dp[i-1][0], dp[i-1][1] + prices[i]), i > 0

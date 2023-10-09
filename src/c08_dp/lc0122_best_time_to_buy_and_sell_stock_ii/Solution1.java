@@ -47,6 +47,15 @@ public class Solution1 {
     private int ans;
 
     /**
+     * 题意：
+     * - 已知一只股票每天的价格
+     * - 每天可以买卖股票的一股
+     * - 最多只能持有一股
+     * - 交易频次为 T0，即支持当天买后，立即卖出
+     *
+     * 思路：
+     * 求出股票的所有上升趋势
+     *
      * Approach 1: Brute Force (backtracking)
      *
      * Complexity Analysis:
