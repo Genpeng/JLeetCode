@@ -33,6 +33,13 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  */
 public class Solution1 {
     /**
+     * 题意：
+     * - 只能进行一次买卖
+     * - 交易频次为 T+1，即不允许当天买卖
+     *
+     * 思路：
+     * - 找到差值最大的间隔（📢 注意，并不是最大值减最小值，比如：[7,1,5,3,6,4]）
+     *
      * Approach 1: Brute Force
      *
      * Complexity Analysis:

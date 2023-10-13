@@ -33,6 +33,13 @@ package c08_dp.lc0121_best_time_to_buy_and_sell_stock;
  */
 public class Solution3 {
     /**
+     * 题意：
+     * - 只能进行一次买卖
+     * - 交易频次为 T+1，即不允许当天买卖
+     *
+     * 思路：
+     * - 找到差值最大的间隔（📢 注意，并不是最大值减最小值，比如：[7,1,5,3,6,4]）
+     *
      * Approach 3: Dynamic Programming with memory optimization
      * 令 dp[i] 表示到第 i 天为止的最大利润，则有
      *         / max(dp[i-1], prices[i] - minPrice), i > 0
@@ -59,7 +66,8 @@ public class Solution3 {
         int minPrice = prices[0];
         for (int i = 1; i < n; ++i) {
             maxProfit = Math.max(maxProfit, prices[i] - minPrice);
-            minPrice = Math.min(minPrice, prices[i]); // 更新价格
+            // update minimum price
+            minPrice = Math.min(minPrice, prices[i]);
         }
         return maxProfit;
     }
