@@ -47,6 +47,20 @@ import java.util.Stack;
  */
 public class Solution1 {
     /**
+     * 题意：
+     * - 判断字符串是否有效
+     *
+     * 思路：
+     * 用一个栈去模拟这个过程，从左往右依次遍历字符串的每个字符，
+     * - 如果当前字符为左括号，则将其对应的有括号压入栈中
+     * - 如果当前字符为右括号，则有两种情况：
+     *   a. 如果此时栈为空，则字符串不合法
+     *   b. 如果栈不为空，则需要判断栈顶字符与当前字符是否一致
+     *
+     * 解法1：栈
+     * 时间复杂度：O(L)
+     * 空间复杂度：O(L)
+     *
      * All possible scenarios are shown below:
      *
      * - left brackets (push)
