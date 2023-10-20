@@ -2,9 +2,7 @@ package c04_tree.lc0103_binary_tree_zigzag_level_order_traversal;
 
 import entity.TreeNode;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * This is the solution of No. 103 problem in the LeetCode,
@@ -36,6 +34,12 @@ import java.util.Queue;
  */
 public class Solution1 {
     /**
+     * 题意：
+     * 二叉树的锯齿形层序遍历
+     *
+     * 思路：
+     * 在二叉树层序遍历的基础上，用一个标志去标记元素的保存方向
+     *
      * 解法一：迭代
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
@@ -44,26 +48,25 @@ public class Solution1 {
      * @return List<List<Integer>>, the zigzag level order traversal of its nodes' values
      */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> ans = new LinkedList<>();
+        List<List<Integer>> ans = new ArrayList<>();
         if (root == null) {
             return ans;
         }
-        Queue<TreeNode> q = new LinkedList<>();
+        Deque<TreeNode> q = new ArrayDeque<>();
         q.offer(root);
-        int n;
-        LinkedList<Integer> vals;
-        TreeNode node;
-        boolean isRight = true;
+        boolean leftToRight = true;
         while (!q.isEmpty()) {
-            n = q.size();
-            vals = new LinkedList<>();
-            while (n-- > 0) {
-                node = q.poll();
-                if (isRight) {
-                    vals.add(node.val);
+            LinkedList<Integer> level = new LinkedList<>();
+            int n = q.size();
+            for (int i = 0; i < n; ++i) {
+                TreeNode node = q.poll();
+                // 保存当前一层的结点的值
+                if (leftToRight) {
+                    level.add(node.val);
                 } else {
-                    vals.addFirst(node.val);
+                    level.addFirst(node.val);
                 }
+                // 将下一层的结点放入队列中
                 if (node.left != null) {
                     q.offer(node.left);
                 }
@@ -71,8 +74,8 @@ public class Solution1 {
                     q.offer(node.right);
                 }
             }
-            ans.add(vals);
-            isRight = !isRight;
+            ans.add(level);
+            leftToRight = !leftToRight;
         }
         return ans;
     }
