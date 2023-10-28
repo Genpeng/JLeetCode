@@ -42,6 +42,16 @@ package c01_array.lc0827_making_a_large_island;
  */
 public class Solution1 {
     /**
+     * 题意：
+     * - 有一个 grid，grid 中存在许多岛屿（四个方向相连的 1 表示）
+     * - 最多只可以将一个 0 变成 1
+     * - 求改变后可以得到的最大岛屿面积
+     *
+     * 思路：
+     * - 分两个步骤去完成
+     * - 步骤1：标记出 grid 中所有的岛屿，并计算出岛屿的面积（标记岛屿可以采用 DFS 实现）
+     * - 步骤2：遍历每一个海洋格子 0，合并四个方向的岛屿，得到合并后的面积
+     *
      * 解法1：
      * 采用 DFS 的方法标记岛屿并统计岛屿的数量，之后遍历每个海洋格子，查看其四个方向上是否有相邻岛屿，
      * 并将所有相邻岛屿的面积求和，更新当前最大的岛屿面积
@@ -55,9 +65,10 @@ public class Solution1 {
      */
     public int largestIsland(int[][] grid) {
         int n = grid.length;
-        // 第一次遍历，标记岛屿，并统计岛屿的面积
+
+        // 步骤1：标记出 grid 中所有的岛屿，并计算出岛屿的面积
         int[] count = new int[n*n+2];
-        int tag = 2;
+        int tag = 2; // 记号，从 2 开始
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 1) {
@@ -66,18 +77,19 @@ public class Solution1 {
                 }
             }
         }
-        // 第二次遍历，遍历所有海洋格子，对于每个海洋格子，检查其相邻四个方向
+
+        // 步骤2：遍历每一个海洋格子 0，合并四个方向的岛屿，得到合并后的面积
         int maxArea = 0;
-        for (int k : count) {
-            maxArea = Math.max(maxArea, k);
+        for (int area : count) {
+            maxArea = Math.max(maxArea, area);
         }
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == 0) {
-                    int up = i-1 >= 0 ? grid[i-1][j] : 0;
-                    int down = i+1 < n ? grid[i+1][j] : 0;
-                    int left = j-1 >= 0 ? grid[i][j-1] : 0;
-                    int right = j+1 < n ? grid[i][j+1] : 0;
+                    int up = i - 1 >= 0 ? grid[i-1][j] : 0;
+                    int down = i + 1 < n ? grid[i+1][j] : 0;
+                    int left = j - 1 >= 0 ? grid[i][j-1] : 0;
+                    int right = j + 1 < n ? grid[i][j+1] : 0;
                     int area = count[up] + 1;
                     if (down != up) {
                         area += count[down];
@@ -100,10 +112,10 @@ public class Solution1 {
             return;
         }
         grid[i][j] = tag; // 标记岛屿
-        ++count[tag]; // 统计岛屿的面积
-        dfs(grid, i+1, j, tag, count);
+        ++count[tag]; // 统计岛屿面积
         dfs(grid, i-1, j, tag, count);
-        dfs(grid, i, j+1, tag, count);
+        dfs(grid, i+1, j, tag, count);
         dfs(grid, i, j-1, tag, count);
+        dfs(grid, i, j+1, tag, count);
     }
 }
