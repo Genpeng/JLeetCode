@@ -89,6 +89,20 @@ public class Solution1 {
     private TreeNode lca;
 
     /**
+     * 题意：
+     * - 找出二叉树中指定结点的最近公共祖先（LCA）
+     *
+     * 思路：
+     * - 假设一个结点 t 是结点 p 和 q 的 LCA，则必须是以下的两种情况
+     *   a) t 是 p 和 q 中的一个，剩余的一个结点是 t 的子树（左或者右）
+     *   b) p 和 q 都是 t 的子树（左或者右）
+     * - 假设 f(t, p, q) 表示以 t 为根结点的树中是否包含 p 或者 q，如果 t 是 p 和 q 的 LCA，则有
+     * - f(t, p, q) + f(t.left, p, q) + f(t.right, p, q) >= 2
+     *
+     * 解法1：递归
+     * 时间复杂度：O(N)
+     * 空间复杂度：O(N)
+     *
      * Approach 1: Recursion (v2, recommended)
      * 思路：
      * 二叉树的 LCA 出现在下面的两种情况：

@@ -107,6 +107,16 @@ public class Solution2 {
     }
 
     /**
+     * 题意：
+     * - 找出二叉树中指定结点的最近公共祖先（LCA）
+     *
+     * 思路：
+     * 保存 p 和 q 结点到 根结点 root 的路径，两个路径的交点即为 LCA
+     *
+     * 解法2：迭代
+     * 时间复杂度：O(N)
+     * 空间复杂度：O(N)
+     *
      * Approach 2: Iteration (v2, more robust)
      * The idea is to save the paths from node p and node q to root node respectively, and
      * then backtrack the first intersection node of two paths
@@ -128,39 +138,43 @@ public class Solution2 {
         if (p == null || q == null) {
             throw new IllegalArgumentException("[ERROR] The input nodes must not be null!!!");
         }
+
         if (root == null) {
             return null;
         }
+
+        // 步骤1：保存 p 和 q 到根结点 root 的路径
         Deque<TreeNode> stack = new ArrayDeque<>();
-        Map<TreeNode, TreeNode> path = new HashMap<>();
         stack.push(root);
+        Map<TreeNode, TreeNode> path = new HashMap<>();
         path.put(root, null);
-        TreeNode node;
         while (!stack.isEmpty()) {
-            if (path.containsKey(p) && path.containsKey(q)) {
+            if(path.containsKey(p) && path.containsKey(q)) {
                 break;
             }
-            node = stack.pop();
-            if (node.right != null) {
-                stack.push(node.right);
-                path.put(node.right, node);
+            TreeNode curr = stack.pop();
+            if (curr.right != null) {
+                stack.push(curr.right);
+                path.put(curr.right, curr);
             }
-            if (node.left != null) {
-                stack.push(node.left);
-                path.put(node.left, node);
+            if (curr.left != null) {
+                stack.push(curr.left);
+                path.put(curr.left, curr);
             }
         }
-        if (!path.containsKey(p) || !path.containsKey(q)) {
+
+        // 步骤2：找到两个路径的交点
+        if(!path.containsKey(p) || !path.containsKey(q)) {
             return null;
         }
-        Set<TreeNode> ancestors = new HashSet<>();
-        node = p;
+        Set<TreeNode> seen = new HashSet<>();
+        TreeNode node = p;
         while (node != null) {
-            ancestors.add(node);
+            seen.add(node);
             node = path.get(node);
         }
         node = q;
-        while (!ancestors.contains(node)) {
+        while (!seen.contains(node)) {
             node = path.get(node);
         }
         return node;
