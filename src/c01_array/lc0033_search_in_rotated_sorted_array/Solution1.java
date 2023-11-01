@@ -135,7 +135,9 @@ public class Solution1 {
         int li = 0, ri = n-1;
         while (li < ri) {
             int mi = li + ((ri-li) >> 1);
-            if ((nums[li] <= target && target <= nums[mi]) || (nums[mi] < nums[li] && nums[li] <= target) || (target <= nums[mi] && nums[mi] < nums[li])) {
+            if ((nums[li] <= target && target <= nums[mi])
+                || (nums[mi] < nums[li] && nums[li] <= target)
+                || (target <= nums[mi] && nums[mi] < nums[li])) {
                 ri = mi;
             } else {
                 li = mi + 1; // 当只剩下两个元素的时候，比如：[1, 3]，如果 li 的更新公式为 li = mi，则无法挑出循环
