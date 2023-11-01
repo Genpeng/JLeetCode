@@ -100,6 +100,16 @@ public class Solution1 {
      * - f(t, p, q) + f(t.left, p, q) + f(t.right, p, q) >= 2
      *
      * 解法1：递归
+     * 假设结点 t 为结点 p 和 q 的 LCA，则必须满足以下两种情况：
+     * a) t 是 p 和 q 中的一个，剩余的一个结点为 t 的子树
+     * b) p 和 q 都是 t 的子树
+     * 设函数 f(t, p, q) 表示以 t 为根结点的二叉树是否包含 p 或者 q 中的一个，如果 t 是 p 和 q 的 LCA，则有
+     * mid = t == p || t == q ? 1 : 0
+     * left = f(t.left, p, q) ? 1 : 0
+     * right = f(t.right, p, q) ? 1 : 0
+     * mid + left + right >= 2
+     *
+     * 解法1：递归
      * 时间复杂度：O(N)
      * 空间复杂度：O(N)
      *
