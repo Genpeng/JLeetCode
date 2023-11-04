@@ -1,9 +1,7 @@
 package c01_array.lc0200_number_of_islands;
 
-import entity.Pair;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * This is the solution of No. 200 problem in the LeetCode,
@@ -52,25 +50,28 @@ public class Solution2 {
      * @return int, the number of islands
      */
     public int numIslands(char[][] grid) {
-        int m = grid.length, n = m > 0 ? grid[0].length : 0;
+        int[] ra = new int[] {-1, 1, 0, 0};
+        int[] ca = new int[] {0, 0, -1, 1};
+
+        int m = grid.length, n = grid[0].length;
         int count = 0;
-        int[] dr = {-1, 1, 0, 0};
-        int[] dc = {0, 0, -1, 1};
         for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 if (grid[i][j] == '1') {
                     ++count;
-                    // BFS
+
+                    // 采用 BFS 对岛屿进行标记
+                    Deque<int[]> q = new ArrayDeque<>();
+                    q.offer(new int[] {i, j});
                     grid[i][j] = '2';
-                    Queue<Pair<Integer, Integer>> q = new LinkedList<>();
-                    q.offer(new Pair<>(i, j));
                     while (!q.isEmpty()) {
-                        Pair<Integer, Integer> pair = q.poll();
+                        int[] p = q.poll();
                         for (int k = 0; k < 4; ++k) {
-                            int r = pair.first + dr[k], c = pair.second + dc[k];
+                            int r = p[0] + ra[k];
+                            int c = p[1] + ca[k];
                             if (r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1') {
+                                q.offer(new int[] {r, c});
                                 grid[r][c] = '2';
-                                q.offer(new Pair<>(r, c));
                             }
                         }
                     }
