@@ -1,5 +1,7 @@
 package c01_array.lc0463_island_perimeter;
 
+import java.util.Random;
+
 /**
  * This is the solution of No. 463 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -44,6 +46,14 @@ package c01_array.lc0463_island_perimeter;
  */
 public class Solution2 {
     /**
+     * 题意：
+     * - 计算岛屿的周长
+     * - 恰好只有一个岛屿（简化条件）
+     * - 岛屿中没有湖（简化条件）
+     *
+     * 思路：
+     * 找出所有与水接壤的边
+     *
      * Approach 2: DFS
      *
      * Complexity Analysis:

@@ -88,6 +88,33 @@ public class Solution1 {
         return dummyHead.next;
     }
 
+    public ListNode addTwoNumbersV3(ListNode l1, ListNode l2) {
+        // 题意：
+        // - 有两个链表，分别表示两个逆序的非负整数
+        // - 求两个整数的和，结果同样逆序存储
+
+        // 解法1：模拟
+        // 时间复杂度：O(max(m, n))
+        // 空间复杂度：O(1)
+
+        ListNode dummy = new ListNode(-1);
+        ListNode tail = dummy;
+        int carry = 0;
+        int s;
+        while (l1 != null || l2 != null || carry > 0) {
+            s = carry;
+            s += l1 != null ? l1.val : 0;
+            s += l2 != null ? l2.val : 0;
+            tail.next = new ListNode(s % 10);
+            // update to next iteration
+            carry = s / 10;
+            l1 = l1 != null ? l1.next : l1;
+            l2 = l2 != null ? l2.next : l2;
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
     public static void main(String[] args) {
         ListNode l1 = new ListNode(new int[] {2, 4, 3});
         ListNode l2 = new ListNode(new int[] {5, 6, 4});

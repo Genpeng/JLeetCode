@@ -62,6 +62,22 @@ public class Solution2 {
         return head;
     }
 
+    private ListNode helper(ListNode l1, ListNode l2, int carry) {
+        if (l1 == null && l2 == null && carry == 0) {
+            return null;
+        }
+        int s = carry;
+        s += l1 != null ? l1.val : 0;
+        s += l2 != null ? l2.val : 0;
+        ListNode head = new ListNode(s % 10);
+        head.next = helper(
+            l1 != null ? l1.next : l1,
+            l2 != null ? l2.next : l2,
+            s / 10
+        );
+        return head;
+    }
+
     public static void main(String[] args) {
         ListNode l1 = new ListNode(new int[] {2, 4, 3});
         ListNode l2 = new ListNode(new int[] {5, 6, 4});
