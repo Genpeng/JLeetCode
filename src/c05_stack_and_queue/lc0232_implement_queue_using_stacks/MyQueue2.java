@@ -47,7 +47,7 @@ public class MyQueue2<E> {
      */
     private Stack<E> out;
     /**
-     * The the head of the queue in the input stack
+     * The head of the queue in the input stack
      */
     private E inBottom;
 
