@@ -1,5 +1,6 @@
 package c02_string.lc0093_restore_ip_addresses;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,8 +105,64 @@ public class Solution1 {
         }
     }
 
+    private static final int SEG_COUNT = 4;
+    private List<String> ans = new ArrayList<>();
+
+    /**
+     * 解法1：回溯（backtracking）
+     *
+     * 复杂度分析：
+     * - 时间复杂度：O(3^4 * L)
+     * - 空间复杂度：O(4)
+     * 其中，L 表示字符串的长度
+     *
+     * @param s String, a string s containing only digits
+     * @return List<String>, all possible valid IP addresses
+     */
+    public List<String> restoreIpAddressesV2(String s) {
+        int[] segments = new int[SEG_COUNT];
+        dfsV2(s, 0, segments, 0);
+        return ans;
+    }
+
+    private void dfsV2(String s, int start, int[] segments, int segIdx) {
+        if (segIdx == SEG_COUNT) {
+            if (start == s.length()) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < SEG_COUNT; ++i) {
+                    sb.append(segments[i]);
+                    if (i != SEG_COUNT-1) {
+                        sb.append('.');
+                    }
+                }
+                ans.add(sb.toString());
+            }
+            return;
+        }
+
+        if (start == s.length()) {
+            return;
+        }
+
+        if (s.charAt(start) == '0') {
+            segments[segIdx] = 0;
+            dfsV2(s, start+1, segments, segIdx+1);
+            return;
+        }
+
+        int addr = 0;
+        for (int i = start; i < s.length(); ++i) {
+            addr = addr * 10 + s.charAt(i) - '0';
+            if (addr > 0 && addr <= 255) {
+                dfsV2(s, i+1, segments, segIdx+1);
+            } else {
+                break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Solution1 solu = new Solution1();
-        System.out.println(solu.restoreIpAddresses("0000"));
+        System.out.println(solu.restoreIpAddressesV2("0000"));
     }
 }
