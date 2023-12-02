@@ -37,8 +37,10 @@ public class Solution3 {
      * @return int, the minimal length of a contiguous subarray of which the sum ≥ s
      */
     public int minSubArrayLen(int target, int[] nums) {
-        int s = 0, minLen = Integer.MAX_VALUE;
-        for (int li = 0, ri = 0; ri < nums.length; ++ri) {
+        final int n = nums.length;
+        int minLen = Integer.MAX_VALUE;
+        int s = 0;
+        for (int li = 0, ri = 0; ri < n; ++ri) {
             s += nums[ri];
             while (s >= target) {
                 minLen = Math.min(minLen, ri-li+1);

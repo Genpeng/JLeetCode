@@ -26,10 +26,10 @@ package c01_array.lc0209_minimum_size_subarray_sum;
  */
 public class Solution2 {
     /**
-     * Approach 2:
+     * Approach 2: Binary Search
      *
      * Complexity Analysis:
-     * Time Complexity: O(N^2)
+     * Time Complexity: O(n * log(n))
      * Space Complexity: O(1)
      *
      * @param target int, target sum
@@ -37,6 +37,41 @@ public class Solution2 {
      * @return int, the minimal length of a contiguous subarray of which the sum ≥ s
      */
     public int minSubArrayLen(int target, int[] nums) {
-        return -1;
+        final int n = nums.length;
+        int[] prefix = new int[n+1];
+        for (int i = 1; i <= n; ++i) {
+            prefix[i] = prefix[i-1] + nums[i-1];
+        }
+        int minLen = Integer.MAX_VALUE;
+        for (int i = 0; i < n; ++i) {
+            int j = findFirstGreaterOrEqual(prefix, i, n, prefix[i] + target);
+            if (j != -1) {
+                minLen = Math.min(minLen, j-i);
+            }
+        }
+        return minLen == Integer.MAX_VALUE ? 0 : minLen;
+    }
+
+    public int findFirstGreaterOrEqual(int[] nums, int li, int ri, int target) {
+        if (target > nums[ri]) {
+            return -1;
+        }
+        while (li <= ri) {
+            int mi = li + ((ri-li) >> 1);
+            if (nums[mi] < target) {
+                li = mi + 1;
+            } else {
+                ri = mi - 1;
+            }
+        }
+        return li;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[] {2, 3, 1, 2, 4, 3};
+        int target = 7;
+        Solution2 solu = new Solution2();
+        int minLen = solu.minSubArrayLen(target, nums);
+        System.out.println(minLen);
     }
 }

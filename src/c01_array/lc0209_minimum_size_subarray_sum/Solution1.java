@@ -37,14 +37,15 @@ public class Solution1 {
      * @return int, the minimal length of a contiguous subarray of which the sum ≥ s
      */
     public int minSubArrayLen(int target, int[] nums) {
-        final int N = nums.length;
+        final int n = nums.length;
         int minLen = Integer.MAX_VALUE;
-        for (int i = 0; i < N; ++i) {
-            int s = 0;
-            for (int j = i; j < N; ++j) {
+        int s;
+        for (int i = 0; i < n; ++i) {
+            s = 0;
+            for (int j = i; j < n; ++j) {
                 s += nums[j];
-                if (s >= target && j-i+1 < minLen) {
-                    minLen = j-i+1;
+                if (s >= target) {
+                    minLen = Math.min(minLen, j-i+1);
                     break; // 当找到后，后面的就不用找了
                 }
             }
