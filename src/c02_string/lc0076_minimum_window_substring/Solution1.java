@@ -33,9 +33,21 @@ package c02_string.lc0076_minimum_window_substring;
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
 class Solution1 {
+    /**
+     * 题意：
+     * - 找出字符串 s 中的最小子串，使得该子串包含 t 中的所有字符
+     *
+     * 解法1：滑动窗口（Sliding Window）
+     * 时间复杂度：O(m)
+     * 空间复杂度：O(1)
+     *
+     * @param s String, string for search
+     * @param t String, target string
+     * @return String, the minimum window in s which will contain all the characters in t
+     */
     public String minWindow(String s, String t) {
         int m = s.length(), n = t.length();
-        if (m < n || n == 0) {
+        if (m < n) {
             return "";
         }
         // 步骤1：统计 t 中所有字符的频次
