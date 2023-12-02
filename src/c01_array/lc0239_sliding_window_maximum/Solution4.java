@@ -37,17 +37,12 @@ import util.PrintUtil;
  * @author  StrongXGP (xgp1227@gmail.com)
  * @date    2018/12/25
  */
-public class Solution1 {
+public class Solution4 {
     /**
-     * 题意：
-     * - 给定一个数组和固定大小的窗口
-     * - 窗口从左往右滑动，每次滑动一个元素，即步幅等于 1
-     * - 返回窗口从左往右滑动过程中的最大值
-     *
-     * 解法 1：暴力法
-     * 时间复杂度：O(n * k)
+     * 解法 4：分块 + 预处理（类似稀疏表）
+     * 时间复杂度：O(n)
      * 空间复杂度：O(n)
-     * 其中，n 表示数组的长度，k 表示窗口的大小
+     * 其中，n 表示数组的长度
      *
      * @param nums int[], the input integer array
      * @param k int, the size of the sliding window
@@ -59,27 +54,31 @@ public class Solution1 {
             throw new IllegalArgumentException();
         }
         final int n = nums.length;
+        int[] left  = new int[n];
+        int[] right = new int[n];
+        for (int i = 0; i < n; i += k) {
+            int start = i, end = Math.min(i + k - 1, n-1);
+            left[start] = nums[start];
+            for (int j = start+1; j <= end; ++j) {
+                left[j] = Math.max(left[j-1], nums[j]);
+            }
+            right[end] = nums[end];
+            for (int j = end-1; j >= start; --j) {
+                right[j] = Math.max(right[j+1], nums[j]);
+            }
+        }
         int[] ans = new int[n-k+1];
-        int ai = 0;
-        for (int i = k-1; i < n; ++i) {
-            ans[ai++] = windowMax(nums, i-k+1, i);
+        for (int i = 0; i < ans.length; ++i) {
+            ans[i] = Math.max(right[i], left[i+k-1]);
         }
         return ans;
-    }
-
-    private int windowMax(int[] nums, int li, int ri) {
-        int max = Integer.MIN_VALUE;
-        for (int i = li; i <= ri; ++i) {
-            max = Math.max(max, nums[i]);
-        }
-        return max;
     }
 
     public static void main(String[] args) {
         int k = 3;
         int[] nums = new int[] {1, 3, -1, -3, 5, 3, 6, 7};
 
-        Solution1 solu = new Solution1();
+        Solution4 solu = new Solution4();
         int[] res = solu.maxSlidingWindow(nums, k);
         PrintUtil.printArray(res);
     }

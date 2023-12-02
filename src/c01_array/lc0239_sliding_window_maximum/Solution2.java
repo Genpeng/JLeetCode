@@ -1,9 +1,7 @@
 package c01_array.lc0239_sliding_window_maximum;
 
 import util.PrintUtil;
-
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.PriorityQueue;
 
 /**
  * This is the solution of No. 239 problem in the LeetCode,
@@ -42,50 +40,42 @@ import java.util.Deque;
  */
 public class Solution2 {
     /**
-     * 方法二：用双端队列模拟滑动窗口
-     *
-     * 时间复杂度：O(n)，其中，n表示数组的长度
+     * 解法 2：用最大堆去模拟滑动窗口
+     * 时间复杂度：O(n * log(n))
      * 空间复杂度：O(n)
+     * 其中，n 表示数组的长度
      *
      * @param nums int[], the input integer array
      * @param k int, the size of the sliding window
      * @return int[], the max sliding window
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
-        boolean isKIllegal = k <= 0 || k > nums.length;
-        if (nums == null || isKIllegal) {
-            throw new IllegalArgumentException("[ERROR] The input array is null, or the value of k is illegal!!!");
+        // 保证：1 <= k <= n
+        if (nums == null || k < 1 || k > nums.length) {
+            throw new IllegalArgumentException();
         }
-
-        int n = nums.length;
-        int ri = 0;
-        int[] res = new int[n - k + 1];
-        Deque<Integer> deque = new ArrayDeque<>();
+        final int n = nums.length;
+        int[] ans = new int[n - k + 1];
+        int ai = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((p1, p2) -> (p2[0] - p1[0]));
         for (int i = 0; i < n; ++i) {
-            // 调整"窗口"（双端队列）的左边界
-            if ((i > k - 1) && (deque.peek() < i - k + 1)) {
-                deque.poll();
-            }
-
-            // 如果"窗口"（双端队列）的右边界元素小于新增的元素
-            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
-                deque.pollLast();
-            }
-
-            deque.offerLast(i);
-            if (i >= k - 1) {
-                res[ri++] = nums[deque.peek()];
+            pq.offer(new int[] {nums[i], i});
+            if (i >= k-1) {
+                while (pq.peek()[1] <= i-k) {
+                    pq.poll();
+                }
+                ans[ai++] = pq.peek()[0];
             }
         }
-        return res;
+        return ans;
     }
 
     public static void main(String[] args) {
-        int k = 4;
+        int k = 3;
         int[] nums = new int[] {1, 3, -1, -3, 5, 3, 6, 7};
 
-        Solution2 solution1 = new Solution2();
-        int[] res = solution1.maxSlidingWindow(nums, k);
+        Solution2 solu = new Solution2();
+        int[] res = solu.maxSlidingWindow(nums, k);
         PrintUtil.printArray(res);
     }
 }
