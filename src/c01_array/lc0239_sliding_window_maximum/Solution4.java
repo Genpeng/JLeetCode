@@ -56,11 +56,11 @@ public class Solution4 {
         final int n = nums.length;
         int[] left  = new int[n];
         int[] right = new int[n];
-        for (int i = 0; i < n; i += k) {
-            int start = i, end = Math.min(i + k - 1, n-1);
+        for (int start = 0; start < n; start += k) {
+            int end = Math.min(start + k - 1, n-1);
             left[start] = nums[start];
-            for (int j = start+1; j <= end; ++j) {
-                left[j] = Math.max(left[j-1], nums[j]);
+            for (int i = start +1; i <= end; ++i) {
+                left[i] = Math.max(left[i-1], nums[i]);
             }
             right[end] = nums[end];
             for (int j = end-1; j >= start; --j) {
