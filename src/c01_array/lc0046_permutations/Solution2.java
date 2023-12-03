@@ -49,15 +49,14 @@ public class Solution2 {
      * @param nums int[], a collection of distinct integers
      * @return List<List<Integer>>, all possible permutations
      */
-    public List<List<Integer>> permute(int[] nums) {
-        int n = nums.length;
+    public List<List<Integer>> dfs(int[] nums) {
         List<List<Integer>> perms = new LinkedList<>();
-        permute(nums, n, 0, perms);
+        dfs(nums, 0, perms);
         return perms;
     }
 
-    private void permute(int[] nums, int len, int pos, List<List<Integer>> perms) {
-        if (pos == len) {
+    private void dfs(int[] nums, int depth, List<List<Integer>> perms) {
+        if (depth == nums.length) {
             List<Integer> perm = new LinkedList<>();
             for (int num : nums) {
                 perm.add(num);
@@ -65,10 +64,10 @@ public class Solution2 {
             perms.add(perm);
             return;
         }
-        for (int i = pos; i < nums.length; ++i) {
-            swap(nums, pos, i);
-            permute(nums, len, pos + 1, perms);
-            swap(nums, pos, i);
+        for (int i = depth; i < nums.length; ++i) {
+            swap(nums, depth, i);
+            dfs(nums, depth + 1, perms);
+            swap(nums, depth, i);
         }
     }
 
@@ -84,7 +83,7 @@ public class Solution2 {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution2 solu = new Solution2();
-        List<List<Integer>> perms = solu.permute(nums);
+        List<List<Integer>> perms = solu.dfs(nums);
         System.out.println(perms);
     }
 }

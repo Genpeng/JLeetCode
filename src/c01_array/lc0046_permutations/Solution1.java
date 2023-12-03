@@ -75,6 +75,47 @@ public class Solution1 {
         }
     }
 
+    private List<List<Integer>> ans = new ArrayList<>();
+
+    /**
+     * 题意：
+     * - 返回数组所有可能的排列（与顺序有关）
+     *
+     * 解法1：回溯（backtracking）
+     * 时间复杂度：O(n! * n)
+     * 空间复杂度：O(n! * n)
+     *
+     * @param nums int[], a collection of distinct integers
+     * @return List<List<Integer>>, all possible permutations
+     */
+    public List<List<Integer>> permuteV2(int[] nums) {
+        final int n = nums.length;
+        boolean[] seen = new boolean[n];
+        int[] path = new int[n];
+        dfs(nums, seen, path, 0);
+        return ans;
+    }
+
+    private void dfs(int[] nums, boolean[] seen, int[] path, int depth) {
+        if (depth == nums.length) {
+            List<Integer> vals = new ArrayList<>();
+            for (int val : path) {
+                vals.add(val);
+            }
+            ans.add(vals);
+            return;
+        }
+        for (int i = 0; i < nums.length; ++i) {
+            if (seen[i]) {
+                continue;
+            }
+            seen[i] = true;
+            path[depth] = nums[i];
+            dfs(nums, seen, path, depth+1);
+            seen[i] = false;
+        }
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution1 solu = new Solution1();
