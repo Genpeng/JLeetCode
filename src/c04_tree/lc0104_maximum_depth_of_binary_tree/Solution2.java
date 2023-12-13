@@ -2,8 +2,6 @@ package c04_tree.lc0104_maximum_depth_of_binary_tree;
 
 import entity.TreeNode;
 
-import java.util.Stack;
-
 /**
  * This is the solution of No. 104 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -36,42 +34,51 @@ import java.util.Stack;
  * @date    2019/05/20
  */
 public class Solution2 {
+    private int ans;
+
     /**
-     * Approach 2: Iteration (DFS)
-     * Time Complexity: O(n)
-     * Space Complexity: O(n)
+     * 题意：
+     * - 求出二叉树的最大深度
      *
-     * Result of Submission:
-     * Runtime: 3 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
-     * Memory Usage: 39.1 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
+     * 解法1：递归
+     * 问题可以转为 1 + max(maxDepth(root.left), maxDepth(root.right))
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
      *
-     * @param root TreeNode, the root of the binary tree
-     * @return int, the maximum depth of the binary tree
+     * 解法2：DFS（递归）
+     * 采用前序遍历（DFS）搜索二叉树的每个节点，采用一个变量（ans）记录当前的最大深度，
+     * 递归初始深度为 1，每次递归深度大于最大深度时，更新最大深度；递归结束后，返回最大深度
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 解法3：DFS（迭代）
+     * 采用前序遍历（DFS）搜索二叉树的每个节点，采用一个变量（ans）记录当前的最大深度，
+     * 迭代初始深度为 1，每次迭代深度大于最大深度时，更新最大深度；递归结束后，返回最大深度
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 解法4：BFS
+     * 采用层序遍历逐层遍历二叉树，每往下遍历一层，最大深度 +1
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of binary tree
+     * @return int, the maximum depth of binary tree
      */
     public int maxDepth(TreeNode root) {
+        ans = 0;
+        dfs(root, 1);
+        return ans;
+    }
+
+    private void dfs(TreeNode root, int depth) {
         if (root == null) {
-            return 0;
+            return;
         }
-        Stack<TreeNode> nodeStack = new Stack<>();
-        Stack<Integer> depthStack = new Stack<>();
-        nodeStack.push(root);
-        depthStack.push(1);
-        int maxDepth = 1;
-        while (!nodeStack.isEmpty()) {
-            TreeNode node = nodeStack.pop();
-            int depth = depthStack.pop();
-            if (depth > maxDepth) {
-                maxDepth = depth;
-            }
-            if (node.right != null) {
-                nodeStack.push(node.right);
-                depthStack.push(depth + 1);
-            }
-            if (node.left != null) {
-                nodeStack.push(node.left);
-                depthStack.push(depth + 1);
-            }
+        if (depth > ans) {
+            ans = depth;
         }
-        return maxDepth;
+        dfs(root.left, depth+1);
+        dfs(root.right, depth+1);
     }
 }

@@ -2,8 +2,8 @@ package c04_tree.lc0104_maximum_depth_of_binary_tree;
 
 import entity.TreeNode;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
  * This is the solution of No. 104 problem in the LeetCode,
@@ -38,36 +38,58 @@ import java.util.Queue;
  */
 public class Solution3 {
     /**
-     * Approach 3: Iteration (BFS)
-     * Time Complexity: O(n)
-     * Space Complexity: O(n)
+     * 题意：
+     * - 求出二叉树的最大深度
      *
-     * Result of Submission:
-     * Runtime: 1 ms, faster than 11.55% of Java online submissions for Maximum Depth of Binary Tree.
-     * Memory Usage: 38.8 MB, less than 94.62% of Java online submissions for Maximum Depth of Binary Tree.
+     * 解法1：递归
+     * 问题可以转为 1 + max(maxDepth(root.left), maxDepth(root.right))
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
      *
-     * @param root TreeNode, the root of the binary tree
-     * @return int, the maximum depth of the binary tree
+     * 解法2：DFS（递归）
+     * 采用前序遍历（DFS）搜索二叉树的每个节点，采用一个变量（ans）记录当前的最大深度，
+     * 递归初始深度为 1，每次递归深度大于最大深度时，更新最大深度；递归结束后，返回最大深度
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 解法3：DFS（迭代）
+     * 采用前序遍历（DFS）搜索二叉树的每个节点，采用一个变量（ans）记录当前的最大深度，
+     * 迭代初始深度为 1，每次迭代深度大于最大深度时，更新最大深度；递归结束后，返回最大深度
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 解法4：BFS
+     * 采用层序遍历逐层遍历二叉树，每往下遍历一层，最大深度 +1
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * @param root TreeNode, the root of binary tree
+     * @return int, the maximum depth of binary tree
      */
     public int maxDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        int depth = 0;
-        while (!q.isEmpty()) {
-            ++depth;
-            for (int n = q.size(); n > 0; --n) {
-                TreeNode node = q.poll();
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
+        int maxDepth = 1;
+        Deque<TreeNode> nodeStack = new ArrayDeque<>();
+        Deque<Integer> depthStack = new ArrayDeque<>();
+        nodeStack.push(root);
+        depthStack.push(1);
+        while (!nodeStack.isEmpty()) {
+            TreeNode node = nodeStack.pop();
+            int depth = depthStack.pop();
+            if (depth > maxDepth) {
+                maxDepth = depth;
+            }
+            if (node.right != null) {
+                nodeStack.push(node.right);
+                depthStack.push(depth+1);
+            }
+            if (node.left != null) {
+                nodeStack.push(node.left);
+                depthStack.push(depth+1);
             }
         }
-        return depth;
+        return maxDepth;
     }
 }

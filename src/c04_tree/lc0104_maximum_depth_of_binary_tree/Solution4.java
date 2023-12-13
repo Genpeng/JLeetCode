@@ -2,6 +2,9 @@ package c04_tree.lc0104_maximum_depth_of_binary_tree;
 
 import entity.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * This is the solution of No. 104 problem in the LeetCode,
  * the website of the problem is as follow:
@@ -33,7 +36,7 @@ import entity.TreeNode;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  * @date    2019/05/20
  */
-public class Solution1 {
+public class Solution4 {
     /**
      * 题意：
      * - 求出二叉树的最大深度
@@ -67,6 +70,21 @@ public class Solution1 {
         if (root == null) {
             return 0;
         }
-        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        int depth = 0;
+        while (!q.isEmpty()) {
+            ++depth;
+            for (int n = q.size(); n > 0; --n) {
+                TreeNode node = q.poll();
+                if (node.left != null) {
+                    q.offer(node.left);
+                }
+                if (node.right != null) {
+                    q.offer(node.right);
+                }
+            }
+        }
+        return depth;
     }
 }
