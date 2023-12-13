@@ -3,9 +3,7 @@ package c04_tree.lc0199_binary_tree_right_side_view;
 import entity.TreeNode;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * This is the solution of No. 199 problem in the LeetCode,
@@ -39,7 +37,7 @@ import java.util.Queue;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution2 {
     /**
      * 题意：
      * - 返回二叉树的"右视图"
@@ -67,26 +65,19 @@ public class Solution1 {
      */
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> vals = new ArrayList<>();
-        if (root == null) {
-            return vals;
-        }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while (!q.isEmpty()) {
-            int n = q.size();
-            for (int i = 0; i < n; ++i) {
-                TreeNode node = q.poll();
-                if (i == n-1) {
-                    vals.add(node.val);
-                }
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
-            }
-        }
+        dfs(root, 0, vals);
         return vals;
+    }
+
+    private void dfs(TreeNode root, int depth, List<Integer> vals) {
+        if (root == null) {
+            return;
+        }
+        // 如果当前的深度第一次出现，保存当前节点的值
+        if (depth == vals.size()) {
+            vals.add(root.val);
+        }
+        dfs(root.right, depth+1, vals);
+        dfs(root.left, depth+1, vals);
     }
 }

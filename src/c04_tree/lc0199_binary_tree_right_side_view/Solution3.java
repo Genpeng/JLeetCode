@@ -2,10 +2,10 @@ package c04_tree.lc0199_binary_tree_right_side_view;
 
 import entity.TreeNode;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Deque;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * This is the solution of No. 199 problem in the LeetCode,
@@ -39,7 +39,7 @@ import java.util.Queue;
  *
  * @author Genpeng Xu (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     /**
      * 题意：
      * - 返回二叉树的"右视图"
@@ -70,21 +70,23 @@ public class Solution1 {
         if (root == null) {
             return vals;
         }
-        Queue<TreeNode> q = new LinkedList<>();
-        q.offer(root);
-        while (!q.isEmpty()) {
-            int n = q.size();
-            for (int i = 0; i < n; ++i) {
-                TreeNode node = q.poll();
-                if (i == n-1) {
-                    vals.add(node.val);
-                }
-                if (node.left != null) {
-                    q.offer(node.left);
-                }
-                if (node.right != null) {
-                    q.offer(node.right);
-                }
+        Deque<TreeNode> nodeStack = new ArrayDeque<>();
+        Deque<Integer> depthStack = new ArrayDeque<>();
+        nodeStack.push(root);
+        depthStack.push(0);
+        while (!nodeStack.isEmpty()) {
+            TreeNode node = nodeStack.pop();
+            int depth = depthStack.pop();
+            if (depth >= vals.size()) {
+                vals.add(node.val);
+            }
+            if (node.left != null) {
+                nodeStack.push(node.left);
+                depthStack.push(depth+1);
+            }
+            if (node.right != null) {
+                nodeStack.push(node.right);
+                depthStack.push(depth+1);
             }
         }
         return vals;
