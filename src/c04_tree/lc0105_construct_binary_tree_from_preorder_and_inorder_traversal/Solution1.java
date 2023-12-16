@@ -34,17 +34,23 @@ import java.util.Map;
  * @author  Genpeng Xu (xgp1227atgmail.com)
  */
 public class Solution1 {
-    private Map<Integer, Integer> inorderMap;
-    private int[] preorder;
+    private Map<Integer, Integer> map;
 
     /**
-     * Approach 1: Recursion
-     * 这道题的思路是：递归地将前序遍历的结果划分为根结点、左子树和右子树，直到到达叶子结点。
-     * 中序遍历数组的作用是确定左右子树的结点数目，前序遍历数组的作用是确定左右子树的根结点。
+     * 题意：
+     * - 基于二叉树的前序遍历和中序遍历构造二叉树
      *
-     * Complexity Analysis:
-     * Time Complexity: O(N)
-     * Space Complexity: O(N)
+     * 思路：
+     * 利用前序遍历和中序遍历结果的性质，可以利用的性质有：
+     * - 前序遍历的第一个元素为根结点
+     * - 中序遍历根结点左边的元素为左子树，右边的元素为右子树
+     *
+     * 解法1：递归
+     * 利用前序遍历确定根结点，中序遍历确定左右子树
+     * 时间复杂度：O(n)
+     * 空间复杂度：O(n)
+     *
+     * 解法2：迭代（TODO）
      *
      * @param preorder int[], preorder traversal of the binary tree
      * @param inorder int[], inorder traversal of the binary tree
@@ -52,22 +58,24 @@ public class Solution1 {
      */
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         int n = preorder.length;
-        this.preorder = preorder;
-        this.inorderMap = new HashMap<>(n);
+        map = new HashMap<>(n);
         for (int i = 0; i < n; ++i) {
-            inorderMap.put(inorder[i], i);
+            map.put(inorder[i], i);
         }
-        return build(0, 0, n-1);
+        return build(preorder, 0, n-1, inorder, 0, n-1);
     }
 
-    private TreeNode build(int preRoot, int inLeft, int inRight) {
-        if (inLeft > inRight) {
+    private TreeNode build(int[] preorder, int pstart, int pend, int[] inorder, int istart, int iend) {
+        // 递归终止条件不是那么容易可以想到
+        if (istart > iend) {
             return null;
         }
-        TreeNode root = new TreeNode(preorder[preRoot]);
-        int inRoot = inorderMap.get(root.val);
-        root.left = build(preRoot + 1, inLeft, inRoot - 1);
-        root.right = build(preRoot + inRoot - inLeft + 1, inRoot + 1, inRight);
+        int proot = pstart;
+        int iroot = map.get(preorder[proot]);
+        int leftSize = iroot - istart;
+        TreeNode root = new TreeNode(preorder[proot]);
+        root.left = build(preorder, proot+1, proot+leftSize, inorder, istart, iroot-1);
+        root.right = build(preorder, pstart+leftSize+1, pend, inorder, iroot+1, iend);
         return root;
     }
 }
