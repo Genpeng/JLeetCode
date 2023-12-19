@@ -60,10 +60,12 @@ public class Solution3 {
         int[] ans = new int[n-k+1];
         Deque<Integer> q = new ArrayDeque<>();
         for (int i = 0; i < n; ++i) {
+            // 从队尾弹出小于当前元素的元素（当前窗口的最大值，只与上一个窗口的最大值有关）
             while (!q.isEmpty() && nums[i] > nums[q.peekLast()]) {
                 q.pollLast();
             }
             q.offerLast(i);
+            // 弹出不在当前窗口的最大值
             while (q.peekFirst() <= i-k) {
                 q.pollFirst();
             }
