@@ -58,10 +58,10 @@ public class Solution1 {
             return;
         }
         ListNode mid = findMiddleNode(head);
-        ListNode l2 = mid.next;
+        ListNode head2 = mid.next;
         mid.next = null;
-        l2 = reverse(l2);
-        merge(head, l2);
+        head2 = reverse(head2);
+        merge(head, head2);
     }
 
     public ListNode findMiddleNode(ListNode head) {
@@ -89,12 +89,20 @@ public class Solution1 {
         // TODO 是否有更优雅的写法
         // l1_length >= l2_length
         while (l1 != null && l2 != null) {
-            ListNode n1 = l1.next;
-            ListNode n2 = l2.next;
+            ListNode l1Next = l1.next;
+            ListNode l2Next = l2.next;
             l1.next = l2;
-            l1 = n1;
+            l1 = l1Next;
             l2.next = l1;
-            l2 = n2;
+            l2 = l2Next;
         }
+    }
+
+    public static void main(String[] args) {
+        Solution1 solu = new Solution1();
+        ListNode head = new ListNode(new int[] {1, 2, 3, 4});
+        System.out.println(head);
+        solu.reorderList(head);
+        System.out.println(head);
     }
 }
