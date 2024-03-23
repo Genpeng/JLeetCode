@@ -39,8 +39,9 @@ public class Solution1 {
      * - 求出非负整数 x 平方根的整数部分
      *
      * 解法1：袖珍计算器算法（指数和对数数学函数代替）
-     * - 时间复杂度：O(1)
-     * - 空间复杂度：O(1)
+     * sqrt(x) = x ^ 0.5 = (e^ln(x)) ^ 0.5 = e ^ (0.5 * ln(x))
+     * 时间复杂度：O(1)
+     * 空间复杂度：O(1)
      *
      * @param x int, non-negative integer
      * @return int, the nearest integer of square root of x

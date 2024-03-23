@@ -39,24 +39,45 @@ public class Solution3 {
      * - 求出非负整数 x 平方根的整数部分
      *
      * 解法3：牛顿迭代
-     * - 时间复杂度：O(log(x))
-     * - 空间复杂度：O(1)
+     * 时间复杂度：O(log(x))
+     * 空间复杂度：O(1)
      *
      * @param x int, non-negative integer
      * @return int, the nearest integer of square root of x
      */
     public int mySqrt(int x) {
+        // 牛顿迭代法的思路：
+        // 选定一个起始点，过起始点做一条切线，切线与横轴的交点为下一个迭代点，如此循环往复，直到相邻两个点的差异小于阈值
+
+        // 平方根：
+        // f(x) = x^2 - C
+        // f(x0) = f'(x0) * (x - x0) + f(x0)
+        //       = 2 * x0 * (x - x0) + x0^2 - C
+        // 更新公式：
+        // x1 <- x0 - (x0^2 - C) / (2 * x0) = (x0 + C/x0) / 2
+
+        // 一种写法
         if (x == 0) {
-            return 0;
+            return x;
         }
-        double C = x, x0 = x;
-        while (true) {
-            double x1 = 0.5 * (x0 + C / x0);
-            if (Math.abs(x1-x0) < 1e-7) {
-                break;
-            }
-            x0 = x1;
+        double guess = x;
+        while (Math.abs(guess * guess - x) > 1e-6) {
+            guess = (guess + x/guess) / 2;
         }
-        return (int) x0;
+        return (int) guess;
+
+        // 另一种写法
+//        if (x == 0) {
+//            return 0;
+//        }
+//        double x0 = x; // x0 表示初始值
+//        while (true) {
+//            double x1 = 0.5 * (x0 + x / x0);
+//            if (Math.abs(x1 - x0) < 1e-6) {
+//                break;
+//            }
+//            x0 = x1;
+//        }
+//        return (int) x0;
     }
 }
