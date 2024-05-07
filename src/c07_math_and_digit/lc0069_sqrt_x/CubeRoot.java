@@ -43,28 +43,6 @@ public class CubeRoot {
         // 空间复杂度：O(1)
 
         // 一种写法
-//        if (x == 0.0) {
-//            return x;
-//        }
-//        double li, ri;
-//        if (x < 0) {
-//            li = x - 1.0;
-//            ri = 0.0;
-//        } else {
-//            li = 0.0;
-//            ri = x + 1.0; // 这是因为当 0 < x < 1 时，立方根的值有可能大于 x
-//        }
-//        while (ri-li > 1e-6) {
-//            double mi = (li + ri) / 2;
-//            if (mi*mi*mi <= x) {
-//                li = mi;
-//            } else {
-//                ri = mi;
-//            }
-//        }
-//        return (li + ri) / 2;
-
-        // 另一种写法
         if (x == 0.0) {
             return x;
         }
@@ -76,15 +54,37 @@ public class CubeRoot {
             li = 0.0;
             ri = x + 1.0; // 这是因为当 0 < x < 1 时，立方根的值有可能大于 x
         }
-        while (li <= ri) {
+        while (ri-li > 1e-6) {
             double mi = (li + ri) / 2;
             if (mi*mi*mi <= x) {
-                li = mi + 0.01;
+                li = mi;
             } else {
-                ri = mi - 0.01;
+                ri = mi;
             }
         }
-        return ri;
+        return (li + ri) / 2;
+
+        // 另一种写法
+//        if (x == 0.0) {
+//            return x;
+//        }
+//        double li, ri;
+//        if (x < 0) {
+//            li = x - 1.0;
+//            ri = 0.0;
+//        } else {
+//            li = 0.0;
+//            ri = x + 1.0; // 这是因为当 0 < x < 1 时，立方根的值有可能大于 x
+//        }
+//        while (li <= ri) {
+//            double mi = (li + ri) / 2;
+//            if (mi*mi*mi <= x) {
+//                li = mi + 0.01;
+//            } else {
+//                ri = mi - 0.01;
+//            }
+//        }
+//        return ri;
     }
 
     public double cubeRootV2(double x) {
@@ -97,6 +97,7 @@ public class CubeRoot {
         // f(x0) = f'(x0) * (x - x0) + f(x0)
         //       = 3 * x0^2 * (x - x0) + x0^3 - C
         // 更新公式：
+        // 令 f(x0) + f'(x0) * (x-x0) = 0，则有 x <- x0 - f(x0)/f'(x0)
         // x1 <- x0 - (x0^3 - C) / (3 * x0^2) = (2*x0 + C/x0^2) / 3
 
         // 一种写法
