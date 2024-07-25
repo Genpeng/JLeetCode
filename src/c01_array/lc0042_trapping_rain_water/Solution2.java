@@ -3,7 +3,7 @@ package c01_array.lc0042_trapping_rain_water;
 /**
  * This is the solution of No. 42 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/trapping-rain-water/description/
+ * https://leetcode.com/problems/trapping-rain-water
  *
  * The description of problem is as follow:
  * ==========================================================================================================

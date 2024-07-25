@@ -6,7 +6,7 @@ import java.util.Deque;
 /**
  * This is the solution of No. 42 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/trapping-rain-water/description/
+ * https://leetcode.com/problems/trapping-rain-water
  *
  * The description of problem is as follow:
  * ==========================================================================================================

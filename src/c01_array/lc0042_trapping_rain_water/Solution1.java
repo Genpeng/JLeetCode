@@ -3,7 +3,7 @@ package c01_array.lc0042_trapping_rain_water;
 /**
  * This is the solution of No. 42 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/trapping-rain-water/description/
+ * https://leetcode.com/problems/trapping-rain-water
  *
  * The description of problem is as follow:
  * ==========================================================================================================
@@ -51,23 +51,17 @@ public class Solution1 {
         for (int i = 1; i < L - 1; ++i) {
             // 找出左边最高的高度
             int leftMax = 0;
-            for (int j = i - 1; j >= 0; --j) {
-                if (heights[j] > leftMax) {
-                    leftMax = heights[j];
-                }
+            for (int j = 0; j < i; ++j) {
+                leftMax = Math.max(leftMax, heights[j]);
             }
             // 找出右边最高的高度
             int rightMax = 0;
             for (int j = i + 1; j < L; ++j) {
-                if (heights[j] > rightMax) {
-                    rightMax = heights[j];
-                }
+                rightMax = Math.max(rightMax, heights[j]);
             }
             // 更新雨水总量（如果当前的高度低于左右两边最高高度中最小的一个）
             int minHeight = Math.min(leftMax, rightMax);
-            if (minHeight > heights[i]) {
-                waters += (minHeight - heights[i]);
-            }
+            waters += Math.max(0, minHeight - heights[i]);
         }
         return waters;
     }
