@@ -14,6 +14,7 @@ import java.util.Deque;
  * compute how much water it can trap after raining.
  *
  * Example 1:
+ * <img src="https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png">
  * Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
  * Output: 6
  * Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1].
