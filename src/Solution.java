@@ -4,7 +4,7 @@
  * the website of the problem is as follows:
  * xxx
  *
- * The description of problem is as follow:
+ * The description of problem is as follows:
  * ==========================================================================================================
  * xxx
  * ==========================================================================================================
