@@ -3,33 +3,32 @@ package c01_array.lc0073_set_matrix_zeroes;
 /**
  * This is the solution of No. 73 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/set-matrix-zeroes/
- *
- * The description of problem is as follow:
+ * https://leetcode.com/problems/set-matrix-zeroes
+ * <p>
+ * The description of problem is as follows:
  * ==========================================================================================================
  * Given an m x n matrix. If an element is 0, set its entire row and column to 0. Do it in-place.
- *
+ * <p>
  * Follow up:
  * - A straight forward solution using O(mn) space is probably a bad idea.
  * - A simple improvement uses O(m + n) space, but still not the best solution.
  * - Could you devise a constant space solution?
- *
- *
+ * <p>
  * Example 1:
  * Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
  * Output: [[1,0,1],[0,0,0],[1,0,1]]
- *
+ * <p>
  * Example 2:
  * Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
  * Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
- *
+ * <p>
  * Constraints:
  * - m == matrix.length
  * - n == matrix[0].length
  * - 1 <= m, n <= 200
- * - -231 <= matrix[i][j] <= 231 - 1
+ * - -2^31 <= matrix[i][j] <= 2^31 - 1
  * ==========================================================================================================
- *
+ * <p>
  * Difficulty: Medium
  * Tags: array;
  *
@@ -50,28 +49,24 @@ public class Solution2 {
      * Time Complexity: O(m * n)
      * Space Complexity: O(1)
      *
-     * Result of submission:
-     * Runtime: 1 ms, faster than 93.85% of Java online submissions for Set Matrix Zeroes.
-     * Memory Usage: 40.6 MB, less than 9.10% of Java online submissions for Set Matrix Zeroes.
-     *
      * @param matrix int[][], the input integer matrix
      */
     public void setZeroes(int[][] matrix) {
-        final int R = matrix.length, C = matrix[0].length;
+        int m = matrix.length, n = matrix[0].length;
         int col0 = 1;
-        for (int i = 0; i < R; ++i) {
+        for (int i = 0; i < m; ++i) {
             if (matrix[i][0] == 0) {
                 col0 = 0;
             }
-            for (int j = 1; j < C; ++j) {
+            for (int j = 1; j < n; ++j) {
                 if (matrix[i][j] == 0) {
                     matrix[i][0] = 0;
                     matrix[0][j] = 0;
                 }
             }
         }
-        for (int i = R - 1; i >= 0; --i) {
-            for (int j = C - 1; j >= 1; --j) {
+        for (int i = m - 1; i >= 0; --i) {
+            for (int j = n - 1; j >= 1; --j) {
                 if (matrix[i][0] == 0 || matrix[0][j] == 0) {
                     matrix[i][j] = 0;
                 }
