@@ -11,7 +11,6 @@ package c08_dp.lc0152_maximum_product_subarray;
  * which has the largest product.
  *
  * Example 1:
- *
  * Input: [2,3,-2,4]
  * Output: 6
  * Explanation: [2,3] has the largest product 6.
