@@ -3,7 +3,7 @@ package c02_string.lc0076_minimum_window_substring;
 /**
  * This is the solution of No. 76 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/minimum-window-substring/
+ * https://leetcode.com/problems/minimum-window-substring
  *
  * The description of problem is as follow:
  * ==========================================================================================================
