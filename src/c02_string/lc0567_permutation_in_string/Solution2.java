@@ -3,27 +3,27 @@ package c02_string.lc0567_permutation_in_string;
 /**
  * This is the solution of No. 567 problem in the LeetCode,
  * the website of the problem is as follow:
- * https://leetcode.com/problems/permutation-in-string/
- *
+ * https://leetcode.com/problems/permutation-in-string
+ * <p>
  * The description of problem is as follow:
  * ==========================================================================================================
  * Given two strings s1 and s2, write a function to return true if s2 contains the permutation of s1.
  * In other words, one of the first string's permutations is the substring of the second string.
- *
+ * <p>
  * Example 1:
  * Input: s1 = "ab" s2 = "eidbaooo"
  * Output: True
  * Explanation: s2 contains one permutation of s1 ("ba").
- *
+ * <p>
  * Example 2:
  * Input:s1= "ab" s2 = "eidboaoo"
  * Output: False
- *  
+ * <p>
  * Constraints:
  * - The input strings only contain lower case letters.
  * - The length of both given strings is in range [1, 10,000].
  * ==========================================================================================================
- *
+ * <p>
  * Difficulty: Medium
  * Tags: string;sliding window;
  *
@@ -32,7 +32,7 @@ package c02_string.lc0567_permutation_in_string;
 public class Solution2 {
     /**
      * Approach 2: Sliding Window (variable window)
-     *
+     * <p>
      * Complexity Analysis:
      * Time Complexity: O(l1 + l2)
      * Space Complexity: O(1)
