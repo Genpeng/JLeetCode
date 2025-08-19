@@ -38,23 +38,46 @@ package c01_array.lc0240_search_a_2d_matrix_ii;
  */
 public class Solution2 {
     public boolean searchMatrix(int[][] matrix, int target) {
-        // 解法2：Z 字形查找
-        // 时间复杂度：O(m+n)
+        // 题意：
+        // 已知一个二维矩阵 matrix，判断二维矩阵中是否存在目标值 target
+        // 二维矩阵有以下两个性质：
+        // - 每行的元素从左到右升序排列
+        // - 每列的元素从上到下升序排列
+
+        // 解法2：二分查找
+        // 时间复杂度：O(m * log(n))
         // 空间复杂度：O(1)
 
         int m = matrix.length, n = matrix[0].length;
-        int x = 0, y = n-1;
-        while (x < m && y >= 0) {
-            if (matrix[x][y] == target) {
+        for (int[] row : matrix) {
+            int index = binarySearch(row, target);
+            if (index != -1) {
                 return true;
-            } else if (matrix[x][y] < target) {
-                ++x;
-            } else {
-                // matrix[x][y] > target
-                --y;
             }
         }
         return false;
+    }
+
+    private int binarySearch(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        final int n = nums.length;
+        if (target < nums[0] || target > nums[n-1]) {
+            return -1;
+        }
+        int li = 0, ri = n-1;
+        while (li <= ri) {
+            int mi = li + ((ri-li) >> 1);
+            if (nums[mi] == target) {
+                return mi;
+            } else if (nums[mi] < target) {
+                li = mi + 1;
+            } else {
+                ri = mi - 1;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {

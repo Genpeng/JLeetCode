@@ -36,24 +36,22 @@ package c01_array.lc0240_search_a_2d_matrix_ii;
  *
  * @author Lukas (xgp1227atgmail.com)
  */
-public class Solution1 {
+public class Solution3 {
     public boolean searchMatrix(int[][] matrix, int target) {
-        // 题意：
-        // 已知一个二维矩阵 matrix，判断二维矩阵中是否存在目标值 target
-        // 二维矩阵有以下两个性质：
-        // - 每行的元素从左到右升序排列
-        // - 每列的元素从上到下升序排列
-
-        // 解法1：暴力法
-        // 时间复杂度：O(m * n)
+        // 解法3：Z 字形查找
+        // 时间复杂度：O(m+n)
         // 空间复杂度：O(1)
 
         int m = matrix.length, n = matrix[0].length;
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (matrix[i][j] == target) {
-                    return true;
-                }
+        int x = 0, y = n-1;
+        while (x < m && y >= 0) {
+            if (matrix[x][y] == target) {
+                return true;
+            } else if (matrix[x][y] < target) {
+                ++x;
+            } else {
+                // matrix[x][y] > target
+                --y;
             }
         }
         return false;
@@ -67,7 +65,7 @@ public class Solution1 {
         matrix[3] = new int[] {16, 17, 18, 19, 20};
         matrix[4] = new int[] {21, 22, 23, 24, 25};
         int target = 19;
-        Solution1 solu = new Solution1();
+        Solution3 solu = new Solution3();
         System.out.println(solu.searchMatrix(matrix, target));
     }
 }
